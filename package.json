@@ -1,0 +1,16 @@
+{
+  "name": "learning-portrait",
+  "description": "Simple. Flexible. Empowering.",
+  "packageManager": "yarn@4.0.2",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": [
+    "app",
+    "core",
+    "data-graph",
+    "design",
+    "docs",
+    "themes",
+    "ui"
+  ]
+}

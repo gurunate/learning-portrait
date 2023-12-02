@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "wmaurer.change-case",
+        "aaron-bond.better-comments",
+        "apollographql.vscode-apollo"
+    ]
+}

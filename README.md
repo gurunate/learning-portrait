@@ -1,6 +1,6 @@
 # Learning Portrait
 
-<div style="text-align:center"><img src="./logo.svg" alt="logo" /></div>
+<div style="text-align:right"><img src="./logo.svg" alt="logo" /></div>
 
 Simple. Flexible. Empowering.
 
@@ -12,4 +12,4 @@ Learning Portrait was built from the ground up to think like, and support, the c
 
 ### Links
 
-- [Figma: Learning Portrait v5](https://www.figma.com/file/AnL18DKGLfAfbF7G0QdcfU/Learning-Portrait-2.0?type=design&node-id=349-1363&mode=design)
+-   [Figma: Learning Portrait v5](https://www.figma.com/file/AnL18DKGLfAfbF7G0QdcfU/Learning-Portrait-2.0?type=design&node-id=349-1363&mode=design)
