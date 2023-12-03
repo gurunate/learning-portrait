@@ -1,10 +1,14 @@
 import './layout.css';
 
 import { Container } from '@mui/material';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+    weight: ['400', '700'],
+    style: ['normal', 'italic'],
+    subsets: ['latin']
+});
 
 export const metadata: Metadata = {
     title: 'Sign in | Learning Portrait',
@@ -18,7 +22,7 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={poppins.className}>
                 <Container maxWidth="xl">{children}</Container>
             </body>
         </html>

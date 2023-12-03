@@ -11,7 +11,7 @@ const SignIn = () => {
                 </Card>
             </Grid>
             <Grid item md={6}>
-                content here
+                <Typography>content here</Typography>
             </Grid>
         </Grid>
     );
