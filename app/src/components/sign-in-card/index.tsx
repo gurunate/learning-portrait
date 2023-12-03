@@ -16,7 +16,7 @@ const SignInCard = () => {
     return (
         <Card variant="outlined" sx={{ borderRadius: 6 }}>
             <CardContent>
-                <Grid container spacing={4} p={8}>
+                <Grid container spacing={4} p={10}>
                     <Grid item xs={12}>
                         <Typography variant="h2">Sign in</Typography>
                     </Grid>
