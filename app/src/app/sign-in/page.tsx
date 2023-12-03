@@ -1,10 +1,26 @@
-import SignIn from '@/components/sign-in';
+import { Grid } from '@mui/material';
+import MarketingPanel from '@/components/marketing-panel';
+import SignInCard from '@/components/sign-in-card';
 import styles from './page.module.css';
 
 const Page = () => {
     return (
         <main className={styles.main}>
-            <SignIn />
+            <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={12}
+                height={804}
+            >
+                <Grid item md={6}>
+                    <SignInCard />
+                </Grid>
+                <Grid item md={6}>
+                    <MarketingPanel />
+                </Grid>
+            </Grid>
         </main>
     );
 };
