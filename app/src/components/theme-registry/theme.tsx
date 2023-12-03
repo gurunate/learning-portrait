@@ -4,10 +4,35 @@ const theme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            // light: '#42A5F5',
-            main: '#006B96'
-            // dark: '#1565C0'
+            light: '#008DC4',
+            main: '#006B96',
+            dark: '#005273'
+        },
+        secondary: {
+            //     light: '#BA68C8',
+            main: '#F7941D'
+            //     dark: '#7B1FA2'
         }
+        // error: {
+        //     light: '#EF5350',
+        //     main: '#D32F2F',
+        //     dark: '#C62828'
+        // },
+        // warning: {
+        //     light: '#FF9800',
+        //     main: '#ED6C02',
+        //     dark: '#C24400'
+        // },
+        // info: {
+        //     light: '#03A9F4',
+        //     main: '#0288D1',
+        //     dark: '#01579B'
+        // },
+        // success: {
+        //     light: '#4CAF50',
+        //     main: '#2E7D32',
+        //     dark: '#1B5E20'
+        // },
     },
     typography: {
         fontFamily: ['"Poppins"', 'sans-serif'].join(','),
@@ -63,6 +88,15 @@ const theme = createTheme({
         }
     },
     components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    fontWeight: 700,
+                    borderColor: '#DCDBDD',
+                    borderRadius: 12
+                }
+            }
+        },
         MuiLink: {
             defaultProps: {
                 underline: 'none'

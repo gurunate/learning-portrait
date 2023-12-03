@@ -4,6 +4,9 @@
         "wmaurer.change-case",
         "aaron-bond.better-comments",
         "apollographql.vscode-apollo",
-        "figma.figma-vscode-extension"
+        "figma.figma-vscode-extension",
+        "amatiasq.sort-imports",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
     ]
 }
