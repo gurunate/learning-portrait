@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid, Stack, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 
 import Image from 'next/image';
 

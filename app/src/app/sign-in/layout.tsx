@@ -3,6 +3,7 @@ import './layout.css';
 import { Container } from '@mui/material';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import ThemeRegistry from '@/components/theme-registry';
 
 const poppins = Poppins({
     weight: ['400', '700'],
@@ -23,7 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
             <body className={poppins.className}>
-                <Container maxWidth="xl">{children}</Container>
+                <ThemeRegistry>
+                    <Container maxWidth="xl">{children}</Container>
+                </ThemeRegistry>
             </body>
         </html>
     );
