@@ -18,6 +18,7 @@ import GoogleIcon from '../icons/google';
 import Link from '@/components/link';
 import React from 'react';
 import { get } from 'lodash';
+import styles from './styles.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export type SignInCardProps = unknown;
@@ -66,17 +67,21 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
         name: 'password'
     });
 
-    const onSubmit = data => {
+    const onSubmit = (data: any) => {
         console.log('onSubmit', { data });
     };
 
-    const onError = data => {
+    const onError = (data: any) => {
         console.log('onError', { data });
     };
 
     return (
         <FormProvider {...methods}>
-            <Card variant="outlined" sx={{ borderRadius: 6 }}>
+            <Card
+                variant="outlined"
+                className={styles.root}
+                style={{ borderRadius: 16 }}
+            >
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit, onError)}>
                         <Grid container spacing={4} p={{ lg: 10, sm: 5 }}>
@@ -94,9 +99,10 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
                             <Grid item xs={12}>
                                 <TextField
                                     {...emailField}
+                                    autoFocus
+                                    fullWidth
                                     label="Email address"
                                     variant="standard"
-                                    fullWidth
                                     error={Boolean(
                                         get(errors, emailField.name)
                                     )}
@@ -109,11 +115,11 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
                             <Grid item xs={12}>
                                 <TextField
                                     {...passwordField}
+                                    fullWidth
                                     type="password"
                                     label="Password"
                                     variant="standard"
                                     inputProps={{ maxLength: 40 }}
-                                    fullWidth
                                     error={Boolean(
                                         get(errors, passwordField.name)
                                     )}

@@ -1,6 +1,6 @@
 import './layout.css';
 
-import { Container, useTheme } from '@mui/material';
+import { Box, Container, useTheme } from '@mui/material';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -29,7 +29,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 style={{ backgroundColor: '#006b96' }}
             >
                 <ThemeRegistry>
-                    <Container maxWidth="xl">{children}</Container>
+                    <Container maxWidth="xl">
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            height="100vh"
+                        >
+                            {children}
+                        </Box>
+                    </Container>
                 </ThemeRegistry>
             </body>
         </html>
