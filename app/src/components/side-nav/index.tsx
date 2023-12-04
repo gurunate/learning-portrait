@@ -1,3 +1,5 @@
+'use client';
+
 import {
     Avatar,
     Box,
@@ -10,6 +12,7 @@ import {
     ListItemText,
     Typography
 } from '@mui/material';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import ForumIcon from '@mui/icons-material/Forum';
 import Image from 'next/image';
@@ -25,7 +28,7 @@ export type SideNavProps = unknown;
  * @param {SideNavProps} props
  */
 const SideNav: React.FC<SideNavProps> = () => {
-    const selected = true;
+    const pathname = usePathname();
 
     return (
         <Grid
@@ -36,7 +39,6 @@ const SideNav: React.FC<SideNavProps> = () => {
             spacing={2}
             pt={4}
             height="100vh"
-            // minWidth={250}
             maxWidth={350}
         >
             <Grid item container direction="column" spacing={4}>
@@ -60,11 +62,11 @@ const SideNav: React.FC<SideNavProps> = () => {
                             component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
                         >
-                            <ListItemButton selected={selected}>
+                            <ListItemButton
+                                selected={pathname === '/dashboard'}
+                            >
                                 <ListItemIcon>
-                                    <WhatshotIcon
-                                        color={selected ? 'primary' : 'inherit'}
-                                    />
+                                    <WhatshotIcon color="primary" />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={
@@ -93,7 +95,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                             }
                             disablePadding
                         >
-                            <ListItemButton>
+                            <ListItemButton selected={pathname === '/messages'}>
                                 <ListItemIcon>
                                     <ForumIcon />
                                 </ListItemIcon>
@@ -117,7 +119,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                             }
                             disablePadding
                         >
-                            <ListItemButton>
+                            <ListItemButton selected={pathname === '/settings'}>
                                 <ListItemIcon>
                                     <SettingsIcon />
                                 </ListItemIcon>
