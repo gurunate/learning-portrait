@@ -1,5 +1,6 @@
 import {
     Avatar,
+    Box,
     Grid,
     IconButton,
     List,
@@ -10,12 +11,13 @@ import {
     Typography
 } from '@mui/material';
 
-import DashboardIcon from '@/components/icons/dashboard';
+import ForumIcon from '@mui/icons-material/Forum';
 import Image from 'next/image';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import MessagesIcon from '@/components/icons/messages';
+import Link from 'next/link';
 import React from 'react';
-import SettingsIcon from '@/components/icons/settings';
+import SettingsIcon from '@mui/icons-material/Settings';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
 
 export type SideNavProps = unknown;
 
@@ -40,14 +42,23 @@ const SideNav: React.FC<SideNavProps> = () => {
         >
             <Grid item container direction="column" spacing={4}>
                 <Grid item>
-                    <Image src="/logo.svg" alt="logo" width={122} height={72} />
+                    <Box px={4}>
+                        <Link href="/">
+                            <Image
+                                src="/logo.svg"
+                                alt="logo"
+                                width={122}
+                                height={72}
+                            />
+                        </Link>
+                    </Box>
                 </Grid>
                 <Grid item>
                     <List>
-                        <ListItem disablePadding>
+                        <ListItem disablePadding sx={{ marginTop: 2 }}>
                             <ListItemButton selected={selected}>
                                 <ListItemIcon>
-                                    <DashboardIcon
+                                    <WhatshotIcon
                                         color={selected ? 'primary' : 'inherit'}
                                     />
                                 </ListItemIcon>
@@ -61,6 +72,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
+                            sx={{ marginTop: 2 }}
                             secondaryAction={
                                 <Avatar
                                     sx={{
@@ -76,7 +88,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                         >
                             <ListItemButton>
                                 <ListItemIcon>
-                                    <MessagesIcon />
+                                    <ForumIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={
@@ -88,6 +100,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
+                            sx={{ marginTop: 2 }}
                             secondaryAction={
                                 <IconButton edge="end" aria-label="settings">
                                     <KeyboardArrowDownIcon />
@@ -111,10 +124,9 @@ const SideNav: React.FC<SideNavProps> = () => {
                     </List>
                 </Grid>
             </Grid>
-
             <Grid item>
                 <Typography color="primary">
-                    &copy; 2023 Learning Portrait
+                    &copy; {new Date().getFullYear()} Learning Portrait
                 </Typography>
             </Grid>
         </Grid>

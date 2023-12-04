@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import SideNav from '@/components/side-nav';
 import ThemeRegistry from '@/components/theme-registry';
+import TopNav from '@/components/top-nav';
 
 const poppins = Poppins({
     weight: ['400', '700'],
@@ -30,8 +31,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             <Grid item md={3}>
                                 <SideNav />
                             </Grid>
-                            <Grid item md={9}>
-                                {children}
+                            <Grid
+                                item
+                                md={9}
+                                container
+                                direction="column"
+                                spacing={4}
+                            >
+                                <Grid item>
+                                    <TopNav />
+                                </Grid>
+                                <Grid item>{children}</Grid>
                             </Grid>
                         </Grid>
                     </Container>

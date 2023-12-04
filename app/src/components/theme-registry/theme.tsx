@@ -104,6 +104,18 @@ const theme = createTheme({
             defaultProps: {
                 underline: 'none'
             }
+        },
+        MuiSvgIcon: {
+            defaultProps: {
+                fill: '#3C5255'
+            }
+        },
+        MuiListItemButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 12
+                }
+            }
         }
     }
 });
