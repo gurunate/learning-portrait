@@ -1,6 +1,7 @@
 import './layout.css';
 
-import { Container } from '@mui/material';
+import { Container, useTheme } from '@mui/material';
+
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import ThemeRegistry from '@/components/theme-registry';
@@ -23,7 +24,10 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body className={poppins.className}>
+            <body
+                className={poppins.className}
+                style={{ backgroundColor: '#006b96' }}
+            >
                 <ThemeRegistry>
                     <Container maxWidth="xl">{children}</Container>
                 </ThemeRegistry>

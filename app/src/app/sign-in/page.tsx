@@ -14,10 +14,10 @@ const Page = () => {
                 spacing={12}
                 height={804}
             >
-                <Grid item md={6}>
+                <Grid item lg={6} md={6}>
                     <SignInCard />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item lg={6} md={6}>
                     <MarketingPanel />
                 </Grid>
             </Grid>

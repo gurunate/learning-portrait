@@ -43,7 +43,10 @@ const theme = createTheme({
         fontWeightMedium: 600,
         fontWeightBold: 700,
         body1: {
-            fontSize: 14
+            fontSize: 14,
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '24px'
         },
         body2: {
             fontSize: 12
