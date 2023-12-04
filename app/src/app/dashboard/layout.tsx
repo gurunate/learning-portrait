@@ -30,12 +30,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             >
                 <ThemeRegistry>
                     <Container maxWidth={false}>
-                        <Grid container spacing={4}>
-                            <Grid item md={3}>
+                        <Grid container direction="row" spacing={2}>
+                            <Grid item lg={2} md={3} pr={2}>
                                 <SideNav />
                             </Grid>
                             <Grid
                                 item
+                                lg={10}
                                 md={9}
                                 container
                                 direction="column"

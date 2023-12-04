@@ -23,7 +23,6 @@ export type SideNavProps = unknown;
 
 /**
  * @param {SideNavProps} props
- * @returns {JSX.Element}
  */
 const SideNav: React.FC<SideNavProps> = () => {
     const selected = true;
@@ -37,7 +36,8 @@ const SideNav: React.FC<SideNavProps> = () => {
             spacing={2}
             pt={4}
             height="100vh"
-            maxWidth={250}
+            // minWidth={250}
+            maxWidth={350}
         >
             <Grid item container direction="column" spacing={4}>
                 <Grid item>

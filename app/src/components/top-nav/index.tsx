@@ -8,9 +8,11 @@ import {
     Typography
 } from '@mui/material';
 
+import Link from 'next/link';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
 import React from 'react';
+import { format as formatDate } from 'date-fns';
 
 export type TopNavProps = unknown;
 
@@ -34,30 +36,37 @@ const TopNav: React.FC<TopNavProps> = (): JSX.Element => {
                         Good Morning, Eureka
                     </Typography>
                     <Typography variant="h6">
-                        Today Aug 25, 2024 | 1:23 PM
+                        Today {formatDate(new Date(), 'PP | p')}
                     </Typography>
                 </Stack>
             </Grid>
-            <Grid item>
-                <Stack direction="row" spacing={2}>
-                    <IconButton>
-                        <Badge color="error" variant="dot" invisible={false}>
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <Button
-                        component="label"
-                        variant="text"
-                        startIcon={
-                            <Avatar sx={{ width: 32, height: 32 }}>
-                                <PersonIcon />
-                            </Avatar>
-                        }
-                        sx={{ backgroundColor: 'white' }}
-                    >
-                        Eureka
-                    </Button>
-                </Stack>
+            <Grid item textAlign="right">
+                <Grid item>
+                    <Stack direction="row" spacing={2}>
+                        <IconButton>
+                            <Badge
+                                color="error"
+                                variant="dot"
+                                invisible={false}
+                            >
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        <Button
+                            component={Link}
+                            href="/sign-in"
+                            variant="text"
+                            startIcon={
+                                <Avatar sx={{ width: 32, height: 32 }}>
+                                    <PersonIcon />
+                                </Avatar>
+                            }
+                            sx={{ backgroundColor: 'white' }}
+                        >
+                            Eureka
+                        </Button>
+                    </Stack>
+                </Grid>
             </Grid>
         </Grid>
     );
