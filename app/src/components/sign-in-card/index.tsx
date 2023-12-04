@@ -11,7 +11,13 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import { FormProvider, useController, useForm } from 'react-hook-form';
+import {
+    FieldErrors,
+    FieldValues,
+    FormProvider,
+    useController,
+    useForm
+} from 'react-hook-form';
 
 import FacebookIcon from '../icons/facebook';
 import GoogleIcon from '../icons/google';
@@ -21,7 +27,10 @@ import { get } from 'lodash';
 import styles from './styles.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-export type SignInCardProps = unknown;
+export type SignInCardProps = {
+    onError?: (errors: FieldErrors) => void;
+    onSubmit: (data: FieldValues) => void;
+};
 
 export const schema = yup.object().shape({
     email: yup
@@ -40,7 +49,10 @@ export const schema = yup.object().shape({
  * @param {SignInCardProps} props
  * @returns {JSX.Element}
  */
-const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
+const SignInCard: React.FC<SignInCardProps> = ({
+    onError,
+    onSubmit
+}): JSX.Element => {
     const methods = useForm({
         mode: 'onSubmit',
         reValidateMode: 'onChange',
@@ -67,14 +79,6 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
         name: 'password'
     });
 
-    const onSubmit = (data: any) => {
-        console.log('onSubmit', { data });
-    };
-
-    const onError = (data: any) => {
-        console.log('onError', { data });
-    };
-
     return (
         <FormProvider {...methods}>
             <Card
@@ -99,10 +103,23 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
                             <Grid item xs={12}>
                                 <TextField
                                     {...emailField}
+                                    color="secondary"
                                     autoFocus
                                     fullWidth
                                     label="Email address"
                                     variant="standard"
+                                    InputLabelProps={{
+                                        sx: {
+                                            color: '#84818A'
+                                        }
+                                    }}
+                                    sx={{
+                                        '& label': {
+                                            '&.Mui-focused': {
+                                                color: '#84818A'
+                                            }
+                                        }
+                                    }}
                                     error={Boolean(
                                         get(errors, emailField.name)
                                     )}
@@ -116,9 +133,22 @@ const SignInCard: React.FC<SignInCardProps> = (): JSX.Element => {
                                 <TextField
                                     {...passwordField}
                                     fullWidth
+                                    color="secondary"
                                     type="password"
                                     label="Password"
                                     variant="standard"
+                                    InputLabelProps={{
+                                        sx: {
+                                            color: '#84818A'
+                                        }
+                                    }}
+                                    sx={{
+                                        '& label': {
+                                            '&.Mui-focused': {
+                                                color: '#84818A'
+                                            }
+                                        }
+                                    }}
                                     inputProps={{ maxLength: 40 }}
                                     error={Boolean(
                                         get(errors, passwordField.name)

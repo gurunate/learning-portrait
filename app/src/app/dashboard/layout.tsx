@@ -1,7 +1,8 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import SideNav from '@/components/side-nav';
 import ThemeRegistry from '@/components/theme-registry';
 
 const poppins = Poppins({
@@ -11,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-    title: 'Sign in | Learning Portrait',
+    title: 'Dashboard | Learning Portrait',
     description: 'A grade book that thinks like you do.'
 };
 
@@ -22,20 +23,17 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body
-                className={poppins.className}
-                style={{ backgroundColor: '#006b96' }}
-            >
+            <body className={poppins.className}>
                 <ThemeRegistry>
-                    <Container maxWidth="xl">
-                        <Box
-                            display="flex"
-                            justifyContent="center"
-                            alignItems="center"
-                            height="100vh"
-                        >
-                            {children}
-                        </Box>
+                    <Container maxWidth={false}>
+                        <Grid container spacing={4}>
+                            <Grid item md={3}>
+                                <SideNav />
+                            </Grid>
+                            <Grid item md={9}>
+                                {children}
+                            </Grid>
+                        </Grid>
                     </Container>
                 </ThemeRegistry>
             </body>

@@ -80,7 +80,8 @@ const theme = createTheme({
         },
         h6: {
             fontSize: 14,
-            fontWeight: 700
+            fontWeight: 500,
+            fontStyle: 'normal'
         },
         subtitle1: {
             fontSize: 16
