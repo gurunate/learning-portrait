@@ -106,8 +106,10 @@ const theme = createTheme({
             }
         },
         MuiSvgIcon: {
-            defaultProps: {
-                fill: '#3C5255'
+            styleOverrides: {
+                root: {
+                    color: '#3C5255'
+                }
             }
         },
         MuiListItemButton: {

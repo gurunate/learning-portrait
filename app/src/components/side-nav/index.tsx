@@ -26,7 +26,6 @@ export type SideNavProps = unknown;
  * @returns {JSX.Element}
  */
 const SideNav: React.FC<SideNavProps> = () => {
-    // const selected = false;
     const selected = true;
 
     return (
@@ -55,7 +54,12 @@ const SideNav: React.FC<SideNavProps> = () => {
                 </Grid>
                 <Grid item>
                     <List>
-                        <ListItem disablePadding sx={{ marginTop: 2 }}>
+                        <ListItem
+                            disablePadding
+                            href="/dashboard"
+                            component={Link}
+                            sx={{ marginTop: 2, color: 'inherit' }}
+                        >
                             <ListItemButton selected={selected}>
                                 <ListItemIcon>
                                     <WhatshotIcon
@@ -72,9 +76,12 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
-                            sx={{ marginTop: 2 }}
+                            href="/messages"
+                            component={Link}
+                            sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
                                 <Avatar
+                                    color="primary"
                                     sx={{
                                         bgcolor: '#D44646',
                                         width: 24,
@@ -100,7 +107,9 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
-                            sx={{ marginTop: 2 }}
+                            href="/settings"
+                            component={Link}
+                            sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
                                 <IconButton edge="end" aria-label="settings">
                                     <KeyboardArrowDownIcon />

@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -24,7 +24,10 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body className={poppins.className}>
+            <body
+                className={poppins.className}
+                style={{ backgroundColor: '#f4f7f7' }}
+            >
                 <ThemeRegistry>
                     <Container maxWidth={false}>
                         <Grid container spacing={4}>

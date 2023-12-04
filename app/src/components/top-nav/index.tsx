@@ -1,6 +1,15 @@
-import { Grid, IconButton, Stack, Typography } from '@mui/material';
+import {
+    Avatar,
+    Badge,
+    Button,
+    Grid,
+    IconButton,
+    Stack,
+    Typography
+} from '@mui/material';
 
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
 import React from 'react';
 
 export type TopNavProps = unknown;
@@ -32,8 +41,22 @@ const TopNav: React.FC<TopNavProps> = (): JSX.Element => {
             <Grid item>
                 <Stack direction="row" spacing={2}>
                     <IconButton>
-                        <NotificationsIcon />
+                        <Badge color="error" variant="dot" invisible={false}>
+                            <NotificationsIcon />
+                        </Badge>
                     </IconButton>
+                    <Button
+                        component="label"
+                        variant="text"
+                        startIcon={
+                            <Avatar sx={{ width: 32, height: 32 }}>
+                                <PersonIcon />
+                            </Avatar>
+                        }
+                        sx={{ backgroundColor: 'white' }}
+                    >
+                        Eureka
+                    </Button>
                 </Stack>
             </Grid>
         </Grid>
