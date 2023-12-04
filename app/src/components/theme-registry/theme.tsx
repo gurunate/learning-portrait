@@ -91,6 +91,13 @@ const theme = createTheme({
         }
     },
     components: {
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 12
+                }
+            }
+        },
         MuiButton: {
             styleOverrides: {
                 root: {

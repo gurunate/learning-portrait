@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Paper } from '@mui/material';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -45,7 +45,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <Grid item>
                                     <TopNav />
                                 </Grid>
-                                <Grid item>{children}</Grid>
+                                <Grid item>
+                                    <Paper elevation={0}>
+                                        <Box p={4}>{children}</Box>
+                                    </Paper>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Container>
