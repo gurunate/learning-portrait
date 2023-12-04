@@ -12,10 +12,10 @@ const poppins = Poppins({
     subsets: ['latin']
 });
 
-export const metadata: Metadata = {
-    title: 'Dashboard | Learning Portrait',
-    description: 'A grade book that thinks like you do.'
-};
+// export const metadata: Metadata = {
+//     title: 'Dashboard | Learning Portrait',
+//     description: 'A grade book that thinks like you do.'
+// };
 
 export type LayoutProps = {
     children: React.ReactNode;
