@@ -1,10 +1,17 @@
-import { Button, Grid, Stack, TextField, Typography } from '@mui/material';
+import {
+    Button,
+    Container,
+    Grid,
+    Stack,
+    TextField,
+    Typography
+} from '@mui/material';
 
 import { Metadata } from 'next';
 
 const Page = () => {
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={4} maxWidth="xl">
             <Grid item md={12}>
                 <Typography variant="h2">Naming Conventions</Typography>
             </Grid>

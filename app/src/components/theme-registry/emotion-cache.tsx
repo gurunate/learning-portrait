@@ -63,7 +63,7 @@ const NextAppDirEmotionCacheProvider: React.FC<
 
             if (typeof style !== 'boolean') {
                 if (isGlobal) {
-                    globals.push({ name, style });
+                    globals.push({ name, style } as never);
                 } else {
                     styles += style;
                     dataEmotionAttribute += ` ${name}`;

@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    ignorePatterns: ['*.stories.tsx', '*.stories.ts']
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

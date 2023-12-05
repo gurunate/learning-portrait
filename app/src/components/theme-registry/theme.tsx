@@ -123,7 +123,8 @@ const theme = createTheme({
                 root: {
                     fontWeight: 700,
                     borderColor: LINE_LINE1,
-                    borderRadius: BORDER_RADIUS
+                    borderRadius: BORDER_RADIUS,
+                    boxShadow: 'none'
                 }
             }
         },
