@@ -1,5 +1,6 @@
 import './globals.css';
 
+import IconLinks from '@/components/icon-links';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import ThemeRegistry from '@/components/theme-registry';
@@ -21,6 +22,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={poppins.className}>
+            <head>
+                <IconLinks />
+            </head>
             <body style={{ backgroundColor: '#f4f7f7' }}>
                 <ThemeRegistry>
                     <main>{children}</main>

@@ -12,10 +12,10 @@ const poppins = Poppins({
     subsets: ['latin']
 });
 
-// export const metadata: Metadata = {
-//     title: 'Dashboard | Learning Portrait',
-//     description: 'A grade book that thinks like you do.'
-// };
+export const metadata: Metadata = {
+    title: 'Learning Portrait',
+    description: 'A grade book that thinks like you do.'
+};
 
 export type LayoutProps = {
     children: React.ReactNode;
@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                     <TopNav />
                                 </Grid>
                                 <Grid item>
-                                    <Paper elevation={0}>
+                                    <Paper>
                                         <Box p={4}>
                                             <main>{children}</main>
                                         </Box>

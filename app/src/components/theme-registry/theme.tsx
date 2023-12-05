@@ -113,6 +113,9 @@ const theme = createTheme({
                 root: {
                     borderRadius: BORDER_RADIUS
                 }
+            },
+            defaultProps: {
+                elevation: 0
             }
         },
         MuiButton: {

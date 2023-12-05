@@ -11,12 +11,11 @@ const ComingSoon: React.FC = () => (
         justifyContent="center"
         alignItems="center"
     >
-        <Box width={650} height={650} position="relative">
+        <Box width={500} height={500} position="relative">
             <Link href="/sign-in">
                 <Image fill sizes="100vw" src="/logo.svg" alt="logo" />
             </Link>
         </Box>
-        <Typography variant="h1">Simple. Flexible. Empowering.</Typography>
         <Typography variant="h3">
             A grade book that thinks like you do.
         </Typography>

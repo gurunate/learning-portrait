@@ -95,7 +95,7 @@ export default function RootLayout({
                             alignItems="stretch"
                         >
                             <Container maxWidth="xl">
-                                <Paper elevation={0} variant="outlined">
+                                <Paper>
                                     <Box p={4}>
                                         <main>{children}</main>
                                     </Box>
