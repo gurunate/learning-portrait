@@ -54,16 +54,35 @@ export default function RootLayout({
                                     sx={{ borderRadius: 0 }}
                                 >
                                     <Toolbar>
-                                        <Box p={1}>
-                                            <Link href="/">
-                                                <Image
-                                                    src="/logo-white.svg"
-                                                    alt="logo"
-                                                    width={101.9}
-                                                    height={60}
-                                                />
-                                            </Link>
-                                        </Box>
+                                        <Grid
+                                            container
+                                            direction="row"
+                                            justifyContent="space-between"
+                                            alignItems="center"
+                                            spacing={2}
+                                            p={1}
+                                        >
+                                            <Grid item>
+                                                <Link href="/">
+                                                    <Image
+                                                        src="/logo-white.svg"
+                                                        alt="logo"
+                                                        width={101.9}
+                                                        height={60}
+                                                    />
+                                                </Link>
+                                            </Grid>
+                                            <Grid item>
+                                                <Button
+                                                    variant="text"
+                                                    href="/sign-in"
+                                                    component={Link}
+                                                    color="inherit"
+                                                >
+                                                    Sign In
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
                                     </Toolbar>
                                 </AppBar>
                             </Box>
