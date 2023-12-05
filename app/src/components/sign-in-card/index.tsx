@@ -206,8 +206,11 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                             width: 189,
                                             height: 48
                                         }}
-                                        startIcon={<GoogleIcon />}
+                                        startIcon={
+                                            <GoogleIcon sx={{ fontSize: 40 }} />
+                                        }
                                         onClick={() => alert('coming soon...')}
+                                        size="large"
                                     >
                                         Google
                                     </Button>
@@ -221,6 +224,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                         }}
                                         startIcon={<FacebookIcon />}
                                         onClick={() => alert('coming soon...')}
+                                        size="large"
                                     >
                                         Facebook
                                     </Button>

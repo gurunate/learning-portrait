@@ -49,7 +49,7 @@ const SideNav: React.FC<SideNavProps> = () => {
             <Grid item container direction="column" spacing={2}>
                 <Grid item>
                     <Box px={4}>
-                        <Tooltip title="home">
+                        <Tooltip title="Home">
                             <Link href="/">
                                 <Image
                                     src="/logo.svg"

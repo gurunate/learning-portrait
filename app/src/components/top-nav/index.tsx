@@ -8,6 +8,7 @@ import {
     Typography
 } from '@mui/material';
 
+import Greet from '@/components/greet';
 import Link from 'next/link';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
@@ -20,7 +21,7 @@ export type TopNavProps = unknown;
  * @param {TopNavProps} props
  * @returns {JSX.Element}
  */
-const TopNav: React.FC<TopNavProps> = (): JSX.Element => {
+const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
     return (
         <Grid
             container
@@ -33,7 +34,7 @@ const TopNav: React.FC<TopNavProps> = (): JSX.Element => {
             <Grid item>
                 <Stack direction="column" spacing={1}>
                     <Typography variant="h2" color="primary">
-                        Good Morning, Eureka
+                        <Greet name="Eureka" />
                     </Typography>
                     <Typography variant="h6">
                         Today {formatDate(new Date(), 'PP | p')}
@@ -57,9 +58,10 @@ const TopNav: React.FC<TopNavProps> = (): JSX.Element => {
                             href="/sign-in"
                             variant="text"
                             startIcon={
-                                <Avatar sx={{ width: 32, height: 32 }}>
-                                    <PersonIcon />
-                                </Avatar>
+                                <Avatar
+                                    sx={{ width: 32, height: 32 }}
+                                    src="/avatars/d141cccb-efe0-4351-ba5f-bd5053058b86.svg"
+                                />
                             }
                             sx={{ backgroundColor: 'white' }}
                         >

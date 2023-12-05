@@ -1,7 +1,6 @@
-<!-- <svg width="122" height="72" viewBox="0 0 122 72" fill="none" xmlns="http://www.w3.org/2000/svg" -->
-<svg width="500" height="295" viewBox="0 0 500 295" fill="none" xmlns="http://www.w3.org/2000/svg"
+<svg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="logo1.xsd" width="500"
+    height="295" viewBox="0 0 500 295" fill="none" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- <rect width="122" height="72" fill="url(#pattern0)" /> -->
     <rect width="500" height="295" fill="url(#pattern0)" />
     <defs>
         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
