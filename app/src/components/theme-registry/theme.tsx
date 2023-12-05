@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles';
 
 // Color schema from Figma
 const PRIMARY_LP = '#006B96';
+const COLOR_BACKGROUND = '#f4f7f7';
 const COLOR_3_ALERT = '#F75151';
 const COLOR_LIGHT_LP_2 = '#8DA97E';
 const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
@@ -17,36 +18,38 @@ const BORDER_RADIUS = 12;
 const theme = createTheme({
     palette: {
         mode: 'light',
+        background: {
+            default: COLOR_BACKGROUND
+        },
         primary: {
             light: lighten(PRIMARY_LP, 0.25),
             main: PRIMARY_LP,
             dark: darken(PRIMARY_LP, 0.25)
         },
         secondary: {
-            light: '#D48019',
+            light: lighten(COLOR_0_SECONDARY, 0.25),
             main: COLOR_0_SECONDARY,
-            dark: '#59360B'
+            dark: darken(COLOR_0_SECONDARY, 0.25)
         },
         error: {
-            // light: '#EF5350',
-            // main: COLOR_3_ALERT
-            main: '#D44646'
-            // dark: '#C62828'
+            light: lighten(COLOR_3_ALERT, 0.25),
+            main: darken(COLOR_3_ALERT, 0.25),
+            dark: darken(COLOR_3_ALERT, 0.5)
         },
         warning: {
-            //     light: '#FF9800',
-            main: COLOR_0_SECONDARY
-            //     dark: '#C24400'
+            light: lighten(COLOR_0_SECONDARY, 0.25),
+            main: COLOR_0_SECONDARY,
+            dark: darken(COLOR_0_SECONDARY, 0.25)
         },
         info: {
-            //     light: '#03A9F4',
-            main: COLOR_ADDITIONAL_BLUE1
-            //     dark: '#01579B'
+            light: lighten(COLOR_ADDITIONAL_BLUE1, 0.25),
+            main: COLOR_ADDITIONAL_BLUE1,
+            dark: darken(COLOR_ADDITIONAL_BLUE1, 0.25)
         },
         success: {
-            //     light: '#4CAF50',
-            main: COLOR_2_SUCCESS
-            //     dark: '#1B5E20'
+            light: lighten(COLOR_2_SUCCESS, 0.25),
+            main: COLOR_2_SUCCESS,
+            dark: darken(COLOR_2_SUCCESS, 0.25)
         }
     },
     typography: {

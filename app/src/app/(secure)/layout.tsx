@@ -24,10 +24,7 @@ export type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <html lang="en">
-            <body
-                className={poppins.className}
-                style={{ backgroundColor: '#f4f7f7' }}
-            >
+            <body className={poppins.className}>
                 <ThemeRegistry>
                     <Container maxWidth={false}>
                         <Grid container direction="row" spacing={2}>

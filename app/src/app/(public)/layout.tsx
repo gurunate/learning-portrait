@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={poppins.className}>
-            <body style={{ backgroundColor: '#f4f7f7' }}>
+            <body>
                 <ThemeRegistry>
                     <Grid
                         container
