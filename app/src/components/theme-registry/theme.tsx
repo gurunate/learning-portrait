@@ -1,5 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
+const BORDER_RADIUS = 12;
+
 const theme = createTheme({
     palette: {
         mode: 'light',
@@ -94,7 +96,7 @@ const theme = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    borderRadius: 12
+                    borderRadius: BORDER_RADIUS
                 }
             }
         },
@@ -103,7 +105,7 @@ const theme = createTheme({
                 root: {
                     fontWeight: 700,
                     borderColor: '#DCDBDD',
-                    borderRadius: 12
+                    borderRadius: BORDER_RADIUS
                 }
             }
         },
@@ -122,7 +124,14 @@ const theme = createTheme({
         MuiListItemButton: {
             styleOverrides: {
                 root: {
-                    borderRadius: 12
+                    borderRadius: BORDER_RADIUS
+                }
+            }
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius: BORDER_RADIUS
                 }
             }
         }

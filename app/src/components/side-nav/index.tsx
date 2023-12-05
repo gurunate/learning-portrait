@@ -35,6 +35,12 @@ const SideNav: React.FC<SideNavProps> = () => {
     const [open, setOpen] = React.useState(false);
     const pathname = usePathname();
 
+    React.useEffect(() => {
+        if (pathname.match(/^\/settings/)) {
+            setOpen(true);
+        }
+    }, [pathname]);
+
     return (
         <Grid
             container
