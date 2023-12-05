@@ -47,7 +47,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 </Grid>
                                 <Grid item>
                                     <Paper elevation={0}>
-                                        <Box p={4}>{children}</Box>
+                                        <Box p={4}>
+                                            <main>{children}</main>
+                                        </Box>
                                     </Paper>
                                 </Grid>
                             </Grid>

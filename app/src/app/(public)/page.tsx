@@ -1,0 +1,32 @@
+import { Grid, Typography } from '@mui/material';
+
+import ComingSoon from '@/components/coming-soon';
+import Copyright from '@/components/copyright';
+import { Metadata } from 'next';
+
+const Page = () => {
+    return (
+        <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            height="100vh"
+            spacing={6}
+        >
+            <Grid item>
+                <ComingSoon />
+            </Grid>
+            <Grid item>
+                <Copyright />
+            </Grid>
+        </Grid>
+    );
+};
+
+export const metadata: Metadata = {
+    title: 'Learning Portrait',
+    description: 'A grade book that thinks like you do.'
+};
+
+export default Page;

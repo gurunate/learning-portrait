@@ -3,6 +3,7 @@
 import {
     Avatar,
     Box,
+    Collapse,
     Grid,
     IconButton,
     List,
@@ -10,13 +11,16 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Tooltip,
     Typography
 } from '@mui/material';
 import { usePathname, useSearchParams } from 'next/navigation';
 
+import Copyright from '@/components/copyright';
 import ForumIcon from '@mui/icons-material/Forum';
 import Image from 'next/image';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Link from 'next/link';
 import React from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -28,6 +32,7 @@ export type SideNavProps = unknown;
  * @param {SideNavProps} props
  */
 const SideNav: React.FC<SideNavProps> = () => {
+    const [open, setOpen] = React.useState(false);
     const pathname = usePathname();
 
     return (
@@ -41,17 +46,19 @@ const SideNav: React.FC<SideNavProps> = () => {
             height="100vh"
             maxWidth={350}
         >
-            <Grid item container direction="column" spacing={4}>
+            <Grid item container direction="column" spacing={2}>
                 <Grid item>
                     <Box px={4}>
-                        <Link href="/">
-                            <Image
-                                src="/logo.svg"
-                                alt="logo"
-                                width={122}
-                                height={72}
-                            />
-                        </Link>
+                        <Tooltip title="home">
+                            <Link href="/">
+                                <Image
+                                    src="/logo.svg"
+                                    alt="logo"
+                                    width={150}
+                                    height={88.5}
+                                />
+                            </Link>
+                        </Tooltip>
                     </Box>
                 </Grid>
                 <Grid item>
@@ -109,14 +116,18 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
-                            href="/settings"
-                            component={Link}
+                            // href="/settings"
+                            // component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
                                 <IconButton edge="end" aria-label="settings">
-                                    <KeyboardArrowDownIcon />
+                                    {!open && <KeyboardArrowDownIcon />}
+                                    {open && <KeyboardArrowUpIcon />}
                                 </IconButton>
                             }
+                            onClick={() => {
+                                setOpen(prev => !prev);
+                            }}
                             disablePadding
                         >
                             <ListItemButton selected={pathname === '/settings'}>
@@ -132,13 +143,74 @@ const SideNav: React.FC<SideNavProps> = () => {
                                 />
                             </ListItemButton>
                         </ListItem>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <List>
+                                <ListItem
+                                    href="/settings/profile"
+                                    component={Link}
+                                    sx={{ paddingLeft: 7, color: 'inherit' }}
+                                >
+                                    <ListItemButton
+                                        selected={
+                                            pathname === '/settings/profile'
+                                        }
+                                    >
+                                        <ListItemText
+                                            primary={
+                                                <Typography variant="h6">
+                                                    Profile
+                                                </Typography>
+                                            }
+                                        />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem
+                                    href="/settings/naming-conventions"
+                                    component={Link}
+                                    sx={{ paddingLeft: 7, color: 'inherit' }}
+                                >
+                                    <ListItemButton
+                                        selected={
+                                            pathname ===
+                                            '/settings/naming-conventions'
+                                        }
+                                    >
+                                        <ListItemText
+                                            primary={
+                                                <Typography variant="h6">
+                                                    Naming Conventions
+                                                </Typography>
+                                            }
+                                        />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem
+                                    href="/settings/course-setup"
+                                    component={Link}
+                                    sx={{ paddingLeft: 7, color: 'inherit' }}
+                                >
+                                    <ListItemButton
+                                        selected={
+                                            pathname ===
+                                            '/settings/course-setup'
+                                        }
+                                    >
+                                        <ListItemText
+                                            primary={
+                                                <Typography variant="h6">
+                                                    Course Setup
+                                                </Typography>
+                                            }
+                                        />
+                                    </ListItemButton>
+                                </ListItem>
+                            </List>
+                        </Collapse>
                     </List>
                 </Grid>
             </Grid>
             <Grid item>
-                <Typography color="primary">
-                    &copy; {new Date().getFullYear()} Learning Portrait
-                </Typography>
+                <Copyright />
             </Grid>
         </Grid>
     );

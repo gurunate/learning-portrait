@@ -1,7 +1,8 @@
-import './globals.css';
+import '../globals.css';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import ThemeRegistry from '@/components/theme-registry';
 
 const poppins = Poppins({
     weight: '400',
@@ -19,8 +20,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={poppins.className}>
-            <body>{children}</body>
+        <html
+            lang="en"
+            className={poppins.className}
+            style={{ backgroundColor: '#f4f7f7' }}
+        >
+            <body>
+                <ThemeRegistry>{children}</ThemeRegistry>
+            </body>
         </html>
     );
 }
