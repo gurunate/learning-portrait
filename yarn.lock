@@ -2143,6 +2143,7 @@ __metadata:
     "@hookform/resolvers": "npm:^3.3.2"
     "@mui/icons-material": "npm:^5.14.19"
     "@mui/material": "npm:^5.14.19"
+    "@storybook/react": "npm:^7.6.3"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
@@ -3959,7 +3960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:7.6.3, @storybook/react@npm:^7.5.3":
+"@storybook/react@npm:7.6.3, @storybook/react@npm:^7.5.3, @storybook/react@npm:^7.6.3":
   version: 7.6.3
   resolution: "@storybook/react@npm:7.6.3"
   dependencies:
