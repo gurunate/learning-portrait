@@ -20,6 +20,7 @@ const theme = createTheme({
         mode: 'light',
         background: {
             default: COLOR_BACKGROUND
+            // heading: COLOR_LIGHT_LP_2
         },
         primary: {
             light: lighten(PRIMARY_LP, 0.25),
@@ -33,8 +34,8 @@ const theme = createTheme({
         },
         error: {
             light: lighten(COLOR_3_ALERT, 0.25),
-            main: darken(COLOR_3_ALERT, 0.25),
-            dark: darken(COLOR_3_ALERT, 0.5)
+            main: COLOR_3_ALERT,
+            dark: darken(COLOR_3_ALERT, 0.25)
         },
         warning: {
             light: lighten(COLOR_0_SECONDARY, 0.25),
@@ -126,6 +127,12 @@ const theme = createTheme({
                     borderRadius: BORDER_RADIUS,
                     boxShadow: 'none'
                 }
+                // root: ({ theme }) => ({
+                //     fontWeight: 700,
+                //     borderColor: theme.palette.LINE_LINE1,
+                //     borderRadius: BORDER_RADIUS,
+                //     boxShadow: 'none'
+                // })
             }
         },
         MuiLink: {
@@ -134,10 +141,14 @@ const theme = createTheme({
             }
         },
         MuiSvgIcon: {
-            styleOverrides: {
-                root: {
-                    color: LP_02_SECONDARY
-                }
+            // styleOverrides: {
+            //     root: {
+            //         color: LP_02_SECONDARY
+            //         fill: LP_02_SECONDARY
+            //     }
+            // }
+            defaultProps: {
+                fill: LP_02_SECONDARY
             }
         },
         MuiListItemButton: {
@@ -151,6 +162,42 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: BORDER_RADIUS
+                }
+            }
+        },
+        MuiTableHead: {
+            styleOverrides: {
+                root: {
+                    borderRadius: BORDER_RADIUS,
+                    background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
+                    '& .MuiTableCell-root': {
+                        border: 0
+                    },
+                    'th:first-child': {
+                        borderRadius: '12px 0 0 12px'
+                    },
+                    'th:last-child': {
+                        borderRadius: '0 12px 12px 0'
+                    }
+                }
+            }
+        },
+        MuiTableBody: {
+            styleOverrides: {
+                root: {
+                    border: 0,
+                    '& .MuiTableCell-root': {
+                        borderBottom: `1px solid ${LINE_LINE1}`
+                    }
+                }
+            }
+        },
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    '& .Mui-selected': {
+                        '& .MuiListItemIcon-root': { color: PRIMARY_LP }
+                    }
                 }
             }
         }
