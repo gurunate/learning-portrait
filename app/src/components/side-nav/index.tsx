@@ -79,7 +79,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                                 selected={pathname === '/dashboard'}
                             >
                                 <ListItemIcon>
-                                    <WhatshotIcon color="primary" />
+                                    <WhatshotIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={

@@ -25,5 +25,8 @@
     "start": "storybook dev -p 6006",
     "debug": "storybook dev -p 6006 --debug-webpack",
     "build": "storybook build"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.4"
   }
 }

@@ -3,19 +3,19 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Component from '.';
 
 const meta = {
-    title: 'App / components / icons / Google',
+    title: 'App / icons / Google',
     component: Component
 } satisfies Meta<typeof Component>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const medium: Story = {
-    args: {}
-};
-
 export const small: Story = {
     args: { fontSize: 'small' }
+};
+
+export const medium: Story = {
+    args: {}
 };
 
 export const large: Story = {

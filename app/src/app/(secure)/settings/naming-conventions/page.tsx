@@ -1,13 +1,8 @@
-import {
-    Button,
-    Container,
-    Grid,
-    Stack,
-    TextField,
-    Typography
-} from '@mui/material';
+import { Button, Grid, Stack, TextField, Typography } from '@mui/material';
 
+import EvidenceTable from '@/components/evidence-table';
 import { Metadata } from 'next';
+import ObjectivesTable from '@/components/objectives-table';
 
 const Page = () => {
     return (
@@ -16,19 +11,15 @@ const Page = () => {
                 <Typography variant="h2">Naming Conventions</Typography>
             </Grid>
             <Grid item md={12}>
-                <Typography variant="h3">Objective Setup</Typography>
-            </Grid>
-            <Grid item md={12}>
-                <Typography variant="h4">
-                    What do you call the high level learning expectations of
-                    your course?
-                </Typography>
-                <Typography paragraph color="textSecondary">
-                    Examples include: report card items, reporting standards,
-                    standards, learning expectations, course objectives, etc.
+                <Typography variant="h3" paragraph>
+                    Objective Name
                 </Typography>
                 <Stack direction="row" spacing={2}>
-                    <TextField fullWidth placeholder="Objective" />
+                    <TextField
+                        fullWidth
+                        placeholder="Examples: report card items, reporting standards,
+                    standards, learning expectations, course objectives, etc."
+                    />
                     <Button
                         variant="contained"
                         size="large"
@@ -39,28 +30,22 @@ const Page = () => {
                 </Stack>
             </Grid>
             <Grid item md={12}>
-                <Typography variant="h4">
+                <Typography variant="subtitle1" paragraph>
                     When your students provide you evidence of learning, what do
                     you call the thing they are providing?
                 </Typography>
+                <ObjectivesTable />
             </Grid>
             <Grid item md={12}>
-                [grid here]
-            </Grid>
-            <Grid item md={12}>
-                <Typography variant="h3">Evidence Setup</Typography>
-            </Grid>
-            <Grid item md={12}>
-                <Typography variant="h4">
-                    What do you call the high level learning expectations of
-                    your course?
-                </Typography>
-                <Typography paragraph color="textSecondary">
-                    Examples include: task, evidence, assignment, assessment,
-                    etc.
+                <Typography variant="h3" paragraph>
+                    Evidence Type
                 </Typography>
                 <Stack direction="row" spacing={2}>
-                    <TextField fullWidth placeholder="Evidence" />
+                    <TextField
+                        fullWidth
+                        placeholder="Examples: task, evidence, assignment, assessment,
+                    etc."
+                    />
                     <Button
                         variant="contained"
                         size="large"
@@ -71,13 +56,11 @@ const Page = () => {
                 </Stack>
             </Grid>
             <Grid item md={12}>
-                <Typography variant="h4">
+                <Typography variant="subtitle1" paragraph>
                     What do you want to call the descriptors of how well a
                     student completed Evidence?
                 </Typography>
-            </Grid>
-            <Grid item md={12}>
-                [grid here]
+                <EvidenceTable />
             </Grid>
         </Grid>
     );
