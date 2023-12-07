@@ -32,7 +32,7 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
         {
             value: 2,
             key: 'C',
-            name: 'Evidence is not complete',
+            name: 'Complete',
             description: 'Evidence is submitted'
         }
     ];
