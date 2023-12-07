@@ -1,7 +1,8 @@
+import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
 
 const Page = () => {
-    return <main>Dashboard content</main>;
+    return <Dashboard />;
 };
 
 export const metadata: Metadata = {

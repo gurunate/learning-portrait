@@ -1,8 +1,8 @@
 import { Button, Grid, Stack, TextField, Typography } from '@mui/material';
 
-import EvidenceTable from '@/components/evidence-table';
+import EvidenceTable from '@/components/tables/evidence-table';
 import { Metadata } from 'next';
-import ObjectivesTable from '@/components/objectives-table';
+import ObjectivesTable from '@/components/tables/objectives-table';
 
 const Page = () => {
     return (

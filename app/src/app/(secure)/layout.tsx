@@ -42,7 +42,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <Grid item>
                                     <TopNav />
                                 </Grid>
-                                <Grid item>
+                                <Grid
+                                    item
+                                    sx={{ height: '90vh', overflow: 'auto' }}
+                                >
                                     <Paper>
                                         <Box p={4}>
                                             <main>{children}</main>

@@ -22,6 +22,7 @@ import {
 import FacebookIcon from '../icons/facebook';
 import GoogleIcon from '../icons/google';
 import Link from '@/components/link';
+import NextLink from 'next/link';
 import React from 'react';
 import { get } from 'lodash';
 import styles from './styles.module.scss';
@@ -209,7 +210,8 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                         startIcon={
                                             <GoogleIcon sx={{ fontSize: 40 }} />
                                         }
-                                        onClick={() => alert('coming soon...')}
+                                        href="/dashboard"
+                                        component={NextLink}
                                         size="large"
                                     >
                                         Google
@@ -223,7 +225,8 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                             height: 48
                                         }}
                                         startIcon={<FacebookIcon />}
-                                        onClick={() => alert('coming soon...')}
+                                        href="/dashboard"
+                                        component={NextLink}
                                         size="large"
                                     >
                                         Facebook
