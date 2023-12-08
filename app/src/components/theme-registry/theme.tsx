@@ -51,6 +51,10 @@ const theme = createTheme({
             light: lighten(COLOR_2_SUCCESS, 0.25),
             main: COLOR_2_SUCCESS,
             dark: darken(COLOR_2_SUCCESS, 0.25)
+        },
+        // @ts-ignore
+        edge: {
+            main: LINE_LINE1
         }
     },
     typography: {
@@ -123,16 +127,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     fontWeight: 700,
-                    borderColor: LINE_LINE1,
+                    // borderColor: LINE_LINE1,
                     borderRadius: BORDER_RADIUS,
                     boxShadow: 'none'
                 }
-                // root: ({ theme }) => ({
-                //     fontWeight: 700,
-                //     borderColor: theme.palette.LINE_LINE1,
-                //     borderRadius: BORDER_RADIUS,
-                //     boxShadow: 'none'
-                // })
             }
         },
         MuiLink: {

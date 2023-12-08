@@ -1,29 +1,44 @@
+'use client';
+
 import {
-    AppBar,
     Avatar,
     Badge,
     Button,
     Grid,
     IconButton,
+    Menu,
+    MenuItem,
     Stack,
+    Tooltip,
     Typography
 } from '@mui/material';
 
 import Greet from '@/components/greet';
 import Link from 'next/link';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import PersonIcon from '@mui/icons-material/Person';
 import React from 'react';
-import { format as formatDate } from 'date-fns';
 
-export type TopNavProps = unknown;
+export type TopNavProps = {
+    name: string;
+    dateTime: string;
+};
 
 /**
  * @param {TopNavProps} props
  * @returns {JSX.Element}
  */
-const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
-    const name = 'Eureka';
+const TopNav: React.FC<TopNavProps> = ({
+    dateTime,
+    name
+}: TopNavProps): JSX.Element => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <Grid
@@ -39,9 +54,7 @@ const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
                     <Typography variant="h2" color="primary">
                         <Greet name={name} />
                     </Typography>
-                    <Typography variant="h6">
-                        Today {formatDate(new Date(), 'PP | p')}
-                    </Typography>
+                    <Typography variant="h6">Today {dateTime}</Typography>
                 </Stack>
             </Grid>
             <Grid item textAlign="right">
@@ -53,12 +66,12 @@ const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
                                 variant="dot"
                                 invisible={false}
                             >
-                                <NotificationsIcon />
+                                <Tooltip title="Messages">
+                                    <NotificationsIcon />
+                                </Tooltip>
                             </Badge>
                         </IconButton>
                         <Button
-                            component={Link}
-                            href="/sign-in"
                             variant="text"
                             startIcon={
                                 <Avatar
@@ -67,9 +80,36 @@ const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
                                 />
                             }
                             sx={{ backgroundColor: 'white' }}
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
                         >
                             {name}
                         </Button>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button'
+                            }}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right'
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right'
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem component={Link} href="/sign-in">
+                                Logout
+                            </MenuItem>
+                        </Menu>
                     </Stack>
                 </Grid>
             </Grid>

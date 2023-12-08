@@ -31,8 +31,7 @@ const StudentsTable: React.FC<StudentsTableProps> = (
 ): JSX.Element => {
     const generateStudent = () => ({
         id: faker.string.uuid(),
-        name: faker.person.fullName(),
-        messages: faker.number.int({ min: 0, max: 3 })
+        name: faker.person.fullName()
     });
 
     const COLOR_MAP = ['success', 'warning', 'info', 'error'];
@@ -59,22 +58,24 @@ const StudentsTable: React.FC<StudentsTableProps> = (
             <TableBody>
                 {Array(33)
                     .fill(0)
-                    .map((_, idx) => {
-                        const { id, name, messages } = generateStudent();
+                    .map((_, rowIdx) => {
+                        const { id, name } = generateStudent();
                         return (
                             <TableRow key={id}>
                                 <TableCell align="center">
-                                    {!!messages && (
-                                        <Avatar
-                                            color="primary"
-                                            sx={{
-                                                bgcolor: 'error.main',
-                                                width: 24,
-                                                height: 24
-                                            }}
-                                        >
-                                            <Typography>{messages}</Typography>
-                                        </Avatar>
+                                    {rowIdx === 2 && (
+                                        <Tooltip title="Messages">
+                                            <Avatar
+                                                color="primary"
+                                                sx={{
+                                                    bgcolor: 'error.main',
+                                                    width: 24,
+                                                    height: 24
+                                                }}
+                                            >
+                                                <Typography>2</Typography>
+                                            </Avatar>
+                                        </Tooltip>
                                     )}
                                 </TableCell>
                                 <TableCell align="left">
@@ -86,20 +87,21 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                         <Avatar
                                             sx={{ width: 32, height: 32 }}
                                             src={
-                                                idx === 3
+                                                rowIdx === 2
                                                     ? '/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg'
                                                     : ''
                                             }
                                         />
                                         <Typography sx={{ fontWeight: 700 }}>
-                                            {name}
+                                            {rowIdx === 2 && 'Anna Lacey'}
+                                            {rowIdx !== 2 && name}
                                         </Typography>
                                     </Stack>
                                 </TableCell>
                                 {Array(CNT)
                                     .fill('')
-                                    .map((_, idx) => (
-                                        <TableCell key={idx} align="center">
+                                    .map((_, colIdx) => (
+                                        <TableCell key={colIdx} align="center">
                                             <Badge
                                                 color="warning"
                                                 badgeContent="!"
@@ -107,18 +109,23 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                                     vertical: 'top',
                                                     horizontal: 'left'
                                                 }}
-                                                invisible
+                                                invisible={
+                                                    rowIdx !== 2 || colIdx !== 0
+                                                }
                                             >
                                                 <Badge
                                                     color="error"
                                                     variant="dot"
-                                                    invisible={idx > messages}
+                                                    invisible={
+                                                        rowIdx !== 2 ||
+                                                        ![1, 2].includes(colIdx)
+                                                    }
                                                 >
                                                     <Button
                                                         variant="outlined"
                                                         // @ts-ignore
                                                         color={
-                                                            COLOR_MAP[idx] ||
+                                                            COLOR_MAP[colIdx] ||
                                                             'inherit'
                                                         }
                                                         endIcon={
