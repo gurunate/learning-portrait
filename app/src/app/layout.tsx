@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import IconLinks from '@/components/icon-links';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -31,6 +32,7 @@ export default function RootLayout({
                     <main>
                         {children}
                         <SpeedInsights />
+                        <Analytics />
                     </main>
                 </ThemeRegistry>
             </body>

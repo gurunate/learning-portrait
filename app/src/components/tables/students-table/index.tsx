@@ -2,7 +2,6 @@ import {
     Avatar,
     Badge,
     Button,
-    Grid,
     IconButton,
     Stack,
     Table,
@@ -16,7 +15,6 @@ import {
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 

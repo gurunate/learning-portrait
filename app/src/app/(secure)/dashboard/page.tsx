@@ -2,7 +2,9 @@ import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
 
 const Page = () => {
-    return <Dashboard />;
+    const courses = [{ id: '1234', name: 'Pre Calculus Adv' }];
+
+    return <Dashboard courses={courses} />;
 };
 
 export const metadata: Metadata = {

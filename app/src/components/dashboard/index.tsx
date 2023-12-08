@@ -10,33 +10,34 @@ import {
 
 import React from 'react';
 import StudentsTable from '../tables/students-table';
+import { Course as TCourse } from '@/types/course';
 
-export type DashboardProps = unknown;
+export type DashboardProps = {
+    courses: TCourse[];
+};
 
 /**
  *
  * @param {DashboardProps} props
  * @returns {JSX.Element}
  */
-const Dashboard: React.FC<DashboardProps> = (
-    props: DashboardProps
-): JSX.Element => {
-    const course = 10;
-
+const Dashboard: React.FC<DashboardProps> = ({
+    courses
+}: DashboardProps): JSX.Element => {
     return (
-        <Grid container spacing={2}>
-            <Grid
-                item
-                md={6}
-                container
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={2}
-            >
+        <Grid container alignItems="center" spacing={4}>
+            <Grid item md={6} spacing={2}>
                 <FormControl fullWidth>
-                    <Select labelId="course-label" id="course" value={course}>
-                        <MenuItem value={10}>Pre Calculus Adv</MenuItem>
+                    <Select
+                        labelId="course-label"
+                        id="course"
+                        value={courses[0].id}
+                    >
+                        {courses.map(({ id, name }) => (
+                            <MenuItem key={id} value={id}>
+                                {name}
+                            </MenuItem>
+                        ))}
                     </Select>
                 </FormControl>
             </Grid>

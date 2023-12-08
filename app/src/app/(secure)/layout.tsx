@@ -63,10 +63,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 </Grid>
                                 <Grid item md={10}>
                                     <TopNav
-                                        dateTime={formatDate(
+                                        dateTime={`Today  ${formatDate(
                                             new Date(),
                                             'PP | p'
-                                        )}
+                                        )}`}
                                         name="Eureka"
                                     />
                                 </Grid>

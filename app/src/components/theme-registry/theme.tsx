@@ -127,7 +127,6 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     fontWeight: 700,
-                    // borderColor: LINE_LINE1,
                     borderRadius: BORDER_RADIUS,
                     boxShadow: 'none'
                 }
@@ -139,14 +138,10 @@ const theme = createTheme({
             }
         },
         MuiSvgIcon: {
-            // styleOverrides: {
-            //     root: {
-            //         color: LP_02_SECONDARY
-            //         fill: LP_02_SECONDARY
-            //     }
-            // }
             defaultProps: {
-                fill: LP_02_SECONDARY
+                sx: {
+                    fill: LP_02_SECONDARY
+                }
             }
         },
         MuiListItemButton: {
@@ -194,7 +189,28 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     '& .Mui-selected': {
-                        '& .MuiListItemIcon-root': { color: PRIMARY_LP }
+                        '& .MuiListItemIcon-root': {
+                            '& .MuiSvgIcon-root': {
+                                fill: PRIMARY_LP
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        MuiMenu: {
+            styleOverrides: {
+                paper: {
+                    borderRadius: 2
+                }
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    '& .Mui-selected': {
+                        borderRadius: BORDER_RADIUS,
+                        fontWeight: 600
                     }
                 }
             }
