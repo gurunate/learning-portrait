@@ -1,5 +1,6 @@
 import {
     Avatar,
+    Badge,
     Button,
     Grid,
     IconButton,
@@ -15,6 +16,7 @@ import {
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 
@@ -29,16 +31,18 @@ const StudentsTable: React.FC<StudentsTableProps> = (
 ): JSX.Element => {
     const generateStudent = () => ({
         id: faker.string.uuid(),
-        name: faker.person.fullName()
+        name: faker.person.fullName(),
+        messages: faker.number.int({ min: 0, max: 3 })
     });
 
     const COLOR_MAP = ['success', 'warning', 'info', 'error'];
     const CNT = 5;
 
     return (
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
             <TableHead>
                 <TableRow>
+                    <TableCell width={50} />
                     <TableCell align="left" width={350}>
                         Name
                     </TableCell>
@@ -55,11 +59,25 @@ const StudentsTable: React.FC<StudentsTableProps> = (
             <TableBody>
                 {Array(33)
                     .fill(0)
-                    .map(() => {
-                        const { id, name } = generateStudent();
+                    .map((_, idx) => {
+                        const { id, name, messages } = generateStudent();
                         return (
                             <TableRow key={id}>
-                                <TableCell variant="head" align="left">
+                                <TableCell align="center">
+                                    {!!messages && (
+                                        <Avatar
+                                            color="primary"
+                                            sx={{
+                                                bgcolor: 'error.main',
+                                                width: 24,
+                                                height: 24
+                                            }}
+                                        >
+                                            <Typography>{messages}</Typography>
+                                        </Avatar>
+                                    )}
+                                </TableCell>
+                                <TableCell align="left">
                                     <Stack
                                         direction="row"
                                         spacing={2}
@@ -67,6 +85,11 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                     >
                                         <Avatar
                                             sx={{ width: 32, height: 32 }}
+                                            src={
+                                                idx === 3
+                                                    ? '/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg'
+                                                    : ''
+                                            }
                                         />
                                         <Typography sx={{ fontWeight: 700 }}>
                                             {name}
@@ -77,14 +100,35 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                     .fill('')
                                     .map((_, idx) => (
                                         <TableCell key={idx} align="center">
-                                            <Button
-                                                variant="outlined"
-                                                // @ts-ignore
-                                                color={COLOR_MAP[idx]}
-                                                endIcon={<ArrowDropDownIcon />}
+                                            <Badge
+                                                color="warning"
+                                                badgeContent="!"
+                                                anchorOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'left'
+                                                }}
+                                                invisible
                                             >
-                                                X
-                                            </Button>
+                                                <Badge
+                                                    color="error"
+                                                    variant="dot"
+                                                    invisible={idx > messages}
+                                                >
+                                                    <Button
+                                                        variant="outlined"
+                                                        // @ts-ignore
+                                                        color={
+                                                            COLOR_MAP[idx] ||
+                                                            'inherit'
+                                                        }
+                                                        endIcon={
+                                                            <ArrowDropDownIcon />
+                                                        }
+                                                    >
+                                                        X
+                                                    </Button>
+                                                </Badge>
+                                            </Badge>
                                         </TableCell>
                                     ))}
                                 <TableCell align="right">

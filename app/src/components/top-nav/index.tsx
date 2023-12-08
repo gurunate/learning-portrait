@@ -1,4 +1,5 @@
 import {
+    AppBar,
     Avatar,
     Badge,
     Button,
@@ -22,6 +23,8 @@ export type TopNavProps = unknown;
  * @returns {JSX.Element}
  */
 const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
+    const name = 'Eureka';
+
     return (
         <Grid
             container
@@ -34,7 +37,7 @@ const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
             <Grid item>
                 <Stack direction="column" spacing={1}>
                     <Typography variant="h2" color="primary">
-                        <Greet name="Eureka" />
+                        <Greet name={name} />
                     </Typography>
                     <Typography variant="h6">
                         Today {formatDate(new Date(), 'PP | p')}
@@ -65,7 +68,7 @@ const TopNav: React.FC<TopNavProps> = (props): JSX.Element => {
                             }
                             sx={{ backgroundColor: 'white' }}
                         >
-                            Eureka
+                            {name}
                         </Button>
                     </Stack>
                 </Grid>

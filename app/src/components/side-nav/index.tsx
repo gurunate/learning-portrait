@@ -2,7 +2,6 @@
 
 import {
     Avatar,
-    Box,
     Collapse,
     Grid,
     IconButton,
@@ -11,13 +10,11 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Tooltip,
     Typography
 } from '@mui/material';
 
 import Copyright from '@/components/copyright';
 import ForumIcon from '@mui/icons-material/Forum';
-import Image from 'next/image';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Link from 'next/link';
@@ -46,27 +43,12 @@ const SideNav: React.FC<SideNavProps> = () => {
             container
             direction="column"
             justifyContent="space-between"
-            alignItems="flex-start"
+            alignItems="stretch"
             spacing={2}
-            pt={4}
-            height="100vh"
             maxWidth={350}
+            height="91vh"
         >
             <Grid item container direction="column" spacing={2}>
-                <Grid item>
-                    <Box px={4}>
-                        <Tooltip title="Home">
-                            <Link href="/">
-                                <Image
-                                    src="/logo.svg"
-                                    alt="logo"
-                                    width={150}
-                                    height={88.5}
-                                />
-                            </Link>
-                        </Tooltip>
-                    </Box>
-                </Grid>
                 <Grid item>
                     <List>
                         <ListItem
@@ -98,7 +80,7 @@ const SideNav: React.FC<SideNavProps> = () => {
                                 <Avatar
                                     color="primary"
                                     sx={{
-                                        bgcolor: '#D44646',
+                                        bgcolor: 'error.main',
                                         width: 24,
                                         height: 24
                                     }}
