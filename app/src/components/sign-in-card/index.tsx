@@ -80,6 +80,12 @@ const SignInCard: React.FC<SignInCardProps> = ({
         name: 'password'
     });
 
+    const buttonStyle = {
+        width: 189,
+        height: 48,
+        borderColor: 'edge.main'
+    };
+
     return (
         <FormProvider {...methods}>
             <Card
@@ -203,10 +209,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 <Grid item>
                                     <Button
                                         variant="outlined"
-                                        sx={{
-                                            width: 189,
-                                            height: 48
-                                        }}
+                                        sx={buttonStyle}
                                         startIcon={
                                             <GoogleIcon sx={{ fontSize: 40 }} />
                                         }
@@ -220,10 +223,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 <Grid item>
                                     <Button
                                         variant="outlined"
-                                        sx={{
-                                            width: 189,
-                                            height: 48
-                                        }}
+                                        sx={buttonStyle}
                                         startIcon={<FacebookIcon />}
                                         href="/dashboard"
                                         component={NextLink}

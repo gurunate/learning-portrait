@@ -1,7 +1,10 @@
-import path from 'path';
+import path, { dirname, join } from 'path';
 
 const config = {
-    framework: '@storybook/react-webpack5',
+    framework: {
+        name: getAbsolutePath("@storybook/nextjs"),
+        options: {}
+    },
     stories: [
         '../stories/**/*.mdx',
         '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
@@ -16,11 +19,11 @@ const config = {
         return config;
     },
     addons: [
-        '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@storybook/addon-onboarding',
-        '@storybook/addon-interactions',
-        '@storybook/addon-themes'
+        getAbsolutePath("@storybook/addon-links"),
+        getAbsolutePath("@storybook/addon-essentials"),
+        getAbsolutePath("@storybook/addon-onboarding"),
+        getAbsolutePath("@storybook/addon-interactions"),
+        getAbsolutePath("@storybook/addon-themes")
     ],
     docs: {
         autodocs: 'tag'
@@ -31,3 +34,7 @@ const config = {
     // staticDirs: ['../public']
 };
 export default config;
+
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, "package.json")));
+}

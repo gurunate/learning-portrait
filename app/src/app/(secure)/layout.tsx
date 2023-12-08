@@ -14,6 +14,7 @@ import { Poppins } from 'next/font/google';
 import SideNav from '@/components/side-nav';
 import ThemeRegistry from '@/components/theme-registry';
 import TopNav from '@/components/top-nav';
+import { format as formatDate } from 'date-fns';
 
 const poppins = Poppins({
     weight: ['400', '700'],
@@ -61,7 +62,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                     </Tooltip>
                                 </Grid>
                                 <Grid item md={10}>
-                                    <TopNav />
+                                    <TopNav
+                                        dateTime={formatDate(
+                                            new Date(),
+                                            'PP | p'
+                                        )}
+                                        name="Eureka"
+                                    />
                                 </Grid>
                             </Grid>
                             <Grid item md={2}>
