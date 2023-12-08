@@ -2156,6 +2156,7 @@ __metadata:
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
+    "@vercel/speed-insights": "npm:^1.0.0"
     date-fns: "npm:^2.30.0"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.0.3"
@@ -4873,6 +4874,13 @@ __metadata:
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
   checksum: 8209c937cb39119f44eb63cf90c0b73e7c754209a6411c707be08e50e29ee81356dca1a848a405c8bdeebfe2f5e4f831ad310ae1689eeef65e7445c090c6657d
+  languageName: node
+  linkType: hard
+
+"@vercel/speed-insights@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@vercel/speed-insights@npm:1.0.0"
+  checksum: 55626389e85ab9fca92bcaa993dd1404986e36a860dbeb43d30c5f27f0401d70dc5dc7d1f6fb1ff738ca479d6d143c4013179b31345666acab4b227cd83843af
   languageName: node
   linkType: hard
 

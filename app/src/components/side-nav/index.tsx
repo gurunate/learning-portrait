@@ -14,7 +14,6 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import { usePathname, useSearchParams } from 'next/navigation';
 
 import Copyright from '@/components/copyright';
 import ForumIcon from '@mui/icons-material/Forum';
@@ -25,6 +24,7 @@ import Link from 'next/link';
 import React from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
+import { usePathname } from 'next/navigation';
 
 export type SideNavProps = unknown;
 
@@ -136,7 +136,11 @@ const SideNav: React.FC<SideNavProps> = () => {
                             }}
                             disablePadding
                         >
-                            <ListItemButton selected={pathname === '/settings'}>
+                            <ListItemButton
+                                selected={Boolean(
+                                    pathname.match(/^\/settings/)
+                                )}
+                            >
                                 <ListItemIcon>
                                     <SettingsIcon />
                                 </ListItemIcon>

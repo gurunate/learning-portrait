@@ -3,6 +3,7 @@ import './globals.css';
 import IconLinks from '@/components/icon-links';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import ThemeRegistry from '@/components/theme-registry';
 
 const poppins = Poppins({
@@ -27,7 +28,10 @@ export default function RootLayout({
             </head>
             <body style={{ backgroundColor: '#f4f7f7' }}>
                 <ThemeRegistry>
-                    <main>{children}</main>
+                    <main>
+                        {children}
+                        <SpeedInsights />
+                    </main>
                 </ThemeRegistry>
             </body>
         </html>
