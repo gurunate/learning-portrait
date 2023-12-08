@@ -1,5 +1,14 @@
-import { Box, Container, Grid, Paper } from '@mui/material';
+import {
+    AppBar,
+    Box,
+    Container,
+    Grid,
+    Link,
+    Paper,
+    Tooltip
+} from '@mui/material';
 
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import SideNav from '@/components/side-nav';
@@ -28,30 +37,53 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <ThemeRegistry>
                     <Container maxWidth={false}>
                         <Grid container direction="row" spacing={2}>
-                            <Grid item lg={2} md={3} pr={2}>
-                                <SideNav />
-                            </Grid>
                             <Grid
                                 item
-                                lg={10}
-                                md={9}
+                                md={12}
                                 container
-                                direction="column"
-                                spacing={4}
+                                sx={{
+                                    top: -10,
+                                    position: 'sticky',
+                                    zIndex: 99,
+                                    backgroundColor: 'background.default'
+                                }}
                             >
-                                <Grid item>
+                                <Grid item md={2} pl={4} pt={4}>
+                                    <Tooltip title="Home">
+                                        <Link href="/">
+                                            <Image
+                                                src="/logo.svg"
+                                                alt="logo"
+                                                width={150}
+                                                height={88.5}
+                                            />
+                                        </Link>
+                                    </Tooltip>
+                                </Grid>
+                                <Grid item md={10}>
                                     <TopNav />
                                 </Grid>
+                            </Grid>
+                            <Grid item md={2}>
                                 <Grid
                                     item
-                                    sx={{ height: '90vh', overflow: 'auto' }}
+                                    sx={{
+                                        zIndex: 99,
+                                        overflow: 'hidden',
+                                        top: 150,
+                                        left: 0,
+                                        position: 'sticky'
+                                    }}
                                 >
-                                    <Paper>
-                                        <Box p={4}>
-                                            <main>{children}</main>
-                                        </Box>
-                                    </Paper>
+                                    <SideNav />
                                 </Grid>
+                            </Grid>
+                            <Grid item md={10}>
+                                <Paper>
+                                    <Box p={4}>
+                                        <main>{children}</main>
+                                    </Box>
+                                </Paper>
                             </Grid>
                         </Grid>
                     </Container>
