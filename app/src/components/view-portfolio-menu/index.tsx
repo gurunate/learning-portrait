@@ -55,9 +55,9 @@ const ViewPortfolioMenu: React.FC<ViewPortfolioMenuProps> = (
             <Divider />
         </Grid>
         <Grid item>
-            {list.map(({ key, label, color }, idx) => (
-                <MenuList key={`${key}-${idx}`} dense>
-                    <MenuItem selected={idx === 0}>
+            <MenuList dense>
+                {list.map(({ key, label, color }, idx) => (
+                    <MenuItem key={`${key}-${idx}`} selected={idx === 0}>
                         <ListItemIcon>
                             {color && (
                                 // @ts-ignore
@@ -73,8 +73,8 @@ const ViewPortfolioMenu: React.FC<ViewPortfolioMenuProps> = (
                         </ListItemText>
                         <Checkbox color="success" />
                     </MenuItem>
-                </MenuList>
-            ))}
+                ))}
+            </MenuList>
         </Grid>
     </Grid>
 );

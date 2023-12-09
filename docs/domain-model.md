@@ -35,6 +35,7 @@ erDiagram
     Objective {
         string name
     }
+    
     Portfolio {
 
     }

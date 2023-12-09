@@ -1,7 +1,7 @@
+'use client';
+
 import {
     Avatar,
-    Badge,
-    Button,
     IconButton,
     Stack,
     Table,
@@ -13,12 +13,14 @@ import {
     Typography
 } from '@mui/material';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CompleteSelect from '@/components/complete-select';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 
 export type StudentsTableProps = unknown;
+
+const STUDENT_COUNT = 7;
 
 /**
  * @param {StudentsTableProps} props
@@ -32,7 +34,6 @@ const StudentsTable: React.FC<StudentsTableProps> = (
         name: faker.person.fullName()
     });
 
-    const COLOR_MAP = ['success', 'warning', 'info', 'error'];
     const CNT = 5;
 
     return (
@@ -54,7 +55,7 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                 </TableRow>
             </TableHead>
             <TableBody>
-                {Array(33)
+                {Array(STUDENT_COUNT)
                     .fill(0)
                     .map((_, rowIdx) => {
                         const { id, name } = generateStudent();
@@ -100,40 +101,16 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                     .fill('')
                                     .map((_, colIdx) => (
                                         <TableCell key={colIdx} align="center">
-                                            <Badge
-                                                color="warning"
-                                                badgeContent="!"
-                                                anchorOrigin={{
-                                                    vertical: 'top',
-                                                    horizontal: 'left'
-                                                }}
-                                                invisible={
-                                                    rowIdx !== 2 || colIdx !== 0
+                                            <CompleteSelect
+                                                // value="M"
+                                                warning={
+                                                    rowIdx === 2 && colIdx === 0
                                                 }
-                                            >
-                                                <Badge
-                                                    color="error"
-                                                    variant="dot"
-                                                    invisible={
-                                                        rowIdx !== 2 ||
-                                                        ![1, 2].includes(colIdx)
-                                                    }
-                                                >
-                                                    <Button
-                                                        variant="outlined"
-                                                        // @ts-ignore
-                                                        color={
-                                                            COLOR_MAP[colIdx] ||
-                                                            'inherit'
-                                                        }
-                                                        endIcon={
-                                                            <ArrowDropDownIcon />
-                                                        }
-                                                    >
-                                                        X
-                                                    </Button>
-                                                </Badge>
-                                            </Badge>
+                                                error={
+                                                    rowIdx === 2 &&
+                                                    [1, 2].includes(colIdx)
+                                                }
+                                            />
                                         </TableCell>
                                     ))}
                                 <TableCell align="right">

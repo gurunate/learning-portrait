@@ -1,9 +1,7 @@
-import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { addDecorator } from '@storybook/react';
-import theme from '../../app/src/components/theme-registry/theme';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
-// addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>);
+import theme from '../../app/src/components/theme-registry/theme';
+import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 
 const preview = {
     parameters: {
@@ -16,5 +14,16 @@ const preview = {
         }
     }
 };
+
+export const decorators = [
+    withThemeFromJSXProvider({
+        themes: {
+            theme
+        },
+        defaultTheme: 'light',
+        Provider: ThemeProvider,
+        GlobalStyles: CssBaseline
+    })
+];
 
 export default preview;
