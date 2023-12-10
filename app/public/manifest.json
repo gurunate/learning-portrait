@@ -1,7 +1,7 @@
 {
     "name": "Learning Portrait",
-    "short_name": "Learning Portrait",
-    "description": "'A grade book that thinks like you do.",
+    "short_name": "LP",
+    "description": "A grade book that thinks like you do.",
     "background_color": "#f4f7f7",
     "display": "standalone",
     "scope": ".",
@@ -43,6 +43,12 @@
             "sizes": "192x192",
             "type": "image/png",
             "density": "4.0"
+        }
+    ],
+    "related_applications": [
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=relative-impact.learning-portrait"
         }
     ]
 }

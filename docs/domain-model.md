@@ -35,6 +35,10 @@ erDiagram
     Objective {
         string name
     }
+    
+    Portfolio {
+
+    }
 ```
 
 ## References

@@ -7,6 +7,8 @@
         "figma.figma-vscode-extension",
         "amatiasq.sort-imports",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "github.vscode-pull-request-github",
+        "ms-vsliveshare.vsliveshare"
     ]
 }

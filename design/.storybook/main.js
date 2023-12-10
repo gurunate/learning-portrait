@@ -2,7 +2,7 @@ import path, { dirname, join } from 'path';
 
 const config = {
     framework: {
-        name: getAbsolutePath("@storybook/nextjs"),
+        name: getAbsolutePath('@storybook/nextjs'),
         options: {}
     },
     stories: [
@@ -19,22 +19,21 @@ const config = {
         return config;
     },
     addons: [
-        getAbsolutePath("@storybook/addon-links"),
-        getAbsolutePath("@storybook/addon-essentials"),
-        getAbsolutePath("@storybook/addon-onboarding"),
-        getAbsolutePath("@storybook/addon-interactions"),
-        getAbsolutePath("@storybook/addon-themes")
+        getAbsolutePath('@storybook/addon-links'),
+        getAbsolutePath('@storybook/addon-essentials'),
+        getAbsolutePath('@storybook/addon-interactions'),
+        getAbsolutePath('@storybook/addon-themes')
     ],
     docs: {
         autodocs: 'tag'
     },
     typescript: {
         check: false
-    }
-    // staticDirs: ['../public']
+    },
+    staticDirs: ['../public', '../../app/public']
 };
 export default config;
 
 function getAbsolutePath(value) {
-    return dirname(require.resolve(join(value, "package.json")));
+    return dirname(require.resolve(join(value, 'package.json')));
 }
