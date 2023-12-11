@@ -67,7 +67,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                             new Date(),
                                             'PP | p'
                                         )}`}
-                                        name="Eureka"
+                                        name="Jeff"
                                     />
                                 </Grid>
                             </Grid>

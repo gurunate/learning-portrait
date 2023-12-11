@@ -88,7 +88,7 @@ const TopNav: React.FC<TopNavProps> = ({
                                 startIcon={
                                     <Avatar
                                         sx={{ width: 32, height: 32 }}
-                                        src="/avatars/d141cccb-efe0-4351-ba5f-bd5053058b86.svg"
+                                        src="/avatars/jeff.png"
                                     />
                                 }
                                 sx={{ backgroundColor: 'white' }}
