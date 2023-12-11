@@ -11,7 +11,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import React from 'react';
 
-export type CompleteSelectProps = SelectProps & {
+export type RatingSelectProps = SelectProps & {
     warning?: boolean;
     error?: boolean;
 };
@@ -44,14 +44,14 @@ export const options = [
 ];
 
 /**
- * @param {CompleteSelectProps} props
+ * @param {RatingSelectProps} props
  * @returns {JSX.Element}
  */
-const CompleteSelect: React.FC<CompleteSelectProps> = ({
+const RatingSelect: React.FC<RatingSelectProps> = ({
     warning,
     error,
     ...props
-}: CompleteSelectProps): JSX.Element => (
+}: RatingSelectProps): JSX.Element => (
     <Badge
         color="warning"
         badgeContent="!"
@@ -98,4 +98,4 @@ const CompleteSelect: React.FC<CompleteSelectProps> = ({
     </Badge>
 );
 
-export default React.memo(CompleteSelect);
+export default React.memo(RatingSelect);

@@ -13,8 +13,8 @@ import {
     Typography
 } from '@mui/material';
 
-import CompleteSelect from '@/components/complete-select';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import RatingSelect from '@/components/rating-select';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 
@@ -101,7 +101,7 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                     .fill('')
                                     .map((_, colIdx) => (
                                         <TableCell key={colIdx} align="center">
-                                            <CompleteSelect
+                                            <RatingSelect
                                                 // value="M"
                                                 warning={
                                                     rowIdx === 2 && colIdx === 0

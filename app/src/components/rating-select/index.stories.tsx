@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Component, { options as componentOptions, CompleteSelectProps } from '.';
+import Component, { options as componentOptions, RatingSelectProps } from '.';
 import React from 'react';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -14,7 +14,7 @@ const labels = componentOptions.reduce(
 );
 
 const meta = {
-    title: 'App / components / menu / Complete',
+    title: 'App / components / menu / Rating',
     component: Component,
     argTypes: {
         value: {
@@ -46,7 +46,7 @@ export const base: Story = {
     }
 };
 
-const Demo = (props: CompleteSelectProps) => {
+const Demo = (props: RatingSelectProps) => {
     const [value, setValue] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent<unknown>) => {

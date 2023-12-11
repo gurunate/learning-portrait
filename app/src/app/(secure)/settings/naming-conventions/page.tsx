@@ -2,7 +2,7 @@ import { Button, Grid, Stack, TextField, Typography } from '@mui/material';
 
 import EvidenceTable from '@/components/tables/evidence-table';
 import { Metadata } from 'next';
-import ObjectivesTable from '@/components/tables/objectives-table';
+import RatingsTable from '@/components/tables/ratings-table';
 
 const Page = () => {
     return (
@@ -12,7 +12,7 @@ const Page = () => {
             </Grid>
             <Grid item md={12}>
                 <Typography variant="h3" paragraph>
-                    Objective Name
+                    Objective
                 </Typography>
                 <Stack direction="row" spacing={2}>
                     <TextField
@@ -34,11 +34,11 @@ const Page = () => {
                     When your students provide you evidence of learning, what do
                     you call the thing they are providing?
                 </Typography>
-                <ObjectivesTable />
+                <RatingsTable />
             </Grid>
             <Grid item md={12}>
                 <Typography variant="h3" paragraph>
-                    Evidence Type
+                    Evidence
                 </Typography>
                 <Stack direction="row" spacing={2}>
                     <TextField

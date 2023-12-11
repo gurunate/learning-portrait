@@ -1,5 +1,7 @@
 {
   "name": "@learning-portrait/design",
+  "version": "0.1.0",
+  "private": true,
   "packageManager": "yarn@4.0.2",
   "devDependencies": {
     "@babel/core": "^7.23.3",

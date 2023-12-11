@@ -208,8 +208,8 @@ const theme = createTheme({
         MuiMenuItem: {
             styleOverrides: {
                 root: {
-                    '& .Mui-selected': {
-                        borderRadius: BORDER_RADIUS,
+                    borderRadius: BORDER_RADIUS,
+                    '&.Mui-selected': {
                         fontWeight: 600
                     }
                 }
