@@ -14,7 +14,7 @@ import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 
 export type ViewPortfolioMenuProps = unknown;
 
-const list = [
+export const options = [
     {
         key: 'M',
         label: 'Mastery',
@@ -56,12 +56,14 @@ const ViewPortfolioMenu: React.FC<ViewPortfolioMenuProps> = (
         </Grid>
         <Grid item>
             <MenuList dense>
-                {list.map(({ key, label, color }, idx) => (
+                {options.map(({ key, label, color }, idx) => (
                     <MenuItem key={`${key}-${idx}`} selected={idx === 0}>
                         <ListItemIcon>
                             {color && (
-                                // @ts-ignore
-                                <CircleIcon fontSize="small" color={color} />
+                                <CircleIcon
+                                    fontSize="small"
+                                    sx={{ color: `${color}.main` }}
+                                />
                             )}
                             {!color && <PanoramaFishEyeIcon fontSize="small" />}
                         </ListItemIcon>
