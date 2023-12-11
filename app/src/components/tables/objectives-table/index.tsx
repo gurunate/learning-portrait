@@ -23,7 +23,7 @@ const ObjectivesTable: React.FC<ObjectivesTableProps> = ({
 }: ObjectivesTableProps): JSX.Element => (
     <Grid container spacing={2}>
         <Grid item xs={12}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="objectives table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="left" width={250}>
