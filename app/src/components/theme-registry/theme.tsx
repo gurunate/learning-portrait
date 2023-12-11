@@ -109,7 +109,9 @@ const theme = createTheme({
             fontSize: 16
         },
         subtitle2: {
-            fontSize: 14
+            fontSize: 14,
+            fontWeight: 400,
+            fontStyle: 'normal'
         }
     },
     components: {

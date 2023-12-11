@@ -4,6 +4,7 @@ import {
     ListItemIcon,
     MenuItem,
     Select,
+    SelectChangeEvent,
     SelectProps
 } from '@mui/material';
 
@@ -12,8 +13,10 @@ import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import React from 'react';
 
 export type RatingSelectProps = SelectProps & {
-    warning?: boolean;
     error?: boolean;
+    extended?: boolean;
+    warning?: boolean;
+    width?: string | number;
 };
 
 export const options = [
@@ -48,54 +51,102 @@ export const options = [
  * @returns {JSX.Element}
  */
 const RatingSelect: React.FC<RatingSelectProps> = ({
-    warning,
-    error,
+    error = false,
+    extended = false,
+    warning = false,
+    width,
+    onChange,
     ...props
-}: RatingSelectProps): JSX.Element => (
-    <Badge
-        color="warning"
-        badgeContent="!"
-        anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left'
-        }}
-        invisible={!warning}
-    >
-        <Badge color="error" variant="dot" invisible={!error}>
-            <FormControl fullWidth size="small">
-                <Select
-                    {...props}
-                    renderValue={p => p as string}
-                    sx={{
-                        borderWidth: 1,
-                        borderStyle: 'solid',
-                        borderColor: `${
-                            options.find(({ key }) => key === props?.value)
-                                ?.color
-                        }.main`
-                    }}
+}: RatingSelectProps): JSX.Element => {
+    const [state, setState] = React.useState({ value: '' });
+
+    React.useEffect(() => {
+        setState({
+            value: (props?.value as string) || (props?.defaultValue as string)
+        });
+    }, [props?.defaultValue, props?.value]);
+
+    /**
+     * @param {SelectChangeEvent} event
+     * @param {React.ReactNode} child
+     */
+    const handleChange = React.useCallback(
+        (
+            event: SelectChangeEvent<HTMLSelectElement>,
+            child: React.ReactNode
+        ) => {
+            setState({ value: event.target.value as string });
+            onChange && onChange(event, child);
+        },
+        [onChange]
+    );
+
+    /**
+     *
+     * @param {HTMLSelectElement} value
+     * @returns {React.ReactNode}
+     */
+    const handleRenderValue = (value: HTMLSelectElement): React.ReactNode => {
+        if (extended && value) {
+            return options.find(
+                ({ key }) => key === (value as unknown as string)
+            )?.label;
+        }
+
+        return value as React.ReactNode;
+    };
+
+    return (
+        <Badge
+            color="warning"
+            badgeContent="!"
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+            }}
+            invisible={!warning}
+        >
+            <Badge color="error" variant="dot" invisible={!error}>
+                <FormControl
+                    fullWidth={extended}
+                    sx={{ ...(width && { width }) }}
+                    size="small"
                 >
-                    {options.map(({ key, label, color }, idx) => (
-                        <MenuItem key={`${key}-${idx}`} value={key}>
-                            <ListItemIcon>
-                                {color && (
-                                    <CircleIcon
-                                        fontSize="small"
-                                        sx={{ color: `${color}.main` }}
-                                    />
-                                )}
-                                {!color && (
-                                    <PanoramaFishEyeIcon fontSize="small" />
-                                )}
-                            </ListItemIcon>
-                            {key && <>{key} &ndash; </>}
-                            {label}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+                    <Select
+                        {...props}
+                        onChange={handleChange}
+                        renderValue={handleRenderValue}
+                        sx={{
+                            borderWidth: state?.value ? 1 : 'inherit',
+                            borderStyle: 'solid',
+                            borderColor: `${
+                                options.find(({ key }) => state?.value === key)
+                                    ?.color
+                            }.main`
+                        }}
+                    >
+                        {options.map(({ key, label, color }, idx) => (
+                            <MenuItem key={`${key}-${idx}`} value={key}>
+                                <ListItemIcon>
+                                    {color && (
+                                        <CircleIcon
+                                            fontSize="small"
+                                            sx={{ color: `${color}.main` }}
+                                        />
+                                    )}
+                                    {!color && (
+                                        <PanoramaFishEyeIcon fontSize="small" />
+                                    )}
+                                </ListItemIcon>
+                                {key && <>{key} &ndash; </>}
+                                {label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            </Badge>
         </Badge>
-    </Badge>
-);
+    );
+};
 
 export default React.memo(RatingSelect);

@@ -6,19 +6,20 @@ import {
     Button,
     Container,
     Grid,
-    IconButton,
     Paper,
-    Toolbar,
-    Typography
+    Toolbar
 } from '@mui/material';
 
 import Copyright from '@/components/copyright';
 import Image from 'next/image';
 import Link from 'next/link';
-import MenuIcon from '@mui/icons-material/Menu';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import ThemeRegistry from '@/components/theme-registry';
+
+export type LayoutProps = {
+    children: React.ReactNode;
+};
 
 const poppins = Poppins({
     weight: '400',
@@ -30,86 +31,84 @@ export const metadata: Metadata = {
     description: 'A grade book that thinks like you do.'
 };
 
-export default function RootLayout({
-    children
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <html lang="en" className={poppins.className}>
-            <body>
-                <ThemeRegistry>
+/**
+ *
+ * @param props
+ * @returns
+ */
+const Layout: React.FC<LayoutProps> = ({ children }) => (
+    <html lang="en" className={poppins.className}>
+        <body>
+            <ThemeRegistry>
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="space-between"
+                    alignItems="stretch"
+                    spacing={4}
+                    height="100vh"
+                >
+                    <Grid item>
+                        <Box sx={{ flexGrow: 1 }} mb={4}>
+                            <AppBar position="static" sx={{ borderRadius: 0 }}>
+                                <Toolbar>
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        spacing={2}
+                                        p={1}
+                                    >
+                                        <Grid item>
+                                            <Link href="/">
+                                                <Image
+                                                    src="/logo-white.svg"
+                                                    alt="logo"
+                                                    width={101.9}
+                                                    height={60}
+                                                />
+                                            </Link>
+                                        </Grid>
+                                        <Grid item>
+                                            <Button
+                                                variant="text"
+                                                href="/sign-in"
+                                                component={Link}
+                                                color="inherit"
+                                            >
+                                                Sign In
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                                </Toolbar>
+                            </AppBar>
+                        </Box>
+                    </Grid>
                     <Grid
+                        item
                         container
                         direction="column"
-                        justifyContent="space-between"
+                        justifyContent="flex-start"
                         alignItems="stretch"
-                        spacing={4}
-                        height="100vh"
                     >
-                        <Grid item>
-                            <Box sx={{ flexGrow: 1 }} mb={4}>
-                                <AppBar
-                                    position="static"
-                                    sx={{ borderRadius: 0 }}
-                                >
-                                    <Toolbar>
-                                        <Grid
-                                            container
-                                            direction="row"
-                                            justifyContent="space-between"
-                                            alignItems="center"
-                                            spacing={2}
-                                            p={1}
-                                        >
-                                            <Grid item>
-                                                <Link href="/">
-                                                    <Image
-                                                        src="/logo-white.svg"
-                                                        alt="logo"
-                                                        width={101.9}
-                                                        height={60}
-                                                    />
-                                                </Link>
-                                            </Grid>
-                                            <Grid item>
-                                                <Button
-                                                    variant="text"
-                                                    href="/sign-in"
-                                                    component={Link}
-                                                    color="inherit"
-                                                >
-                                                    Sign In
-                                                </Button>
-                                            </Grid>
-                                        </Grid>
-                                    </Toolbar>
-                                </AppBar>
-                            </Box>
-                        </Grid>
-                        <Grid
-                            item
-                            container
-                            direction="column"
-                            justifyContent="flex-start"
-                            alignItems="stretch"
-                        >
-                            <Container maxWidth="xl">
-                                <Paper>
-                                    <Box p={4}>
-                                        <main>{children}</main>
-                                    </Box>
-                                </Paper>
-                            </Container>
-                        </Grid>
-                        <Grid item>
-                            <Container maxWidth="xl">
-                                <Copyright />
-                            </Container>
-                        </Grid>
+                        <Container maxWidth="xl">
+                            <Paper>
+                                <Box p={4}>
+                                    <main>{children}</main>
+                                </Box>
+                            </Paper>
+                        </Container>
                     </Grid>
-                </ThemeRegistry>
-            </body>
-        </html>
-    );
-}
+                    <Grid item>
+                        <Container maxWidth="xl">
+                            <Copyright />
+                        </Container>
+                    </Grid>
+                </Grid>
+            </ThemeRegistry>
+        </body>
+    </html>
+);
+
+export default Layout;

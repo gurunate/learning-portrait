@@ -13,6 +13,7 @@ import {
     Typography
 } from '@mui/material';
 
+import Link from '@/components/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import RatingSelect from '@/components/rating-select';
 import { faker } from '@faker-js/faker';
@@ -91,10 +92,14 @@ const StudentsTable: React.FC<StudentsTableProps> = (
                                                     : ''
                                             }
                                         />
-                                        <Typography sx={{ fontWeight: 700 }}>
-                                            {rowIdx === 2 && 'Anna Lacey'}
-                                            {rowIdx !== 2 && name}
-                                        </Typography>
+                                        <Link href={`/student/${id}`}>
+                                            <Typography
+                                                sx={{ fontWeight: 700 }}
+                                            >
+                                                {rowIdx === 2 && 'Anna Lacey'}
+                                                {rowIdx !== 2 && name}
+                                            </Typography>
+                                        </Link>
                                     </Stack>
                                 </TableCell>
                                 {Array(CNT)
