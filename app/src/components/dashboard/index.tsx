@@ -2,7 +2,6 @@ import {
     Button,
     FormControl,
     Grid,
-    InputLabel,
     MenuItem,
     Select,
     Stack
@@ -26,7 +25,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 }: DashboardProps): JSX.Element => {
     return (
         <Grid container alignItems="center" spacing={4}>
-            <Grid item md={6} spacing={2}>
+            <Grid item md={6}>
                 <FormControl fullWidth>
                     <Select
                         labelId="course-label"

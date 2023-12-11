@@ -13,31 +13,43 @@ import {
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-export type EvidenceTableProps = unknown;
+export type RatingsTableProps = unknown;
 
 /**
- * @param {EvidenceTableProps} props
+ * @param {RatingsTableProps} props
  * @returns {JSX.Element}
  */
-const EvidenceTable: React.FC<EvidenceTableProps> = (
-    props: EvidenceTableProps
+const RatingsTable: React.FC<RatingsTableProps> = (
+    props: RatingsTableProps
 ): JSX.Element => {
     const rows = [
         {
             value: 1,
-            key: 'I',
-            name: 'Incomplete',
-            description: 'Evidence is not complete'
+            key: 'H',
+            name: 'Helppppppp',
+            description: 'Student is unable to start problems independently'
         },
         {
             value: 2,
-            key: 'C',
-            name: 'Complete',
-            description: 'Evidence is submitted'
+            key: 'T',
+            name: 'NoT YeT',
+            description: 'Student has shown some foundational beginnings of'
+        },
+        {
+            value: 3,
+            key: 'A',
+            name: 'Approaching',
+            description: 'Student has made significant progress'
+        },
+        {
+            value: 4,
+            key: 'M',
+            name: 'Mastery',
+            description: 'Student can independently demonstrate'
         }
     ];
 
-    const COLOR_MAP = ['error', 'success'];
+    const COLOR_MAP = ['success', 'warning', 'info', 'error'];
 
     return (
         <Grid container spacing={2}>
@@ -91,4 +103,4 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
     );
 };
 
-export default EvidenceTable;
+export default RatingsTable;
