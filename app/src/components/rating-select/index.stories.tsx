@@ -14,7 +14,7 @@ const labels = componentOptions.reduce(
 );
 
 const meta = {
-    title: 'App / components / menu / Rating',
+    title: 'App / components / menus / Rating',
     component: Component,
     argTypes: {
         value: {
@@ -37,11 +37,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const defaultArgs = {
+    defaultValue: '',
+    error: false,
+    warning: false,
+    full: false
+};
+
 export const base: Story = {
     args: {
+        ...defaultArgs,
         defaultValue: options[0],
-        error: false,
-        warning: false,
         defaultOpen: true
     }
 };
@@ -58,9 +64,15 @@ const Demo = (props: RatingSelectProps) => {
 
 export const demo: Story = {
     args: {
-        defaultValue: '',
-        error: false,
-        warning: false
+        ...defaultArgs
+    },
+    render: args => <Demo {...args} />
+};
+
+export const full: Story = {
+    args: {
+        ...defaultArgs,
+        extended: true
     },
     render: args => <Demo {...args} />
 };

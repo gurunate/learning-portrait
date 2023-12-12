@@ -1,4 +1,3 @@
-import { Container } from '@mui/material';
 import CourseSetup from '@/components/course-setup';
 import { Metadata } from 'next';
 

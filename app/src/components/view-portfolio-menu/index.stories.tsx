@@ -7,7 +7,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const meta = {
-    title: 'App / components / menu / View Portfolio',
+    title: 'App / components / menus / View Portfolio',
     component: Component
 } satisfies Meta<typeof Component>;
 
