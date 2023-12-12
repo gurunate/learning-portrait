@@ -112,6 +112,7 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                     sx={{ ...(width && { width }) }}
                     size="small"
                 >
+                    {/* @ts-ignore */}
                     <Select
                         {...props}
                         onChange={handleChange}
