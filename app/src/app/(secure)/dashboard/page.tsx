@@ -1,10 +1,47 @@
 import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
+import { faker } from '@faker-js/faker';
+import { startCase } from 'lodash';
 
 const Page = () => {
     const courses = [{ id: '1234', name: 'Pre Calculus Adv' }];
 
-    return <Dashboard courses={courses} />;
+    const objectives = [
+        {
+            id: faker.string.uuid(),
+            key: 'OBJ',
+            name: startCase(faker.word.adjective()),
+            description: faker.lorem.sentence()
+        },
+        {
+            id: faker.string.uuid(),
+            key: 'OBJ',
+            name: startCase(faker.word.adjective()),
+            description: faker.lorem.sentence()
+        },
+        {
+            id: faker.string.uuid(),
+            key: 'OBJ',
+            name: startCase(faker.word.adjective()),
+            description: faker.lorem.sentence()
+        },
+        {
+            id: faker.string.uuid(),
+            key: 'OBJ',
+            name: startCase(faker.word.adjective()),
+            description: faker.lorem.sentence()
+        },
+        {
+            id: faker.string.uuid(),
+            key: 'OBJ',
+            name: startCase(faker.word.adjective()),
+            description: faker.lorem.sentence()
+        }
+    ];
+
+    return (
+        <Dashboard courses={courses} objectives={objectives} students={[]} />
+    );
 };
 
 export const metadata: Metadata = {
