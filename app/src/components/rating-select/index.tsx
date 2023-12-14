@@ -118,12 +118,15 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                         onChange={handleChange}
                         renderValue={handleRenderValue}
                         sx={{
-                            borderWidth: state?.value ? 1 : 'inherit',
-                            borderStyle: 'solid',
-                            borderColor: `${
-                                options.find(({ key }) => state?.value === key)
-                                    ?.color
-                            }.main`
+                            '&.MuiOutlinedInput-root': {
+                                borderWidth: state?.value ? 1 : 'inherit',
+                                borderStyle: 'solid',
+                                borderColor: `${
+                                    options.find(
+                                        ({ key }) => state?.value === key
+                                    )?.color
+                                }.main`
+                            }
                         }}
                     >
                         {options.map(({ key, label, color }, idx) => (

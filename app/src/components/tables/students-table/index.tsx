@@ -16,10 +16,13 @@ import {
 import Link from '@/components/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import RatingSelect from '@/components/rating-select';
+import { Student as TStudent } from '@/types/student';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 
-export type StudentsTableProps = unknown;
+export type StudentsTableProps = {
+    students: TStudent[];
+};
 
 const STUDENT_COUNT = 7;
 
@@ -27,9 +30,9 @@ const STUDENT_COUNT = 7;
  * @param {StudentsTableProps} props
  * @returns {JSX.Element}
  */
-const StudentsTable: React.FC<StudentsTableProps> = (
-    props: StudentsTableProps
-): JSX.Element => {
+const StudentsTable: React.FC<StudentsTableProps> = ({
+    students
+}: StudentsTableProps): JSX.Element => {
     const generateStudent = () => ({
         id: faker.string.uuid(),
         name: faker.person.fullName()

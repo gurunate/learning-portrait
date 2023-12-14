@@ -12,8 +12,9 @@ const COLOR_0_SECONDARY = '#F7941D';
 const COLOR_2_SUCCESS = '#009512';
 const LINE_LINE1 = '#DCDBDD';
 const LP_02_SECONDARY = '#3C5255';
-
 const BORDER_RADIUS = 12;
+const COLOR_DARK_5 = '#ECEAEE';
+const COLOR_DARK_4 = '#ABA8B0';
 
 const theme = createTheme({
     palette: {
@@ -54,7 +55,9 @@ const theme = createTheme({
         },
         // @ts-ignore
         edge: {
-            main: LINE_LINE1
+            light: COLOR_DARK_5,
+            main: LINE_LINE1,
+            dark: COLOR_DARK_4
         }
     },
     typography: {
