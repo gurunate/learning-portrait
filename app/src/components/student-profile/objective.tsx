@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 import RatingSelect from '@/components/rating-select';
-import { Course as TCourse } from '@/types/course';
+import { Course as TCourse } from '@/types';
 
 export type StudentObjectiveProps = {
     courses: TCourse[];

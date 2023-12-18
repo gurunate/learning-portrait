@@ -5,7 +5,8 @@ import {
     MenuItem,
     Select,
     SelectChangeEvent,
-    SelectProps
+    SelectProps,
+    Tooltip
 } from '@mui/material';
 
 import CircleIcon from '@mui/icons-material/Circle';
@@ -53,29 +54,55 @@ export const options = [
 const RatingSelect: React.FC<RatingSelectProps> = ({
     error = false,
     extended = false,
+    onChange,
+    onOpen,
+    onClose,
     warning = false,
     width,
-    onChange,
     ...props
 }: RatingSelectProps): JSX.Element => {
-    const [state, setState] = React.useState({ value: '' });
+    const [state, setState] = React.useState({
+        value: '',
+        isOpen: false,
+        openTooltip: false
+    });
 
     React.useEffect(() => {
-        setState({
-            value: (props?.value as string) || (props?.defaultValue as string)
-        });
-    }, [props?.defaultValue, props?.value]);
+        setState(prev => ({
+            ...prev,
+            value: props?.value as string
+        }));
+    }, [props?.value]);
+
+    const handleOpen = (event: React.SyntheticEvent) => {
+        setState(prev => ({
+            ...prev,
+            isOpen: true,
+            openTooltip: false
+        }));
+
+        onOpen && onOpen(event);
+    };
+
+    const handleClose = (event: React.SyntheticEvent) => {
+        setState(prev => ({
+            ...prev,
+            isOpen: false
+        }));
+
+        onClose && onClose(event);
+    };
 
     /**
      * @param {SelectChangeEvent} event
      * @param {React.ReactNode} child
      */
     const handleChange = React.useCallback(
-        (
-            event: SelectChangeEvent<HTMLSelectElement>,
-            child: React.ReactNode
-        ) => {
-            setState({ value: event.target.value as string });
+        (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+            setState(prev => ({
+                ...prev,
+                value: event.target.value as string
+            }));
             onChange && onChange(event, child);
         },
         [onChange]
@@ -86,7 +113,7 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
      * @param {HTMLSelectElement} value
      * @returns {React.ReactNode}
      */
-    const handleRenderValue = (value: HTMLSelectElement): React.ReactNode => {
+    const handleRenderValue = (value: unknown): React.ReactNode => {
         if (extended && value) {
             return options.find(
                 ({ key }) => key === (value as unknown as string)
@@ -94,6 +121,21 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
         }
 
         return value as React.ReactNode;
+    };
+
+    const handleTooltipOpen = () => {
+        !state?.isOpen &&
+            setState(prev => ({
+                ...prev,
+                openTooltip: true
+            }));
+    };
+
+    const handleTooltipClose = () => {
+        setState(prev => ({
+            ...prev,
+            openTooltip: false
+        }));
     };
 
     return (
@@ -112,41 +154,55 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                     sx={{ ...(width && { width }) }}
                     size="small"
                 >
-                    {/* @ts-ignore */}
-                    <Select
-                        {...props}
-                        onChange={handleChange}
-                        renderValue={handleRenderValue}
-                        sx={{
-                            '&.MuiOutlinedInput-root': {
-                                borderWidth: state?.value ? 1 : 'inherit',
-                                borderStyle: 'solid',
-                                borderColor: `${
-                                    options.find(
-                                        ({ key }) => state?.value === key
-                                    )?.color
-                                }.main`
-                            }
-                        }}
+                    <Tooltip
+                        arrow
+                        title={
+                            (!extended &&
+                                options.find(({ key }) => key === state?.value)
+                                    ?.label) ||
+                            ''
+                        }
+                        open={state?.openTooltip}
                     >
-                        {options.map(({ key, label, color }, idx) => (
-                            <MenuItem key={`${key}-${idx}`} value={key}>
-                                <ListItemIcon>
-                                    {color && (
-                                        <CircleIcon
-                                            fontSize="small"
-                                            sx={{ color: `${color}.main` }}
-                                        />
-                                    )}
-                                    {!color && (
-                                        <PanoramaFishEyeIcon fontSize="small" />
-                                    )}
-                                </ListItemIcon>
-                                {key && <>{key} &ndash; </>}
-                                {label}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                        <Select
+                            {...props}
+                            onMouseEnter={handleTooltipOpen}
+                            onMouseLeave={handleTooltipClose}
+                            onOpen={handleOpen}
+                            onClose={handleClose}
+                            onChange={handleChange}
+                            renderValue={handleRenderValue}
+                            sx={{
+                                '&.MuiOutlinedInput-root': {
+                                    borderWidth: state?.value ? 1 : 'inherit',
+                                    borderStyle: 'solid',
+                                    borderColor: `${
+                                        options.find(
+                                            ({ key }) => state?.value === key
+                                        )?.color
+                                    }.main`
+                                }
+                            }}
+                        >
+                            {options.map(({ key, label, color }, idx) => (
+                                <MenuItem key={`${key}-${idx}`} value={key}>
+                                    <ListItemIcon>
+                                        {color && (
+                                            <CircleIcon
+                                                fontSize="small"
+                                                sx={{ color: `${color}.main` }}
+                                            />
+                                        )}
+                                        {!color && (
+                                            <PanoramaFishEyeIcon fontSize="small" />
+                                        )}
+                                    </ListItemIcon>
+                                    {key && <>{key} &ndash; </>}
+                                    {label}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </Tooltip>
                 </FormControl>
             </Badge>
         </Badge>

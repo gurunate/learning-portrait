@@ -24,71 +24,75 @@ export type LayoutProps = {
     children: React.ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => (
-    <html lang="en">
-        <body className={poppins.className}>
-            <ThemeRegistry>
-                <Container maxWidth={false}>
-                    <Grid container direction="row" spacing={2}>
-                        <Grid
-                            item
-                            md={12}
-                            container
-                            sx={{
-                                top: -10,
-                                position: 'sticky',
-                                zIndex: 99,
-                                backgroundColor: 'background.default'
-                            }}
-                        >
-                            <Grid item md={2} pl={4} pt={4}>
-                                <Tooltip title="Home">
-                                    <Link href="/">
-                                        <Image
-                                            src="/logo.svg"
-                                            alt="logo"
-                                            width={150}
-                                            height={88.5}
-                                        />
-                                    </Link>
-                                </Tooltip>
-                            </Grid>
-                            <Grid item md={10}>
-                                <TopNav
-                                    dateTime={`Today  ${formatDate(
-                                        new Date(),
-                                        'PP | p'
-                                    )}`}
-                                    name="Jeff"
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid item md={2}>
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const pathname = '';
+
+    return (
+        <html lang="en">
+            <body className={poppins.className}>
+                <ThemeRegistry>
+                    <Container maxWidth={false}>
+                        <Grid container direction="row" spacing={2}>
                             <Grid
                                 item
+                                md={12}
+                                container
                                 sx={{
+                                    top: -10,
+                                    position: 'sticky',
                                     zIndex: 99,
-                                    overflow: 'hidden',
-                                    top: 150,
-                                    left: 0,
-                                    position: 'sticky'
+                                    backgroundColor: 'background.default'
                                 }}
                             >
-                                <SideNav />
+                                <Grid item md={2} pl={4} pt={4}>
+                                    <Tooltip title="Home">
+                                        <Link href="/">
+                                            <Image
+                                                src="/logo.svg"
+                                                alt="logo"
+                                                width={150}
+                                                height={88.5}
+                                            />
+                                        </Link>
+                                    </Tooltip>
+                                </Grid>
+                                <Grid item md={10}>
+                                    <TopNav
+                                        dateTime={`Today  ${formatDate(
+                                            new Date(),
+                                            'PP | p'
+                                        )}`}
+                                        name="Jeff"
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Grid item md={2}>
+                                <Grid
+                                    item
+                                    sx={{
+                                        zIndex: 99,
+                                        overflow: 'hidden',
+                                        top: 150,
+                                        left: 0,
+                                        position: 'sticky'
+                                    }}
+                                >
+                                    <SideNav pathname={pathname} />
+                                </Grid>
+                            </Grid>
+                            <Grid item md={10}>
+                                <Paper>
+                                    <Box p={4}>
+                                        <main>{children}</main>
+                                    </Box>
+                                </Paper>
                             </Grid>
                         </Grid>
-                        <Grid item md={10}>
-                            <Paper>
-                                <Box p={4}>
-                                    <main>{children}</main>
-                                </Box>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </ThemeRegistry>
-        </body>
-    </html>
-);
+                    </Container>
+                </ThemeRegistry>
+            </body>
+        </html>
+    );
+};
 
 export default Layout;

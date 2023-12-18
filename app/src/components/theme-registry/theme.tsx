@@ -20,7 +20,9 @@ const theme = createTheme({
     palette: {
         mode: 'light',
         background: {
-            default: COLOR_BACKGROUND
+            default: COLOR_BACKGROUND,
+            // @ts-ignore
+            primary: PRIMARY_LP
             // heading: COLOR_LIGHT_LP_2
         },
         primary: {

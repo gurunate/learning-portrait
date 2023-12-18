@@ -23,14 +23,19 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import { usePathname } from 'next/navigation';
 
-export type SideNavProps = unknown;
+export type SideNavProps = {
+    pathname?: string;
+};
 
 /**
  * @param {SideNavProps} props
+ * @returns {JSX.Element}
  */
-const SideNav: React.FC<SideNavProps> = () => {
+const SideNav: React.FC<SideNavProps> = ({
+    pathname: pathnameProp = ''
+}: SideNavProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
-    const pathname = usePathname();
+    const pathname = usePathname() || pathnameProp; // FIXME this is bad
 
     React.useEffect(() => {
         if (pathname.match(/^\/settings/)) {
@@ -104,8 +109,6 @@ const SideNav: React.FC<SideNavProps> = () => {
                             </ListItemButton>
                         </ListItem>
                         <ListItem
-                            // href="/settings"
-                            // component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
                                 <IconButton edge="end" aria-label="settings">

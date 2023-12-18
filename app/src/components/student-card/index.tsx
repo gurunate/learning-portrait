@@ -9,16 +9,19 @@ import {
 } from '@mui/material';
 
 import React from 'react';
+import { Student as TStudent } from '@/types';
 
-export type StudentCardProps = unknown;
+export type StudentCardProps = {
+    student: TStudent;
+};
 
 /**
  * @param {StudentCardProps} props
  * @returns {JSX.Element}
  */
-const StudentCard: React.FC<StudentCardProps> = (
-    props: StudentCardProps
-): JSX.Element => (
+const StudentCard: React.FC<StudentCardProps> = ({
+    student
+}: StudentCardProps): JSX.Element => (
     <Card sx={{ maxWidth: 348 }}>
         <CardContent>
             <Grid
@@ -31,12 +34,12 @@ const StudentCard: React.FC<StudentCardProps> = (
                 <Grid item>
                     <Avatar
                         sx={{ width: 132, height: 132 }}
-                        src="/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg"
+                        src={student?.avatar}
                     />
                 </Grid>
                 <Grid item>
                     <Typography variant="h3" color="primary">
-                        Anna Lacey
+                        {student.firstName} {student.lastName}
                     </Typography>
                 </Grid>
                 <Grid item>

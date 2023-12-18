@@ -8,25 +8,32 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@storybook/addon-essentials": "^7.6.4",
-    "@storybook/addon-interactions": "^7.6.4",
-    "@storybook/addon-links": "^7.6.4",
-    "@storybook/addon-themes": "^7.6.4",
-    "@storybook/blocks": "^7.6.4",
-    "@storybook/nextjs": "^7.6.4",
-    "@storybook/react": "^7.6.4",
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/addon-themes": "^7.6.6",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/nextjs": "^7.6.6",
+    "@storybook/react": "^7.6.6",
     "@storybook/testing-library": "^0.2.2",
+    "chromatic": "^10.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.6.4"
+    "storybook": "^7.6.6"
   },
   "scripts": {
     "start": "storybook dev -p 6006",
     "debug": "storybook dev -p 6006 --debug-webpack",
-    "build": "storybook build"
+    "build": "storybook build",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_0a2df042b8adced"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4"
-  }
+    "@hookform/devtools": "^4.3.1",
+    "@material-ui/core": "^4.12.4",
+    "@storybook/addon-a11y": "^7.6.6"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@learning-portrait/design@0.1.0"
 }

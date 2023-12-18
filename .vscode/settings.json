@@ -1,4 +1,13 @@
 {
-    "cSpell.words": ["Abbrv", "hookform", "nextjs", "tinymce", "Whatshot"],
+    "cSpell.words": [
+        "Abbrv",
+        "autodocs",
+        "hookform",
+        "nextjs",
+        "retval",
+        "testid",
+        "tinymce",
+        "Whatshot"
+    ],
     "cSpell.language": "en,en-US"
 }
