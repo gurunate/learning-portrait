@@ -1,9 +1,7 @@
 import {
     Avatar,
-    Button,
     Checkbox,
     Grid,
-    IconButton,
     Stack,
     Table,
     TableBody,
@@ -17,38 +15,21 @@ import {
 import RatingSelect from '../rating-select';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { faker } from '@faker-js/faker';
-import { format as formatDate } from 'date-fns';
+import { Evidence as TEvidence } from '@/types';
+import { formatDate } from '@/lib/utils';
 
-export type StudentEvidenceProps = unknown;
+export type StudentEvidenceProps = {
+    evidence?: TEvidence[];
+};
 
 /**
  *
  * @param {StudentEvidenceProps} props
  * @returns {JSX.Element}
  */
-const StudentEvidence: React.FC<StudentEvidenceProps> = (
-    props: StudentEvidenceProps
-): JSX.Element => {
-    const evidence = [
-        {
-            id: faker.string.uuid(),
-            name: 'Evidence Name',
-            uploaded: faker.date.past({ years: 1 }),
-            teacherRating: 'A',
-            studentRating: 'M',
-            starred: false
-        },
-        {
-            id: faker.string.uuid(),
-            name: 'Evidence Name',
-            uploaded: faker.date.past({ years: 1 }),
-            teacherRating: 'M',
-            studentRating: 'T',
-            starred: true
-        }
-    ];
-
+const StudentEvidence: React.FC<StudentEvidenceProps> = ({
+    evidence = []
+}: StudentEvidenceProps): JSX.Element => {
     return (
         <Grid container spacing={4}>
             <Grid item md={12}>
@@ -64,7 +45,9 @@ const StudentEvidence: React.FC<StudentEvidenceProps> = (
                             <TableCell align="left" width={300}>
                                 Name
                             </TableCell>
-                            <TableCell align="left">Uploaded</TableCell>
+                            <TableCell align="left" width={150}>
+                                Uploaded
+                            </TableCell>
                             <TableCell align="center" width={150}>
                                 Teacher Rating
                             </TableCell>
@@ -75,18 +58,15 @@ const StudentEvidence: React.FC<StudentEvidenceProps> = (
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {evidence.map(
-                            (
-                                {
-                                    id,
-                                    name,
-                                    uploaded,
-                                    teacherRating,
-                                    studentRating,
-                                    starred
-                                },
-                                idx
-                            ) => (
+                        {evidence?.map(
+                            ({
+                                id,
+                                name,
+                                uploaded,
+                                teacherRating,
+                                studentRating,
+                                starred
+                            }) => (
                                 <TableRow key={id}>
                                     <TableCell variant="head" align="left">
                                         <Stack
@@ -99,9 +79,11 @@ const StudentEvidence: React.FC<StudentEvidenceProps> = (
                                         </Stack>
                                     </TableCell>
                                     <TableCell align="left">
-                                        <Typography>
-                                            {formatDate(uploaded, 'P')}
-                                        </Typography>
+                                        {uploaded && (
+                                            <Typography>
+                                                {formatDate(uploaded)}
+                                            </Typography>
+                                        )}
                                     </TableCell>
                                     <TableCell align="center">
                                         <RatingSelect

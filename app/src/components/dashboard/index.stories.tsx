@@ -12,8 +12,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const courses = fixtures.courses(3);
-const objectives = fixtures.objectives(7);
-const students = fixtures.students(1);
+const objectives = fixtures.objectives(5);
+const students = fixtures.students(7);
 
 export const Dashboard: Story = {
     args: {
