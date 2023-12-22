@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Component from '.';
-import { faker } from '@faker-js/faker';
-import { startCase, upperCase } from 'lodash';
+import * as fixtures from '@/lib/fixtures';
 
 const meta = {
     title: 'App / components / tables / Objectives',
@@ -12,38 +11,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const objectives = [
-    {
-        id: faker.string.uuid(),
-        name: startCase(faker.word.adjective()),
-        key: upperCase(faker.word.adjective().substring(0, 3)),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        name: startCase(faker.word.adjective()),
-        key: upperCase(faker.word.adjective().substring(0, 3)),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        name: startCase(faker.word.adjective()),
-        key: upperCase(faker.word.adjective().substring(0, 3)),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        name: startCase(faker.word.adjective()),
-        key: upperCase(faker.word.adjective().substring(0, 3)),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        name: startCase(faker.word.adjective()),
-        key: upperCase(faker.word.adjective().substring(0, 3)),
-        description: faker.lorem.sentence()
-    }
-];
+const objectives = fixtures.objectives(5);
 
 export const Objectives: Story = {
     args: {

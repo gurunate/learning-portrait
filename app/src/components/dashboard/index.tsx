@@ -8,13 +8,16 @@ import {
     Select,
     Stack
 } from '@mui/material';
+import {
+    Course as TCourse,
+    Objective as TObjective,
+    Student as TStudent
+} from '@/types';
 
 import EvidenceDialog from '../evidence-dialog';
+import { FieldValues } from 'react-hook-form';
 import React from 'react';
 import StudentsTable from '../tables/students-table';
-import { Course as TCourse } from '@/types/course';
-import { Objective as TObjective } from '@/types/objective';
-import { Student as TStudent } from '@/types/student';
 
 export type DashboardProps = {
     courses: TCourse[];
@@ -38,6 +41,11 @@ const Dashboard: React.FC<DashboardProps> = ({
     };
 
     const handleAddEvidenceClose = () => {
+        setOpenEvidenceDialog(false);
+    };
+
+    const handleSubmit = (data: FieldValues) => {
+        console.log('handleSubmit', { data });
         setOpenEvidenceDialog(false);
     };
 
@@ -86,6 +94,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 onClose={handleAddEvidenceClose}
                 courses={courses}
                 objectives={objectives}
+                onSubmit={handleSubmit}
             />
         </>
     );

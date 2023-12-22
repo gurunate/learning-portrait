@@ -1,14 +1,16 @@
 'use client';
 
+import { Course as TCourse, Student as TStudent } from '@/types';
+
 import { Grid } from '@mui/material';
 import React from 'react';
 import StudentCard from '@/components/student-card';
 import StudentEvidence from './evidence';
 import StudentObjective from './objective';
-import { Course as TCourse } from '@/types/course';
 
 export type StudentProfileProps = {
     courses: TCourse[];
+    student: TStudent;
 };
 
 /**
@@ -16,11 +18,12 @@ export type StudentProfileProps = {
  * @returns {JSX.Element}
  */
 const StudentProfile: React.FC<StudentProfileProps> = ({
-    courses
+    courses,
+    student
 }): JSX.Element => (
     <Grid container spacing={4}>
         <Grid item md={3}>
-            <StudentCard />
+            <StudentCard student={student} />
         </Grid>
         <Grid item md={9} container spacing={4} mt={1}>
             <Grid item md={12}>

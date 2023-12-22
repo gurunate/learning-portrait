@@ -1,9 +1,14 @@
+import * as fixtures from '@/lib/fixtures';
+
 import CourseSetup from '@/components/course-setup';
 import { Metadata } from 'next';
+import React from 'react';
 
 const Page = () => {
-    const courses = [{ id: '1234', name: 'Pre Calculus Adv' }];
-    return <CourseSetup courses={courses} />;
+    const courses = fixtures.courses(1);
+    const objectives = fixtures.objectives(5);
+
+    return <CourseSetup courses={courses} objectives={objectives} />;
 };
 
 export const metadata: Metadata = {

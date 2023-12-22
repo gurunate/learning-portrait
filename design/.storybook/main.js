@@ -19,9 +19,10 @@ const config = {
         return config;
     },
     addons: [
-        getAbsolutePath('@storybook/addon-links'),
+        getAbsolutePath('@storybook/addon-a11y'),
         getAbsolutePath('@storybook/addon-essentials'),
         getAbsolutePath('@storybook/addon-interactions'),
+        getAbsolutePath('@storybook/addon-links'),
         getAbsolutePath('@storybook/addon-themes')
     ],
     docs: {
@@ -30,7 +31,12 @@ const config = {
     typescript: {
         check: false
     },
-    staticDirs: ['../public', '../../app/public']
+    staticDirs: ['../public', '../../app/public'],
+    framework: {
+        // name: '@storybook/react-webpack5', // Remove this
+        name: getAbsolutePath("@storybook/nextjs"), // Add this
+        options: {}
+    }
 };
 export default config;
 

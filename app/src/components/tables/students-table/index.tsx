@@ -16,15 +16,13 @@ import {
 import Link from '@/components/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import RatingSelect from '@/components/rating-select';
-import { Student as TStudent } from '@/types/student';
+import { Student as TStudent } from '@/types';
 import { faker } from '@faker-js/faker';
 import { startCase } from 'lodash';
 
 export type StudentsTableProps = {
     students: TStudent[];
 };
-
-const STUDENT_COUNT = 7;
 
 /**
  * @param {StudentsTableProps} props
@@ -33,11 +31,6 @@ const STUDENT_COUNT = 7;
 const StudentsTable: React.FC<StudentsTableProps> = ({
     students
 }: StudentsTableProps): JSX.Element => {
-    const generateStudent = () => ({
-        id: faker.string.uuid(),
-        name: faker.person.fullName()
-    });
-
     const CNT = 5;
 
     return (
@@ -59,78 +52,67 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                 </TableRow>
             </TableHead>
             <TableBody>
-                {Array(STUDENT_COUNT)
-                    .fill(0)
-                    .map((_, rowIdx) => {
-                        const { id, name } = generateStudent();
-                        return (
-                            <TableRow key={id}>
-                                <TableCell align="center">
-                                    {rowIdx === 2 && (
-                                        <Tooltip title="Messages">
-                                            <Avatar
-                                                color="primary"
-                                                sx={{
-                                                    bgcolor: 'error.main',
-                                                    width: 24,
-                                                    height: 24
-                                                }}
-                                            >
-                                                <Typography>2</Typography>
-                                            </Avatar>
-                                        </Tooltip>
-                                    )}
-                                </TableCell>
-                                <TableCell align="left">
-                                    <Stack
-                                        direction="row"
-                                        spacing={2}
-                                        alignItems="center"
-                                    >
+                {students.map(({ avatar, id, firstName, lastName }, rowIdx) => {
+                    return (
+                        <TableRow key={id}>
+                            <TableCell align="center">
+                                {rowIdx === 2 && (
+                                    <Tooltip title="Messages">
                                         <Avatar
-                                            sx={{ width: 32, height: 32 }}
-                                            src={
-                                                rowIdx === 2
-                                                    ? '/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg'
-                                                    : ''
+                                            color="primary"
+                                            sx={{
+                                                bgcolor: 'error.main',
+                                                width: 24,
+                                                height: 24
+                                            }}
+                                        >
+                                            <Typography>2</Typography>
+                                        </Avatar>
+                                    </Tooltip>
+                                )}
+                            </TableCell>
+                            <TableCell align="left">
+                                <Stack
+                                    direction="row"
+                                    spacing={2}
+                                    alignItems="center"
+                                >
+                                    <Avatar
+                                        sx={{ width: 32, height: 32 }}
+                                        src={avatar}
+                                    />
+                                    <Link href={`/student/${id}`}>
+                                        <Typography sx={{ fontWeight: 700 }}>
+                                            {firstName} {lastName}
+                                        </Typography>
+                                    </Link>
+                                </Stack>
+                            </TableCell>
+                            {Array(CNT)
+                                .fill('')
+                                .map((_, colIdx) => (
+                                    <TableCell key={colIdx} align="center">
+                                        <RatingSelect
+                                            warning={
+                                                rowIdx === 2 && colIdx === 0
+                                            }
+                                            error={
+                                                rowIdx === 2 &&
+                                                [1, 2].includes(colIdx)
                                             }
                                         />
-                                        <Link href={`/student/${id}`}>
-                                            <Typography
-                                                sx={{ fontWeight: 700 }}
-                                            >
-                                                {rowIdx === 2 && 'Anna Lacey'}
-                                                {rowIdx !== 2 && name}
-                                            </Typography>
-                                        </Link>
-                                    </Stack>
-                                </TableCell>
-                                {Array(CNT)
-                                    .fill('')
-                                    .map((_, colIdx) => (
-                                        <TableCell key={colIdx} align="center">
-                                            <RatingSelect
-                                                // value="M"
-                                                warning={
-                                                    rowIdx === 2 && colIdx === 0
-                                                }
-                                                error={
-                                                    rowIdx === 2 &&
-                                                    [1, 2].includes(colIdx)
-                                                }
-                                            />
-                                        </TableCell>
-                                    ))}
-                                <TableCell align="right">
-                                    <Tooltip title="More">
-                                        <IconButton size="small">
-                                            <MoreHorizIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
+                                    </TableCell>
+                                ))}
+                            <TableCell align="right">
+                                <Tooltip title="More">
+                                    <IconButton size="small">
+                                        <MoreHorizIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            </TableCell>
+                        </TableRow>
+                    );
+                })}
             </TableBody>
         </Table>
     );

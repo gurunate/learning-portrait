@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Component from '.';
-import { faker } from '@faker-js/faker';
-import { startCase } from 'lodash';
+import * as fixtures from '@/lib/fixtures';
 
 const meta = {
     title: 'App / components / Dashboard',
@@ -12,53 +11,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const courses = [
-    { id: faker.string.uuid(), name: 'Pre Calculus Adv' },
-    { id: faker.string.uuid(), name: faker.lorem.sentence() },
-    { id: faker.string.uuid(), name: faker.lorem.sentence() }
-];
-
-const students = [
-    {
-        id: faker.string.uuid(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email()
-    }
-];
-
-const objectives = [
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: startCase(faker.word.adjective()),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: startCase(faker.word.adjective()),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: startCase(faker.word.adjective()),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: startCase(faker.word.adjective()),
-        description: faker.lorem.sentence()
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: startCase(faker.word.adjective()),
-        description: faker.lorem.sentence()
-    }
-];
+const courses = fixtures.courses(3);
+const objectives = fixtures.objectives(7);
+const students = fixtures.students(1);
 
 export const Dashboard: Story = {
     args: {

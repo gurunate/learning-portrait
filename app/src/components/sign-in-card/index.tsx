@@ -53,7 +53,7 @@ export const schema = yup.object().shape({
 const SignInCard: React.FC<SignInCardProps> = ({
     onError,
     onSubmit
-}): JSX.Element => {
+}: SignInCardProps): JSX.Element => {
     const methods = useForm({
         mode: 'onSubmit',
         reValidateMode: 'onChange',

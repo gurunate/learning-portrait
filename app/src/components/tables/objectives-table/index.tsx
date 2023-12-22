@@ -8,7 +8,7 @@ import {
     TableRow
 } from '@mui/material';
 
-import { Objective as TObjective } from '@/types/objective';
+import { Objective as TObjective } from '@/types';
 
 export type ObjectivesTableProps = {
     objectives: TObjective[];

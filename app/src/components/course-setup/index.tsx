@@ -1,52 +1,21 @@
 import { FormControl, Grid, MenuItem, Select, Typography } from '@mui/material';
+import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import ObjectivesTable from '../tables/objectives-table';
-import { Course as TCourse } from '@/types/course';
-import { faker } from '@faker-js/faker';
+import React from 'react';
 
 export type CourseSetupProps = {
     courses: TCourse[];
+    objectives: TObjective[];
 };
-
-const objectives = [
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: 'Objective Name',
-        description: 'Lorem ipsum dolor sit amet...'
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: 'Objective Name',
-        description: 'Lorem ipsum dolor sit amet...'
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: 'Objective Name',
-        description: 'Lorem ipsum dolor sit amet...'
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: 'Objective Name',
-        description: 'Lorem ipsum dolor sit amet...'
-    },
-    {
-        id: faker.string.uuid(),
-        key: 'OBJ',
-        name: 'Objective Name',
-        description: 'Lorem ipsum dolor sit amet...'
-    }
-];
 
 /**
  * @param {CourseSetupProps} props
  * @returns {JSX.Element}
  */
 const CourseSetup: React.FC<CourseSetupProps> = ({
-    courses
+    courses,
+    objectives
 }: CourseSetupProps): JSX.Element => (
     <Grid container direction="row" spacing={4} maxWidth="xl">
         <Grid item md={12}>

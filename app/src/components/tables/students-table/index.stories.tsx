@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Component from '.';
-import { faker } from '@faker-js/faker';
+import * as fixtures from '@/lib/fixtures';
 
 const meta = {
     title: 'App / components / tables / Students',
@@ -11,14 +11,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const students = [
-    {
-        id: faker.string.uuid(),
-        firstName: faker.person.firstName(),
-        lastName: faker.person.lastName(),
-        email: faker.internet.email()
-    }
-];
+const students = fixtures.students(9);
+
+students[2].firstName = 'Anna';
+students[2].lastName = 'Lacey';
+students[2].avatar = '/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg';
 
 export const Students: Story = {
     args: { students }
