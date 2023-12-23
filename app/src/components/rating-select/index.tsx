@@ -70,9 +70,9 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
     React.useEffect(() => {
         setState(prev => ({
             ...prev,
-            value: props?.value as string
+            value: (props?.value as string) || (props?.defaultValue as string)
         }));
-    }, [props?.value]);
+    }, [props?.defaultValue, props?.value]);
 
     const handleOpen = (event: React.SyntheticEvent) => {
         setState(prev => ({

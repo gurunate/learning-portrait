@@ -4,7 +4,7 @@ import Component from '.';
 import * as fixtures from '@/lib/fixtures';
 
 const meta = {
-    title: 'App / components / Greet',
+    title: 'App / components / Greeting',
     component: Component
 } satisfies Meta<typeof Component>;
 
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 const student = fixtures.student();
 
-export const Greet: Story = {
+export const Greeting: Story = {
     args: {
         name: student.firstName
     }

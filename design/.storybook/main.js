@@ -31,12 +31,7 @@ const config = {
     typescript: {
         check: false
     },
-    staticDirs: ['../public', '../../app/public'],
-    framework: {
-        // name: '@storybook/react-webpack5', // Remove this
-        name: getAbsolutePath("@storybook/nextjs"), // Add this
-        options: {}
-    }
+    staticDirs: ['../public', '../../app/public']
 };
 export default config;
 

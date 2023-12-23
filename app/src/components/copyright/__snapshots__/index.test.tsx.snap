@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Copyright component should render 1`] = `
+<body>
+  <div>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-vkc4v8-MuiTypography-root"
+      data-testid="copyright"
+    >
+      © 
+      2000
+       Learning Portrait
+    </p>
+  </div>
+</body>
+`;
