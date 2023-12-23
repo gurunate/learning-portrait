@@ -93,6 +93,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                                 .map((_, colIdx) => (
                                     <TableCell key={colIdx} align="center">
                                         <RatingSelect
+                                            defaultValue="M"
                                             warning={
                                                 rowIdx === 2 && colIdx === 0
                                             }

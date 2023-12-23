@@ -1,5 +1,7 @@
 'use client';
 
+import * as fixtures from '@/lib/fixtures';
+
 import { Course as TCourse, Student as TStudent } from '@/types';
 
 import { Grid } from '@mui/material';
@@ -20,20 +22,24 @@ export type StudentProfileProps = {
 const StudentProfile: React.FC<StudentProfileProps> = ({
     courses,
     student
-}): JSX.Element => (
-    <Grid container spacing={4}>
-        <Grid item md={3}>
-            <StudentCard student={student} />
-        </Grid>
-        <Grid item md={9} container spacing={4} mt={1}>
-            <Grid item md={12}>
-                <StudentObjective courses={courses} />
+}): JSX.Element => {
+    const evidence = fixtures.evidenceList(3);
+
+    return (
+        <Grid container spacing={4}>
+            <Grid item md={3}>
+                <StudentCard student={student} />
             </Grid>
-            <Grid item md={12}>
-                <StudentEvidence />
+            <Grid item md={9} container spacing={4} mt={1}>
+                <Grid item md={12}>
+                    <StudentObjective courses={courses} />
+                </Grid>
+                <Grid item md={12}>
+                    <StudentEvidence evidence={evidence} />
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
-);
+    );
+};
 
 export default React.memo(StudentProfile);

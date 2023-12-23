@@ -1,4 +1,5 @@
 export type { Course } from './course';
+export type { Evidence } from './evidence';
 export type { Objective } from './objective';
 export type { Rating } from './rating';
 export type { Student } from './student';

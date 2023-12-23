@@ -1,4 +1,5 @@
 export { course, courses } from './course';
+export { evidence, evidenceList } from './evidence';
 export { objective, objectives } from './objective';
 export { student, students } from './student';
 

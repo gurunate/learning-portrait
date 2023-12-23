@@ -4,7 +4,7 @@ import Component, { EvidenceDialogProps } from '.';
 import React from 'react';
 import { Button } from '@mui/material';
 import { faker } from '@faker-js/faker';
-import { format as formatDate } from 'date-fns';
+import { formatDate } from '@/lib/utils';
 
 const meta = {
     title: 'App / components / dialogs / Evidence',
@@ -23,7 +23,7 @@ const defaultArgs = {
     initialValue: '',
     objectives,
     courses,
-    uploadedOn: formatDate(faker.date.past(), 'P'),
+    uploadedOn: formatDate(faker.date.past()),
     devtool: false
 };
 
