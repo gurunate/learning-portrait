@@ -14,7 +14,7 @@ import {
     Typography
 } from '@mui/material';
 
-import Greet from '@/components/greet';
+import Greeting from '@/components/greeting';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Link from 'next/link';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -56,7 +56,7 @@ const TopNav: React.FC<TopNavProps> = ({
             <Grid item>
                 <Stack direction="column" spacing={1}>
                     <Typography variant="h2" color="primary">
-                        <Greet name={name} />
+                        <Greeting name={name} />
                     </Typography>
                     <Typography variant="h6">{dateTime}</Typography>
                 </Stack>
