@@ -7,6 +7,7 @@ import React from 'react';
 
 export type EditorProps = TinyEditorProps & {
     defaultValue?: string;
+    placeholder?: string;
 };
 
 const API_KEY = 'hqonybajv3lv4wbbc3xmjm1uhfv3fmj6l1rc4vsbpqcs6psq';
@@ -17,12 +18,14 @@ const API_KEY = 'hqonybajv3lv4wbbc3xmjm1uhfv3fmj6l1rc4vsbpqcs6psq';
  */
 const Editor: React.FC<EditorProps> = ({
     defaultValue,
+    placeholder,
     ...props
 }: EditorProps): JSX.Element => (
     <TinyEditor
         {...props}
         apiKey={API_KEY}
         init={{
+            placeholder,
             height: '100%',
             menubar: false,
             statusbar: false,

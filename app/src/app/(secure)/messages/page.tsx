@@ -1,7 +1,15 @@
 import { Metadata } from 'next';
+import { Typography } from '@mui/material';
 
 const Page = () => {
-    return <main>Messages content</main>;
+    return (
+        <>
+            <Typography variant="h2" gutterBottom>
+                Messages
+            </Typography>
+            <Typography paragraph>Coming soon.</Typography>
+        </>
+    );
 };
 
 export const metadata: Metadata = {
