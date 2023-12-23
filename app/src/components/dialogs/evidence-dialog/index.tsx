@@ -32,8 +32,8 @@ import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import { DevTool } from '@hookform/devtools';
-import Editor from '../editor';
-import FileUploadCard from '../file-upload-card';
+import Editor from '../../editor';
+import FileUploadCard from '../../file-upload-card';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import React from 'react';
 import { evidenceSchema } from './schema';

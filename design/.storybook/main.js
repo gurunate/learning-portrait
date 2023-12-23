@@ -6,8 +6,8 @@ const config = {
         options: {}
     },
     stories: [
-        '../stories/**/*.mdx',
-        '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+        '../../app/src/stories/**/*.mdx',
+        '../../app/src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
         '../../app/src/**/*.stories.@(ts|tsx)'
     ],
     async webpackFinal(config) {

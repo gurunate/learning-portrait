@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "coverage": "jest --coverage",
+    "watch": "jest --watch"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^40.2.0",

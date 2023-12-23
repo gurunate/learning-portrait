@@ -1,10 +1,6 @@
 import { Rating } from './rating';
+import { User } from './user';
 
-export type Student = {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    avatar?: string;
+export type Student = User & {
     ratings?: Rating[];
 };

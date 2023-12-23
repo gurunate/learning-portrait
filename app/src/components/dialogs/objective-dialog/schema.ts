@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const REQUIRED_FIELD_MESSAGE = 'Required.';
+import { REQUIRED_FIELD_MESSAGE } from '@/lib/constants';
 
 /**
  * Yup Objective schema

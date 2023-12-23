@@ -9,8 +9,8 @@ export const student = (): TStudent => ({
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    email: faker.internet.email()
-    // avatar?: string;
+    email: faker.internet.email(),
+    avatar: faker.internet.avatar()
     // ratings?: Rating[];
 });
 

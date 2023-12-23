@@ -3,18 +3,19 @@ import { darken, lighten } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 
 // Color schema from Figma
-const PRIMARY_LP = '#006B96';
-const COLOR_BACKGROUND = '#f4f7f7';
-const COLOR_3_ALERT = '#F75151';
-const COLOR_LIGHT_LP_2 = '#8DA97E';
-const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
+export const BORDER_RADIUS = 12;
 const COLOR_0_SECONDARY = '#F7941D';
 const COLOR_2_SUCCESS = '#009512';
+const COLOR_3_ALERT = '#F75151';
+const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
+const COLOR_BACKGROUND = '#f4f7f7';
+const COLOR_DARK_3 = '#84818A';
+const COLOR_DARK_4 = '#ABA8B0';
+const COLOR_DARK_5 = '#ECEAEE';
+const COLOR_LIGHT_LP_2 = '#8DA97E';
 const LINE_LINE1 = '#DCDBDD';
 const LP_02_SECONDARY = '#3C5255';
-const BORDER_RADIUS = 12;
-const COLOR_DARK_5 = '#ECEAEE';
-const COLOR_DARK_4 = '#ABA8B0';
+const PRIMARY_LP = '#006B96';
 
 const theme = createTheme({
     palette: {
@@ -59,7 +60,8 @@ const theme = createTheme({
         edge: {
             light: COLOR_DARK_5,
             main: LINE_LINE1,
-            dark: COLOR_DARK_4
+            dark: COLOR_DARK_3,
+            darker: COLOR_DARK_4
         }
     },
     typography: {
@@ -171,13 +173,16 @@ const theme = createTheme({
                     borderRadius: BORDER_RADIUS,
                     background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                     '& .MuiTableCell-root': {
+                        background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                         border: 0
                     },
                     'th:first-child': {
-                        borderRadius: '12px 0 0 12px'
+                        borderTopLeftRadius: BORDER_RADIUS,
+                        borderBottomLeftRadius: BORDER_RADIUS
                     },
                     'th:last-child': {
-                        borderRadius: '0 12px 12px 0'
+                        borderTopRightRadius: BORDER_RADIUS,
+                        borderBottomRightRadius: BORDER_RADIUS
                     }
                 }
             }

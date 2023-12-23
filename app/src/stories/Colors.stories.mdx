@@ -1,0 +1,59 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import theme from '@/components/theme-registry/theme';
+
+<Meta title="Theme / Colors" />
+
+# Colors
+
+<ColorPalette>
+    <ColorItem
+        title="Background"
+        subtitle="theme.palette.background"
+        colors={theme.palette.background}
+    />
+    <ColorItem
+        title="Primary"
+        subtitle="theme.palette.primary"
+        colors={theme.palette.primary}
+    />
+    <ColorItem
+        title="Secondary"
+        subtitle="theme.palette.secondary"
+        colors={theme.palette.secondary}
+    />
+    <ColorItem
+        title="Error"
+        subtitle="theme.palette.error"
+        colors={theme.palette.error}
+    />
+    <ColorItem
+        title="Warning"
+        subtitle="theme.palette.warning"
+        colors={theme.palette.warning}
+    />
+        <ColorItem
+            title="Info"
+            subtitle="theme.palette.info"
+            colors={theme.palette.info}
+        />
+    <ColorItem
+        title="Success"
+        subtitle="theme.palette.success"
+        colors={theme.palette.success}
+    />
+    <ColorItem
+        title="Edge"
+        subtitle="theme.palette.edge"
+        colors={theme.palette.edge}
+    />
+    <ColorItem
+        title="Text"
+        subtitle="theme.palette.text"
+        colors={theme.palette.text}
+    />
+    <ColorItem
+        title="Action"
+        subtitle="theme.palette.action"
+        colors={theme.palette.action}
+    />
+</ColorPalette>

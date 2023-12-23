@@ -18,13 +18,14 @@ import ForumIcon from '@mui/icons-material/Forum';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Link from 'next/link';
+import NotificationsAvatar from '../avatars/notifications';
 import React from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import { usePathname } from 'next/navigation';
 
 export type SideNavProps = {
-    pathname?: string;
+    segment?: string;
 };
 
 /**
@@ -32,16 +33,14 @@ export type SideNavProps = {
  * @returns {JSX.Element}
  */
 const SideNav: React.FC<SideNavProps> = ({
-    pathname: pathnameProp = ''
+    segment
 }: SideNavProps): JSX.Element => {
-    const [open, setOpen] = React.useState(false);
-    const pathname = usePathname() || pathnameProp; // FIXME this is bad
+    const [openSettings, setOpenSettings] = React.useState(false);
+    const pathname = usePathname();
 
     React.useEffect(() => {
-        if (pathname.match(/^\/settings/)) {
-            setOpen(true);
-        }
-    }, [pathname]);
+        setOpenSettings(segment === 'settings');
+    }, [segment]);
 
     return (
         <Grid
@@ -62,9 +61,7 @@ const SideNav: React.FC<SideNavProps> = ({
                             component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
                         >
-                            <ListItemButton
-                                selected={pathname === '/dashboard'}
-                            >
+                            <ListItemButton selected={segment === 'dashboard'}>
                                 <ListItemIcon>
                                     <WhatshotIcon />
                                 </ListItemIcon>
@@ -82,20 +79,11 @@ const SideNav: React.FC<SideNavProps> = ({
                             component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
-                                <Avatar
-                                    color="primary"
-                                    sx={{
-                                        bgcolor: 'error.main',
-                                        width: 24,
-                                        height: 24
-                                    }}
-                                >
-                                    <Typography>4</Typography>
-                                </Avatar>
+                                <NotificationsAvatar total={4} size={24} />
                             }
                             disablePadding
                         >
-                            <ListItemButton selected={pathname === '/messages'}>
+                            <ListItemButton selected={segment === 'messages'}>
                                 <ListItemIcon>
                                     <ForumIcon />
                                 </ListItemIcon>
@@ -112,19 +100,20 @@ const SideNav: React.FC<SideNavProps> = ({
                             sx={{ marginTop: 2, color: 'inherit' }}
                             secondaryAction={
                                 <IconButton edge="end" aria-label="settings">
-                                    {!open && <KeyboardArrowDownIcon />}
-                                    {open && <KeyboardArrowUpIcon />}
+                                    {!openSettings && <KeyboardArrowDownIcon />}
+                                    {openSettings && <KeyboardArrowUpIcon />}
                                 </IconButton>
                             }
                             onClick={() => {
-                                setOpen(prev => !prev);
+                                setOpenSettings(prev => !prev);
                             }}
                             disablePadding
                         >
                             <ListItemButton
-                                selected={Boolean(
-                                    pathname.match(/^\/settings/)
-                                )}
+                                // selected={Boolean(
+                                //     pathname.match(/^\/settings/)
+                                // )}
+                                selected={segment === 'settings'}
                             >
                                 <ListItemIcon>
                                     <SettingsIcon />
@@ -138,7 +127,11 @@ const SideNav: React.FC<SideNavProps> = ({
                                 />
                             </ListItemButton>
                         </ListItem>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Collapse
+                            in={openSettings}
+                            timeout="auto"
+                            unmountOnExit
+                        >
                             <List>
                                 <ListItem
                                     href="/settings/profile"
@@ -147,7 +140,7 @@ const SideNav: React.FC<SideNavProps> = ({
                                 >
                                     <ListItemButton
                                         selected={
-                                            pathname === '/settings/profile'
+                                            segment === '/settings/profile'
                                         }
                                     >
                                         <ListItemText

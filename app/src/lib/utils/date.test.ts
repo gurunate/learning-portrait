@@ -1,4 +1,4 @@
-import { formatDate } from './date';
+import { formatDate, formatDateRelative } from './date';
 
 describe('utils', () => {
     describe('formatDate', () => {
@@ -14,6 +14,33 @@ describe('utils', () => {
             expect(formatDate(testDate, 'EEEE, MMMM do')).toBe(
                 'Saturday, March 9th'
             );
+        });
+
+        it('should not fail with an empty value', () => {
+            expect(formatDate('')).toBe('');
+            expect(formatDate(null)).toBe(null);
+            expect(formatDate(undefined)).toBe(undefined);
+        });
+    });
+
+    describe('formatDateRelative', () => {
+        it('should display relative time today', () => {
+            expect(formatDateRelative(new Date())).toContain('today');
+        });
+
+        it('should display time when past 7 days', () => {
+            expect(
+                formatDateRelative(
+                    '2022-02-12T15:30:32.723Z',
+                    new Date('12/30/2023')
+                )
+            ).toBe('9:30 AM');
+        });
+
+        it('should not fail with an empty value', () => {
+            expect(formatDateRelative('')).toBe('');
+            expect(formatDateRelative(null)).toBe('');
+            expect(formatDateRelative(undefined)).toBe('');
         });
     });
 });

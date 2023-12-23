@@ -40,58 +40,67 @@ const Page = () => {
 
     const students = [
         {
-            id: 'f3c78758-a481-4768-9322-281575152631',
-            firstName: 'Ramona',
-            lastName: 'Schultz',
-            email: 'Verna74@yahoo.com'
+            id: '7e04a6c5-89d2-4817-bce4-c82e2903f903',
+            firstName: 'Devonte',
+            lastName: 'Kozey',
+            email: 'Jennifer.DuBuque66@yahoo.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/905.jpg'
         },
         {
-            id: '5cf17955-9c04-44e6-864d-c813a9a5dcc1',
-            firstName: 'Orie',
-            lastName: 'Stark',
-            email: 'Mose.Padberg87@hotmail.com'
+            id: '15a4cb30-59e3-4e1f-bab9-f4d36694a402',
+            firstName: 'Opal',
+            lastName: 'Stoltenberg',
+            email: 'Kenny_Krajcik@hotmail.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/135.jpg'
         },
         {
             id: '85a2b5bd-4cc7-40a1-a703-260564be693a',
             firstName: 'Anna',
             lastName: 'Lacey',
-            email: 'anna-lacey@hotmail.com'
+            email: 'anna-lacey@hotmail.com',
+            avatar: '/avatars/2185184f-ffa9-48f2-8611-9893de06e4f6.svg'
         },
         {
-            id: '1557eb1d-a84a-46c1-9725-cd30aac9aac6',
-            firstName: 'Juliet',
-            lastName: 'Terry',
-            email: 'Hank79@gmail.com'
+            id: '06bd706d-2e5b-40aa-93d0-d66897e1c078',
+            firstName: 'Cynthia',
+            lastName: 'Johnston',
+            email: 'Baby44@hotmail.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/560.jpg'
         },
         {
-            id: '7bc1bed3-f921-4461-b1a6-72ebc7ba7f89',
-            firstName: 'Mae',
-            lastName: 'Cole',
-            email: 'Dallin_Walter@gmail.com'
+            id: 'd653729d-d12e-40d5-9f65-873ec376b134',
+            firstName: 'Christa',
+            lastName: 'Abshire',
+            email: 'Savanah62@yahoo.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/548.jpg'
         },
         {
-            id: '019def51-2704-4e38-9ad9-ded3eaaa7fc7',
-            firstName: 'Joanie',
-            lastName: 'Ledner',
-            email: 'Sidney_Wilkinson-Rice@yahoo.com'
+            id: '59e00072-523c-4fa2-9f1a-8dd673705de6',
+            firstName: 'Fredrick',
+            lastName: 'Kreiger',
+            email: 'Kiley_Grady-Hansen99@yahoo.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/924.jpg'
         },
         {
-            id: '6c36b98a-e04a-461d-b6c1-6f245744dd4c',
-            firstName: 'Lauryn',
-            lastName: 'Larkin',
-            email: 'Jarret.Hoppe@hotmail.com'
+            id: '0394eef5-1d3e-452c-8c43-e67164a9db95',
+            firstName: 'Keshawn',
+            lastName: 'Altenwerth',
+            email: 'Lora.Skiles40@hotmail.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/73.jpg'
         },
         {
-            id: 'b4ae418f-7245-48ad-820a-7a99e5e50013',
-            firstName: 'Kenny',
-            lastName: 'Spencer-Anderson',
-            email: 'Oma57@yahoo.com'
+            id: '9ee05f10-2b0f-408f-88c5-e369f83d5dbd',
+            firstName: 'Jarret',
+            lastName: 'Murphy',
+            email: 'Pearline_Yundt93@gmail.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/804.jpg'
         },
         {
-            id: 'd040eea8-a7f7-4005-83a7-ce32c149f213',
-            firstName: 'Cade',
-            lastName: 'Crooks',
-            email: 'Dakota_Emard26@yahoo.com'
+            id: '9739df17-b5f2-4032-884c-7db950a51752',
+            firstName: 'Einar',
+            lastName: 'Crist',
+            email: 'Leanna_Dooley26@yahoo.com',
+            avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1102.jpg'
         }
     ];
 
