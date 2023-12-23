@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import { TypographyProps } from '@mui/system';
 
 export type CopyrightProps = TypographyProps & {
-    year: string | number;
+    year?: string | number;
 };
 
 /**
@@ -13,7 +13,7 @@ export type CopyrightProps = TypographyProps & {
  * @returns {JSX.Element}
  */
 const Copyright: React.FC<CopyrightProps> = ({
-    year,
+    year = new Date().getFullYear(),
     ...props
 }: CopyrightProps): JSX.Element => (
     <Typography color="primary" {...props} data-testid="copyright">
