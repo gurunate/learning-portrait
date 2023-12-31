@@ -9,7 +9,7 @@ import { formatDate } from '@/lib/utils';
 const meta = {
     title: 'App / components / dialogs / Evidence',
     component: Component,
-    argTypes: { onSubmit: { action: 'clicked' } }
+    argTypes: { onSubmit: { action: 'onSubmit' } }
 } satisfies Meta<typeof Component>;
 
 export default meta;

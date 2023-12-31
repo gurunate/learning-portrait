@@ -12,8 +12,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const courses = fixtures.courses(1);
+const objectives = fixtures.objectives(1);
 const student = fixtures.student();
 
 export const StudentProfile: Story = {
-    args: { courses, student }
+    args: { courses, student, objectives }
 };

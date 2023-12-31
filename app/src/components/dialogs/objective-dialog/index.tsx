@@ -3,19 +3,13 @@
 import {
     Box,
     Button,
-    Chip,
     Dialog,
     DialogActions,
     DialogContent,
     DialogProps,
     DialogTitle,
-    FormControl,
     Grid,
     IconButton,
-    InputLabel,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
     Stack,
     TextField,
     Tooltip,
@@ -28,13 +22,10 @@ import {
     useController,
     useForm
 } from 'react-hook-form';
-import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import { DevTool } from '@hookform/devtools';
-import Editor from '../editor';
-import FileUploadCard from '../file-upload-card';
-import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import Editor from '../../editor';
 import React from 'react';
 import { get } from 'lodash';
 import { objectiveSchema } from './schema';
@@ -49,18 +40,6 @@ export type ObjectiveDialogProps = DialogProps & {
     onError?: (errors: FieldErrors) => void;
     onSubmit: (data: FieldValues) => void;
     uploadedOn?: string;
-};
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250
-        }
-    }
 };
 
 /**

@@ -10,8 +10,10 @@ import {
 
 import React from 'react';
 import { Student as TStudent } from '@/types';
+import { formatFullName } from '@/lib/utils';
 
 export type StudentCardProps = {
+    onMessageStudent: () => void;
     student: TStudent;
 };
 
@@ -20,6 +22,7 @@ export type StudentCardProps = {
  * @returns {JSX.Element}
  */
 const StudentCard: React.FC<StudentCardProps> = ({
+    onMessageStudent,
     student
 }: StudentCardProps): JSX.Element => (
     <Card sx={{ maxWidth: 348 }}>
@@ -39,12 +42,17 @@ const StudentCard: React.FC<StudentCardProps> = ({
                 </Grid>
                 <Grid item>
                     <Typography variant="h3" color="primary">
-                        {student.firstName} {student.lastName}
+                        {formatFullName(student) as string}
                     </Typography>
                 </Grid>
                 <Grid item>
                     <Badge color="error" badgeContent="2">
-                        <Button variant="contained" size="large" fullWidth>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            fullWidth
+                            onClick={onMessageStudent}
+                        >
                             Message Student
                         </Button>
                     </Badge>

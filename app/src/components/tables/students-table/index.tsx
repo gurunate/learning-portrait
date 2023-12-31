@@ -12,15 +12,16 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
+import { Objective as TObjective, Student as TStudent } from '@/types';
 
 import Link from '@/components/link';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import NotificationsAvatar from '@/components/avatars/notifications';
 import RatingSelect from '@/components/rating-select';
-import { Student as TStudent } from '@/types';
-import { faker } from '@faker-js/faker';
-import { startCase } from 'lodash';
+import { formatFullName } from '@/lib/utils';
 
 export type StudentsTableProps = {
+    objectives: TObjective[];
     students: TStudent[];
 };
 
@@ -29,46 +30,41 @@ export type StudentsTableProps = {
  * @returns {JSX.Element}
  */
 const StudentsTable: React.FC<StudentsTableProps> = ({
+    objectives,
     students
 }: StudentsTableProps): JSX.Element => {
-    const CNT = 5;
-
     return (
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
+        <Table
+            sx={{ minWidth: 650 }}
+            aria-label="student ratings table"
+            stickyHeader
+        >
             <TableHead>
                 <TableRow>
-                    <TableCell width={50} />
-                    <TableCell align="left" width={350}>
-                        Name
+                    <TableCell
+                        align="left"
+                        width={350}
+                        colSpan={2}
+                        sx={{ paddingLeft: 10 }}
+                    >
+                        Student
                     </TableCell>
-                    {Array(CNT)
-                        .fill('')
-                        .map((_, idx) => (
-                            <TableCell key={idx} align="center">
-                                {startCase(faker.word.adjective())}
-                            </TableCell>
-                        ))}
+                    {objectives.map(({ id, name }) => (
+                        <TableCell key={id} align="center">
+                            {name}
+                        </TableCell>
+                    ))}
                     <TableCell width={100} />
                 </TableRow>
             </TableHead>
             <TableBody>
-                {students.map(({ avatar, id, firstName, lastName }, rowIdx) => {
+                {students.map((student, rowIdx) => {
+                    const fullName = formatFullName(student) as string;
                     return (
-                        <TableRow key={id}>
-                            <TableCell align="center">
+                        <TableRow key={student.id}>
+                            <TableCell align="center" width={50}>
                                 {rowIdx === 2 && (
-                                    <Tooltip title="Messages">
-                                        <Avatar
-                                            color="primary"
-                                            sx={{
-                                                bgcolor: 'error.main',
-                                                width: 24,
-                                                height: 24
-                                            }}
-                                        >
-                                            <Typography>2</Typography>
-                                        </Avatar>
-                                    </Tooltip>
+                                    <NotificationsAvatar total={2} />
                                 )}
                             </TableCell>
                             <TableCell align="left">
@@ -79,31 +75,37 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                                 >
                                     <Avatar
                                         sx={{ width: 32, height: 32 }}
-                                        src={avatar}
+                                        src={student.avatar}
+                                        imgProps={{
+                                            alt: `${fullName} avatar`
+                                        }}
                                     />
-                                    <Link href={`/student/${id}`}>
+                                    <Link href={`/student/${student.id}`}>
                                         <Typography sx={{ fontWeight: 700 }}>
-                                            {firstName} {lastName}
+                                            {fullName}
                                         </Typography>
                                     </Link>
                                 </Stack>
                             </TableCell>
-                            {Array(CNT)
-                                .fill('')
-                                .map((_, colIdx) => (
-                                    <TableCell key={colIdx} align="center">
-                                        <RatingSelect
-                                            defaultValue="M"
-                                            warning={
-                                                rowIdx === 2 && colIdx === 0
-                                            }
-                                            error={
-                                                rowIdx === 2 &&
-                                                [1, 2].includes(colIdx)
-                                            }
-                                        />
-                                    </TableCell>
-                                ))}
+                            {objectives.map((objective, colIdx) => (
+                                <TableCell
+                                    key={objective.id}
+                                    align="center"
+                                    // aria-label={`${fullName} ${objective.name} objective`}
+                                >
+                                    <RatingSelect
+                                        inputProps={{
+                                            'aria-label': `${fullName} ${objective.name} select`
+                                        }}
+                                        defaultValue="M"
+                                        warning={rowIdx === 2 && colIdx === 0}
+                                        error={
+                                            rowIdx === 2 &&
+                                            [1, 2].includes(colIdx)
+                                        }
+                                    />
+                                </TableCell>
+                            ))}
                             <TableCell align="right">
                                 <Tooltip title="More">
                                     <IconButton size="small">

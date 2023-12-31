@@ -7,7 +7,10 @@ describe('StudentsTable ', () => {
     describe('component', () => {
         it('should render', () => {
             const students = fixtures.students(1);
-            render(<StudentsTable students={students} />);
+            const objectives = fixtures.objectives(1);
+            render(
+                <StudentsTable students={students} objectives={objectives} />
+            );
         });
     });
 });

@@ -7,9 +7,16 @@ describe('StudentProfile', () => {
     describe('component', () => {
         it('should render', () => {
             const courses = fixtures.courses(1);
+            const objectives = fixtures.objectives(1);
             const student = fixtures.student();
 
-            render(<StudentProfile courses={courses} student={student} />);
+            render(
+                <StudentProfile
+                    courses={courses}
+                    objectives={objectives}
+                    student={student}
+                />
+            );
         });
     });
 });

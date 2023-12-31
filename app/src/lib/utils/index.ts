@@ -1,1 +1,2 @@
-export { formatDate } from './date';
+export { formatDate, formatDateRelative } from './date';
+export { formatFullName } from './string';

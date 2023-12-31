@@ -14,7 +14,7 @@ import {
     Student as TStudent
 } from '@/types';
 
-import EvidenceDialog from '../evidence-dialog';
+import EvidenceDialog from '../dialogs/evidence-dialog';
 import { FieldValues } from 'react-hook-form';
 import React from 'react';
 import StudentsTable from '../tables/students-table';
@@ -86,7 +86,10 @@ const Dashboard: React.FC<DashboardProps> = ({
                     </Stack>
                 </Grid>
                 <Grid item md={12}>
-                    <StudentsTable students={students} />
+                    <StudentsTable
+                        objectives={objectives}
+                        students={students}
+                    />
                 </Grid>
             </Grid>
             <EvidenceDialog

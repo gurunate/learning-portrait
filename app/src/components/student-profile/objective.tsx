@@ -8,10 +8,11 @@ import {
 } from '@mui/material';
 
 import RatingSelect from '@/components/rating-select';
-import { Course as TCourse } from '@/types';
+import { Objective as TObjective } from '@/types';
+import { formatDate } from '@/lib/utils';
 
 export type StudentObjectiveProps = {
-    courses: TCourse[];
+    objectives: TObjective[];
 };
 
 /**
@@ -20,7 +21,7 @@ export type StudentObjectiveProps = {
  * @returns {JSX.Element}
  */
 const StudentObjective: React.FC<StudentObjectiveProps> = ({
-    courses
+    objectives
 }: StudentObjectiveProps): JSX.Element => (
     <Grid container spacing={4}>
         <Grid item md={12}>
@@ -28,12 +29,8 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
         </Grid>
         <Grid item md={6}>
             <FormControl fullWidth>
-                <Select
-                    labelId="course-label"
-                    id="course"
-                    value={courses[0].id}
-                >
-                    {courses.map(({ id, name }) => (
+                <Select id="objective" value={objectives[0].id}>
+                    {objectives.map(({ id, name }) => (
                         <MenuItem key={id} value={id}>
                             {name}
                         </MenuItem>
@@ -53,7 +50,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                     Last Update
                 </Typography>
                 <Typography variant="body1" color="textSecondary">
-                    12/31/23
+                    {formatDate('12/31/23')}
                 </Typography>
             </Grid>
             <Grid item md={4}>
@@ -61,7 +58,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                     Last Message
                 </Typography>
                 <Typography variant="body1" color="textSecondary">
-                    12/31/23
+                    {formatDate('12/31/23')}
                 </Typography>
             </Grid>
             <Grid item md={12}>
@@ -78,7 +75,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                     Last Update
                 </Typography>
                 <Typography variant="body1" color="textSecondary">
-                    12/31/23
+                    {formatDate('12/31/23')}
                 </Typography>
             </Grid>
             <Grid item md={4}>
@@ -86,7 +83,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                     Last Message
                 </Typography>
                 <Typography variant="body1" color="textSecondary">
-                    12/31/23
+                    {formatDate('12/31/23')}
                 </Typography>
             </Grid>
             <Grid item md={12}>
