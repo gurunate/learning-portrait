@@ -2776,6 +2776,7 @@ __metadata:
     "@vercel/analytics": "npm:^1.1.1"
     "@vercel/blob": "npm:^0.16.1"
     "@vercel/speed-insights": "npm:^1.0.0"
+    clsx: "npm:^2.1.0"
     date-fns: "npm:^2.30.0"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.0.3"
@@ -7249,7 +7250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0":
+"clsx@npm:^2.0.0, clsx@npm:^2.1.0":
   version: 2.1.0
   resolution: "clsx@npm:2.1.0"
   checksum: c09c00ad14f638366ca814097e6cab533dfa1972a358da5b557be487168acbb25b4c1395e89ffa842a8a61ba87a462d2b4885bc9d4f8410b598f3cb339599cdb

@@ -4,13 +4,13 @@ import Component from '.';
 import { faker } from '@faker-js/faker';
 
 const meta = {
-    title: 'App / components / avatars / Notifications',
+    title: 'App / components / avatars / Message Count',
     component: Component
 } satisfies Meta<typeof Component>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Notifications: Story = {
+export const MessageCount: Story = {
     args: { total: faker.number.int({ min: 1, max: 7 }) }
 };

@@ -7,7 +7,7 @@ import {
     Typography
 } from '@mui/material';
 
-import NotificationsAvatar from '@/components/avatars/notifications';
+import MessageCountAvatar from '@/components/avatars/message-count';
 import { Student as TStudent } from '@/types';
 import { formatFullName } from '@/lib/utils';
 
@@ -49,7 +49,7 @@ const DirectMessages: React.FC<DirectMessagesProps> = ({
                                     {formatFullName(student) as string}
                                 </Typography>
                             </Stack>
-                            {idx === 1 && <NotificationsAvatar total={2} />}
+                            {idx === 1 && <MessageCountAvatar total={2} />}
                         </Stack>
                     }
                 />

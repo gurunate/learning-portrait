@@ -15,8 +15,8 @@ import {
 import { Objective as TObjective, Student as TStudent } from '@/types';
 
 import Link from '@/components/link';
+import MessageCountAvatar from '@/components/avatars/message-count';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import NotificationsAvatar from '@/components/avatars/notifications';
 import RatingSelect from '@/components/rating-select';
 import { formatFullName } from '@/lib/utils';
 
@@ -64,7 +64,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                         <TableRow key={student.id}>
                             <TableCell align="center" width={50}>
                                 {rowIdx === 2 && (
-                                    <NotificationsAvatar total={2} />
+                                    <MessageCountAvatar total={2} />
                                 )}
                             </TableCell>
                             <TableCell align="left">
