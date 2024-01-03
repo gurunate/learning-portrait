@@ -5,5 +5,7 @@ export default create({
     brandTitle: 'Learning Portrait: Design',
     brandUrl: 'https://design.learningportrait.com/',
     brandImage: '/logo.png',
-    brandTarget: '_self'
+    brandTarget: '_self',
+    fontBase: '"Poppins", sans-serif'
+    // fontCode: 'monospace'
 });
