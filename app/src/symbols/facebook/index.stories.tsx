@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Component from '.';
 
 const meta = {
-    title: 'App / icons / Facebook',
+    title: 'App / symbols / Facebook',
     component: Component
 } satisfies Meta<typeof Component>;
 

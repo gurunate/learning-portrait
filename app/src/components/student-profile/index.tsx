@@ -8,7 +8,7 @@ import {
     Student as TStudent
 } from '@/types';
 
-import ConversationsDialog from '../dialogs/conversations-dialog';
+import ConversationsDialog from '../dialogs/conversations';
 import { Grid } from '@mui/material';
 import React from 'react';
 import StudentCard from '@/components/student-card';

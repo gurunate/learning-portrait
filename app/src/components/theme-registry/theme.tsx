@@ -9,6 +9,7 @@ const COLOR_2_SUCCESS = '#009512';
 const COLOR_3_ALERT = '#F75151';
 const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
 const COLOR_BACKGROUND = '#F4F7F7';
+const COLOR_DARK_2 = '#47464A';
 const COLOR_DARK_3 = '#84818A';
 const COLOR_DARK_4 = '#ABA8B0';
 const COLOR_DARK_5 = '#ECEAEE';
@@ -21,6 +22,10 @@ const PRIMARY_LP = '#006B96';
 const theme = createTheme({
     palette: {
         mode: 'light',
+        text: {
+            // @ts-ignore
+            light: COLOR_DARK_2
+        },
         background: {
             default: COLOR_BACKGROUND,
             // @ts-ignore
