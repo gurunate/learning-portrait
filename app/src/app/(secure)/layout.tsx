@@ -4,7 +4,6 @@ import { Box, Container, Grid, Paper, Tooltip } from '@mui/material';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import SideNav from '@/components/side-nav';
 import ThemeRegistry from '@/components/theme-registry';
 import TopNav from '@/components/top-nav';
@@ -12,7 +11,7 @@ import { format as formatDate } from 'date-fns';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 export type LayoutProps = {
-    route: unknown;
+    route?: unknown;
     children: React.ReactNode;
 };
 
@@ -39,6 +38,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                 <Tooltip title="Home">
                                     <Link href="/">
                                         <Image
+                                            priority
                                             src="/logo.svg"
                                             alt="logo"
                                             width={150}
@@ -72,7 +72,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             </Grid>
                         </Grid>
                         <Grid item md={10}>
-                            <Paper>
+                            <Paper
+                                sx={{
+                                    backgroundColor:
+                                        segment === 'student'
+                                            ? 'inherit'
+                                            : 'default'
+                                }}
+                            >
                                 <Box p={4}>
                                     <main>{children}</main>
                                 </Box>

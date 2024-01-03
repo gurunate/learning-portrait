@@ -1,7 +1,6 @@
 'use client';
 
 import {
-    Avatar,
     Collapse,
     Grid,
     IconButton,
@@ -18,7 +17,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Link from 'next/link';
-import NotificationsAvatar from '../avatars/notifications';
+import MessageCountAvatar from '../avatars/message-count';
 import React from 'react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
@@ -78,9 +77,7 @@ const SideNav: React.FC<SideNavProps> = ({
                             href="/messages"
                             component={Link}
                             sx={{ marginTop: 2, color: 'inherit' }}
-                            secondaryAction={
-                                <NotificationsAvatar total={4} size={24} />
-                            }
+                            secondaryAction={<MessageCountAvatar total={5} />}
                             disablePadding
                         >
                             <ListItemButton selected={segment === 'messages'}>
