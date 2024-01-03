@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 import Copyright from '@/components/copyright';
+import EastIcon from '@mui/icons-material/East';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -77,8 +78,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
                                                 href="/sign-in"
                                                 component={Link}
                                                 color="inherit"
+                                                endIcon={
+                                                    <EastIcon
+                                                        fontSize="small"
+                                                        sx={{
+                                                            color: 'primary.contrast'
+                                                        }}
+                                                    />
+                                                }
                                             >
-                                                Sign In
+                                                Go to app
                                             </Button>
                                         </Grid>
                                     </Grid>

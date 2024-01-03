@@ -30,7 +30,6 @@ import {
 
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-// @ts-ignore
 import { DevTool } from '@hookform/devtools';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -149,8 +148,8 @@ const ApplyObjectiveDialog: React.FC<ApplyObjectiveDialogProps> = ({
                             </Grid>
                             <Grid item sm={12}>
                                 <FormControl
-                                    component="fieldset"
-                                    variant="standard"
+                                    // component="fieldset"
+                                    // variant="standard"
                                     fullWidth
                                 >
                                     <FormLabel component="legend">
@@ -165,12 +164,13 @@ const ApplyObjectiveDialog: React.FC<ApplyObjectiveDialogProps> = ({
                                             <Button size="small">Edit</Button>
                                         </Stack>
                                     </FormLabel>
-                                    <FormGroup {...coursesField}>
+                                    <FormGroup>
                                         {courses?.map(({ id, name }) => (
                                             <FormControlLabel
                                                 key={id}
                                                 control={
                                                     <Checkbox
+                                                        {...coursesField}
                                                         checkedIcon={
                                                             <CheckCircleOutlineOutlinedIcon color="success" />
                                                         }
