@@ -14,7 +14,7 @@ import {
     Student as TStudent
 } from '@/types';
 
-import EvidenceDialog from '../dialogs/evidence-dialog';
+import EvidenceDialog from '../dialogs/evidence';
 import { FieldValues } from 'react-hook-form';
 import React from 'react';
 import StudentsTable from '../tables/students-table';

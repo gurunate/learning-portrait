@@ -19,8 +19,8 @@ import {
     useForm
 } from 'react-hook-form';
 
-import FacebookIcon from '../icons/facebook';
-import GoogleIcon from '../icons/google';
+import FacebookIcon from '../../symbols/facebook';
+import GoogleIcon from '../../symbols/google';
 import Link from '@/components/link';
 import NextLink from 'next/link';
 import React from 'react';

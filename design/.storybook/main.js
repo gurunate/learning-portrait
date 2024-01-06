@@ -6,6 +6,7 @@ const config = {
         options: {}
     },
     stories: [
+        '../stories/**/*.mdx',
         '../../app/src/stories/**/*.mdx',
         '../../app/src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
         '../../app/src/**/*.stories.@(ts|tsx)'
@@ -23,7 +24,8 @@ const config = {
         getAbsolutePath('@storybook/addon-essentials'),
         getAbsolutePath('@storybook/addon-interactions'),
         getAbsolutePath('@storybook/addon-links'),
-        getAbsolutePath('@storybook/addon-themes')
+        getAbsolutePath('@storybook/addon-themes'),
+        getAbsolutePath("@storybook/addon-mdx-gfm")
     ],
     docs: {
         autodocs: 'tag'
