@@ -2,6 +2,7 @@ import * as fixtures from '@/lib/fixtures';
 
 import ApplyObjectiveDialog, { objectiveSchema } from '.';
 
+import React from 'react';
 import { faker } from '@faker-js/faker';
 import { render } from '@testing-library/react';
 

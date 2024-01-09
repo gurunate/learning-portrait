@@ -35,7 +35,7 @@ The basic diagram (_above_) lacks the expansive education system representations
     -   _e.g.,_ Institution\* system, district, university, etc.
 -   Institutions
     -   _e.g.,_ School, training center, etc.
--   Sessions
+-   Sections
     -   _e.g.,_ Semester, quarter, academic year, etc.
 -   Administrators
     -   _e.g.,_ Principal, counselor, advisor, etc.
@@ -45,11 +45,11 @@ The basic diagram (_above_) lacks the expansive education system representations
 ```mermaid
 erDiagram
     Organization ||--|{ Institution: has
-    Institution ||--|{ Session: has
+    Institution ||--|{ Section: has
     Organization ||--|{ Administrator: has
     Administrator ||--|{ Institution: has
     Institution ||--|{ Instructor: has
-    Session ||--|{ Course: has
+    Section ||--|{ Course: has
     User ||--|| Instructor: type
     User ||--|| Student: type
     User ||--|| Administrator: type
