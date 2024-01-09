@@ -2,14 +2,16 @@
 
 import * as fixtures from '@/lib/fixtures';
 
+import { Button, Grid } from '@mui/material';
 import {
     Course as TCourse,
     Objective as TObjective,
     Student as TStudent
 } from '@/types';
 
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ConversationsDialog from '../dialogs/conversations';
-import { Grid } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
 import StudentCard from '@/components/student-card';
 import StudentEvidence from './evidence';
@@ -55,21 +57,28 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
     };
 
     return (
-        <>
-            <Grid container spacing={4}>
-                <Grid item md={3}>
-                    <StudentCard
-                        student={student}
-                        onMessageStudent={handleMessageStudent}
-                    />
+        <Grid container spacing={4}>
+            <Grid item md={12}>
+                <Button
+                    startIcon={<ArrowBackIosIcon />}
+                    href="/dashboard"
+                    LinkComponent={Link}
+                >
+                    Back to Dashboard
+                </Button>
+            </Grid>
+            <Grid item md={3}>
+                <StudentCard
+                    student={student}
+                    onMessageStudent={handleMessageStudent}
+                />
+            </Grid>
+            <Grid item md={9} container spacing={4} mt={1}>
+                <Grid item md={12}>
+                    <StudentObjective objectives={objectives} />
                 </Grid>
-                <Grid item md={9} container spacing={4} mt={1}>
-                    <Grid item md={12}>
-                        <StudentObjective objectives={objectives} />
-                    </Grid>
-                    <Grid item md={12}>
-                        <StudentEvidence evidence={evidence} />
-                    </Grid>
+                <Grid item md={12}>
+                    <StudentEvidence evidence={evidence} />
                 </Grid>
             </Grid>
             <ConversationsDialog
@@ -81,7 +90,7 @@ const StudentProfile: React.FC<StudentProfileProps> = ({
                 onSend={handleSend}
                 onClose={handleClose}
             />
-        </>
+        </Grid>
     );
 };
 

@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 
 import RatingSelect from '../rating-select';
+import React from 'react';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { Evidence as TEvidence } from '@/types';
@@ -134,4 +135,4 @@ const StudentEvidence: React.FC<StudentEvidenceProps> = ({
     );
 };
 
-export default StudentEvidence;
+export default React.memo(StudentEvidence);

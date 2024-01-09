@@ -1,17 +1,11 @@
 'use client';
 
 import {
-    Button,
-    Checkbox,
     Dialog,
     DialogContent,
     DialogProps,
     DialogTitle,
     Divider,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    FormLabel,
     Grid,
     IconButton,
     Stack,
@@ -23,14 +17,12 @@ import {
 import {
     FieldErrors,
     FieldValues,
-    FormProvider,
     useController,
     useForm
 } from 'react-hook-form';
 
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { DevTool } from '@hookform/devtools';
+import Courses from './courses';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { Course as TCourse } from '@/types';
@@ -87,11 +79,6 @@ const ApplyObjectiveDialog: React.FC<ApplyObjectiveDialogProps> = ({
         name: 'search'
     });
 
-    const { field: coursesField } = useController({
-        control,
-        name: 'courses'
-    });
-
     const handleClose = () => {
         reset();
 
@@ -101,100 +88,48 @@ const ApplyObjectiveDialog: React.FC<ApplyObjectiveDialogProps> = ({
 
     return (
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs">
-            <FormProvider {...methods}>
-                {devtool && <DevTool control={control} placement="top-right" />}
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
-                    <DialogTitle>
-                        <Stack
-                            direction="row"
-                            justifyContent="space-between"
-                            alignItems="center"
-                        >
-                            <Typography variant="h3">
-                                Apply Objective
-                            </Typography>
-                            <Tooltip title="Close">
-                                <IconButton
-                                    aria-label="close"
-                                    onClick={handleClose}
-                                >
-                                    <CloseIcon sx={{ width: 30, height: 30 }} />
-                                </IconButton>
-                            </Tooltip>
-                        </Stack>
-                    </DialogTitle>
-                    <DialogContent>
-                        <Grid container direction="row" spacing={2}>
-                            <Grid item sm={12}>
-                                <TextField
-                                    {...searchField}
-                                    error={Boolean(
-                                        get(errors, searchField.name)
-                                    )}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <SearchIcon
-                                                sx={{ marginRight: 1 }}
-                                            />
-                                        )
-                                    }}
-                                    placeholder="Search for course or evidence"
-                                    fullWidth
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item sm={12}>
-                                <Divider />
-                            </Grid>
-                            <Grid item sm={12}>
-                                <FormControl
-                                    // component="fieldset"
-                                    // variant="standard"
-                                    fullWidth
-                                >
-                                    <FormLabel component="legend">
-                                        <Stack
-                                            direction="row"
-                                            justifyContent="space-between"
-                                            alignItems="center"
-                                        >
-                                            <Typography variant="h6">
-                                                Courses
-                                            </Typography>
-                                            <Button size="small">Edit</Button>
-                                        </Stack>
-                                    </FormLabel>
-                                    <FormGroup>
-                                        {courses?.map(({ id, name }) => (
-                                            <FormControlLabel
-                                                key={id}
-                                                control={
-                                                    <Checkbox
-                                                        {...coursesField}
-                                                        checkedIcon={
-                                                            <CheckCircleOutlineOutlinedIcon color="success" />
-                                                        }
-                                                    />
-                                                }
-                                                label={name}
-                                            />
-                                        ))}
-                                    </FormGroup>
-                                </FormControl>
-                            </Grid>
-                            <Grid item sm={12}>
-                                <Button
-                                    type="submit"
-                                    variant="outlined"
-                                    fullWidth
-                                >
-                                    Done
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </DialogContent>
-                </form>
-            </FormProvider>
+            <DialogTitle>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Typography variant="h3">Apply Objective</Typography>
+                    <Tooltip title="Close">
+                        <IconButton aria-label="close" onClick={handleClose}>
+                            <CloseIcon sx={{ width: 30, height: 30 }} />
+                        </IconButton>
+                    </Tooltip>
+                </Stack>
+            </DialogTitle>
+            <DialogContent>
+                <Grid container direction="row" spacing={2}>
+                    <Grid item sm={12}>
+                        <TextField
+                            {...searchField}
+                            error={Boolean(get(errors, searchField.name))}
+                            InputProps={{
+                                startAdornment: (
+                                    <SearchIcon sx={{ marginRight: 1 }} />
+                                )
+                            }}
+                            placeholder="Search for course or evidence"
+                            fullWidth
+                            autoFocus
+                        />
+                    </Grid>
+                    <Grid item sm={12}>
+                        <Divider />
+                    </Grid>
+                    <Grid item sm={12}>
+                        <Courses
+                            courses={courses}
+                            devtool={devtool}
+                            onSubmit={onSubmit}
+                        />
+                    </Grid>
+                </Grid>
+            </DialogContent>
         </Dialog>
     );
 };
