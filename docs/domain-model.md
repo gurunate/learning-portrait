@@ -24,7 +24,7 @@ erDiagram
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
     Instructor ||--|{ Rating: has
-    Rating ||--|{ Evidence: has
+    Rating ||--|| Evidence: has
 ```
 
 ### Extended Education System
@@ -62,7 +62,7 @@ erDiagram
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
     Instructor ||--|{ Rating: has
-    Rating ||--|{ Evidence: has
+    Rating ||--|| Evidence: has
 ```
 
 ## References
