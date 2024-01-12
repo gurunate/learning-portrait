@@ -3,17 +3,19 @@ import Component, { ApplyObjectiveDialogProps } from '.';
 import React from 'react';
 import { Button } from '@mui/material';
 import * as fixtures from '@/lib/fixtures';
+import { faker } from '@faker-js/faker';
 
 const meta = {
     title: 'App / components / dialogs / Apply Objective',
     component: Component,
     argTypes: {
+        onClose: { action: 'closed' },
         onSearch: { action: 'searched' },
         onSubmit: { action: 'submitted' }
     }
 } satisfies Meta<typeof Component>;
 
-const courses = fixtures.courses(3);
+const courses = fixtures.courses(faker.number.int({ min: 1, max: 7 }));
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -53,7 +55,7 @@ const Demo = ({ open: openProp, ...props }: ApplyObjectiveDialogProps) => {
     return (
         <>
             <Button variant="contained" onClick={handleClick}>
-                Add Objective
+                Apply Objective
             </Button>
             <Component {...props} open={open} onClose={handleClose} />
         </>
