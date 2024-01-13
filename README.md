@@ -1,12 +1,38 @@
+<p align="center">
+  <img src="./logo.png" />
+</p>
+
 # Learning Portrait
-
-<div style="text-align:right"><img src="./logo.svg" alt="logo" /></div>
-
-Simple. Flexible. Empowering.
 
 A grade book that thinks as you do.
 
-Learning Portrait was built from the ground up to think like, and support, the classrooms of the most progressive K-12 educators – allowing educators, students, families, and school systems to monitor learning in a way that makes sense finally.  Students aren’t numbers. They are learners. See the portrait of what they can do.
+## Overview
+
+Learning Portrait is a Yarn workspace monorepo (monolithic repository).
+
+### Workspaces
+
+-   [app](./app/README.md)
+-   [data-graph](./data-graph/README.md)
+-   [design](./design/README.md)
+
+## Getting Started
+
+### Prerequisites
+
+This project uses [Node.js](https://nodejs.org/en) (v20+) and [Yarn](https://yarnpkg.com/getting-started) (v4+) open-source package manager. After installing Node, run the following commands to enable Yarn:
+
+```bash
+$ corepack enable
+$ yarn set version stable
+$ yarn config set nodeLinker "node-modules"
+```
+
+### Install
+
+```bash
+$ yarn
+```
 
 ## References
 
