@@ -211,7 +211,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                         variant="outlined"
                                         sx={buttonStyle}
                                         startIcon={
-                                            <GoogleIcon sx={{ fontSize: 40 }} />
+                                            <GoogleIcon fontSize="small" />
                                         }
                                         href="/dashboard"
                                         component={NextLink}

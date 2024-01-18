@@ -25,6 +25,8 @@ Examples of popular design systems:
 -   [Opendoor Buyer Design System](https://dribbble.com/shots/6799628-Opendoor-Buyer-Design-System)
 -   [Radix](https://www.radix-ui.com/)
 -   [Adele](https://adele.uxpin.com/)
+-   [Reshaped](https://reshaped.so/)
+-   [shadcn/ui](https://ui.shadcn.com/)
 
 ## Getting Started
 
