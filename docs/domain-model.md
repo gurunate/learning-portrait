@@ -21,10 +21,12 @@ erDiagram
     Objective ||--|{ Evidence: contains
     Course ||--|{ Objective : contains
     Student ||--|| Portfolio: has
+    Instructor ||--|{ Evidence: creates
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
-    Instructor ||--|{ Rating: has
-    Rating ||--|| Evidence: has
+    Student ||--|{ Rating: reflects
+    Instructor ||--|{ Rating: evaluates
+    Rating ||--|| Evidence: for
 ```
 
 ### Extended Education System
@@ -57,10 +59,12 @@ erDiagram
     Objective ||--|{ Evidence: contains
     Course ||--|{ Objective : contains
     Student ||--|| Portfolio: has
+    Student ||--|{ Rating: reflects
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
-    Instructor ||--|{ Rating: has
-    Rating ||--|| Evidence: has
+    Instructor ||--|{ Evidence : creates
+    Instructor ||--|{ Rating: evaluates
+    Rating ||--|| Evidence: for
 ```
 
 ## References
