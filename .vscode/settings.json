@@ -3,15 +3,32 @@
         "Abbrv",
         "adced",
         "autodocs",
+        "Bonney",
         "chpt",
         "ckeditor",
+        "clsx",
+        "datasources",
         "hookform",
         "nextjs",
         "retval",
         "testid",
         "tinymce",
+        "Walts",
+        "Wartowski",
         "Whatshot"
     ],
     "cSpell.language": "en,en-US",
-    "jest.rootPath": "./app"
+    "jest.rootPath": "./app",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "api",
+            "database": "local",
+            "username": "lp-api",
+            "password": "S3^x*t*4UBjor7eA"
+        }
+    ]
 }

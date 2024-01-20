@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String?  @unique
+  firstName    String
+  lastName     String
+  hash         String?
+  verified     Boolean  @default(false)
+  locked       Boolean  @default(false)
+  attempts     Int      @default(0)
+  requestToken String?  @default(uuid())
+  roles        Role[]   @default([USER])
+  updatedAt    DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  active       Boolean  @default(true)
+}
+
+enum Role {
+  USER
+  SYS_ADMIN
+  INSTRUCTOR
+  STUDENT
+  GUARDIAN
+  COUNSELOR
+  SCHOOL_ADMINISTRATOR
+}
+
+model Course {
+  id        String   @id @default(cuid())
+  name      String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+}
+
+model Evidence {
+  id        String   @id @default(cuid())
+  name      String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  name      String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+}
