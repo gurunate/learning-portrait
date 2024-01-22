@@ -5,6 +5,7 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": [
+    "api",
     "app",
     "data-graph",
     "design",

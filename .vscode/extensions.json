@@ -10,6 +10,7 @@
         "dbaeumer.vscode-eslint",
         "github.vscode-pull-request-github",
         "ms-vsliveshare.vsliveshare",
-        "orta.vscode-jest"
+        "orta.vscode-jest",
+        "prisma.prisma"
     ]
 }

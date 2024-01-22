@@ -1,0 +1,39 @@
+{
+  "name": "@learning-portrait/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3800",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:up": "docker-compose up -d --build --remove-orphans",
+    "db:down": "docker-compose down --remove-orphans",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "db:seed": "prisma db seed",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "lodash": "^4.17.21",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "prisma": "^5.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "seed": "node prisma/seed"
+  }
+}
