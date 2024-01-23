@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
 import { isEmpty } from 'lodash';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 /**
  * Find user by ID
