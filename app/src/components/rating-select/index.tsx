@@ -15,8 +15,10 @@ import React from 'react';
 
 export type RatingSelectProps = SelectProps & {
     error?: boolean;
+    errorText?: React.ReactNode;
     extended?: boolean;
     warning?: boolean;
+    warningText?: React.ReactNode;
     width?: string | number;
 };
 
@@ -53,11 +55,13 @@ export const options = [
  */
 const RatingSelect: React.FC<RatingSelectProps> = ({
     error = false,
+    errorText,
     extended = false,
     onChange,
     onOpen,
     onClose,
     warning = false,
+    warningText,
     width,
     ...props
 }: RatingSelectProps): JSX.Element => {
@@ -141,14 +145,27 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
     return (
         <Badge
             color="warning"
-            badgeContent="!"
+            badgeContent={
+                <Tooltip arrow title={warningText}>
+                    <span>!</span>
+                </Tooltip>
+            }
             anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'left'
             }}
             invisible={!warning}
         >
-            <Badge color="error" variant="dot" invisible={!error}>
+            <Badge
+                color="error"
+                badgeContent={
+                    <Tooltip arrow title={errorText}>
+                        <span>x</span>
+                    </Tooltip>
+                }
+                variant="dot"
+                invisible={!error}
+            >
                 <FormControl
                     fullWidth={extended}
                     sx={{ ...(width && { width }) }}

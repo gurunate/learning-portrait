@@ -2,8 +2,13 @@ import { isEmpty } from 'lodash';
 import { prisma } from '@/lib/prisma';
 
 /**
- * Find user by ID
- *
+ * @swagger
+ * /api/users/{id}:
+ *   get:
+ *     description: Find user by ID
+ *     responses:
+ *       200:
+ *         description: [{firstName, lastName, email}]
  * @param request
  * @returns
  */
@@ -30,8 +35,13 @@ export const GET = async (
 };
 
 /**
- * Update user by ID
- *
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     description: Update user by ID
+ *     responses:
+ *       200:
+ *         description: [{firstName, lastName, email}]
  * @param request
  * @returns
  */
@@ -60,8 +70,13 @@ export const PUT = async (
 };
 
 /**
- * Delete user by ID
- *
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     description: Delete user by ID
+ *     responses:
+ *       200:
+ *         description: [{firstName, lastName, email}]
  * @param request
  * @returns
  */
