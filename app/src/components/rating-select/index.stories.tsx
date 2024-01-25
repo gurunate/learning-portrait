@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Component, { options as componentOptions, RatingSelectProps } from '.';
 import React from 'react';
 import { SelectChangeEvent } from '@mui/material';
+import { faker } from '@faker-js/faker';
 
 const options = componentOptions.map(({ key }) => key);
 const labels = componentOptions.reduce(
@@ -38,16 +39,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
-    // defaultValue: '',
     error: false,
+    errorText: faker.lorem.words(),
     warning: false,
+    warningText: faker.lorem.words(),
     extended: false
 };
 
 export const base: Story = {
     args: {
         ...defaultArgs,
-        // defaultValue: options[0],
         defaultOpen: true
     }
 };
