@@ -11,6 +11,7 @@
         "github.vscode-pull-request-github",
         "ms-vsliveshare.vsliveshare",
         "orta.vscode-jest",
-        "prisma.prisma"
+        "prisma.prisma",
+        "ajmnz.swagger-jsdoc-indent"
     ]
 }

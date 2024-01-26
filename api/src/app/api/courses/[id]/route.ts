@@ -5,39 +5,39 @@ import { prisma } from '@/lib/prisma';
  * @param request
  * @returns
  * @swagger
- * /api/users/{id}:
+ * /api/courses/{id}:
  *   get:
- *     summary: Find a user
+ *     summary: Find a course
  *     tags:
- *       - Users
+ *       - Courses
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: User ID
+ *         description: Course ID
  *     responses:
  *       200:
- *         description: The user
+ *         description: The course
  */
 export const GET = async (
     request: Request,
     { params: { id } }: { params: { id: string } }
 ) => {
     if (id) {
-        const user = await prisma.user.findUnique({
+        const course = await prisma.course.findUnique({
             where: {
                 id,
                 active: true
             }
         });
 
-        if (isEmpty(user)) {
-            return Response.json(user, { status: 404 });
+        if (isEmpty(course)) {
+            return Response.json(course, { status: 404 });
         }
 
-        return Response.json(user);
+        return Response.json(course);
     } else {
         return Response.json({ error: 'ID required.' }, { status: 404 });
     }
@@ -47,21 +47,21 @@ export const GET = async (
  * @param request
  * @returns
  * @swagger
- * /api/users/{id}:
+ * /api/courses/{id}:
  *   put:
- *     summary: Update a user
+ *     summary: Update a course
  *     tags:
- *       - Users
+ *       - Courses
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: User ID
+ *         description: Course ID
  *     responses:
  *       200:
- *         description: The user
+ *         description: The course
  */
 export const PUT = async (
     request: Request,
@@ -73,12 +73,12 @@ export const PUT = async (
 
     if (id) {
         try {
-            const user = await prisma.user.update({
+            const course = await prisma.course.update({
                 where: { id },
                 data
             });
 
-            Response.json(user);
+            Response.json(course);
         } catch (error) {
             return Response.json(error, { status: 404 });
         }
@@ -91,28 +91,28 @@ export const PUT = async (
  * @param request
  * @returns
  * @swagger
- * /api/users/{id}:
+ * /api/courses/{id}:
  *   delete:
- *     summary: Delete a user
+ *     summary: Delete a course
  *     tags:
- *       - Users
+ *       - Courses
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: User ID
+ *         description: Course ID
  *     responses:
  *       200:
- *         description: The user
+ *         description: The course
  */
 export const DELETE = async (
     request: Request,
     { params: { id } }: { params: { id: string } }
 ) => {
     if (id) {
-        const user = await prisma.user.update({
+        const course = await prisma.course.update({
             where: {
                 id
             },
@@ -121,7 +121,7 @@ export const DELETE = async (
             }
         });
 
-        return Response.json(user);
+        return Response.json(course);
     } else {
         return Response.json({ error: 'ID required.' }, { status: 404 });
     }
