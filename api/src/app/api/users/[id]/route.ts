@@ -5,7 +5,9 @@ import { prisma } from '@/lib/prisma';
  * @swagger
  * /api/users/{id}:
  *   get:
- *     description: Find user by ID
+ *     summary: Find a user
+ *     tags:
+ *       - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -45,7 +47,9 @@ export const GET = async (
  * @swagger
  * /api/users/{id}:
  *   put:
- *     description: Update user by ID
+ *     summary: Update a user
+ *     tags:
+ *       - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -87,7 +91,9 @@ export const PUT = async (
  * @swagger
  * /api/users/{id}:
  *   delete:
- *     description: Delete user by ID
+ *     summary: Delete a user
+ *     tags:
+ *       - Users
  *     parameters:
  *       - in: path
  *         name: id

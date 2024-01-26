@@ -4,7 +4,9 @@ import { prisma } from '@/lib/prisma';
  * @swagger
  * /api/users:
  *   get:
- *     description: Returns a list of users
+ *     summary: Get a list of users
+ *     tags:
+ *       - Users
  *     responses:
  *       200:
  *         description: A list of users
@@ -25,7 +27,9 @@ export const GET = async (request: Request) => {
  * @swagger
  * /api/users:
  *   post:
- *     description: Create user
+ *     summary: Create a user
+ *     tags:
+ *       - Users
  *     responses:
  *       200:
  *         description: The user
