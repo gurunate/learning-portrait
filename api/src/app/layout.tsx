@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
     title: 'Learning Portrait API',
-    description: 'OpenAPI Specification'
+    description: 'An OpenAPI Specification.'
 };
 
 export default function RootLayout({
