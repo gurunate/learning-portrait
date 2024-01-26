@@ -1,6 +1,8 @@
 # API
 
-Learning Portrait API is a Next.sjs application with microservice API routes. It's a Next.js application with a Prisma ORM.
+[Learning Portrait API](https://api.learningportrait.com/) is a Next.sjs application with microservice API routes. This API routes connect to PostgresSQL database using Prisma ORM. The routes are decorated with OpenAPI definitions as interactive Swagger UI documentation.
+
+See the [domain model ER](../docs/domain-model.md) for system entities.
 
 ## Getting Started
 
@@ -52,3 +54,6 @@ $ db:migrate:deploy
 
 -   [Next.js](https://nextjs.org/)
 -   [Prisma](https://www.prisma.io/)
+-   [PostgreSQL](https://www.postgresql.org/)
+-   [OpenAPI](https://swagger.io/docs/specification/about/)
+-   [Swagger UI](https://github.com/swagger-api/swagger-ui)
