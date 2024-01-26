@@ -6,9 +6,16 @@ import { prisma } from '@/lib/prisma';
  * /api/users/{id}:
  *   get:
  *     description: Find user by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User ID
  *     responses:
  *       200:
- *         description: [{firstName, lastName, email}]
+ *         description: The user
  * @param request
  * @returns
  */
@@ -39,9 +46,16 @@ export const GET = async (
  * /api/users/{id}:
  *   put:
  *     description: Update user by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User ID
  *     responses:
  *       200:
- *         description: [{firstName, lastName, email}]
+ *         description: The user
  * @param request
  * @returns
  */
@@ -74,9 +88,16 @@ export const PUT = async (
  * /api/users/{id}:
  *   delete:
  *     description: Delete user by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User ID
  *     responses:
  *       200:
- *         description: [{firstName, lastName, email}]
+ *         description: The user
  * @param request
  * @returns
  */
