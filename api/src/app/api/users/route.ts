@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma';
  *     description: Returns a list of users
  *     responses:
  *       200:
- *         description: [{firstName, lastName, email}]
+ *         description: A list of users
  * @param request
  * @returns
  */
@@ -28,7 +28,7 @@ export const GET = async (request: Request) => {
  *     description: Create user
  *     responses:
  *       200:
- *         description: [{firstName, lastName, email}]
+ *         description: The user
  * @param request
  * @returns
  */
