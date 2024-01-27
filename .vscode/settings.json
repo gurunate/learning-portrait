@@ -9,6 +9,7 @@
         "clsx",
         "datasources",
         "hookform",
+        "NEXTAUTH",
         "nextjs",
         "retval",
         "testid",
@@ -25,7 +26,7 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "api",
+            "name": "api (local)",
             "database": "local",
             "username": "lp-api",
             "password": "S3^x*t*4UBjor7eA"
@@ -38,7 +39,7 @@
             "server": "localhost",
             "driver": "PostgreSQL",
             "connectString": "postgres://default:wRnO2YxXPZ3V@ep-green-rice-41971565-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",
-            "name": "learning-portrait-api-postgres"
+            "name": "learning-portrait-api"
         }
     ]
 }

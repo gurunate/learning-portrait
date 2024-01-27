@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import IconLinks from '@/components/icon-links';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -23,7 +24,11 @@ export default function RootLayout({
             <head>
                 <IconLinks />
             </head>
-            <body className={poppins.className}>{children}</body>
+            <body className={poppins.className}>
+                <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+                    {children}
+                </AppRouterCacheProvider>
+            </body>
         </html>
     );
 }

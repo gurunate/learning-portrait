@@ -12,6 +12,8 @@
         "ms-vsliveshare.vsliveshare",
         "orta.vscode-jest",
         "prisma.prisma",
-        "ajmnz.swagger-jsdoc-indent"
+        "ajmnz.swagger-jsdoc-indent",
+        "postman.postman-for-vscode",
+        "mtxr.sqltools"
     ]
 }

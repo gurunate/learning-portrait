@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: local
+      POSTGRES_PASSWORD: S3^x*t*4UBjor7eA
+      POSTGRES_USER: lp-api
+    ports:
+      - "5432:5432"

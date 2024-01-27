@@ -6,7 +6,7 @@
     "display": "standalone",
     "scope": ".",
     "start_url": ".",
-    "theme_color": "light",
+    "theme_color": "#006b96",
     "icons": [
         {
             "src": "/icons/android-icon-36x36.png",

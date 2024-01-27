@@ -7,11 +7,8 @@
   "workspaces": [
     "api",
     "app",
-    "data-graph",
+    "data",
     "design",
     "docs"
-  ],
-  "dependencies": {
-    "jsonwebtoken": "^9.0.2"
-  }
+  ]
 }

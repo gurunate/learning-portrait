@@ -4,20 +4,20 @@ import { createTheme } from '@mui/material/styles';
 
 // Color schema from Figma
 export const BORDER_RADIUS = 12;
-const COLOR_0_SECONDARY = '#F7941D';
+const COLOR_0_SECONDARY = '#f7941d';
 const COLOR_2_SUCCESS = '#009512';
-const COLOR_3_ALERT = '#F75151';
-const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
-const COLOR_BACKGROUND = '#F4F7F7';
-const COLOR_DARK_2 = '#47464A';
-const COLOR_DARK_3 = '#84818A';
-const COLOR_DARK_4 = '#ABA8B0';
-const COLOR_DARK_5 = '#ECEAEE';
-const COLOR_LIGHT_LP_2 = '#8DA97E';
-const COLOR_WHITE = '#FFFFFF';
-const LINE_LINE1 = '#DCDBDD';
-const LP_02_SECONDARY = '#3C5255';
-const PRIMARY_LP = '#006B96';
+const COLOR_3_ALERT = '#f75151';
+const COLOR_ADDITIONAL_BLUE1 = '#23adde';
+const COLOR_BACKGROUND = '#f4f7f7';
+const COLOR_DARK_2 = '#47464a';
+const COLOR_DARK_3 = '#84818a';
+const COLOR_DARK_4 = '#aba8b0';
+const COLOR_DARK_5 = '#eceaee';
+const COLOR_LIGHT_LP_2 = '#8da97e';
+const COLOR_WHITE = '#ffffff';
+const LINE_LINE1 = '#dcdbdd';
+const LP_02_SECONDARY = '#3c5255';
+const PRIMARY_LP = '#006b96';
 
 const theme = createTheme({
     palette: {
@@ -143,7 +143,10 @@ const theme = createTheme({
                 root: {
                     fontWeight: 700,
                     borderRadius: BORDER_RADIUS,
-                    boxShadow: 'none'
+                    boxShadow: 'none',
+                    '&:hover': {
+                        boxShadow: 'none'
+                    }
                 }
             }
         },

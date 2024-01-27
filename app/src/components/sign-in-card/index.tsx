@@ -1,14 +1,14 @@
 'use client';
 
-import * as yup from 'yup';
-
 import {
-    Button,
     Card,
     CardContent,
     Divider,
     Grid,
+    IconButton,
+    Stack,
     TextField,
+    Tooltip,
     Typography
 } from '@mui/material';
 import {
@@ -19,30 +19,26 @@ import {
     useForm
 } from 'react-hook-form';
 
+import Button from '@mui/lab/LoadingButton';
 import FacebookIcon from '../../symbols/facebook';
 import GoogleIcon from '../../symbols/google';
 import Link from '@/components/link';
 import NextLink from 'next/link';
 import React from 'react';
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { get } from 'lodash';
+import { signInCardSchema } from './schema';
 import styles from './styles.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export type SignInCardProps = {
+    error?: React.ReactNode;
+    loading?: boolean;
     onError?: (errors: FieldErrors) => void;
     onSubmit: (data: FieldValues) => void;
 };
-
-export const schema = yup.object().shape({
-    email: yup
-        .string()
-        .required('Required field.')
-        .email('Not a valid email address.'),
-    password: yup
-        .string()
-        .required('Required field.')
-        .max(40, 'Maximum 40 characters.')
-});
 
 /**
  * Sign In card.
@@ -51,18 +47,22 @@ export const schema = yup.object().shape({
  * @returns {JSX.Element}
  */
 const SignInCard: React.FC<SignInCardProps> = ({
+    error,
+    loading = false,
     onError,
     onSubmit
 }: SignInCardProps): JSX.Element => {
     const methods = useForm({
         mode: 'onSubmit',
         reValidateMode: 'onChange',
-        resolver: yupResolver(schema),
+        resolver: yupResolver(signInCardSchema),
         defaultValues: {
             email: '',
             password: ''
         }
     });
+
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const {
         control,
@@ -86,6 +86,10 @@ const SignInCard: React.FC<SignInCardProps> = ({
         borderColor: 'edge.main'
     };
 
+    const togglePassword = () => {
+        setShowPassword(prev => !prev);
+    };
+
     return (
         <FormProvider {...methods}>
             <Card
@@ -101,20 +105,38 @@ const SignInCard: React.FC<SignInCardProps> = ({
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="h6">
-                                    New user?{' '}
+                                    No account?{' '}
                                     <Link href="/create-an-account">
-                                        Create an account
+                                        Sign up
                                     </Link>
                                 </Typography>
                             </Grid>
+                            {error && (
+                                <Grid item xs={12}>
+                                    <Typography color="error">
+                                        <Stack direction="row" spacing={1}>
+                                            <ReportGmailerrorredIcon
+                                                sx={{ color: 'inherit' }}
+                                            />
+                                            <Typography>{error}</Typography>
+                                        </Stack>
+                                    </Typography>
+                                </Grid>
+                            )}
                             <Grid item xs={12}>
                                 <TextField
                                     {...emailField}
+                                    disabled={loading}
                                     color="secondary"
                                     autoFocus
                                     fullWidth
                                     label="Email address"
                                     variant="standard"
+                                    InputProps={{
+                                        sx: {
+                                            paddingBottom: 1
+                                        }
+                                    }}
                                     InputLabelProps={{
                                         sx: {
                                             color: '#84818A'
@@ -140,8 +162,9 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 <TextField
                                     {...passwordField}
                                     fullWidth
+                                    disabled={loading}
                                     color="secondary"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     label="Password"
                                     variant="standard"
                                     InputLabelProps={{
@@ -164,6 +187,38 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                         errors,
                                         `${passwordField.name}.message`
                                     )}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <Tooltip
+                                                title={
+                                                    showPassword
+                                                        ? 'Hide'
+                                                        : 'Show'
+                                                }
+                                            >
+                                                <IconButton
+                                                    onClick={togglePassword}
+                                                >
+                                                    {showPassword && (
+                                                        <VisibilityOffIcon
+                                                            fontSize="small"
+                                                            sx={{
+                                                                color: '#84818A'
+                                                            }}
+                                                        />
+                                                    )}
+                                                    {!showPassword && (
+                                                        <VisibilityIcon
+                                                            fontSize="small"
+                                                            sx={{
+                                                                color: '#84818A'
+                                                            }}
+                                                        />
+                                                    )}
+                                                </IconButton>
+                                            </Tooltip>
+                                        )
+                                    }}
                                 />
                             </Grid>
                             <Grid
@@ -183,6 +238,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 </Grid>
                                 <Grid item>
                                     <Button
+                                        loading={loading}
                                         type="submit"
                                         variant="contained"
                                         sx={{
@@ -208,11 +264,10 @@ const SignInCard: React.FC<SignInCardProps> = ({
                             >
                                 <Grid item>
                                     <Button
+                                        loading={loading}
                                         variant="outlined"
                                         sx={buttonStyle}
-                                        startIcon={
-                                            <GoogleIcon fontSize="small" />
-                                        }
+                                        startIcon={!loading && <GoogleIcon />}
                                         href="/dashboard"
                                         component={NextLink}
                                         size="large"
@@ -222,9 +277,10 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 </Grid>
                                 <Grid item>
                                     <Button
+                                        loading={loading}
                                         variant="outlined"
                                         sx={buttonStyle}
-                                        startIcon={<FacebookIcon />}
+                                        startIcon={!loading && <FacebookIcon />}
                                         href="/dashboard"
                                         component={NextLink}
                                         size="large"

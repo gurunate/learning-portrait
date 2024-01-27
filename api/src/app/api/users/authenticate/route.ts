@@ -1,6 +1,11 @@
-import { isEmpty } from 'lodash';
-import jwt from 'jsonwebtoken';
+import { compareHash } from '@/lib/utils';
 import { prisma } from '@/lib/prisma';
+import { sub } from 'date-fns';
+
+const AUTO_UNLOCK_DURATION = 30;
+const VALID_TOKEN_DURATION = 15;
+const FAILED_ATTEMPTS_MIN = 5;
+const FAILED_ATTEMPTS_MAX = 10;
 
 /**
  *
@@ -18,49 +23,123 @@ import { prisma } from '@/lib/prisma';
  *           items:
  *             type: object
  *             items:
- *               name: email
+ *               name: username
  *               type: string
  *         required: true
  *         description: options
  *     responses:
  *       200:
- *         description: Auth tokens
+ *         description: User
  */
 export const POST = async (request: Request) => {
-    const { email, hash } = await request.json();
+    const { username: email, password } = await request.json();
 
-    // Look-up user
-    const user = await prisma.user.findUnique({
-        where: {
-            email,
-            hash,
-            locked: false,
-            verified: true,
-            active: true
-        }
-    });
-
-    if (!isEmpty(user)) {
-        const token = jwt.sign(
-            {
-                iss: 'https://www.learningportrait.com/',
-                sub: user.email,
-                aud: [
-                    'my-api-identifier',
-                    'https://www.learningportrait.com/api/userinfo'
-                ],
-                azp: user.id,
-                exp: 1489179954,
-                iat: 1489143954,
-                scope: 'openid profile email address phone read:appointments'
+    try {
+        // Unlock all locked accounts w/ less than 10 attempts
+        // and last updated older than 30 minutes
+        await prisma.user.updateMany({
+            data: {
+                locked: false
             },
-            'hahaha'
-        );
+            where: {
+                locked: true,
+                attempts: {
+                    lt: FAILED_ATTEMPTS_MAX
+                },
+                updatedAt: {
+                    lte: sub(new Date(), {
+                        minutes: AUTO_UNLOCK_DURATION
+                    })
+                }
+            }
+        });
 
-        return Response.json({ token });
-    } else {
+        // Lookup active & unlocked user
+        const {
+            active = false,
+            attempts = 0,
+            hash,
+            locked = true,
+            requestToken,
+            verified = false,
+            ...user
+        } = (await prisma.user.findUnique({
+            where: {
+                email,
+                locked: false,
+                verified: true,
+                active: true
+            }
+        })) ?? {};
+
+        // handle locked account
+        if (locked) {
+            // Increment failed attempts
+            await prisma.user.update({
+                data: {
+                    attempts: {
+                        increment: 1
+                    }
+                },
+                where: {
+                    email
+                }
+            });
+
+            if (attempts >= FAILED_ATTEMPTS_MAX) {
+                throw new Error('Account locked.  Reset password.');
+            } else if (attempts >= FAILED_ATTEMPTS_MIN) {
+                throw new Error(`Account disabled.`);
+            }
+        }
+
+        const compare = hash && (await compareHash(password, hash as string));
+
+        if (compare) {
+            // Reset attempts on successful authentication
+            await prisma.user.update({
+                data: {
+                    attempts: {
+                        set: 0
+                    },
+                    locked: false
+                },
+                where: {
+                    email
+                }
+            });
+
+            return Response.json(user);
+        }
+
+        // Increment failed attempts
+        await prisma.user.update({
+            data: {
+                attempts: {
+                    increment: 1
+                }
+            },
+            where: {
+                email
+            }
+        });
+
+        // Lock users w/ over X failed attempts
+        await prisma.user.updateMany({
+            data: {
+                locked: true
+            },
+            where: {
+                attempts: {
+                    gte: FAILED_ATTEMPTS_MIN
+                }
+            }
+        });
+        throw new Error('Incorrect username or password.');
+    } catch (error: any) {
+        console.error('error', error);
         return Response.json(
-            { message: 'Incorrect username or password.' },
+            { message: error?.message },
             {
                 status: 403
             }

@@ -12,9 +12,11 @@ Learning Portrait is a Yarn workspace monorepo (monolithic repository).
 
 ### Workspaces
 
+-   [api](./api/README.md)
 -   [app](./app/README.md)
--   [data-graph](./data-graph/README.md)
+-   [data](./data/README.md)
 -   [design](./design/README.md)
+-   [docs](./docs/README.md)
 
 ## Getting Started
 

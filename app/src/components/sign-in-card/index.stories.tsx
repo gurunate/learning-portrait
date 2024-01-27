@@ -11,6 +11,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const defaultArgs = {
+    error: '',
+    loading: false
+};
+
 export const demo: Story = {
-    args: {}
+    args: { ...defaultArgs }
+};
+
+export const loading: Story = {
+    args: { ...defaultArgs, loading: true }
+};
+
+export const error: Story = {
+    args: { ...defaultArgs, error: 'Incorrect email address or password.' }
 };

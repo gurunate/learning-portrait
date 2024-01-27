@@ -1,3 +1,3 @@
-# Data Graph
+# Data
 
 Coming soon.

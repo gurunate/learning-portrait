@@ -13,6 +13,7 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
+import { signOut, useSession } from 'next-auth/react';
 
 import Greeting from '@/components/greeting';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -21,9 +22,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export type TopNavProps = {
-    name: string;
     dateTime: string;
 };
 
@@ -32,9 +33,11 @@ export type TopNavProps = {
  * @returns {JSX.Element}
  */
 const TopNav: React.FC<TopNavProps> = ({
-    dateTime,
-    name
+    dateTime
 }: TopNavProps): JSX.Element => {
+    const { data } = useSession();
+
+    const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,6 +45,11 @@ const TopNav: React.FC<TopNavProps> = ({
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleSignOut = async () => {
+        await signOut({ redirect: false });
+        router.push('/sign-in');
     };
 
     return (
@@ -56,7 +64,7 @@ const TopNav: React.FC<TopNavProps> = ({
             <Grid item>
                 <Stack direction="column" spacing={1}>
                     <Typography variant="h2" color="primary">
-                        <Greeting name={name} />
+                        <Greeting name={data?.user?.name as string} />
                     </Typography>
                     <Typography variant="h6" component="h3">
                         {dateTime}
@@ -94,7 +102,7 @@ const TopNav: React.FC<TopNavProps> = ({
                                 startIcon={
                                     <Avatar
                                         sx={{ width: 32, height: 32 }}
-                                        src="/avatars/jeff.png"
+                                        // src="/avatars/jeff.png"
                                         alt="avatar"
                                     />
                                 }
@@ -105,7 +113,7 @@ const TopNav: React.FC<TopNavProps> = ({
                                 aria-expanded={open ? 'true' : undefined}
                                 onClick={handleClick}
                             >
-                                {name}
+                                {data?.user?.name as string}
                             </Button>
                         </Tooltip>
                         <Menu
@@ -131,11 +139,11 @@ const TopNav: React.FC<TopNavProps> = ({
                                 </ListItemIcon>
                                 Account
                             </MenuItem>
-                            <MenuItem component={Link} href="/sign-in">
+                            <MenuItem onClick={handleSignOut}>
                                 <ListItemIcon>
                                     <LogoutIcon fontSize="small" />
                                 </ListItemIcon>
-                                Logout
+                                Sign Out
                             </MenuItem>
                         </Menu>
                     </Stack>
