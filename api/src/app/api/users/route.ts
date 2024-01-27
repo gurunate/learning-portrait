@@ -44,7 +44,7 @@ export const POST = async (request: Request) => {
             data
         });
 
-        Response.json(user);
+        return Response.json(user);
     } catch (error) {
         return Response.json(error, { status: 409 });
     }

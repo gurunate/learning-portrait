@@ -10,5 +10,8 @@
     "data-graph",
     "design",
     "docs"
-  ]
+  ],
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  }
 }
