@@ -4,6 +4,26 @@ A domain model is a conceptual representation of a system or subject matter that
 
 ## Overview
 
+At its core, Learning Portrait is a system of entities and relationships. Understanding how they relate is key to understanding the system.
+
+### System Entities
+
+This is a list of canonical system terms. These terms, or entities, represent the building blocks of the Learning Portrait base system. Term descriptions and examples of each are included below.
+
+| Term / Entity  | Description                                       | Example                                                                                       |
+| -------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **User**       | An individual who uses Learning Portrait.         | instructor, student, etc.                                                                     |
+| **Instructor** | A type of user that instructs a course.           | teacher, professor, etc.                                                                      |
+| **Course**     | A discipline/subject that is taught.              | art, math, literacy, science, etc.                                                            |
+| **Objective**  | An expected outcome of a course.                  | learning target, target, SWBOT, standard, learning goals, learning descriptors, domains, etc. |
+| **Section**    | ...                                               |
+| **Student**    | A type of user that participates in a course.     |
+| **Portfolio**  | ...                                               |
+| **Evidence**   | An artifact submitted in support of an objective. | assignments, tests, etc.                                                                      |
+| **Rating**     | An evaluation of a piece of evidence.             |
+
+See [Canonical Names](https://docs.google.com/document/d/1mvypDW1ZFg4vDAbsu4TGTkHxP9fMyJ1OTCzU8DnU_ys/edit?usp=sharing) for more details.
+
 ### Entity Relationship Diagrams (ERD)
 
 > An entity–relationship model (or ER model) describes interrelated things of interest in a specific domain of knowledge. A basic ER model is composed of entity types (which classify the things of interest) and specifies relationships that can exist between entities (instances of those entity types). Wikipedia
@@ -17,9 +37,10 @@ erDiagram
     User ||--|| Instructor: type
     User ||--|| Student: type
     Instructor ||--|{ Course: has
-    Course  }|--|{ Student: has
+    Section  }|--|{ Student: has
     Objective ||--|{ Evidence: contains
     Course ||--|{ Objective : contains
+    Course ||--|{ Section : contains
     Student ||--|| Portfolio: has
     Instructor ||--|{ Evidence: creates
     Student ||--|{ Evidence: submits
