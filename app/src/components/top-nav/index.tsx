@@ -58,19 +58,25 @@ const TopNav: React.FC<TopNavProps> = ({
                     <Typography variant="h2" color="primary">
                         <Greeting name={name} />
                     </Typography>
-                    <Typography variant="h6">{dateTime}</Typography>
+                    <Typography variant="h6" component="h3">
+                        {dateTime}
+                    </Typography>
                 </Stack>
             </Grid>
             <Grid item textAlign="right">
                 <Grid item>
                     <Stack direction="row" spacing={2}>
                         <Stack direction="row">
-                            <IconButton href="/help" component={Link}>
+                            <IconButton
+                                href="/help"
+                                component={Link}
+                                aria-label="Help"
+                            >
                                 <Tooltip title="Help">
                                     <HelpOutlineIcon />
                                 </Tooltip>
                             </IconButton>
-                            <IconButton>
+                            <IconButton aria-label="Notifications">
                                 <Badge
                                     color="error"
                                     variant="dot"
@@ -89,6 +95,7 @@ const TopNav: React.FC<TopNavProps> = ({
                                     <Avatar
                                         sx={{ width: 32, height: 32 }}
                                         src="/avatars/jeff.png"
+                                        alt="avatar"
                                     />
                                 }
                                 sx={{ backgroundColor: 'white' }}

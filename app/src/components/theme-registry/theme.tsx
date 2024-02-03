@@ -159,7 +159,7 @@ const theme = createTheme({
                 }
             }
         },
-        MuiInputBase: {
+        MuiSelect: {
             styleOverrides: {
                 root: {
                     backgroundColor: COLOR_WHITE

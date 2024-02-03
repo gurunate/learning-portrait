@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import StudentProfile from '@/components/student-profile';
 import { Student as TStudent } from '@/types';
 
-// const courses = [{ id: '1234', name: 'Pre Calculus Adv' }];
 const courses = fixtures.courses(1);
 const objectives = fixtures.objectives(3);
 

@@ -58,6 +58,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                             labelId="course-label"
                             id="course"
                             value={courses[0].id}
+                            aria-label="Courses"
                         >
                             {courses.map(({ id, name }) => (
                                 <MenuItem key={id} value={id}>
