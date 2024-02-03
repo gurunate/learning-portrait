@@ -11,8 +11,7 @@ const Page = () => (
 );
 
 export const metadata: Metadata = {
-    title: 'Help | Learning Portrait',
-    description: 'A grade book that thinks like you do.'
+    title: 'Help'
 };
 
 export default Page;
