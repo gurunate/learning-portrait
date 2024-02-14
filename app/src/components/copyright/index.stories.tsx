@@ -4,6 +4,7 @@ import Component from '.';
 
 const meta = {
     title: 'App / components / Copyright',
+    tags: ['autodocs'],
     component: Component
 } satisfies Meta<typeof Component>;
 

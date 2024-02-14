@@ -4,7 +4,8 @@ import Component from '.';
 
 const meta = {
     title: 'App / symbols / Facebook',
-    component: Component
+    component: Component,
+    tags: ['autodocs']
 } satisfies Meta<typeof Component>;
 
 export default meta;

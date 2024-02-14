@@ -17,6 +17,7 @@ const labels = componentOptions.reduce(
 const meta = {
     title: 'App / components / select / Rating',
     component: Component,
+    tags: ['autodocs'],
     argTypes: {
         value: {
             options,

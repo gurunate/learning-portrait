@@ -5,6 +5,7 @@ import * as fixtures from '@/lib/fixtures';
 
 const meta = {
     title: 'App / components / Dashboard',
+    tags: ['autodocs'],
     component: Component
 } satisfies Meta<typeof Component>;
 
@@ -15,7 +16,7 @@ const courses = fixtures.courses(3);
 const objectives = fixtures.objectives(5);
 const students = fixtures.students(7);
 
-export const Dashboard: Story = {
+export const demo: Story = {
     args: {
         courses,
         objectives,

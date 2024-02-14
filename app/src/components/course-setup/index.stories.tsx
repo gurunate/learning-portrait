@@ -5,6 +5,7 @@ import Component from '.';
 
 const meta = {
     title: 'App / components / Course Setup',
+    tags: ['autodocs'],
     component: Component
 } satisfies Meta<typeof Component>;
 
