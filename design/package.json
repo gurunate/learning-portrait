@@ -8,20 +8,20 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@storybook/addon-essentials": "^7.6.7",
-    "@storybook/addon-interactions": "^7.6.7",
-    "@storybook/addon-links": "^7.6.7",
-    "@storybook/addon-mdx-gfm": "^7.6.7",
-    "@storybook/addon-themes": "^7.6.7",
-    "@storybook/blocks": "^7.6.7",
-    "@storybook/nextjs": "^7.6.7",
-    "@storybook/react": "^7.6.7",
+    "@storybook/addon-essentials": "^7.6.15",
+    "@storybook/addon-interactions": "^7.6.15",
+    "@storybook/addon-links": "^7.6.15",
+    "@storybook/addon-mdx-gfm": "^7.6.15",
+    "@storybook/addon-themes": "^7.6.15",
+    "@storybook/blocks": "^7.6.15",
+    "@storybook/nextjs": "^7.6.15",
+    "@storybook/react": "^7.6.15",
     "@storybook/testing-library": "^0.2.2",
     "chromatic": "^10.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.6.7"
+    "storybook": "^7.6.15"
   },
   "scripts": {
     "start": "storybook dev -p 6006",
@@ -36,7 +36,7 @@
     "@hookform/devtools": "^4.3.1",
     "@material-ui/core": "^4.12.4",
     "@mui/material": "^5.15.3",
-    "@storybook/addon-a11y": "^7.6.7"
+    "@storybook/addon-a11y": "^7.6.15"
   },
   "readme": "ERROR: No README data found!",
   "_id": "@learning-portrait/design@0.1.0"

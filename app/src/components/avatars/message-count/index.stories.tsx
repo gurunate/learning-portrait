@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker';
 
 const meta = {
     title: 'App / components / avatars / Message Count',
+    tags: ['autodocs'],
     component: Component
 } satisfies Meta<typeof Component>;
 

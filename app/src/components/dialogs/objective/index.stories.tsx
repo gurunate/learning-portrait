@@ -7,6 +7,7 @@ import { faker } from '@faker-js/faker';
 const meta = {
     title: 'App / components / dialogs / Objective',
     component: Component,
+    tags: ['autodocs'],
     argTypes: { onSubmit: { action: 'clicked' } }
 } satisfies Meta<typeof Component>;
 

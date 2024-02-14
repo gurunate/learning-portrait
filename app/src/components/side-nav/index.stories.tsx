@@ -4,7 +4,8 @@ import Component from '.';
 
 const meta = {
     title: 'App / components / navigation / Side',
-    component: Component
+    component: Component,
+    tags: ['autodocs']
 } satisfies Meta<typeof Component>;
 
 export default meta;

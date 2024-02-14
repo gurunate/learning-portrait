@@ -5,7 +5,8 @@ import * as fixtures from '@/lib/fixtures';
 
 const meta = {
     title: 'App / components / Greeting',
-    component: Component
+    component: Component,
+    tags: ['autodocs']
 } satisfies Meta<typeof Component>;
 
 export default meta;

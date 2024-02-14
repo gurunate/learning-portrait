@@ -5,7 +5,8 @@ import { Box, Paper } from '@mui/material';
 
 const meta = {
     title: 'App / components / Marketing Panel',
-    component: Component
+    component: Component,
+    tags: ['autodocs']
 } satisfies Meta<typeof Component>;
 
 export default meta;

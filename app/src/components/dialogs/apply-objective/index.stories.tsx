@@ -8,6 +8,7 @@ import { faker } from '@faker-js/faker';
 const meta = {
     title: 'App / components / dialogs / Apply Objective',
     component: Component,
+    tags: ['autodocs'],
     argTypes: {
         onClose: { action: 'closed' },
         onSearch: { action: 'searched' },
@@ -26,18 +27,14 @@ const defaultArgs = {
     courses
 };
 
-export const base: Story = {
-    args: {
-        ...defaultArgs,
-        open: true
-    }
-};
-
 /**
  * @param {ApplyObjectiveDialogProps} props
  * @returns {JSX.Element}
  */
-const Demo = ({ open: openProp, ...props }: ApplyObjectiveDialogProps) => {
+const Demo = ({
+    open: openProp,
+    ...props
+}: ApplyObjectiveDialogProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {

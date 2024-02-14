@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Component, { ConversationsDialogProps } from '.';
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 const meta = {
     title: 'App / components / dialogs / Conversations',
     component: Component,
+    tags: ['autodocs'],
     argTypes: { onSend: { action: 'onSend' } }
 } satisfies Meta<typeof Component>;
 import * as fixtures from '@/lib/fixtures';
@@ -33,13 +34,6 @@ const defaultArgs = {
     messages
 };
 
-export const base: Story = {
-    args: {
-        ...defaultArgs,
-        open: true
-    }
-};
-
 /**
  * @param {ConversationsDialogProps} props
  * @returns {JSX.Element}
@@ -64,6 +58,7 @@ const Demo = ({
 
     return (
         <>
+            <Typography paragraph>Press button to demo</Typography>
             <Button variant="contained" onClick={handleClick}>
                 Message Student
             </Button>
