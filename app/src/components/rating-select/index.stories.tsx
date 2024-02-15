@@ -71,10 +71,10 @@ export const demo: Story = {
     render: args => <Demo {...args} />
 };
 
-export const full: Story = {
+export const fullWidth: Story = {
     args: {
         ...defaultArgs,
-        extended: true
+        fullWidth: true
     },
     render: args => <Demo {...args} />
 };

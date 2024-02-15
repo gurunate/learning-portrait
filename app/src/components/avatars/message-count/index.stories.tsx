@@ -12,6 +12,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const MessageCount: Story = {
+export const demo: Story = {
     args: { total: faker.number.int({ min: 1, max: 7 }) }
 };

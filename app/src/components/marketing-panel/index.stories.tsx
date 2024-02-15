@@ -12,7 +12,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const MarketingPanel: Story = {
+export const demo: Story = {
     args: {},
     render: args => (
         <Paper sx={{ backgroundColor: 'background.primary' }}>

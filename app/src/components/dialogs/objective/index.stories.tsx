@@ -22,18 +22,14 @@ const defaultArgs = {
     devtool: false
 };
 
-export const base: Story = {
-    args: {
-        ...defaultArgs,
-        open: true
-    }
-};
-
 /**
  * @param {ObjectiveDialogProps} props
  * @returns {JSX.Element}
  */
-const Demo = ({ open: openProp, ...props }: ObjectiveDialogProps) => {
+const Demo = ({
+    open: openProp,
+    ...props
+}: ObjectiveDialogProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {

@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const objectives = fixtures.objectives(5);
 
-export const Objectives: Story = {
+export const demo: Story = {
     args: {
         objectives
     }

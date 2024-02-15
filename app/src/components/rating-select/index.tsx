@@ -16,7 +16,7 @@ import React from 'react';
 export type RatingSelectProps = SelectProps & {
     error?: boolean;
     errorText?: React.ReactNode;
-    extended?: boolean;
+    fullWidth?: boolean;
     warning?: boolean;
     warningText?: React.ReactNode;
     width?: string | number;
@@ -56,7 +56,7 @@ export const options = [
 const RatingSelect: React.FC<RatingSelectProps> = ({
     error = false,
     errorText,
-    extended = false,
+    fullWidth = false,
     onChange,
     onOpen,
     onClose,
@@ -118,7 +118,7 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
      * @returns {React.ReactNode}
      */
     const handleRenderValue = (value: unknown): React.ReactNode => {
-        if (extended && value) {
+        if (fullWidth && value) {
             return options.find(
                 ({ key }) => key === (value as unknown as string)
             )?.label;
@@ -167,14 +167,14 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                 invisible={!error}
             >
                 <FormControl
-                    fullWidth={extended}
+                    fullWidth={fullWidth}
                     sx={{ ...(width && { width }) }}
                     size="small"
                 >
                     <Tooltip
                         arrow
                         title={
-                            (!extended &&
+                            (!fullWidth &&
                                 options.find(({ key }) => key === state?.value)
                                     ?.label) ||
                             ''
