@@ -27,18 +27,14 @@ const defaultArgs = {
     devtool: false
 };
 
-export const base: Story = {
-    args: {
-        ...defaultArgs,
-        open: true
-    }
-};
-
 /**
  * @param {EvidenceDialogProps} props
  * @returns {JSX.Element}
  */
-const Demo = ({ open: openProp, ...props }: EvidenceDialogProps) => {
+const Demo = ({
+    open: openProp,
+    ...props
+}: EvidenceDialogProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {

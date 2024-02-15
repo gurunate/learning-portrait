@@ -16,6 +16,6 @@ const courses = fixtures.courses(1);
 const objectives = fixtures.objectives(1);
 const student = fixtures.student();
 
-export const StudentProfile: Story = {
+export const demo: Story = {
     args: { courses, student, objectives }
 };

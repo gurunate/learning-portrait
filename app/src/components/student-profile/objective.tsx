@@ -43,7 +43,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                 <Typography variant="subtitle2" paragraph>
                     Teacher Rating
                 </Typography>
-                <RatingSelect defaultValue="M" extended width={262} />
+                <RatingSelect defaultValue="M" fullWidth width={262} />
             </Grid>
             <Grid item md={4}>
                 <Typography variant="subtitle2" paragraph>
@@ -68,7 +68,7 @@ const StudentObjective: React.FC<StudentObjectiveProps> = ({
                 <Typography variant="subtitle2" paragraph>
                     Student Rating
                 </Typography>
-                <RatingSelect defaultValue="M" extended width={262} />
+                <RatingSelect defaultValue="M" fullWidth width={262} />
             </Grid>
             <Grid item md={4}>
                 <Typography variant="subtitle2" paragraph>

@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 const student = fixtures.student();
 
-export const Greeting: Story = {
+export const demo: Story = {
     args: {
         name: student.firstName
     }

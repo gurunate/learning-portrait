@@ -13,7 +13,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Editor: Story = {
+export const demo: Story = {
     args: {
         defaultValue: faker.lorem.sentence()
     },
