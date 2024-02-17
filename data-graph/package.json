@@ -1,0 +1,28 @@
+{
+  "name": "@learning-portrait/data-graph",
+  "version": "1.0.0",
+  "description": "Learning Portrait GraphQL Server",
+  "type": "module",
+  "main": "src/server.ts",
+  "scripts": {
+    "compile": "tsc",
+    "start": "node --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts",
+    "dev": "node --watch --inspect=0.0.0.0:9321 --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/datasource-rest": "^6.2.2",
+    "@apollo/server": "^4.10.0",
+    "@graphql-tools/mock": "^9.0.1",
+    "@graphql-tools/schema": "^10.0.2",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
