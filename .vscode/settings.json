@@ -7,9 +7,11 @@
         "chpt",
         "ckeditor",
         "clsx",
+        "datasource",
         "datasources",
         "hookform",
         "nextjs",
+        "postbuild",
         "retval",
         "testid",
         "tinymce",
@@ -39,6 +41,16 @@
             "driver": "PostgreSQL",
             "connectString": "postgres://default:wRnO2YxXPZ3V@ep-green-rice-41971565-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",
             "name": "learning-portrait-api-postgres"
+        },
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "connectString": "postgres://u2gsbl0e1rtd2m:p7f37cde58df0e9480d87459d997426fbc131fb21e44534efa41c41e435a7973d@ceu9lmqblp8t3q.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d73cl0lhhgcik7",
+            "name": "api-staging"
         }
     ]
 }

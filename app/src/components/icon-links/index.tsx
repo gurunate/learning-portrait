@@ -75,12 +75,12 @@ const IconLinks: React.FC = () => (
             href={`/icons/favicon-16x16.png`}
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="msapplication-TileColor" content="#f4f7f7" />
+        <meta name="msapplication-TileColor" content="#fff" />
         <meta
             name="msapplication-TileImage"
             content={`/icons/ms-icon-144x144.png`}
         />
-        <meta name="theme-color" content="#f4f7f7" />
+        <meta name="theme-color" content="#fff" />
     </>
 );
 
