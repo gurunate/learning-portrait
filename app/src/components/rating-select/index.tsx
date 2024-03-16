@@ -6,6 +6,7 @@ import {
     Select,
     SelectChangeEvent,
     SelectProps,
+    SelectVariants,
     Tooltip
 } from '@mui/material';
 
@@ -13,13 +14,14 @@ import CircleIcon from '@mui/icons-material/Circle';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import React from 'react';
 
-export type RatingSelectProps = SelectProps & {
+export type RatingSelectProps = Omit<SelectProps, 'variant'> & {
     error?: boolean;
     errorText?: React.ReactNode;
     fullWidth?: boolean;
     warning?: boolean;
     warningText?: React.ReactNode;
     width?: string | number;
+    variant?: SelectVariants;
 };
 
 export const options = [
