@@ -1,0 +1,14 @@
+{
+    "name": "Learning Portrait Data Graph",
+    "extensions": {
+        "endpoints": {
+            "Learning Portrait Data Graph": {
+                "url": "http://local.learningportrait.com:4001/",
+                "headers": {
+                    "user-agent": "@learning-portrait/app"
+                },
+                "introspect": false
+            }
+        }
+    }
+}

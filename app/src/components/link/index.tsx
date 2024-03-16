@@ -20,7 +20,7 @@ export type LinkProps = Omit<MuiLinkProps, 'href'> &
  * @returns {JSX.Element}
  * @see https://next.js.org/docs/api-reference/next/link
  */
-const Link: React.FC<LinkProps> = React.forwardRef(
+const Link = React.forwardRef(
     ({ ...props }: LinkProps, ref: React.Ref<LinkRef>) => (
         <MuiLink ref={ref} {...props} component={NextLink} />
     )
