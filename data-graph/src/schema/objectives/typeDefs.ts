@@ -2,15 +2,15 @@ import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
     extend type Query {
-        courses: [Course]!
+        objectives: [Objective]!
     }
 
-    type Course {
+    type Objective {
         id: String
+        courseId: String
         name: String
         updatedAt: String
         createdAt: String
         active: Boolean
-        objectives: [Objective]
     }
 `;

@@ -6,4 +6,8 @@ export default class DataSource extends RESTDataSource {
     async getCourses(): Promise<unknown> {
         return this.get(`courses`);
     }
+
+    async getObjectives({ id }): Promise<unknown> {
+        return this.get(`courses/${id}/objectives`);
+    }
 }

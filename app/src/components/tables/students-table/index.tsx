@@ -21,7 +21,7 @@ import RatingSelect from '@/components/rating-select';
 import { formatFullName } from '@/lib/utils';
 
 export type StudentsTableProps = {
-    objectives: TObjective[];
+    objectives?: TObjective[];
     students: TStudent[];
 };
 
@@ -49,7 +49,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                     >
                         Student
                     </TableCell>
-                    {objectives.map(({ id, name }) => (
+                    {objectives?.map(({ id, name }) => (
                         <TableCell key={id} align="center">
                             {name}
                         </TableCell>
@@ -87,7 +87,7 @@ const StudentsTable: React.FC<StudentsTableProps> = ({
                                     </Link>
                                 </Stack>
                             </TableCell>
-                            {objectives.map((objective, colIdx) => (
+                            {objectives?.map((objective, colIdx) => (
                                 <TableCell
                                     key={objective.id}
                                     align="center"

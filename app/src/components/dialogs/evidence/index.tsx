@@ -47,7 +47,7 @@ export type EvidenceDialogProps = DialogProps & {
     courses: TCourse[];
     devtool?: boolean;
     initialValue?: string;
-    objectives: TObjective[];
+    objectives?: TObjective[];
     onError?: (errors: FieldErrors) => void;
     onSubmit: (data: FieldValues) => void;
     uploadedOn?: string;
@@ -345,7 +345,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                                             value
                                                                         }
                                                                         label={
-                                                                            objectivesProp.find(
+                                                                            objectivesProp?.find(
                                                                                 ({
                                                                                     id
                                                                                 }) =>
@@ -361,7 +361,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                     )}
                                                     MenuProps={MenuProps}
                                                 >
-                                                    {objectivesProp.map(
+                                                    {objectivesProp?.map(
                                                         ({ id, name }) => (
                                                             <MenuItem
                                                                 key={id}

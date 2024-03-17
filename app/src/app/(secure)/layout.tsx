@@ -22,7 +22,9 @@ export type LayoutProps = {
 };
 
 const client = new ApolloClient({
+    ssrMode: true,
     uri: '/graphql',
+    credentials: 'same-origin',
     cache: new InMemoryCache()
 });
 

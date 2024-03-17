@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.7",
+    "@apollo/react-ssr": "^4.0.0",
     "@ckeditor/ckeditor5-build-classic": "^40.2.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/cache": "^11.11.0",
@@ -28,6 +29,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/blob": "^0.16.1",
     "@vercel/speed-insights": "^1.0.0",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.0",
