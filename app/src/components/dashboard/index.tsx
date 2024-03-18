@@ -21,7 +21,7 @@ import StudentsTable from '../tables/students-table';
 
 export type DashboardProps = {
     courses: TCourse[];
-    objectives: TObjective[];
+    loading?: boolean;
     students: TStudent[];
 };
 
@@ -30,9 +30,9 @@ export type DashboardProps = {
  * @returns {JSX.Element}
  */
 const Dashboard: React.FC<DashboardProps> = ({
-    courses,
-    objectives,
-    students
+    courses = [],
+    loading = false,
+    students = []
 }: DashboardProps): JSX.Element => {
     const [openEvidenceDialog, setOpenEvidenceDialog] = React.useState(false);
 
@@ -49,6 +49,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         setOpenEvidenceDialog(false);
     };
 
+    if (loading) return <p>Loading...</p>;
+
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
@@ -57,7 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                         <Select
                             labelId="course-label"
                             id="course"
-                            value={courses[0].id}
+                            value={courses[0]?.id}
                             aria-label="Courses"
                         >
                             {courses.map(({ id, name }) => (
@@ -88,7 +90,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 </Grid>
                 <Grid item md={12}>
                     <StudentsTable
-                        objectives={objectives}
+                        objectives={courses[0]?.objectives}
                         students={students}
                     />
                 </Grid>
@@ -97,7 +99,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 open={openEvidenceDialog}
                 onClose={handleAddEvidenceClose}
                 courses={courses}
-                objectives={objectives}
+                objectives={courses[0]?.objectives}
                 onSubmit={handleSubmit}
             />
         </>

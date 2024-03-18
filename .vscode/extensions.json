@@ -12,6 +12,7 @@
         "ms-vsliveshare.vsliveshare",
         "orta.vscode-jest",
         "prisma.prisma",
-        "ajmnz.swagger-jsdoc-indent"
+        "ajmnz.swagger-jsdoc-indent",
+        "abians.prisma-generate-uml"
     ]
 }

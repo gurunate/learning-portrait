@@ -1,43 +1,22 @@
+import { fetchQuery, gql } from '@/lib/fetch-client';
+
 import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
 
-const Page = () => {
-    const courses = [{ id: '1234', name: 'Pre Calculus Adv' }];
-
-    const objectives = [
-        {
-            id: 'b933247a-62d9-479d-bc14-0ffeca786302',
-            key: 'OBJ',
-            name: 'Smart',
-            description: 'Ullus delinquo quas suadeo traho studio pectus.'
-        },
-        {
-            id: '0c8e8ec1-952c-4026-bebb-0cd4f5b9de45',
-            key: 'OBJ',
-            name: 'Woozy',
-            description: 'Cado custodia comitatus volaticus amiculum deficio.'
-        },
-        {
-            id: 'b8359af7-ebb2-417f-a726-588770c19277',
-            key: 'OBJ',
-            name: 'Impassioned',
-            description:
-                'Anser argumentum sollers derideo civis cetera ver denego.'
-        },
-        {
-            id: '7a245dab-1169-4293-822a-52f71e629e30',
-            key: 'OBJ',
-            name: 'Definite',
-            description: 'Cubicularis degenero suasoria coadunatio.'
-        },
-        {
-            id: '6234ad8a-fb8f-4abc-b903-2a9216afa875',
-            key: 'OBJ',
-            name: 'Marvelous',
-            description: 'Tantillus culpa est.'
+const PAGE_LOAD_QUERIES = gql`
+    query Courses {
+        courses {
+            id
+            name
+            objectives {
+                name
+                id
+            }
         }
-    ];
+    }
+`;
 
+const Page = async () => {
     const students = [
         {
             id: '7e04a6c5-89d2-4817-bce4-c82e2903f903',
@@ -104,10 +83,16 @@ const Page = () => {
         }
     ];
 
+    const { data } = await fetchQuery(PAGE_LOAD_QUERIES);
+
+    const { courses } = data ?? {};
+
+    console.log('Page', { courses });
+
     return (
         <Dashboard
+            // loading={loading}
             courses={courses}
-            objectives={objectives}
             students={students}
         />
     );

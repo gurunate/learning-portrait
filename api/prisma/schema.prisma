@@ -24,6 +24,7 @@ model User {
   updatedAt    DateTime @updatedAt
   createdAt    DateTime @default(now())
   active       Boolean  @default(true)
+  Course       Course[]
 }
 
 enum Role {
@@ -37,25 +38,49 @@ enum Role {
 }
 
 model Course {
-  id        String   @id @default(cuid())
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
   name      String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-  active    Boolean  @default(true)
+  updatedAt DateTime    @updatedAt
+  createdAt DateTime    @default(now())
+  active    Boolean     @default(true)
+  Objective Objective[]
+  Evidence  Evidence[]
+}
+
+model Objective {
+  id          String      @id @default(cuid())
+  name        String
+  key         String?
+  description String?
+  course      Course      @relation(fields: [courseId], references: [id])
+  courseId    String
+  parentId    String?
+  parent      Objective?  @relation("children", fields: [parentId], references: [id])
+  children    Objective[] @relation("children")
+  updatedAt   DateTime    @updatedAt
+  createdAt   DateTime    @default(now())
+  active      Boolean     @default(true)
 }
 
 model Evidence {
   id        String   @id @default(cuid())
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String
   name      String
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
   active    Boolean  @default(true)
+  Rating    Rating[]
 }
 
 model Rating {
-  id        String   @id @default(cuid())
-  name      String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-  active    Boolean  @default(true)
+  id         String   @id @default(cuid())
+  evidence   Evidence @relation(fields: [evidenceId], references: [id])
+  evidenceId String
+  name       String
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  active     Boolean  @default(true)
 }

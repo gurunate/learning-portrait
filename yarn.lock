@@ -80,7 +80,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^3.9.7":
+"@apollo/client@npm:^3.9.7, @apollo/client@npm:latest":
   version: 3.9.7
   resolution: "@apollo/client@npm:3.9.7"
   dependencies:
@@ -156,6 +156,15 @@ __metadata:
     apollo-pbjs: bin/pbjs
     apollo-pbts: bin/pbts
   checksum: 10c0/24b08929c5216f75e3bf457cf7e132d957d6774b0feebb104e98d9b0c06e801ef3919ee23d6a63a6297fb4aa41da3491b8e9acc3481fea0909c90f41f1e5a0f6
+  languageName: node
+  linkType: hard
+
+"@apollo/react-ssr@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@apollo/react-ssr@npm:4.0.0"
+  dependencies:
+    "@apollo/client": "npm:latest"
+  checksum: 10c0/c58465e06a4f758ac8564f046438ae532e6006aa35eee5db18fdf44e264e10a141302d45481093d68b442c5071ceb4a24899390d964bdffdd03575aceb0c88dc
   languageName: node
   linkType: hard
 
@@ -3255,6 +3264,7 @@ __metadata:
   resolution: "@learning-portrait/app@workspace:app"
   dependencies:
     "@apollo/client": "npm:^3.9.7"
+    "@apollo/react-ssr": "npm:^4.0.0"
     "@ckeditor/ckeditor5-build-classic": "npm:^40.2.0"
     "@ckeditor/ckeditor5-react": "npm:^6.2.0"
     "@emotion/cache": "npm:^11.11.0"
@@ -3282,6 +3292,7 @@ __metadata:
     "@vercel/analytics": "npm:^1.1.1"
     "@vercel/blob": "npm:^0.16.1"
     "@vercel/speed-insights": "npm:^1.0.0"
+    axios: "npm:^1.6.8"
     bcrypt: "npm:^5.1.1"
     bcryptjs: "npm:^2.4.3"
     clsx: "npm:^2.1.0"
@@ -7990,7 +8001,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.4.0":
+"axios@npm:^1.4.0, axios@npm:^1.6.8":
   version: 1.6.8
   resolution: "axios@npm:1.6.8"
   dependencies:

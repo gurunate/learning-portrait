@@ -12,5 +12,15 @@ export const resolvers = {
 
             return data;
         }
+    },
+    Course: {
+        objectives: async (parent, _, { dataSources }) => {
+            // TODO add trace logging
+            const data = await dataSources.ObjectivesAPI.getObjectives({
+                courseId: parent.id
+            });
+
+            return data;
+        }
     }
 };
