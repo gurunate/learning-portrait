@@ -13,13 +13,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const courses = fixtures.courses(3);
-const objectives = fixtures.objectives(5);
 const students = fixtures.students(7);
 
 export const demo: Story = {
     args: {
         courses,
-        objectives,
         students
     }
 };

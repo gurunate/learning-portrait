@@ -1,3 +1,4 @@
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
@@ -14,6 +15,8 @@ import { prisma } from '@/lib/prisma';
  * @returns
  */
 export const GET = async (request: Request) => {
+    log.trace('Users GET');
+
     const users = await prisma.user.findMany({
         where: {
             active: true
@@ -37,6 +40,8 @@ export const GET = async (request: Request) => {
  * @returns
  */
 export const POST = async (request: Request) => {
+    log.trace('Users POST');
+
     const data = await request.json();
 
     try {

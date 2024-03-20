@@ -11,6 +11,7 @@
         "datasources",
         "hookform",
         "nextjs",
+        "pino",
         "postbuild",
         "retval",
         "testid",

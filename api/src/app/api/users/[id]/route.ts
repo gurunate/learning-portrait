@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
@@ -21,10 +22,11 @@ import { prisma } from '@/lib/prisma';
  *       200:
  *         description: The user
  */
-export const GET = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+export const GET = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Users GET');
+
+    const { id } = params;
+
     if (id) {
         const user = await prisma.user.findUnique({
             where: {
@@ -63,10 +65,11 @@ export const GET = async (
  *       200:
  *         description: The user
  */
-export const PUT = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+export const PUT = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Users PUT');
+
+    const { id } = params;
+
     const data = await request.json();
 
     console.log('PUT', { id, data });
@@ -107,10 +110,11 @@ export const PUT = async (
  *       200:
  *         description: The user
  */
-export const DELETE = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+export const DELETE = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Users DELETE');
+
+    const { id } = params;
+
     if (id) {
         const user = await prisma.user.update({
             where: {

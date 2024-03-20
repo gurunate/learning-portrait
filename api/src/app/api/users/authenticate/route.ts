@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash';
 import jwt from 'jsonwebtoken';
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
@@ -27,6 +28,8 @@ import { prisma } from '@/lib/prisma';
  *         description: Auth tokens
  */
 export const POST = async (request: Request) => {
+    log.trace('users/authenticate POST');
+
     const { email, hash } = await request.json();
 
     // Look-up user
@@ -54,7 +57,7 @@ export const POST = async (request: Request) => {
                 iat: 1489143954,
                 scope: 'openid profile email address phone read:appointments'
             },
-            'hahaha'
+            'this is a test'
         );
 
         return Response.json({ token });
