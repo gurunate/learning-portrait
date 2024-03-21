@@ -4,10 +4,10 @@
   "private": true,
   "packageManager": "yarn@4.0.2",
   "devDependencies": {
-    "@babel/core": "^7.23.3",
-    "@babel/preset-env": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
     "@storybook/addon-essentials": "^7.6.15",
     "@storybook/addon-interactions": "^7.6.15",
     "@storybook/addon-links": "^7.6.15",
@@ -17,7 +17,7 @@
     "@storybook/nextjs": "^7.6.15",
     "@storybook/react": "^7.6.15",
     "@storybook/testing-library": "^0.2.2",
-    "chromatic": "^10.1.0",
+    "chromatic": "^11.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -31,11 +31,11 @@
     "chromatic": "npx chromatic --project-token=chpt_0a2df042b8adced"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@hookform/devtools": "^4.3.1",
     "@material-ui/core": "^4.12.4",
-    "@mui/material": "^5.15.3",
+    "@mui/material": "^5.15.14",
     "@storybook/addon-a11y": "^7.6.15"
   },
   "readme": "ERROR: No README data found!",

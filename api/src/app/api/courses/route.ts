@@ -1,3 +1,4 @@
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
@@ -14,13 +15,20 @@ import { prisma } from '@/lib/prisma';
  * @returns
  */
 export const GET = async (request: Request) => {
-    const courses = await prisma.course.findMany({
-        where: {
-            active: true
-        }
-    });
+    log.trace('Courses GET');
 
-    return Response.json(courses);
+    try {
+        const courses = await prisma.course.findMany({
+            where: {
+                active: true
+            }
+        });
+
+        return Response.json(courses);
+    } catch (error) {
+        log.error({ error }, 'Courses GET');
+        return Response.json(error, { status: 404 });
+    }
 };
 
 /**
@@ -37,7 +45,11 @@ export const GET = async (request: Request) => {
  * @returns
  */
 export const POST = async (request: Request) => {
+    log.trace('Courses POST');
+
     const data = await request.json();
+
+    log.debug({ data }, 'Courses POST');
 
     try {
         const course = await prisma.course.create({
@@ -46,6 +58,7 @@ export const POST = async (request: Request) => {
 
         Response.json(course);
     } catch (error) {
+        log.error({ error }, 'Courses POST');
         return Response.json(error, { status: 409 });
     }
 };

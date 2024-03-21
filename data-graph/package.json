@@ -14,15 +14,15 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/datasource-rest": "^6.2.2",
-    "@apollo/server": "^4.10.0",
-    "@graphql-tools/mock": "^9.0.1",
-    "@graphql-tools/schema": "^10.0.2",
+    "@apollo/server": "^4.10.1",
+    "@graphql-tools/mock": "^9.0.2",
+    "@graphql-tools/schema": "^10.0.3",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6"
   },
   "devDependencies": {
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.30",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   }
 }

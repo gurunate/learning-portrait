@@ -1,8 +1,9 @@
 import { isEmpty } from 'lodash';
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
- * @param request
+ * @param {Request} request
  * @returns
  * @swagger
  * /api/courses/{id}:
@@ -21,10 +22,11 @@ import { prisma } from '@/lib/prisma';
  *       200:
  *         description: The course
  */
-export const GET = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+export const GET = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Courses GET');
+
+    const { id } = params;
+
     if (id) {
         const course = await prisma.course.findUnique({
             where: {
@@ -44,7 +46,7 @@ export const GET = async (
 };
 
 /**
- * @param request
+ * @param {Request} request
  * @returns
  * @swagger
  * /api/courses/{id}:
@@ -63,32 +65,37 @@ export const GET = async (
  *       200:
  *         description: The course
  */
-export const PUT = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
-    const data = await request.json();
+export const PUT = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Courses PUT');
 
-    console.log('PUT', { id, data });
+    try {
+        const { id } = params;
+        const data = await request.json();
 
-    if (id) {
-        try {
-            const course = await prisma.course.update({
-                where: { id },
-                data
-            });
+        console.log('PUT', { id, data });
 
-            Response.json(course);
-        } catch (error) {
-            return Response.json(error, { status: 404 });
+        if (id) {
+            try {
+                const course = await prisma.course.update({
+                    where: { id },
+                    data
+                });
+
+                Response.json(course);
+            } catch (error) {
+                return Response.json(error, { status: 404 });
+            }
+        } else {
+            return Response.json({ error: 'ID required.' }, { status: 409 });
         }
-    } else {
-        return Response.json({ error: 'ID required.' }, { status: 409 });
+    } catch (error) {
+        log.error({ error }, 'Courses PUT');
+        return Response.json(error, { status: 404 });
     }
 };
 
 /**
- * @param request
+ * @param {Request} request
  * @returns
  * @swagger
  * /api/courses/{id}:
@@ -107,10 +114,11 @@ export const PUT = async (
  *       200:
  *         description: The course
  */
-export const DELETE = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+export const DELETE = async (request: Request, { params }: never) => {
+    log.trace({ params }, 'Courses DELETE');
+
+    const { id } = params;
+
     if (id) {
         const course = await prisma.course.update({
             where: {

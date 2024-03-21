@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 const Page = () => (
     <>
         <Typography variant="h2" gutterBottom>
-            Can't Sign In
+            Can&apos;t Sign In
         </Typography>
         <Typography paragraph>Coming soon.</Typography>
     </>
