@@ -43,9 +43,12 @@ erDiagram
     Course ||--|{ Section : contains
     Student ||--|| Portfolio: has
     Instructor ||--|{ Evidence: creates
+    Assessment ||--|| Objective: subjective
+    Assessment ||--|| Student: of
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
     Student ||--|{ Rating: reflects
+    Instructor ||--|{ Assessment: evaluates
     Instructor ||--|{ Rating: evaluates
     Rating ||--|| Evidence: for
 ```
@@ -86,6 +89,8 @@ erDiagram
     Instructor ||--|{ Evidence : creates
     Instructor ||--|{ Rating: evaluates
     Rating ||--|| Evidence: for
+    Assessment ||--|| Objective: subjective
+    Assessment ||--|| Student: subjective
 ```
 
 ## References

@@ -1,3 +1,5 @@
+import log from '../../lib/logger/server';
+
 export const resolvers = {
     Query: {
         courses: async (
@@ -5,8 +7,7 @@ export const resolvers = {
             { input }: any,
             { dataSources }: any
         ): Promise<unknown> => {
-            // TODO add trace logging
-            console.log('courses resolver', {});
+            log.debug({ input }, 'courses query');
 
             const data = await dataSources.CoursesAPI.getCourses(input);
 
@@ -14,8 +15,13 @@ export const resolvers = {
         }
     },
     Course: {
-        objectives: async (parent, _, { dataSources }) => {
-            // TODO add trace logging
+        objectives: async (
+            parent: { id: any },
+            _: any,
+            { dataSources }: any
+        ) => {
+            log.debug({ parent }, 'objectives chaining');
+
             const data = await dataSources.ObjectivesAPI.getObjectives({
                 courseId: parent.id
             });

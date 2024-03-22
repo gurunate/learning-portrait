@@ -15,7 +15,7 @@ import { prisma } from '@/lib/prisma';
  * @returns
  */
 export const GET = async (request: Request) => {
-    log.trace('Users GET');
+    log.debug('GET /users');
 
     const users = await prisma.user.findMany({
         where: {
@@ -40,9 +40,8 @@ export const GET = async (request: Request) => {
  * @returns
  */
 export const POST = async (request: Request) => {
-    log.trace('Users POST');
-
     const data = await request.json();
+    log.debug({ data }, 'POST /users');
 
     try {
         const user = await prisma.user.create({

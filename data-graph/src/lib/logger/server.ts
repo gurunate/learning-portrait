@@ -1,7 +1,7 @@
 import PrettyStream from 'bunyan-pretty-colors';
 import bunyan from 'bunyan';
 import dotenv from 'dotenv';
-import pkg from '../../../package.json';
+import pkg from '../../../package.json' assert { type: 'json' };
 
 dotenv.config();
 
