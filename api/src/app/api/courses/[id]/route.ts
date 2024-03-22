@@ -72,7 +72,7 @@ export const PUT = async (request: Request, { params }: never) => {
         const { id } = params;
         const data = await request.json();
 
-        console.log('PUT', { id, data });
+        log.debug({ id, data }, 'Courses PUT');
 
         if (id) {
             try {
@@ -81,7 +81,7 @@ export const PUT = async (request: Request, { params }: never) => {
                     data
                 });
 
-                Response.json(course);
+                return Response.json(course);
             } catch (error) {
                 return Response.json(error, { status: 404 });
             }
