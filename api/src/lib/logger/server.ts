@@ -42,6 +42,6 @@ const log = bunyan.createLogger(
           }
 );
 
-log.info('🪵 Logger initialized', { env, level });
+// log.info('🪵 Logger initialized', { env, level });
 
 export default log;

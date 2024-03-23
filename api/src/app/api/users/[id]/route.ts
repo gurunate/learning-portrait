@@ -23,7 +23,7 @@ import { prisma } from '@/lib/prisma';
  *         description: The user
  */
 export const GET = async (request: Request, { params }: never) => {
-    log.trace({ params }, 'Users GET');
+    log.debug({ params }, 'Users GET');
 
     const { id } = params;
 
@@ -66,7 +66,7 @@ export const GET = async (request: Request, { params }: never) => {
  *         description: The user
  */
 export const PUT = async (request: Request, { params }: never) => {
-    log.trace({ params }, 'Users PUT');
+    log.debug({ params }, 'Users PUT');
 
     const { id } = params;
 
@@ -81,7 +81,7 @@ export const PUT = async (request: Request, { params }: never) => {
                 data
             });
 
-            Response.json(user);
+            return Response.json(user);
         } catch (error) {
             return Response.json(error, { status: 404 });
         }
@@ -111,22 +111,28 @@ export const PUT = async (request: Request, { params }: never) => {
  *         description: The user
  */
 export const DELETE = async (request: Request, { params }: never) => {
-    log.trace({ params }, 'Users DELETE');
+    log.debug({ params }, 'Users DELETE');
 
     const { id } = params;
 
     if (id) {
-        const user = await prisma.user.update({
-            where: {
-                id
-            },
-            data: {
-                active: false
-            }
-        });
+        try {
+            const user = await prisma.user.update({
+                where: {
+                    id
+                },
+                data: {
+                    active: false
+                }
+            });
 
-        return Response.json(user);
+            return Response.json(user);
+        } catch (error) {
+            log.error({ error }, `DELETE /users/${id}`);
+            return Response.json({ error }, { status: 404 });
+        }
     } else {
+        log.debug({ error: 'ID required.' }, 'Users DELETE');
         return Response.json({ error: 'ID required.' }, { status: 404 });
     }
 };

@@ -1,3 +1,5 @@
+import log from '../../lib/logger/server';
+
 export const resolvers = {
     Query: {
         objectives: async (
@@ -6,7 +8,7 @@ export const resolvers = {
             { dataSources }: any
         ): Promise<unknown> => {
             // TODO add trace logging
-            console.log('objectives resolver', {});
+            log.debug({ input }, 'objectives resolver');
 
             const data = await dataSources.ObjectivesAPI.getObjectives(input);
 

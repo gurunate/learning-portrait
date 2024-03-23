@@ -8,7 +8,7 @@ const typeDef = gql`
     # scalar JSON
     # scalar JSONObject
     type Query
-    # type Mutation     // TODO add when adding first mutation
+    type Mutation
     # type Subscription
 `;
 
