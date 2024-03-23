@@ -2,61 +2,61 @@ import log from '../../lib/logger/server';
 
 export const resolvers = {
     Query: {
-        objectives: async (
+        evidence: async (
             _: any,
             { input }: any,
             { dataSources }: any
         ): Promise<unknown> => {
-            log.debug({ input }, 'objectives query');
+            log.debug({ input }, 'evidence query');
 
-            const data = await dataSources.ObjectivesAPI.getObjectives(input);
+            const data = await dataSources.EvidenceAPI.getEvidence(input);
 
             return data;
         }
     },
     Mutation: {
-        addObjective: async (
+        addEvidence: async (
             _parent: any,
             { input }: any,
             { dataSources }: any
         ) => {
-            log.debug({ input }, 'addObjective');
+            log.debug({ input }, 'addEvidence');
 
-            const response = await dataSources.ObjectivesAPI.createObjective(
+            const response = await dataSources.EvidenceAPI.createEvidence(
                 input
             );
 
-            log.debug({ response }, 'addObjective');
+            log.debug({ response }, 'addEvidence');
 
             return response;
         },
-        updateObjective: async (
+        updateEvidence: async (
             _parent: any,
             { input }: any,
             { dataSources }: any
         ) => {
-            log.debug({ input }, 'updateObjective');
+            log.debug({ input }, 'updateEvidence');
 
-            const response = await dataSources.ObjectivesAPI.updateObjective(
+            const response = await dataSources.EvidenceAPI.updateEvidence(
                 input
             );
 
-            log.debug({ response }, 'updateObjective');
+            log.debug({ response }, 'updateEvidence');
 
             return response;
         },
-        deleteObjective: async (
+        deleteEvidence: async (
             _parent: any,
             { input }: any,
             { dataSources }: any
         ) => {
-            log.debug({ input }, 'deleteObjective');
+            log.debug({ input }, 'deleteEvidence');
 
-            const response = await dataSources.ObjectivesAPI.deleteObjective(
+            const response = await dataSources.EvidenceAPI.deleteEvidence(
                 input
             );
 
-            log.debug({ response }, 'deleteObjective');
+            log.debug({ response }, 'deleteEvidence');
 
             return response;
         }

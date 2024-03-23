@@ -5,6 +5,12 @@ export const typeDefs = gql`
         courses: [Course]!
     }
 
+    extend type Mutation {
+        addCourse(input: CourseInput!): Course!
+        updateCourse(input: CourseInput!): Course!
+        deleteCourse(input: CourseIdInput!): Course!
+    }
+
     type Course {
         id: String
         name: String
@@ -12,5 +18,15 @@ export const typeDefs = gql`
         createdAt: String
         active: Boolean
         objectives: [Objective]
+    }
+
+    input CourseIdInput {
+        id: String!
+    }
+
+    input CourseInput {
+        id: String
+        name: String!
+        active: Boolean
     }
 `;

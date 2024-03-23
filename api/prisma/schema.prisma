@@ -46,7 +46,6 @@ model Course {
   createdAt DateTime    @default(now())
   active    Boolean     @default(true)
   Objective Objective[]
-  Evidence  Evidence[]
 }
 
 model Objective {
@@ -62,17 +61,18 @@ model Objective {
   updatedAt   DateTime    @updatedAt
   createdAt   DateTime    @default(now())
   active      Boolean     @default(true)
+  Evidence    Evidence[]
 }
 
 model Evidence {
-  id        String   @id @default(cuid())
-  course    Course   @relation(fields: [courseId], references: [id])
-  courseId  String
-  name      String
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-  active    Boolean  @default(true)
-  Rating    Rating[]
+  id          String     @id @default(cuid())
+  objectiveId String?
+  objective   Objective? @relation(fields: [objectiveId], references: [id])
+  name        String
+  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime   @default(now())
+  active      Boolean    @default(true)
+  Rating      Rating[]
 }
 
 model Rating {
