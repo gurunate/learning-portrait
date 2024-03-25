@@ -1,3 +1,4 @@
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 import { type NextRequest } from 'next/server';
 
@@ -18,10 +19,12 @@ import { type NextRequest } from 'next/server';
  *     responses:
  *       200:
  *         description: A list of objectives
- * @param request
- * @returns
+ * @param {Request} request
+ * @returns {Response}
  */
-export const GET = async (request: NextRequest) => {
+export const GET = async (request: NextRequest): Promise<Response> => {
+    log.trace('Objectives GET');
+
     const searchParams = request.nextUrl.searchParams;
     const courseId = searchParams.get('courseId');
 
@@ -51,19 +54,24 @@ export const GET = async (request: NextRequest) => {
  *     responses:
  *       200:
  *         description: The objective
- * @param request
- * @returns
+ * @param {Request} request
+ * @returns {Response}
  */
-export const POST = async (request: Request) => {
+export const POST = async (request: Request): Promise<Response> => {
+    log.trace('Objectives POST');
+
     const data = await request.json();
+
+    log.debug({ data }, 'Objectives POST');
 
     try {
         const objective = await prisma.objective.create({
             data
         });
 
-        Response.json(objective);
+        return Response.json(objective);
     } catch (error) {
+        log.error({ error }, 'Objectives POST');
         return Response.json(error, { status: 409 });
     }
 };
