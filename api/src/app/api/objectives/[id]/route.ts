@@ -1,8 +1,9 @@
 import { isEmpty } from 'lodash';
+import log from '@/lib/logger/server';
 import { prisma } from '@/lib/prisma';
 
 /**
- * @param request
+ * @param _request
  * @returns
  * @swagger
  * /api/objectives/{id}:
@@ -20,11 +21,16 @@ import { prisma } from '@/lib/prisma';
  *     responses:
  *       200:
  *         description: The objective
+ * @param {Request} _request
+ * @returns {Response}
  */
 export const GET = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+    _request: Request,
+    { params }: never
+): Promise<Response> => {
+    const { id } = params;
+    log.trace({ params }, `Objectives/${id} GET`);
+
     if (id) {
         const objective = await prisma.objective.findUnique({
             where: {
@@ -39,6 +45,7 @@ export const GET = async (
 
         return Response.json(objective);
     } else {
+        log.error({ error: 'ID required.' }, `Objectives/${id} GET`);
         return Response.json({ error: 'ID required.' }, { status: 404 });
     }
 };
@@ -62,11 +69,16 @@ export const GET = async (
  *     responses:
  *       200:
  *         description: The objective
+ * @param {Request} request
+ * @returns {Response}
  */
 export const PUT = async (
     request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+    { params }: never
+): Promise<Response> => {
+    const { id } = params;
+    log.trace({ params }, `Objectives/${id} GET`);
+
     const data = await request.json();
 
     console.log('PUT', { id, data });
@@ -78,17 +90,18 @@ export const PUT = async (
                 data
             });
 
-            Response.json(objective);
+            return Response.json(objective);
         } catch (error) {
             return Response.json(error, { status: 404 });
         }
     } else {
+        log.error({ error: 'ID required.' }, `Objectives/${id} GET`);
         return Response.json({ error: 'ID required.' }, { status: 409 });
     }
 };
 
 /**
- * @param request
+ * @param _request
  * @returns
  * @swagger
  * /api/objectives/{id}:
@@ -106,11 +119,16 @@ export const PUT = async (
  *     responses:
  *       200:
  *         description: The objective
+ * @param {Request} _request
+ * @returns {Response}
  */
 export const DELETE = async (
-    request: Request,
-    { params: { id } }: { params: { id: string } }
-) => {
+    _request: Request,
+    { params }: never
+): Promise<Response> => {
+    const { id } = params;
+    log.trace({ params }, `Objectives/${id} DELETE`);
+
     if (id) {
         const objective = await prisma.objective.update({
             where: {
@@ -123,6 +141,7 @@ export const DELETE = async (
 
         return Response.json(objective);
     } else {
+        log.error({ error: 'ID required.' }, `Objectives/${id} GET`);
         return Response.json({ error: 'ID required.' }, { status: 404 });
     }
 };
