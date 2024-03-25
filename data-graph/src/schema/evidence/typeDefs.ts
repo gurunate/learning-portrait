@@ -2,31 +2,31 @@ import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
     extend type Query {
-        objectives: [Objective]!
+        evidence: [Evidence]!
     }
 
     extend type Mutation {
-        addObjective(input: ObjectiveInput!): Objective!
-        updateObjective(input: ObjectiveInput!): Objective!
-        deleteObjective(input: ObjectiveIdInput!): Objective!
+        addEvidence(input: EvidenceInput!): Evidence!
+        updateEvidence(input: EvidenceInput!): Evidence!
+        deleteEvidence(input: EvidenceIdInput!): Evidence!
     }
 
-    type Objective {
+    type Evidence {
         id: String
-        courseId: String
+        objectiveId: String
         name: String
         updatedAt: String
         createdAt: String
         active: Boolean
     }
 
-    input ObjectiveIdInput {
+    input EvidenceIdInput {
         id: String!
     }
 
-    input ObjectiveInput {
+    input EvidenceInput {
         id: String
-        courseId: String!
+        objectiveId: String!
         name: String!
         active: Boolean
     }

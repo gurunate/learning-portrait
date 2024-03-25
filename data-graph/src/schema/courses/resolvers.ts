@@ -14,13 +14,54 @@ export const resolvers = {
             return data;
         }
     },
+    Mutation: {
+        addCourse: async (
+            _parent: any,
+            { input }: any,
+            { dataSources }: any
+        ) => {
+            log.debug({ input }, 'addCourse');
+
+            const response = await dataSources.CoursesAPI.createCourse(input);
+
+            log.debug({ response }, 'addCourse');
+
+            return response;
+        },
+        updateCourse: async (
+            _parent: any,
+            { input }: any,
+            { dataSources }: any
+        ) => {
+            log.debug({ input }, 'updateCourse');
+
+            const response = await dataSources.CoursesAPI.updateCourse(input);
+
+            log.debug({ response }, 'updateCourse');
+
+            return response;
+        },
+        deleteCourse: async (
+            _parent: any,
+            { input }: any,
+            { dataSources }: any
+        ) => {
+            log.debug({ input }, 'deleteCourse');
+
+            const response = await dataSources.CoursesAPI.deleteCourse(input);
+
+            log.debug({ response }, 'deleteCourse');
+
+            return response;
+        }
+    },
     Course: {
         objectives: async (
             parent: { id: any },
             _: any,
             { dataSources }: any
         ) => {
-            log.debug({ parent }, 'objectives chaining');
+            log.debug({ parent }, 'course objectives query');
 
             const data = await dataSources.ObjectivesAPI.getObjectives({
                 courseId: parent.id

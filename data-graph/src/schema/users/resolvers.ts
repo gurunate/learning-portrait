@@ -31,11 +31,11 @@ export const resolvers = {
             { input }: any,
             { dataSources }: any
         ) => {
-            log.debug({ input }, 'addUser');
+            log.debug({ input }, 'updateUser');
 
             const response = await dataSources.UsersAPI.updateUser(input);
 
-            log.debug({ response }, 'addUser');
+            log.debug({ response }, 'updateUser');
 
             return response;
         },
@@ -44,11 +44,11 @@ export const resolvers = {
             { input }: any,
             { dataSources }: any
         ) => {
-            log.debug({ input }, 'addUser');
+            log.debug({ input }, 'deleteUser');
 
             const response = await dataSources.UsersAPI.deleteUser(input);
 
-            log.debug({ response }, 'addUser');
+            log.debug({ response }, 'deleteUser');
 
             return response;
         }
