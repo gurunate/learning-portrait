@@ -2,85 +2,228 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id           String   @id @default(cuid())
-  email        String?  @unique
-  firstName    String
-  lastName     String
-  hash         String?
-  verified     Boolean  @default(false)
-  locked       Boolean  @default(false)
-  attempts     Int      @default(0)
-  requestToken String?  @default(uuid())
-  roles        Role[]   @default([USER])
-  updatedAt    DateTime @updatedAt
-  createdAt    DateTime @default(now())
-  active       Boolean  @default(true)
-  Course       Course[]
+    id                    String         @id @default(cuid())
+    email                 String?        @unique
+    firstName             String
+    lastName              String
+    hash                  String?
+    verified              Boolean        @default(false)
+    locked                Boolean        @default(false)
+    attempts              Int            @default(0)
+    requestToken          String?        @default(uuid())
+    roles                 Role[]         @default([USER])
+    updatedAt             DateTime       @updatedAt
+    createdAt             DateTime       @default(now())
+    active                Boolean        @default(true)
+    AssessmentCreatedBy   Assessment[]   @relation("AssessmentCreatedBy")
+    AssessmentUpdatedBy   Assessment[]   @relation("AssessmentUpdatedBy")
+    CourseCreatedBy       Course[]       @relation("CourseCreatedBy")
+    CourseUpdatedBy       Course[]       @relation("CourseUpdatedBy")
+    EvidenceCreatedBy     Evidence[]     @relation("EvidenceCreatedBy")
+    EvidenceUpdatedBy     Evidence[]     @relation("EvidenceUpdatedBy")
+    InstitutionCreatedBy  Institution[]  @relation("InstitutionCreatedBy")
+    InstitutionUpdatedBy  Institution[]  @relation("InstitutionUpdatedBy")
+    InstructorCreatedBy   Instructor[]   @relation("InstructorCreatedBy")
+    InstructorUpdatedBy   Instructor[]   @relation("InstructorUpdatedBy")
+    InstructorUser        Instructor[]   @relation("InstructorUser")
+    ObjectiveCreatedBy    Objective[]    @relation("ObjectiveCreatedBy")
+    ObjectiveUpdatedBy    Objective[]    @relation("ObjectiveUpdatedBy")
+    OrganizationCreatedBy Organization[] @relation("OrganizationCreatedBy")
+    OrganizationUpdatedBy Organization[] @relation("OrganizationUpdatedBy")
+    SectionCreatedBy      Section[]      @relation("SectionCreatedBy")
+    SectionUpdatedBy      Section[]      @relation("SectionUpdatedBy")
+    StudentCreatedBy      Student[]      @relation("StudentCreatedBy")
+    StudentUpdatedBy      Student[]      @relation("StudentUpdatedBy")
+    StudentUser           Student[]      @relation("StudentUser")
 }
 
 enum Role {
-  USER
-  SYS_ADMIN
-  INSTRUCTOR
-  STUDENT
-  GUARDIAN
-  COUNSELOR
-  SCHOOL_ADMINISTRATOR
+    USER
+    SYS_ADMIN
+    INSTRUCTOR
+    STUDENT
+    GUARDIAN
+    COUNSELOR
+    SCHOOL_ADMINISTRATOR
+}
+
+model Student {
+    id                String       @id @default(cuid())
+    prefix            String?
+    firstName         String
+    lastName          String
+    suffix            String?
+    avatar            String?
+    notes             String?
+    email             String?
+    user              User?        @relation("StudentUser", fields: [userId], references: [id])
+    userId            String?      @default("")
+    AssessmentStudent Assessment[] @relation("AssessmentStudent")
+    SectionStudents   Section?     @relation("SectionStudents", fields: [sectionId], references: [id])
+    sectionId         String?
+    updatedAt         DateTime     @updatedAt
+    updatedBy         User         @relation("StudentUpdatedBy", fields: [updatedById], references: [id])
+    updatedById       String       @default("")
+    createdAt         DateTime     @default(now())
+    createdBy         User         @relation("StudentCreatedBy", fields: [createdById], references: [id])
+    createdById       String       @default("")
+    active            Boolean      @default(true)
+}
+
+model Instructor {
+    id                   String       @id @default(cuid())
+    prefix               String?
+    firstName            String
+    lastName             String
+    suffix               String?
+    title                String?
+    department           String?
+    bio                  String?
+    avatar               String?
+    notes                String?
+    email                String?
+    phone                String?
+    user                 User?        @relation("InstructorUser", fields: [userId], references: [id])
+    userId               String?      @default("")
+    institution          Institution? @relation(fields: [institutionId], references: [id])
+    institutionId        String?
+    CourseInstructor     Course[]     @relation("CourseInstructor")
+    AssessmentInstructor Assessment[] @relation("AssessmentInstructor")
+    updatedAt            DateTime     @updatedAt
+    updatedBy            User         @relation("InstructorUpdatedBy", fields: [updatedById], references: [id])
+    updatedById          String       @default("")
+    createdAt            DateTime     @default(now())
+    createdBy            User         @relation("InstructorCreatedBy", fields: [createdById], references: [id])
+    createdById          String       @default("")
+    active               Boolean      @default(true)
 }
 
 model Course {
-  id        String      @id @default(cuid())
-  user      User        @relation(fields: [userId], references: [id])
-  userId    String
-  name      String
-  updatedAt DateTime    @updatedAt
-  createdAt DateTime    @default(now())
-  active    Boolean     @default(true)
-  Objective Objective[]
+    id           String      @id @default(cuid())
+    instructor   Instructor? @relation("CourseInstructor", fields: [instructorId], references: [id])
+    instructorId String?
+    name         String
+    description  String?
+    startDate    DateTime?
+    endDate      DateTime?
+    Objective    Objective[]
+    Section      Section[]
+    updatedAt    DateTime    @updatedAt
+    updatedBy    User?       @relation("CourseUpdatedBy", fields: [updatedById], references: [id])
+    updatedById  String?
+    createdAt    DateTime?   @default(now())
+    createdBy    User?       @relation("CourseCreatedBy", fields: [createdById], references: [id])
+    createdById  String
+    active       Boolean     @default(true)
+    userId       String?
+}
+
+model Section {
+    id          String    @id @default(cuid())
+    name        String
+    description String?
+    course      Course    @relation(fields: [courseId], references: [id])
+    courseId    String
+    students    Student[] @relation("SectionStudents")
+    updatedAt   DateTime  @updatedAt
+    updatedBy   User      @relation("SectionUpdatedBy", fields: [updatedById], references: [id])
+    updatedById String    @default("")
+    createdAt   DateTime  @default(now())
+    createdBy   User      @relation("SectionCreatedBy", fields: [createdById], references: [id])
+    createdById String    @default("")
+    active      Boolean   @default(true)
 }
 
 model Objective {
-  id          String      @id @default(cuid())
-  name        String
-  key         String?
-  description String?
-  course      Course      @relation(fields: [courseId], references: [id])
-  courseId    String
-  parentId    String?
-  parent      Objective?  @relation("children", fields: [parentId], references: [id])
-  children    Objective[] @relation("children")
-  updatedAt   DateTime    @updatedAt
-  createdAt   DateTime    @default(now())
-  active      Boolean     @default(true)
-  Evidence    Evidence[]
+    id                String       @id @default(cuid())
+    name              String
+    key               String?
+    description       String?
+    position          Int?
+    course            Course       @relation(fields: [courseId], references: [id])
+    courseId          String
+    parentId          String?
+    parent            Objective?   @relation("children", fields: [parentId], references: [id])
+    children          Objective[]  @relation("children")
+    ObjectiveEvidence Evidence[]   @relation("ObjectiveEvidence")
+    Assessment        Assessment[]
+    updatedAt         DateTime     @updatedAt
+    updatedBy         User         @relation("ObjectiveUpdatedBy", fields: [updatedById], references: [id])
+    updatedById       String       @default("")
+    createdAt         DateTime     @default(now())
+    createdBy         User         @relation("ObjectiveCreatedBy", fields: [createdById], references: [id])
+    createdById       String       @default("")
+    active            Boolean      @default(true)
 }
 
 model Evidence {
-  id          String     @id @default(cuid())
-  objectiveId String?
-  objective   Objective? @relation(fields: [objectiveId], references: [id])
-  name        String
-  updatedAt   DateTime   @updatedAt
-  createdAt   DateTime   @default(now())
-  active      Boolean    @default(true)
-  Rating      Rating[]
+    id          String       @id @default(cuid())
+    objectiveId String?
+    objective   Objective?   @relation("ObjectiveEvidence", fields: [objectiveId], references: [id])
+    name        String
+    Assessment  Assessment[]
+    updatedAt   DateTime     @updatedAt
+    updatedBy   User         @relation("EvidenceUpdatedBy", fields: [updatedById], references: [id])
+    updatedById String       @default("")
+    createdAt   DateTime     @default(now())
+    createdBy   User         @relation("EvidenceCreatedBy", fields: [createdById], references: [id])
+    createdById String       @default("")
+    active      Boolean      @default(true)
 }
 
-model Rating {
-  id         String   @id @default(cuid())
-  evidence   Evidence @relation(fields: [evidenceId], references: [id])
-  evidenceId String
-  name       String
-  updatedAt  DateTime @updatedAt
-  createdAt  DateTime @default(now())
-  active     Boolean  @default(true)
+model Assessment {
+    id           String      @id @default(cuid())
+    evidence     Evidence?   @relation(fields: [evidenceId], references: [id])
+    evidenceId   String
+    objective    Objective?  @relation(fields: [objectiveId], references: [id])
+    objectiveId  String
+    instructor   Instructor? @relation("AssessmentInstructor", fields: [instructorId], references: [id])
+    instructorId String      @default("")
+    student      Student?    @relation("AssessmentStudent", fields: [studentId], references: [id])
+    studentId    String      @default("")
+    name         String
+    updatedAt    DateTime    @updatedAt
+    updatedBy    User        @relation("AssessmentUpdatedBy", fields: [updatedById], references: [id])
+    updatedById  String      @default("")
+    createdAt    DateTime    @default(now())
+    createdBy    User        @relation("AssessmentCreatedBy", fields: [createdById], references: [id])
+    createdById  String      @default("")
+    active       Boolean     @default(true)
+}
+
+model Organization {
+    id           String        @id @default(cuid())
+    name         String
+    institutions Institution[]
+    updatedAt    DateTime      @updatedAt
+    updatedBy    User          @relation("OrganizationUpdatedBy", fields: [updatedById], references: [id])
+    updatedById  String        @default("")
+    createdAt    DateTime      @default(now())
+    createdBy    User          @relation("OrganizationCreatedBy", fields: [createdById], references: [id])
+    createdById  String        @default("")
+    active       Boolean       @default(true)
+}
+
+model Institution {
+    id             String        @id @default(cuid())
+    name           String
+    Organization   Organization? @relation(fields: [organizationId], references: [id])
+    organizationId String?
+    instructors    Instructor[]
+    updatedAt      DateTime      @updatedAt
+    updatedBy      User          @relation("InstitutionUpdatedBy", fields: [updatedById], references: [id])
+    updatedById    String        @default("")
+    createdAt      DateTime      @default(now())
+    createdBy      User          @relation("InstitutionCreatedBy", fields: [createdById], references: [id])
+    createdById    String        @default("")
+    active         Boolean       @default(true)
 }

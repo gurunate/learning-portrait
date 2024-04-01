@@ -18,7 +18,8 @@
     "@graphql-tools/mock": "^9.0.2",
     "@graphql-tools/schema": "^10.0.3",
     "graphql": "^16.8.1",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "jwt-decode": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",

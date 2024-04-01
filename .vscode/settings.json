@@ -12,6 +12,7 @@
         "hookform",
         "imgs",
         "nextjs",
+        "pbcopy",
         "pino",
         "postbuild",
         "retval",
@@ -33,16 +34,6 @@
             "database": "local",
             "username": "lp-api",
             "password": "S3^x*t*4UBjor7eA"
-        },
-        {
-            "pgOptions": {
-                "ssl": true
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "connectString": "postgres://default:wRnO2YxXPZ3V@ep-green-rice-41971565-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",
-            "name": "learning-portrait-api-postgres"
         },
         {
             "pgOptions": {

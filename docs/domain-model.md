@@ -38,17 +38,16 @@ erDiagram
     User ||--|| Student: type
     Instructor ||--|{ Course: has
     Section  }|--|{ Student: has
-    Objective ||--|{ Evidence: contains
+    Objective }|--|{ Evidence: contains
     Course ||--|{ Objective : contains
     Course ||--|{ Section : contains
     Student ||--|| Portfolio: has
     Instructor ||--|{ Evidence: creates
-    Assessment ||--|| Objective: subjective
-    Assessment ||--|| Student: of
+    Rating ||--|| Objective: subjective
+    Rating }|--|| Student: of
     Student ||--|{ Evidence: submits
     Portfolio ||--|{ Evidence : contains
-    Student ||--|{ Rating: reflects
-    Instructor ||--|{ Assessment: evaluates
+    Instructor ||--|{ Rating: evaluates
     Instructor ||--|{ Rating: evaluates
     Rating ||--|| Evidence: for
 ```

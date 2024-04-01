@@ -1,7 +1,5 @@
 'use client';
 
-import * as yup from 'yup';
-
 import {
     Button,
     Card,
@@ -25,6 +23,7 @@ import Link from '@/components/link';
 import NextLink from 'next/link';
 import React from 'react';
 import { get } from 'lodash';
+import { signInCardSchema } from './schema';
 import styles from './styles.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -32,17 +31,6 @@ export type SignInCardProps = {
     onError?: (errors: FieldErrors) => void;
     onSubmit: (data: FieldValues) => void;
 };
-
-export const schema = yup.object().shape({
-    email: yup
-        .string()
-        .required('Required field.')
-        .email('Not a valid email address.'),
-    password: yup
-        .string()
-        .required('Required field.')
-        .max(40, 'Maximum 40 characters.')
-});
 
 /**
  * Sign In card.
@@ -57,7 +45,7 @@ const SignInCard: React.FC<SignInCardProps> = ({
     const methods = useForm({
         mode: 'onSubmit',
         reValidateMode: 'onChange',
-        resolver: yupResolver(schema),
+        resolver: yupResolver(signInCardSchema),
         defaultValues: {
             email: '',
             password: ''
@@ -70,12 +58,16 @@ const SignInCard: React.FC<SignInCardProps> = ({
         handleSubmit
     } = methods;
 
-    const { field: emailField } = useController({
+    const {
+        field: { ref: emailFieldRef, ...emailField }
+    } = useController({
         control,
         name: 'email'
     });
 
-    const { field: passwordField } = useController({
+    const {
+        field: { ref: passwordFieldRef, ...passwordField }
+    } = useController({
         control,
         name: 'password'
     });
@@ -110,6 +102,8 @@ const SignInCard: React.FC<SignInCardProps> = ({
                             <Grid item xs={12}>
                                 <TextField
                                     {...emailField}
+                                    id={emailField.name}
+                                    inputRef={emailFieldRef}
                                     color="secondary"
                                     autoFocus
                                     fullWidth
@@ -140,6 +134,8 @@ const SignInCard: React.FC<SignInCardProps> = ({
                                 <TextField
                                     {...passwordField}
                                     fullWidth
+                                    id={passwordField.name}
+                                    inputRef={passwordFieldRef}
                                     color="secondary"
                                     type="password"
                                     label="Password"
