@@ -1,4 +1,4 @@
-const users = [
+export const users = [
     {
         id: 'clrnu8u9y00067792irpry1hp',
         firstName: 'David',
@@ -28,5 +28,3 @@ const users = [
         roles: ['USER', 'SYS_ADMIN']
     }
 ];
-
-module.exports = users;

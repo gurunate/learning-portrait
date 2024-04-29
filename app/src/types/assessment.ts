@@ -1,4 +1,4 @@
-export type Rating = {
+export type Assessment = {
     id: string;
     objectiveId: string;
     value: string;

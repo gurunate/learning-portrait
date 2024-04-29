@@ -15,7 +15,19 @@ async function startApolloServer() {
         listen: { port },
         context: async ({ req }) => {
             const { cache } = server;
-            const token = req.headers.token;
+
+            /**
+             * TODO 
+                {
+                    "sub": "1234567890",
+                    "name": "John Doe",
+                    "iat": 1516239022
+                }
+             */
+
+            const token =
+                req.headers.token ||
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ';
 
             return {
                 dataSources: dataSources({ cache, token }),

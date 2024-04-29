@@ -50,6 +50,14 @@ $ db:migrate:deploy
 
 > **Note:** migrate deploy should generally be part of an automated CI/CD pipeline, and we do not recommend running this command locally to deploy changes to a production database.
 
+### ER diagram (ERD)
+
+<p align="center">
+    <img src="./docs/imgs/prisma-generate-uml.png" />
+</p>
+
+The [Prisma Generate UML](https://marketplace.visualstudio.com/items?itemName=AbianS.prisma-generate-uml) VS Code extension (`prisma-generate-uml`) creates an ER diagram (ERD) from the [schema.prisma](./prisma/schema.prisma) file.
+
 ## References
 
 -   [Next.js](https://nextjs.org/)

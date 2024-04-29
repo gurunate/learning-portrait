@@ -2,6 +2,7 @@ import { fetchQuery, gql } from '@/lib/fetch-client';
 
 import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 const PAGE_LOAD_QUERIES = gql`
     query Courses {
@@ -90,11 +91,15 @@ const Page = async () => {
     console.log('Page', { courses });
 
     return (
-        <Dashboard
-            // loading={loading}
-            courses={courses}
-            students={students}
-        />
+        <section>
+            <Suspense fallback={<p>Loading...</p>}>
+                <Dashboard
+                    // loading={loading}
+                    courses={courses}
+                    students={students}
+                />
+            </Suspense>
+        </section>
     );
 };
 

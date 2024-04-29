@@ -1,5 +1,9 @@
 import jwt from 'jsonwebtoken';
 
+// openssl rand -hex 32 | pbcopy
+const PRIVATE_KEY =
+    '805134640f122e2d594000730de945695074247b20d6a470583c6ee21b08e1a4';
+
 /**
  *
  * @param request
@@ -23,7 +27,8 @@ export const PUT = async (request: Request) => {
             iat: 1489143954,
             scope: 'openid profile email address phone read:appointments'
         },
-        'hahaha'
+        PRIVATE_KEY,
+        { algorithm: 'RS256' }
     );
 
     return Response.json({ token });

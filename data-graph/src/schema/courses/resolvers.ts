@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode';
 import log from '../../lib/logger/server';
 
 export const resolvers = {
@@ -5,9 +6,13 @@ export const resolvers = {
         courses: async (
             _: any,
             { input }: any,
-            { dataSources }: any
+            { dataSources, token }: any
         ): Promise<unknown> => {
-            log.debug({ input }, 'courses query');
+            log.debug({ input, token }, 'courses query');
+
+            const decoded = jwtDecode(token);
+
+            log.debug({ decoded }, 'courses query');
 
             const data = await dataSources.CoursesAPI.getCourses(input);
 

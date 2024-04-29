@@ -13,6 +13,21 @@
         "orta.vscode-jest",
         "prisma.prisma",
         "ajmnz.swagger-jsdoc-indent",
-        "abians.prisma-generate-uml"
+        "abians.prisma-generate-uml",
+        "formulahendry.auto-rename-tag",
+        "jeff-hykin.better-dockerfile-syntax",
+        "maptz.camelcasenavigation",
+        "editorconfig.editorconfig",
+        "usernamehw.errorlens",
+        "mhutchie.git-graph",
+        "github.vscode-github-actions",
+        "mquandalle.graphql",
+        "graphql.vscode-graphql-syntax",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "yoavbls.pretty-ts-errors",
+        "searking.preview-vscode",
+        "arichika.previewseqdiag-vscode",
+        "jock.svg"
     ]
 }
