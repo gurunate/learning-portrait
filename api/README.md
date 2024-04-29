@@ -65,3 +65,4 @@ The [Prisma Generate UML](https://marketplace.visualstudio.com/items?itemName=Ab
 -   [PostgreSQL](https://www.postgresql.org/)
 -   [OpenAPI](https://swagger.io/docs/specification/about/)
 -   [Swagger UI](https://github.com/swagger-api/swagger-ui)
+-   [Prisma: Deploy to Heroku](https://www.prisma.io/docs/orm/prisma-client/deployment/traditional/deploy-to-heroku)
