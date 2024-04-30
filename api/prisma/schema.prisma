@@ -39,6 +39,8 @@ model User {
     ObjectiveUpdatedBy    Objective[]    @relation("ObjectiveUpdatedBy")
     OrganizationCreatedBy Organization[] @relation("OrganizationCreatedBy")
     OrganizationUpdatedBy Organization[] @relation("OrganizationUpdatedBy")
+    RatingCreatedBy       Rating[]       @relation("RatingCreatedBy")
+    RatingUpdatedBy       Rating[]       @relation("RatingUpdatedBy")
     SectionCreatedBy      Section[]      @relation("SectionCreatedBy")
     SectionUpdatedBy      Section[]      @relation("SectionUpdatedBy")
     StudentCreatedBy      Student[]      @relation("StudentCreatedBy")
@@ -128,19 +130,20 @@ model Course {
 }
 
 model Section {
-    id          String    @id @default(cuid())
-    name        String
-    description String?
-    course      Course    @relation(fields: [courseId], references: [id])
-    courseId    String
-    students    Student[] @relation("SectionStudents")
-    updatedAt   DateTime  @updatedAt
-    updatedBy   User      @relation("SectionUpdatedBy", fields: [updatedById], references: [id])
-    updatedById String    @default("")
-    createdAt   DateTime  @default(now())
-    createdBy   User      @relation("SectionCreatedBy", fields: [createdById], references: [id])
-    createdById String    @default("")
-    active      Boolean   @default(true)
+    id            String    @id @default(cuid())
+    name          String
+    description   String?
+    course        Course    @relation(fields: [courseId], references: [id])
+    courseId      String
+    students      Student[] @relation("SectionStudents")
+    ratingSection Rating[]  @relation("RatingSection")
+    updatedAt     DateTime  @updatedAt
+    updatedBy     User      @relation("SectionUpdatedBy", fields: [updatedById], references: [id])
+    updatedById   String    @default("")
+    createdAt     DateTime  @default(now())
+    createdBy     User      @relation("SectionCreatedBy", fields: [createdById], references: [id])
+    createdById   String    @default("")
+    active        Boolean   @default(true)
 }
 
 model Objective {
@@ -190,7 +193,8 @@ model Assessment {
     instructorId String      @default("")
     student      Student?    @relation("AssessmentStudent", fields: [studentId], references: [id])
     studentId    String      @default("")
-    name         String
+    rating       Rating      @relation("AssessmentRating", fields: [ratingId], references: [id])
+    ratingId     String
     updatedAt    DateTime    @updatedAt
     updatedBy    User        @relation("AssessmentUpdatedBy", fields: [updatedById], references: [id])
     updatedById  String      @default("")
@@ -226,4 +230,20 @@ model Institution {
     createdBy      User          @relation("InstitutionCreatedBy", fields: [createdById], references: [id])
     createdById    String        @default("")
     active         Boolean       @default(true)
+}
+
+model Rating {
+    id          String       @id @default(cuid())
+    name        String
+    position    Int?
+    section     Section?     @relation("RatingSection", fields: [sectionId], references: [id])
+    sectionId   String?
+    updatedAt   DateTime     @updatedAt
+    updatedBy   User         @relation("RatingUpdatedBy", fields: [updatedById], references: [id])
+    updatedById String       @default("")
+    createdAt   DateTime     @default(now())
+    createdBy   User         @relation("RatingCreatedBy", fields: [createdById], references: [id])
+    createdById String       @default("")
+    active      Boolean      @default(true)
+    Assessment  Assessment[] @relation("AssessmentRating")
 }
