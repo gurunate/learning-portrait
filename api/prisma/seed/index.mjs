@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client';
 import { courses } from './courses.mjs';
 import { instructors } from './instructors.mjs';
 import { objectives } from './objectives.mjs';
+import { ratings } from './ratings.mjs';
+import { sections } from './sections.mjs';
 import { users } from './users.mjs';
 
 const prisma = new PrismaClient();
@@ -39,6 +41,32 @@ const seedData = async () => {
             update: course,
             create: {
                 ...course,
+                updatedById,
+                createdById
+            }
+        })
+    );
+
+    // Sections
+    sections.map(async section =>
+        prisma.section.upsert({
+            where: { id: section?.id },
+            update: section,
+            create: {
+                ...section,
+                updatedById,
+                createdById
+            }
+        })
+    );
+
+    // Ratings
+    ratings.map(async rating =>
+        prisma.rating.upsert({
+            where: { id: rating?.id },
+            update: rating,
+            create: {
+                ...rating,
                 updatedById,
                 createdById
             }
