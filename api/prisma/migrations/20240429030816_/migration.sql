@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "Course" ALTER COLUMN "createdById" DROP DEFAULT,
+ALTER COLUMN "updatedById" DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE "Instructor" ALTER COLUMN "userId" DROP DEFAULT;

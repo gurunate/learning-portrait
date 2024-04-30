@@ -93,7 +93,7 @@ model Instructor {
     email                String?
     phone                String?
     user                 User?        @relation("InstructorUser", fields: [userId], references: [id])
-    userId               String?      @default("")
+    userId               String?
     institution          Institution? @relation(fields: [institutionId], references: [id])
     institutionId        String?
     CourseInstructor     Course[]     @relation("CourseInstructor")
