@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
  * @swagger
  * /api/courses:
  *   get:
+ *     security:
+ *       - Bearer: []
  *     summary: Get a list of courses
  *     tags:
  *       - Courses

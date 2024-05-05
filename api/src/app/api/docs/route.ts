@@ -1,13 +1,27 @@
-// @ts-ignore
+import pkg from '../../../../package.json';
 import swaggerJsdoc from 'swagger-jsdoc';
 
 const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Learning Portrait API',
-            version: '1.0.0'
-        }
+            title: pkg.description,
+            version: pkg.version
+        },
+        components: {
+            securitySchemes: {
+                Bearer: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT'
+                }
+            }
+        },
+        security: [
+            {
+                Bearer: []
+            }
+        ]
     },
     apis: ['./src/app/api/**/route.ts'] // files containing annotations as above
 };
