@@ -1,13 +1,8 @@
-import { AugmentedRequest, RESTDataSource } from '@apollo/datasource-rest';
-import https from 'https';
+import { RESTDataSource } from '@apollo/datasource-rest';
 import log from '../../lib/logger/server';
 
 export default class DataSource extends RESTDataSource {
     override baseURL = process.env.API_HOST;
-
-    // override async willSendRequest(_path: string, request: AugmentedRequest) {
-    //     request.agent = new https.Agent({ rejectUnauthorized: false });
-    // }
 
     /**
      * Return a list of active courses.
