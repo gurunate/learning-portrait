@@ -1,16 +1,21 @@
 import {
-    Editor as TinyEditor,
-    IAllProps as TinyEditorProps
-} from '@tinymce/tinymce-react';
+    MenuButtonBold,
+    MenuButtonItalic,
+    MenuControlsContainer,
+    MenuDivider,
+    MenuSelectHeading,
+    RichTextEditorProvider,
+    RichTextField
+} from 'mui-tiptap';
 
 import React from 'react';
+import StarterKit from '@tiptap/starter-kit';
+import { useEditor } from '@tiptap/react';
 
-export type EditorProps = TinyEditorProps & {
+export type EditorProps = {
     defaultValue?: string;
     placeholder?: string;
 };
-
-const API_KEY = 'hqonybajv3lv4wbbc3xmjm1uhfv3fmj6l1rc4vsbpqcs6psq';
 
 /**
  * @param {EditorProps} props
@@ -20,22 +25,27 @@ const Editor: React.FC<EditorProps> = ({
     defaultValue,
     placeholder,
     ...props
-}: EditorProps): JSX.Element => (
-    <TinyEditor
-        {...props}
-        apiKey={API_KEY}
-        init={{
-            placeholder,
-            height: '100%',
-            menubar: false,
-            statusbar: false,
-            toolbar: true
-            // plugins: 'code image link lists',
-            // toolbar:
-            //     'undo redo | styles | bold italic underline forecolor backcolor | link image code | align | bullist numlist'
-        }}
-        initialValue={defaultValue}
-    />
-);
+}: EditorProps): JSX.Element => {
+    const editor = useEditor({
+        extensions: [StarterKit],
+        content: defaultValue
+    });
+
+    return (
+        <RichTextEditorProvider editor={editor}>
+            <RichTextField
+                controls={
+                    <MenuControlsContainer>
+                        <MenuSelectHeading />
+                        <MenuDivider />
+                        <MenuButtonBold />
+                        <MenuButtonItalic />
+                        {/* Add more controls of your choosing here */}
+                    </MenuControlsContainer>
+                }
+            />
+        </RichTextEditorProvider>
+    );
+};
 
 export default React.memo(Editor);

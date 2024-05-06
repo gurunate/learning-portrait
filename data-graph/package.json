@@ -5,9 +5,9 @@
   "type": "module",
   "main": "src/server.ts",
   "scripts": {
+    "dev": "node --watch --inspect=0.0.0.0:9321 --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts",
     "compile": "tsc",
-    "start": "node --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts",
-    "dev": "node --watch --inspect=0.0.0.0:9321 --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts"
+    "start": "node --experimental-specifier-resolution=node --loader ts-node/esm src/server.ts"
   },
   "keywords": [],
   "author": "",
