@@ -1,6 +1,6 @@
 # App
 
-This the primary Learning Portrait user-facing web application.
+The Learning Portrait web application.
 
 ## Getting Started
 

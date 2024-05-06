@@ -18,7 +18,7 @@ $ yarn
 $ yarn dev
 ```
 
-http://local.learningportrait.com:3800/
+https://local.learningportrait.com:3800/
 
 ## Migrations
 
