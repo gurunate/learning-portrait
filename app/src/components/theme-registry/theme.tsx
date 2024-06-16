@@ -147,6 +147,49 @@ const theme = createTheme({
                 }
             }
         },
+        MuiChip: {
+            styleOverrides: {
+                root: {
+                    borderRadius: "8px",
+                    [`&.MuiChip-filled.MuiChip-colorSuccess`]: {
+                        backgroundColor: '#E1FFE7',
+                        color: '#2E7D32'
+                    },
+                    [`&.MuiChip-filled.MuiChip-colorInfo`]: {
+                        backgroundColor: '#E0F6FF',
+                        color: '#006C96'
+                    },
+                    [`&.MuiChip-filled.MuiChip-colorError`]: {
+                        backgroundColor: '#FFE2E2',
+                        color: '#BA1A1A'
+                    },
+                    [`&.MuiChip-filled.MuiChip-colorWarning`]: {
+                        backgroundColor: '#FFEFBC',
+                        color: '#191C1E'
+                    },
+                    [`&.MuiChip-outlined.MuiChip-colorSuccess`]: {
+                        backgroundColor: 'none',
+                        color: '#2E7D32',
+                        border: '1px solid #2E7D32'
+                    },
+                    [`&.MuiChip-outlined.MuiChip-colorInfo`]: {
+                        backgroundColor: 'none',
+                        color: '#006C96',
+                        border: '1px solid #1F6587'
+                    },
+                    [`&.MuiChip-outlined.MuiChip-colorError`]: {
+                        backgroundColor: 'none',
+                        color: '#BA1A1A',
+                        border: '1px solid #BA1A1A'
+                    },
+                    [`&.MuiChip-outlined.MuiChip-colorWarning`]: {
+                        backgroundColor: 'none',
+                        color: '#191C1E',
+                        border: '1px solid #F7951E'
+                    }
+                },
+            },
+        },
         MuiLink: {
             defaultProps: {
                 underline: 'none'
