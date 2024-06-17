@@ -42,7 +42,7 @@ function Header() {
 
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#FCFCFF', borderRadius: '0', border: '1px #E7EAEC', boxShadow: 'none', color: 'black'}}>
+    <AppBar position="static" sx={{backgroundColor: '#FCFCFF', borderRadius: '0', border: '1px solid #E7EAEC', boxShadow: 'none', color: 'black'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Image
@@ -87,15 +87,19 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '24px' }}>
             {pages.map((page) => (
               <Button
+                disableRipple
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: '#61666B', display: 'block', fontSize: '16px', textTransform: 'uppercase', borderRadius: '0',
                     '&:active': {
                     borderBottom: '2px solid #006C96',
                     color: '#006C96'
+                  },
+                  '&:hover': {
+                    backgroundColor: '#FCFCFF'
                   },
                 }}
               >
@@ -104,9 +108,9 @@ function Header() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <SettingsIcon sx={{ color: '#006C96' }}/>
-            <NotificationsIcon sx={{ color: '#006C96' }}/>
+          <Box sx={{ flexGrow: 0, md: 'flex'}}>
+            <SettingsIcon sx={{ color: '#006C96',  marginRight: '16px'}}/>
+            <NotificationsIcon sx={{ color: '#006C96', marginRight: '16px' }}/>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
