@@ -227,18 +227,18 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: BORDER_RADIUS,
-                    background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
-                    '& .MuiTableCell-root': {
-                        background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
-                        border: 0
-                    },
+                    //background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, //255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
+                    //'& .MuiTableCell-root': {
+                      //  background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba//(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
+                      //  border: 0
+                    //},
                     'th:first-child': {
                         borderTopLeftRadius: BORDER_RADIUS,
-                        borderBottomLeftRadius: BORDER_RADIUS
+                        //borderBottomLeftRadius: BORDER_RADIUS
                     },
                     'th:last-child': {
                         borderTopRightRadius: BORDER_RADIUS,
-                        borderBottomRightRadius: BORDER_RADIUS
+                        //borderBottomRightRadius: BORDER_RADIUS
                     }
                 }
             }
