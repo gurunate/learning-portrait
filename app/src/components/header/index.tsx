@@ -108,14 +108,18 @@ function Header() {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0, md: 'flex'}}>
-            <SettingsIcon sx={{ color: '#006C96',  marginRight: '16px'}}/>
+          <Box sx={{ flexGrow: 0, md: 'flex'}} >
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <SettingsIcon sx={{ color: '#006C96',  marginRight: '16px'}}/>
+            </IconButton>
+          </Tooltip>
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <NotificationsIcon sx={{ color: '#006C96', marginRight: '16px' }}/>
-            <Tooltip title="Open settings">
+          </IconButton>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
               </IconButton>
-            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
