@@ -12,10 +12,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsIcon from '@mui/icons-material/Settings';
-import Tab from '@mui/material/Tab';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { User } from '@/types';
+
+export type HeaderProps = {
+  user: User;
+};
 
 const pages = ['Portraits', 'Evidence'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -109,17 +113,20 @@ function Header() {
           </Box>
 
           <Box sx={{ flexGrow: 0, md: 'flex'}} >
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Tooltip title="To update your settings, email support@learningportrait.com">
+            <IconButton disableRipple sx={{ p: 0,'&:hover': {backgroundColor: '#FCFCFF'}, }}>
               <SettingsIcon sx={{ color: '#006C96',  marginRight: '16px'}}/>
             </IconButton>
           </Tooltip>
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Tooltip title="Coming soon!">
+          <IconButton disableRipple sx={{ p: 0,'&:hover': {backgroundColor: '#FCFCFF'}}}>
             <NotificationsIcon sx={{ color: '#006C96', marginRight: '16px' }}/>
           </IconButton>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          </Tooltip>
+              <IconButton disableRipple onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+              </IconButton><div style={{ display: 'inline-block', color: '#006C96', paddingLeft: '8px' }}>{'Hanna Littlefield'}</div>
+              
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
