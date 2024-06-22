@@ -1,7 +1,5 @@
 import {
-    Box,
     Grid,
-    Paper,
     Table,
     TableBody,
     TableCell,
@@ -28,8 +26,6 @@ const CourseTable: React.FC<CourseTableProps> = (
     props: CourseTableProps
 ): JSX.Element => {
 
-    const COLOR_MAP = ['error', 'success'];
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -54,10 +50,10 @@ const CourseTable: React.FC<CourseTableProps> = (
                     <TableBody>
                         {props.rows.map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                <TableRow hover tabIndex={-1} key={row.code}>
                                     {props.columns.map((column) => {
                                         const value = row[column.id];
-                                        if (column.id === 'name') {
+                                        if (column.id === 'name' || column.id === 'overall') {
                                             return (
                                                 <TableCell key={column.id} align={'left'} sx={{
                                                     position: "sticky",
@@ -65,7 +61,7 @@ const CourseTable: React.FC<CourseTableProps> = (
                                                     background: "white",
                                                     boxShadow: '5px 10px 36px 0px #E7EAEC',
                                                     borderRight: "2px solid #E7EAEC",
-                                                    zIndex: "9999"
+                                                    zIndex: "9990"
                                                 }}>
                                                     {value}
                                                 </TableCell>

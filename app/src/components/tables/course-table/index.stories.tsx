@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Component from '.';
 import GradeSelect from '@/components/grade-select';
 import Rating from '@/components/rating';
-import { Typography } from '@mui/material';
-import { style } from '@mui/system';
 
 const meta = {
     title: 'App / components / tables / Course',
@@ -14,33 +12,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-/*
-    Get Course: 
-
-     type Course {
-        id: String
-        name: String
-        updatedAt: String
-        createdAt: String
-        active: Boolean
-        objectives: [Objective]
-    }
-
-    Get Objectives based on Course ID:
-
-    type Objective {
-        id: String
-        courseId: String
-        name: String
-        updatedAt: String
-        createdAt: String
-        active: Boolean
-    }
-
-
-
-*/ 
 
 export const demo: Story = {
     args: {
@@ -59,7 +30,7 @@ export const demo: Story = {
         rows: [
             {
                 name: 'Amy Jane',
-                overall: <GradeSelect value={['B-']} />,
+                overall: <GradeSelect value={['B-']} onChange={(e) => e.target.value}/>,
                 ratiosPortions: <Rating color='info' variant='filled' label='Approaching' />,
                 vectors: <Rating color='success' variant='filled' label='Mastery' />,
                 matrices:  <Rating color='success' variant='filled' label='Mastery' overRated />,

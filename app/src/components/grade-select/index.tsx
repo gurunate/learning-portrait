@@ -7,7 +7,7 @@ interface GradeSelectProps {
 
 const GradeSelect: React.FC<GradeSelectProps> = ({ value, onChange }) => {
     return (
-        <Select value={value} onChange={onChange} size='small' sx={{ backgroundColor: '#E7EAEC', borderRadius: '8px'}}>
+        <Select aria-label="grade-select" value={value} onChange={onChange} size='small' sx={{ backgroundColor: '#E7EAEC', borderRadius: '8px'}}>
             <MenuItem value={'A+'}>A+</MenuItem>
             <MenuItem value={'A'}>A</MenuItem>
             <MenuItem value={'A-'}>A-</MenuItem>
