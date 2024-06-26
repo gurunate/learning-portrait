@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/image';
+import Link from 'next/link';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,19 +17,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-//import { User } from '@/types';
-
-export type HeaderProps = {
-  user: User;
-  //firstName: string;
-  //lastName: string;
-  //avatar: string;
-};
+export type HeaderProps = {};
 
 const pages = ['Portraits', 'Evidence'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const user = {
+  firstName: "Agaetis",
+  lastName: "Byjrun"
+}
 
-const Header: React.FC<HeaderProps> = ({ user }: HeaderProps): JSX.Element => {
+const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -94,8 +92,9 @@ const Header: React.FC<HeaderProps> = ({ user }: HeaderProps): JSX.Element => {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '24px' }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '24px', 'a:link':{textDecoration: 'none'},  }}>
             {pages.map((page) => (
+              <Link href="#" key={page}>
               <Button
                 disableRipple
                 key={page}
@@ -112,6 +111,7 @@ const Header: React.FC<HeaderProps> = ({ user }: HeaderProps): JSX.Element => {
               >
                 {page}
               </Button>
+              </Link>
             ))}
           </Box>
 
@@ -128,7 +128,7 @@ const Header: React.FC<HeaderProps> = ({ user }: HeaderProps): JSX.Element => {
           </Tooltip>
               <IconButton disableRipple sx={{ p: 0 }}>
                 <Avatar alt="User Avatar" src={"/static/images/avatar/2.jpg"} />
-              </IconButton><div style={{ display: 'inline-block', color: '#006C96', paddingLeft: '8px' }}>{user}</div>
+              </IconButton><div style={{ display: 'inline-block', color: '#006C96', paddingLeft: '8px' }}>{`${user.firstName} ${user.lastName}`}</div>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
