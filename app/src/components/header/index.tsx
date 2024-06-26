@@ -24,8 +24,7 @@ export type HeaderProps = {
 const pages = ['Portraits', 'Evidence'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-
-function Header() {
+const Header: React.FC<HeaderProps> = ({ user }: HeaderProps): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -125,8 +124,7 @@ function Header() {
           </Tooltip>
               <IconButton disableRipple onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="User Avatar" src="/static/images/avatar/2.jpg" />
-              </IconButton><div style={{ display: 'inline-block', color: '#006C96', paddingLeft: '8px' }}>{'Hanna Littlefield'}</div>
-              
+              </IconButton><div style={{ display: 'inline-block', color: '#006C96', paddingLeft: '8px' }}>{user.firstName}</div>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
