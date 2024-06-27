@@ -1,5 +1,3 @@
-'user client';
-
 import Container from "@mui/material/Container";
 import Copyright from "../copyright";
 import React from 'react';
