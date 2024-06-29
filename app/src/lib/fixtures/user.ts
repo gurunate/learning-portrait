@@ -10,7 +10,7 @@ export const user = (): TUser => ({
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     email: faker.internet.email(),
-    avatar: faker.number.int(10) > 3 ? faker.internet.avatar() : undefined
+    avatar: faker.number.int(10) > 3 ? faker.image.avatar() : undefined
 });
 
 /**
