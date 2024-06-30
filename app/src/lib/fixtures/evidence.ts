@@ -10,8 +10,8 @@ export const evidence = (): TEvidence => ({
     name: faker.lorem.words(),
     uploaded: faker.date.recent({ days: 7 }),
     description: faker.lorem.sentence(),
-    teacherRating: 'M',
-    studentRating: 'T',
+    teacherRating: faker.helpers.arrayElement(['T', 'M', 'A', 'E']),
+    studentRating: faker.helpers.arrayElement(['T', 'M', 'A', 'E']),
     starred: faker.number.int(10) > 7
 });
 

@@ -7,11 +7,13 @@ import {
     TableCell,
     TableHead,
     TableRow,
-    Tooltip
+    Tooltip,
+    Typography
 } from '@mui/material';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { objectives } from '@/lib/fixtures';
 
 export type EvidenceTableProps = unknown;
 
@@ -27,13 +29,21 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
             value: 1,
             key: 'I',
             name: 'Incomplete',
-            description: 'Evidence is not complete'
+            description: 'Evidence is not complete',
+            date: '2021-10-01',
+            course: 'Math',
+            objectives: 'Addition',
+            notes: 'Needs more information'
         },
         {
             value: 2,
             key: 'C',
             name: 'Complete',
-            description: 'Evidence is submitted'
+            description: 'Evidence is submitted',
+            date: '2021-10-01',
+            course: 'Math',
+            objectives: 'Ratios & Proportions',
+            notes: 'Good job'
         }
     ];
 
@@ -46,46 +56,37 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                     <TableHead>
                         <TableRow>
                             <TableCell align="left" width={250}>
-                                Name
+                                <Typography variant='subtitle1'
+                                >Date</Typography>
                             </TableCell>
-                            <TableCell align="left">Description</TableCell>
-                            <TableCell width={100} />
-                            <TableCell width={100} />
+                            <TableCell align="left"><Typography variant='subtitle1'>Evidence</Typography></TableCell>
+                            <TableCell align="left"><Typography variant='subtitle1'>Course</Typography></TableCell>
+                            <TableCell align="left"><Typography variant='subtitle1'>Objectives</Typography></TableCell>
+                            <TableCell align="left"><Typography variant='subtitle1'>Notes</Typography></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map(({ value, key, name, description }, idx) => (
+                        {rows.map(({ value, key, name, description, date, course, notes, objectives }, idx) => (
                             <TableRow key={value}>
                                 <TableCell variant="head" align="left">
-                                    {name}
+                                    <Typography variant='body1'>{date}</Typography>
                                 </TableCell>
                                 <TableCell align="left">
-                                    {description}
+                                    <Typography variant='body1'>{description}</Typography>
                                 </TableCell>
-                                <TableCell align="center">
-                                    <Button
-                                        variant="contained"
-                                        // @ts-ignore
-                                        color={COLOR_MAP[idx]}
-                                        endIcon={<ArrowDropDownIcon />}
-                                    >
-                                        {key}
-                                    </Button>
+                                <TableCell align="left">
+                                    <Typography variant='body1'>{course}</Typography>
                                 </TableCell>
-                                <TableCell align="right">
-                                    <Tooltip title="More">
-                                        <IconButton size="small">
-                                            <MoreHorizIcon />
-                                        </IconButton>
-                                    </Tooltip>
+                                <TableCell align="left">
+                                    <Typography variant='body1'>{objectives}</Typography>
+                                </TableCell>
+                                <TableCell align="left">
+                                    <Typography variant='body1'>{notes}</Typography>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-            </Grid>
-            <Grid item xs={12} textAlign="right">
-                <Button variant="contained">Add</Button>
             </Grid>
         </Grid>
     );
