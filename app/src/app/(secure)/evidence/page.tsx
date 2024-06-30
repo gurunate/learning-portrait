@@ -8,9 +8,9 @@ const Page = () => {
      return (
          <section>
              <Box sx={{ paddingBlock: 4 }}>
-                 <Grid container spacing={2}>
+                 <Grid container justifyContent='space-between' spacing={2}>
                      <Grid item xs={2}>
-                         <Typography variant='h4'>Evidence</Typography>
+                         <Typography variant='h4' color='primary'>Evidence</Typography>
                      </Grid>
                      <Grid item xs={2}>
                          Course Dropdown
