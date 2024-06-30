@@ -141,7 +141,7 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
                 root: {
-                    fontWeight: 700,
+                    fontWeight: 500,
                     borderRadius: BORDER_RADIUS,
                     boxShadow: 'none'
                 }
@@ -226,19 +226,19 @@ const theme = createTheme({
         MuiTableHead: {
             styleOverrides: {
                 root: {
-                    borderRadius: BORDER_RADIUS,
+                    borderRadius: 8,
                     background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                     '& .MuiTableCell-root': {
                         background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                         border: 0
                     },
                     'th:first-child': {
-                        borderTopLeftRadius: BORDER_RADIUS,
-                        borderBottomLeftRadius: BORDER_RADIUS
+                        borderTopLeftRadius: 8,
+                        borderBottomLeftRadius: 8
                     },
                     'th:last-child': {
-                        borderTopRightRadius: BORDER_RADIUS,
-                        borderBottomRightRadius: BORDER_RADIUS
+                        borderTopRightRadius: 8,
+                        borderBottomRightRadius: 8
                     }
                 }
             }
