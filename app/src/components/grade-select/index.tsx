@@ -8,19 +8,19 @@ interface GradeSelectProps {
 const GradeSelect: React.FC<GradeSelectProps> = ({ value, onChange }) => {
     return (
         <Select aria-label="grade-select" value={value} onChange={onChange} size='small' sx={{ backgroundColor: '#E7EAEC', borderRadius: '8px'}}>
-            <MenuItem value={'A+'}>A+</MenuItem>
-            <MenuItem value={'A'}>A</MenuItem>
-            <MenuItem value={'A-'}>A-</MenuItem>
-            <MenuItem value={'B+'}>B+</MenuItem>
-            <MenuItem value={'B'}>B</MenuItem>
-            <MenuItem value={'B-'}>B-</MenuItem>
-            <MenuItem value={'C+'}>C+</MenuItem>
-            <MenuItem value={'C'}>C</MenuItem>
-            <MenuItem value={'C-'}>C-</MenuItem>
-            <MenuItem value={'D+'}>D+</MenuItem>
-            <MenuItem value={'D'}>D</MenuItem>
-            <MenuItem value={'D-'}>D-</MenuItem>
-            <MenuItem value={'F'}>F</MenuItem>
+            <MenuItem aria-label="a+" value={'A+'}>A+</MenuItem>
+            <MenuItem aria-label='a' value={'A'}>A</MenuItem>
+            <MenuItem aria-label='a-' value={'A-'}>A-</MenuItem>
+            <MenuItem aria-label='b+' value={'B+'}>B+</MenuItem>
+            <MenuItem aria-label='b' value={'B'}>B</MenuItem>
+            <MenuItem aria-label='b-' value={'B-'}>B-</MenuItem>
+            <MenuItem aria-label='c+' value={'C+'}>C+</MenuItem>
+            <MenuItem aria-label='c' value={'C'}>C</MenuItem>
+            <MenuItem aria-label='c-' value={'C-'}>C-</MenuItem>
+            <MenuItem aria-label='d+' value={'D+'}>D+</MenuItem>
+            <MenuItem aria-label='d' value={'D'}>D</MenuItem>
+            <MenuItem aria-label='c-' value={'D-'}>D-</MenuItem>
+            <MenuItem aria-label='f' value={'F'}>F</MenuItem>
         </Select>
     )
 }

@@ -5,7 +5,13 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    Typography,
 } from '@mui/material';
+import { Course as TCourse, Objective as TObjective, Student as TStudent } from '@/types';
+
+import GradeSelect from '@/components/grade-select';
+import Rating from '@/components/rating';
+import { formatFullName } from '@/lib/utils';
 
 export interface Column {
     id: string;
@@ -14,62 +20,112 @@ export interface Column {
 }
 
 export type CourseTableProps = {
-    columns: readonly Column[];
-    rows: any[];
+    course: TCourse;
+    students: TStudent[];
+    objectives?: TObjective[];
 };
 
 /**
  * @param {CourseTableProps} props
  * @returns {JSX.Element}
  */
-const CourseTable: React.FC<CourseTableProps> = (
-    props: CourseTableProps
-): JSX.Element => {
+const CourseTable: React.FC<CourseTableProps> = ({
+    course,
+    students,
+    objectives
+}: CourseTableProps): JSX.Element => {
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Table aria-label="course table" stickyHeader sx={{ tableLayout: 'fixed'}}>
+                {objectives ?
+                <Table aria-label='course table' stickyHeader sx={{ tableLayout: 'fixed'}}>
                     <TableHead>
                         <TableRow>
-                            {props.columns.map((column) => (
-                                column.id === 'name' ? (
-                                    <TableCell key={'name'} align="center" sx={{ width: 236, position: 'sticky', left: '0', background: 'white', boxShadow: '5px 10px 36px 0px #E7EAEC', borderRight: "2px solid #E7EAEC", zIndex: "9999" }}
+                            <TableCell 
+                                key={'name'} 
+                                align='left' 
+                                sx={{ 
+                                    width: 236, 
+                                    position: 'sticky', 
+                                    left: 0, 
+                                    backgroundColor: 'white', 
+                                    boxShadow: '5px 10px 36px 0px #E7EAEC', 
+                                    borderRight: '2px solid #E7EAEC', 
+                                    zIndex: '9999' 
+                                }}
+                            >
+                                <Typography variant='subtitle2'>Student Name</Typography>
+                            </TableCell>
+                            {objectives.map((column) => (
+                                column.name === 'overall' ? (
+                                    <TableCell 
+                                        key={'name'} 
+                                        align='left' 
+                                        sx={{ 
+                                            width: 172, 
+                                            position: 'sticky', 
+                                            left: 236, 
+                                            backgroundColor: 'white', 
+                                            boxShadow: '5px 10px 36px 0px #E7EAEC', 
+                                            borderRight: '2px solid #E7EAEC', 
+                                            zIndex: '9999' 
+                                        }}
                                     >
-                                        Student Name
-                                    </TableCell>
-                                    ) : (
-                                        <TableCell key={column.id} align="center" sx={{ width: column.minWidth }} >
-                                        {column.label}
-                                    </TableCell>
-                                    )                                
+                                        <Typography variant='subtitle2'>Overall</Typography>
+                                    </TableCell>) : (
+                                    <TableCell 
+                                        key={column.id} 
+                                        align='left' 
+                                        sx={{ width: 172, background: 'white',  }} 
+                                    >
+                                        <Typography variant='subtitle2'>{column.name}</Typography>
+                                    </TableCell>   
+                                )                           
                                 )
                             )}
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.rows.map((row) => {
+                        {students.map((student, idx) => {
+                            const fullName = formatFullName(student) as string;
                             return (
-                                <TableRow hover tabIndex={-1} key={row.code}>
-                                    {props.columns.map((column) => {
-                                        const value = row[column.id];
-                                        if (column.id === 'name' || column.id === 'overall') {
+                                <TableRow hover tabIndex={-1} key={idx}>
+                                    <TableCell 
+                                        key={1} 
+                                        align='left'
+                                        sx={{
+                                            position: 'sticky',
+                                            left: 0,
+                                            backgroundColor: 'white',
+                                            boxShadow: '5px 10px 36px 0px #E7EAEC',
+                                            borderRight: '2px solid #E7EAEC',
+                                            zIndex: '9999'
+                                        }}
+                                    >
+                                        <Typography variant='body1'>{fullName}</Typography>
+                                    </TableCell>
+                                    {objectives.map((column) => {
+                                        const value = '';
+                                        console.log(column)
+                                        console.log(student)
+                                        if (column.name === 'overall') {
                                             return (
-                                                <TableCell key={column.id} align={'left'} sx={{
-                                                    position: "sticky",
-                                                    left: 0,
-                                                    background: "white",
+                                                <TableCell key={column.id} align='left' sx={{
+                                                    position: 'sticky',
+                                                    left: 236,
+                                                    backgroundColor: 'white',
                                                     boxShadow: '5px 10px 36px 0px #E7EAEC',
-                                                    borderRight: "2px solid #E7EAEC",
-                                                    zIndex: "9990"
+                                                    borderRight: '2px solid #E7EAEC',
+                                                    zIndex: '9999'
                                                 }}>
-                                                    {value}
+                                                    <GradeSelect value={value} onChange={(e) => e.target.value}/>
                                                 </TableCell>
                                             )
                                         } else {
                                             return (
-                                                <TableCell key={column.id} align={'center'}>
-                                                    {value}
+                                                <TableCell key={column.id} align='left' sx={{ backgroundColor: 'white' }}>
+                                                    <Rating label='Mastery' color="success" />
                                                 </TableCell>
                                             )
                                         }
@@ -81,6 +137,8 @@ const CourseTable: React.FC<CourseTableProps> = (
                     })}
                     </TableBody>
                 </Table>
+                : <Typography variant='body1'>No Course Data</Typography>
+            }       
             </Grid>
         </Grid>
     );

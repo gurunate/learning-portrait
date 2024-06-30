@@ -128,6 +128,14 @@ const theme = createTheme({
         }
     },
     components: {
+        MuiAutocomplete: {
+            styleOverrides: {
+                root: {
+                    border: 'none',
+                    backgroundColor: COLOR_WHITE
+                }
+            }
+        },
         MuiPaper: {
             styleOverrides: {
                 root: {
@@ -219,7 +227,7 @@ const theme = createTheme({
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    borderRadius: BORDER_RADIUS
+                    borderRadius: '4px'
                 }
             }
         },

@@ -14,8 +14,11 @@ import {
     Student as TStudent
 } from '@/types';
 
+import CourseDropdown from '../course-dropdown';
+import CourseTable from '../tables/course-table';
 import EvidenceDialog from '../dialogs/evidence';
 import { FieldValues } from 'react-hook-form';
+import ObjectivesDropdown from '../objective-dropdown';
 import React from 'react';
 import StudentsTable from '../tables/students-table';
 
@@ -54,23 +57,17 @@ const Dashboard: React.FC<DashboardProps> = ({
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
-                <Grid item md={6}>
+                <Grid item md={2}>
                     <FormControl fullWidth>
-                        <Select
-                            labelId="course-label"
-                            id="course"
-                            value={courses[0]?.id}
-                            aria-label="Courses"
-                        >
-                            {courses.map(({ id, name }) => (
-                                <MenuItem key={id} value={id}>
-                                    {name}
-                                </MenuItem>
-                            ))}
-                        </Select>
+                       <CourseDropdown courses={courses} />
                     </FormControl>
                 </Grid>
-                <Grid item md={6}>
+                <Grid item md={2}>
+                    <FormControl fullWidth>
+                       <ObjectivesDropdown objectives={courses[0].objectives} />
+                    </FormControl>
+                </Grid>
+                {/*<Grid item md={6}>
                     <Stack
                         direction="row"
                         justifyContent="flex-end"
@@ -87,21 +84,23 @@ const Dashboard: React.FC<DashboardProps> = ({
                             Add Evidence
                         </Button>
                     </Stack>
-                </Grid>
+                </Grid>*/}
                 <Grid item md={12}>
-                    <StudentsTable
+                    <CourseTable
+                        course={courses[0]} 
                         objectives={courses[0]?.objectives}
                         students={students}
                     />
+                    {/*<CourseTable course={courses[0]} students={[]} />*/}
                 </Grid>
             </Grid>
-            <EvidenceDialog
+            {/*<EvidenceDialog
                 open={openEvidenceDialog}
                 onClose={handleAddEvidenceClose}
                 courses={courses}
                 objectives={courses[0]?.objectives}
                 onSubmit={handleSubmit}
-            />
+            />*/}
         </>
     );
 };
