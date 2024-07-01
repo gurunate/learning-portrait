@@ -46,11 +46,12 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                     <TableHead>
                         <TableRow>
                             <TableCell align="left" width={250}>
-                                Name
+                                Date
                             </TableCell>
-                            <TableCell align="left">Description</TableCell>
-                            <TableCell width={100} />
-                            <TableCell width={100} />
+                            <TableCell align="left">Evidence</TableCell>
+                            <TableCell align="left">Course</TableCell>
+                            <TableCell width={100}>Objectives</TableCell>
+                            <TableCell width={100}>Notes</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
