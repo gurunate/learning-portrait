@@ -4,6 +4,7 @@ export { message, messages } from './message';
 export { objective, objectives } from './objective';
 export { student, students } from './student';
 export { user, users } from './user';
+export { note, notes } from './note';
 
 /**
  * Returns a randomized entry from the provided list.

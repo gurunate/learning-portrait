@@ -10,7 +10,7 @@ export const student = (): TStudent => ({
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     email: faker.internet.email(),
-    avatar: faker.internet.avatar()
+    avatar: faker.image.avatar()
     // ratings?: Rating[];
 });
 
