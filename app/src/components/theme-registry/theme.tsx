@@ -4,10 +4,11 @@ import { createTheme } from '@mui/material/styles';
 
 // Color schema from Figma
 export const BORDER_RADIUS = 12;
-const COLOR_0_SECONDARY = '#F7941D';
-const COLOR_2_SUCCESS = '#009512';
-const COLOR_3_ALERT = '#F75151';
-const COLOR_ADDITIONAL_BLUE1 = '#23ADDE';
+const COLOR_0_WARNING = '#ED6C02';
+const COLOR_0_SECONDARY = '#8F3F02';
+const COLOR_2_SUCCESS = '#2E7D32';
+const COLOR_3_ALERT = '#D32F2f';
+const COLOR_ADDITIONAL_BLUE1 = '#0288D1';
 const COLOR_BACKGROUND = '#F4F7F7';
 const COLOR_DARK_2 = '#47464A';
 const COLOR_DARK_3 = '#84818A';
@@ -17,7 +18,7 @@ const COLOR_LIGHT_LP_2 = '#8DA97E';
 const COLOR_WHITE = '#FFFFFF';
 const LINE_LINE1 = '#DCDBDD';
 const LP_02_SECONDARY = '#3C5255';
-const PRIMARY_LP = '#006B96';
+const PRIMARY_LP = '#006C96';
 
 const theme = createTheme({
     palette: {
@@ -48,9 +49,9 @@ const theme = createTheme({
             dark: darken(COLOR_3_ALERT, 0.25)
         },
         warning: {
-            light: lighten(COLOR_0_SECONDARY, 0.25),
-            main: COLOR_0_SECONDARY,
-            dark: darken(COLOR_0_SECONDARY, 0.25)
+            light: lighten(COLOR_0_WARNING, 0.25),
+            main: COLOR_0_WARNING,
+            dark: darken(COLOR_0_WARNING, 0.25)
         },
         info: {
             light: lighten(COLOR_ADDITIONAL_BLUE1, 0.25),
@@ -71,7 +72,7 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: ['"Poppins"', 'sans-serif'].join(','),
+        fontFamily: ['"Inter"', 'sans-serif'].join(','),
         fontSize: 14,
         htmlFontSize: 16,
         fontWeightLight: 300,
@@ -79,10 +80,11 @@ const theme = createTheme({
         fontWeightMedium: 600,
         fontWeightBold: 700,
         body1: {
-            fontSize: 14,
+            fontSize: 13,
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: '24px'
+            lineHeight: '24px',
+            letterSpacing: '0.5px'
         },
         body2: {
             fontSize: 12
@@ -141,7 +143,7 @@ const theme = createTheme({
         MuiButton: {
             styleOverrides: {
                 root: {
-                    fontWeight: 700,
+                    fontWeight: 500,
                     borderRadius: BORDER_RADIUS,
                     boxShadow: 'none'
                 }
@@ -226,19 +228,19 @@ const theme = createTheme({
         MuiTableHead: {
             styleOverrides: {
                 root: {
-                    borderRadius: BORDER_RADIUS,
+                    borderRadius: 8,
                     background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                     '& .MuiTableCell-root': {
                         background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                         border: 0
                     },
                     'th:first-child': {
-                        borderTopLeftRadius: BORDER_RADIUS,
-                        borderBottomLeftRadius: BORDER_RADIUS
+                        borderTopLeftRadius: 8,
+                        borderBottomLeftRadius: 8
                     },
                     'th:last-child': {
-                        borderTopRightRadius: BORDER_RADIUS,
-                        borderBottomRightRadius: BORDER_RADIUS
+                        borderTopRightRadius: 8,
+                        borderBottomRightRadius: 8
                     }
                 }
             }
