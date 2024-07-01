@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Component from '.';
 import { faker } from '@faker-js/faker';
+import { options } from 'numeral';
 
 const meta = {
     title: 'App / components / Note',
@@ -8,8 +9,12 @@ const meta = {
     component: Component,
     argTypes: {
         note: {
-            description: 'Object: Note object',
-            control: { type: 'object'}
+            description: 'Body of note',
+            control: { type: 'text'}
+        },
+        dateCreated: {
+            description: 'Date note was created',
+            control: { type: 'date'},
         },
         onDelete: {
             description: 'Function to handle deleting the note.',
@@ -17,9 +22,13 @@ const meta = {
         onEdit: {
             description: 'Function to handle editing the note.',
         },
-        user: { 
-            description: 'user object with required fields: `name  ` & `role`.',
-            control: { type: 'object' }
+        username: { 
+            description: 'user name to display',
+            control: { type: 'text' }
+        },
+        role: {
+            description: 'role of user',
+            control: {type: 'select', options: ['teacher', 'student']},
         }
     },
 } satisfies Meta<typeof Component>;
@@ -29,13 +38,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Demo: Story = {
     args: { 
-        note: {
-            body: faker.lorem.lines(5),
-            dateCreated: new Date()
-        },
-        user: {
-            name: 'Gustav M',
-            role: 'teacher',
-        }
+        note: faker.lorem.lines(5),
+        dateCreated: new Date(),
+        username: faker.person.fullName(),
+        role: faker.helpers.arrayElement(['teacher', 'student']),
     }
 };
