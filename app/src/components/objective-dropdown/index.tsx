@@ -10,12 +10,12 @@ import TextField from '@mui/material/TextField';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" sx={{ backgroundColor: "primary" }} />;
 
-export type ObjectivesDropdownProps ={
-    objectives: TObjective[];
+export type ObjectivesDropdownProps = {
+    objectives: TObjective[] | undefined;
 }
 
 const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
-    objectives = []}: ObjectivesDropdownProps): JSX.Element =>{
+    objectives = []}) =>{
   return (
     <Autocomplete
       multiple
@@ -35,9 +35,10 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
           {option.name}
         </li>
       )}
-      style={{ width: 500 }}
       renderInput={(params) => (
-        <TextField {...params} label="Objectives" />
+        <TextField 
+          {...params} 
+        />
       )}
     />
   );
