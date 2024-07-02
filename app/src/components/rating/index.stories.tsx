@@ -24,6 +24,12 @@ const meta = {
             },
             options: ['filled', 'outlined'],
         },
+        underRated: {
+            description: 'A down arrow indicates that student rating is lower than the teacher rating',
+        },
+        overRated: {
+            description: 'Arrow going up indicates that student rating is higher than the teacher rating',
+        }
     },
 } satisfies Meta<typeof Component>;
 

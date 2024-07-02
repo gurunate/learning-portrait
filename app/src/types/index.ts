@@ -6,3 +6,4 @@ export type { Objective } from './objective';
 export type { Assessment } from './assessment';
 export type { Student } from './student';
 export type { User } from './user';
+export type { Note } from './note';

@@ -4,7 +4,7 @@ import {
     FormControl,
     MenuItem,
     Select,
-    SelectChangeEvent
+    SelectChangeEvent,
 } from '@mui/material';
 
 import React from 'react';
@@ -14,10 +14,10 @@ export type CourseSelectProps = {
     courses: TCourse[];
 };
 
-const CourseSelect: React.FC<CourseSelectProps> = ({
-    courses = []
+const CourseDropdown: React.FC<CourseSelectProps> = ({
+    courses = [],
 }: CourseSelectProps): JSX.Element => {
-    const [course, setCourse] = React.useState('');
+    const [course, setCourse] = React.useState(courses[0].name);
 
     const handleChange = (event: SelectChangeEvent) => {
         setCourse(event.target.value as string);
@@ -29,13 +29,12 @@ const CourseSelect: React.FC<CourseSelectProps> = ({
                 <Select
                     labelId="course-label"
                     id="course"
-                    value={course}
+                    value={courses[0].id}
                     aria-label="Courses"
                     onChange={handleChange}
                     sx={{
                         borderRadius: '4px',
                         border: '1px solid #D5D9DB',
-                        width: '273px'
                     }}
                 >
                     {courses
@@ -51,4 +50,4 @@ const CourseSelect: React.FC<CourseSelectProps> = ({
         </>
     );
 };
-export default CourseSelect;
+export default CourseDropdown;
