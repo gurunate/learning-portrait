@@ -8,7 +8,6 @@ import { REQUIRED_FIELD_MESSAGE } from '@/lib/constants';
 export const evidenceSchema = yup.object().shape({
     files: yup.array().of(yup.mixed()),
     name: yup.string().nullable().required(REQUIRED_FIELD_MESSAGE),
-    title: yup.string().nullable().required(REQUIRED_FIELD_MESSAGE),
     course: yup
         .array()
         .of(yup.string().nullable().required(REQUIRED_FIELD_MESSAGE))

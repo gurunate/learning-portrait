@@ -40,6 +40,7 @@ import FileUploadCard from '../../file-upload-card';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ObjectivesDropdown from '@/components/objective-dropdown';
 import React from 'react';
+import courses from '../apply-objective/courses';
 import { evidenceSchema } from '../evidence/schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -90,7 +91,7 @@ const EvidenceDrawer: React.FC<EvidenceDialogProps> = ({
         resolver: yupResolver(evidenceSchema),
         defaultValues: {
             files: [],
-            title: '',
+            name: '',
             course: [],
             objective: [],
             description: ''
@@ -109,7 +110,7 @@ const EvidenceDrawer: React.FC<EvidenceDialogProps> = ({
         name: 'files'
     });
 
-    const { field: titleField } = useController({
+    const { field: nameField } = useController({
         control,
         name: 'name'
     });
@@ -218,9 +219,9 @@ const EvidenceDrawer: React.FC<EvidenceDialogProps> = ({
                                     <Grid item container spacing={2}>
                                         <Grid item sm={12}>
                                             <TextField
-                                                {...titleField}
+                                                {...nameField}
                                                 error={Boolean(
-                                                    get(errors, titleField.name)
+                                                    get(errors, nameField.name)
                                                 )}
                                                 label="Title*"
                                                 fullWidth

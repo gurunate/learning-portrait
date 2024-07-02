@@ -9,6 +9,7 @@ import {
     DialogContent,
     DialogProps,
     DialogTitle,
+    Drawer,
     FormControl,
     Grid,
     IconButton,
@@ -141,6 +142,10 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         console.log('handlePublish');
     };
 
+    const toggleDrawer = (newOpen: boolean) => () => {
+        setOpen(newOpen);
+      };
+      
     const handleCoursesChange = (event: SelectChangeEvent<string[]>) => {
         const {
             target: { value }
@@ -173,7 +178,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     );
 
     return (
-        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="lg">
+        <Drawer open={open} anchor="right" onClose={toggleDrawer(false)}>
             <FormProvider {...methods}>
                 {devtool && <DevTool control={control} placement="top-right" />}
                 <Box p={2}>
@@ -424,7 +429,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                     </form>
                 </Box>
             </FormProvider>
-        </Dialog>
+        </Drawer>
     );
 };
 
