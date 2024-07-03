@@ -49,11 +49,11 @@ const Page = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1'>Your notes</Typography>
-                            <Note note={{ body: 'This is a note', dateCreated: new Date() }} onDelete={() => {}} onEdit={() => {}} user={{ name: 'John Doe', role: 'teacher' }} />
+                            <Note note='This is a note' dateCreated={new Date()} onDelete={() => {}} onEdit={() => {}} username='John Doe' role='teacher' />
                         </Grid>
                         <Grid item xs={6}>
                             <Typography variant='subtitle1'>Student notes</Typography>
-                            <Note note={{ body: 'This is a note', dateCreated: new Date() }} onDelete={() => {}} onEdit={() => {}} user={{ name: 'Jane Doe', role: 'student' }} />
+                            <Note note='This is a note' dateCreated={new Date()} onDelete={() => {}} onEdit={() => {}} username='Jane Doe' role='student' />
                         </Grid>
                     </Grid>
                 ) : null }

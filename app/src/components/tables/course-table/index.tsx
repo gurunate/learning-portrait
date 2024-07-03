@@ -52,7 +52,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     backgroundColor: 'white', 
                                     boxShadow: '5px 10px 36px 0px #E7EAEC', 
                                     borderRight: '2px solid #E7EAEC', 
-                                    zIndex: '9999' 
+                                    zIndex: '50' 
                                 }}
                             >
                                 <Typography variant='subtitle2'>Student Name</Typography>
@@ -69,7 +69,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             backgroundColor: 'white', 
                                             boxShadow: '5px 10px 36px 0px #E7EAEC', 
                                             borderRight: '2px solid #E7EAEC', 
-                                            zIndex: '9999' 
+                                            zIndex: '50' 
                                         }}
                                     >
                                         <Typography variant='subtitle2'>Overall</Typography>
@@ -100,7 +100,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             backgroundColor: 'white',
                                             boxShadow: '5px 10px 36px 0px #E7EAEC',
                                             borderRight: '2px solid #E7EAEC',
-                                            zIndex: '9999'
+                                            zIndex: '50'
                                         }}
                                     >
                                         <Typography variant='body1'>{fullName}</Typography>
@@ -117,7 +117,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                                     backgroundColor: 'white',
                                                     boxShadow: '5px 10px 36px 0px #E7EAEC',
                                                     borderRight: '2px solid #E7EAEC',
-                                                    zIndex: '9999'
+                                                    zIndex: '50'
                                                 }}>
                                                     <GradeSelect value={value} onChange={(e) => e.target.value}/>
                                                 </TableCell>
