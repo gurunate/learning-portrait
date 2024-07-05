@@ -57,7 +57,7 @@ const Dashboard: React.FC<DashboardProps> = ({
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
-                <Grid item md={2}>
+                <Grid item md={2} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
                        <CourseDropdown courses={courses} />
                     </FormControl>
@@ -85,7 +85,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                         </Button>
                     </Stack>
                 </Grid>*/}
-                <Grid item md={12}>
+                <Grid item md={12} sx={{ overflow: 'scroll'}}>
                     <CourseTable
                         course={courses[0]} 
                         objectives={courses[0]?.objectives}

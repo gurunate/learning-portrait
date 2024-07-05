@@ -47,9 +47,9 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
 
 
   return (
-    <AppBar position="static" sx={{backgroundColor: '#FCFCFF', borderRadius: '0', border: '1px solid #E7EAEC', boxShadow: 'none', color: 'black'}}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar position="static" sx={{backgroundColor: '#FCFCFF', borderRadius: '0', border: '1px solid #E7EAEC', boxShadow: 'none', color: 'black', width: '100%'}}>
+      <Box>
+        <Toolbar>
           <Image
           src='/logo.svg'
           alt='Learning Portrait Logo'
@@ -153,7 +153,7 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
             </Menu>
           </Box>
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   );
 }
