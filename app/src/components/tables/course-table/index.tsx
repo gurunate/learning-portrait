@@ -54,7 +54,8 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     left: 0,  
                                     borderTop: '1px solid #E7EAEC', 
                                     borderBottom: '1px solid #E7EAEC',
-                                    zIndex: '9999' 
+                                    borderRight: '1px solid #E7EAEC', 
+                                    zIndex: '50' 
                                 }}
                             >
                                 <Typography variant='subtitle2'>Student Name</Typography>
@@ -71,8 +72,8 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             backgroundColor: 'white', 
                                             boxShadow: '5px 10px 36px 0px #E7EAEC', 
                                             borderTop: '1px solid #E7EAEC', 
-                                            borderRight: '1px solid #E7EAEC', 
-                                            zIndex: '9999' 
+                                            borderRight: '1px solid #E7EAEC',
+                                            zIndex: '50' 
                                         }}
                                     >
                                         <Typography variant='subtitle2'>Overall</Typography>
@@ -128,8 +129,9 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             backgroundColor: 'white',
                                             borderBottom: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
-                                            boxShadow: '5px 10px 36px 0px #0000001F',
-                                            zIndex: '999'
+                                            boxShadow: '5px 10px 36px 0px #E7EAEC',
+                                            borderRight: '2px solid #E7EAEC',
+                                            zIndex: '50'
                                         }}
                                     >
                                         <Typography variant='body1'>{fullName}</Typography>
@@ -143,7 +145,8 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                                     left: 236,
                                                     backgroundColor: 'white',
                                                     borderBottom: '1px solid #E7EAEC',
-                                                    zIndex: '9999'
+                                                    borderRight: '2px solid #E7EAEC',
+                                                    zIndex: '50'
                                                 }}>
                                                     <GradeSelect value={column.key as ''} onChange={(e) => e.target.value}/>
                                                 </TableCell>
