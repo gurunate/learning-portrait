@@ -3,4 +3,5 @@ export type Objective = {
     name: string;
     key: string;
     description?: string;
+    subObjectives?: Objective[];
 };
