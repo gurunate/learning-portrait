@@ -12,7 +12,6 @@ import { Course as TCourse, Objective as TObjective, Student as TStudent } from 
 import GradeSelect from '@/components/grade-select';
 import Rating from '@/components/rating';
 import { formatFullName } from '@/lib/utils';
-import { has } from 'lodash';
 
 export interface Column {
     id: string;
@@ -53,7 +52,6 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     position: 'sticky', 
                                     left: 0,  
                                     borderTop: '1px solid #E7EAEC', 
-                                    borderBottom: '1px solid #E7EAEC',
                                     borderRight: '1px solid #E7EAEC', 
                                     zIndex: '50' 
                                 }}
@@ -68,8 +66,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                         sx={{ 
                                             minWidth: 172, 
                                             position: 'sticky', 
-                                            left: 236, 
-                                            backgroundColor: 'white', 
+                                            left: 236,  
                                             boxShadow: '5px 10px 36px 0px #E7EAEC', 
                                             borderTop: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
@@ -82,7 +79,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                         key={column.id} 
                                         align='left' 
                                         colSpan={hasSubObjectives ? (column.subObjectives ?? []).length : 1}
-                                        sx={{ minWidth: 172, background: 'white', borderTop: '1px solid #E7EAEC', borderLRight: '1px solid #E7EAEC'}} 
+                                        sx={{ minWidth: 172, borderTop: '1px solid #E7EAEC', borderRight: '1px solid #E7EAEC'}} 
                                     >
                                         <Typography variant='subtitle2'>{column.name}</Typography>
                                     </TableCell>    
@@ -99,6 +96,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     top: 48, 
                                     borderRadius: 0,
                                     borderBottom: '1px solid #E7EAEC',
+                                    borderRight: '1px solid #E7EAEC',
                                     zIndex: '9999' 
                                 }} />
                                 {objectives.map((column) => (
@@ -106,7 +104,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     <TableCell 
                                         key={subObjective.id} 
                                         align='left' 
-                                        sx={{ minWidth: 172, position: 'sticky', top: 48, backgroundColor: 'white',borderTop: '1px solid #E7EAEC', borderRight: '1px solid #E7EAEC'}} 
+                                        sx={{ minWidth: 172, position: 'sticky', top: 48, borderRight: '1px solid #E7EAEC'}} 
                                     >
                                         <Typography variant='subtitle2'>{subObjective.name}</Typography>
                                     </TableCell>
@@ -130,7 +128,6 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             borderBottom: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
                                             boxShadow: '5px 10px 36px 0px #E7EAEC',
-                                            borderRight: '2px solid #E7EAEC',
                                             zIndex: '50'
                                         }}
                                     >

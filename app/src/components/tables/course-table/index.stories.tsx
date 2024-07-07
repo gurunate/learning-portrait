@@ -25,7 +25,7 @@ studs.map(student => {
             return {
                 id: faker.string.uuid,
                 objectiveId: objective.id,
-                value: faker.helpers.arrayElement(['Mastery', 'Approaching', 'Not yet', 'Needs help']),
+                value: faker.helpers.arrayElement(['Approaching', 'Mastery',  'Not yet', 'Needs help']),
                 warning: faker.helpers.arrayElement(['true', 'false']),
                 error: faker.helpers.arrayElement(['true', 'false']),
             }
