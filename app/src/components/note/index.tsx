@@ -10,6 +10,7 @@ export type NoteProps = {
     onEdit: () => void;
     username: string; 
     role: 'teacher' | 'student';
+    width?: number;
 };
 
 /**
@@ -18,7 +19,7 @@ export type NoteProps = {
  */
 const Note = (props: NoteProps): JSX.Element => {
     return (
-        <Card sx={{ width: 300 }} variant='outlined'>
+        <Card sx={{ width: props.width || 300 }} variant='outlined'>
           <CardContent>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography variant="subtitle1" color="text.secondary">
