@@ -260,11 +260,11 @@ const theme = createTheme({
                         background: `var(--color-light-lp-2, linear-gradient(0deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 100%), ${COLOR_LIGHT_LP_2})`,
                         border: 0
                     },*/
-                    'th:first-child': {
+                    'th:first-type-of': {
                         borderTopLeftRadius: 8,
                         //borderBottomLeftRadius: 8
                     },
-                    'th:last-child': {
+                    'th:last-type-of': {
                         borderTopRightRadius: 8,
                         //borderBottomRightRadius: 8
                     }
