@@ -11,10 +11,14 @@ import {
     DialogTitle,
     Drawer,
     FormControl,
+    FormControlLabel,
+    FormLabel,
     Grid,
     IconButton,
     InputLabel,
     MenuItem,
+    Radio,
+    RadioGroup,
     Select,
     SelectChangeEvent,
     Stack,
@@ -29,14 +33,16 @@ import {
     useController,
     useForm
 } from 'react-hook-form';
+import React, { useState } from 'react';
 import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
+import CourseDropdown from '@/components/course-dropdown';
+import Courses from '../apply-objective/courses';
 import { DevTool } from '@hookform/devtools';
 import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
-import React from 'react';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -146,6 +152,9 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         setOpen(newOpen);
       };
       
+      function setOpen(newOpen: boolean) {
+        throw new Error('Function not implemented.');
+    }
     const handleCoursesChange = (event: SelectChangeEvent<string[]>) => {
         const {
             target: { value }
@@ -158,6 +167,19 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         );
     };
 
+    // Radio Button Logic
+    const [selectedOption, setSelectedOption] = useState('all');
+    const [selectedStudent, setSelectedStudent] = useState('')
+    const handleRadioChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedOption(event.target.value); // Update selected radio button option
+        setSelectedStudent(''); // Reset selected student when radio button changes
+    };
+
+    const handleStudentChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedStudent(event.target.value); // Update selected student
+    };
+
+    
     const handleObjectivesChange = (event: SelectChangeEvent<string[]>) => {
         const {
             target: { value }
@@ -178,7 +200,9 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     );
 
     return (
-        <Drawer open={open} anchor="right" onClose={toggleDrawer(false)}>
+        <Drawer open={open} anchor="right" onClose={toggleDrawer(false)} PaperProps={{
+            sx: { width: "472px" },
+          }}>
             <FormProvider {...methods}>
                 {devtool && <DevTool control={control} placement="top-right" />}
                 <Box p={2}>
@@ -189,7 +213,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 justifyContent="space-between"
                                 alignItems="center"
                             >
-                                <Typography variant="h3">Evidence</Typography>
+                                <Typography variant="h3">New Evidence</Typography>
                                 <Tooltip title="Close">
                                     <IconButton
                                         aria-label="close"
@@ -203,7 +227,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                             </Stack>
                         </DialogTitle>
                         <DialogContent>
-                            <Grid container direction="row" spacing={4}>
+                            <Grid container direction="column" spacing={4} paddingTop={1}>
                                 <Grid
                                     item
                                     sm={4}
@@ -213,11 +237,6 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                     alignItems="stretch"
                                     spacing={2}
                                 >
-                                    <Grid item>
-                                        <FileUploadCard
-                                            onChange={handleFileUploadChange}
-                                        />
-                                    </Grid>
                                     <Grid item container spacing={2}>
                                         <Grid item sm={12}>
                                             <TextField
@@ -225,7 +244,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                 error={Boolean(
                                                     get(errors, nameField.name)
                                                 )}
-                                                label="Name"
+                                                label="Title"
                                                 fullWidth
                                             />
                                         </Grid>
@@ -302,6 +321,40 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                         )
                                                     )}
                                                 </Select>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item>
+                                            <FileUploadCard
+                                                onChange={handleFileUploadChange}
+                                            />
+                                        </Grid>
+                                        <Grid item sm={12}>
+                                        <FormControl>
+                                            <FormLabel id="radio-buttons-group-label">Students*</FormLabel>
+                                            <RadioGroup
+                                                aria-label="Students"
+                                                name="radio-buttons-group"
+                                                value={selectedOption}
+                                                onChange={handleRadioChange}
+                                            >
+                                                <FormControlLabel value="all" control={<Radio />} label="All" />
+                                                <FormControlLabel value="specific" control={<Radio />} label="Specific Student(s)" />
+                                            </RadioGroup>
+                                            {selectedOption === 'specific' && (
+                                                <FormControl>
+                                                    <Select
+                                                        value={selectedStudent}
+                                                        onChange={handleStudentChange}
+                                                        displayEmpty
+                                                        inputProps={{ 'aria-label': 'Select student' }}
+                                                    >
+                                                        <MenuItem value="" disabled>Select Student</MenuItem>
+                                                        <MenuItem value="student1">Student 1</MenuItem>
+                                                        <MenuItem value="student2">Student 2</MenuItem>
+                                                        <MenuItem value="student3">Student 3</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            )}
                                             </FormControl>
                                         </Grid>
                                         <Grid item sm={12}>
