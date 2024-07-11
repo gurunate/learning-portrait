@@ -82,6 +82,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     devtool = false,
     initialValue,
     objectives: objectivesProp,
+    courses = [],
     onClose,
     onError,
     onSubmit,
@@ -326,6 +327,11 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         <Grid item>
                                             <FileUploadCard
                                                 onChange={handleFileUploadChange}
+                                            />
+                                        </Grid>
+                                        <Grid item>
+                                            <CourseDropdown
+                                                courses={courses}
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
