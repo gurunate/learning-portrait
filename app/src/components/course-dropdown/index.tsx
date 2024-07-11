@@ -12,26 +12,24 @@ import { Course as TCourse } from '@/types';
 
 export type CourseSelectProps = {
     courses: TCourse[];
+    onHandleChange: (event: SelectChangeEvent) => void;
+    value: string;
 };
 
 const CourseDropdown: React.FC<CourseSelectProps> = ({
     courses = [],
+    onHandleChange,
+    value,
 }: CourseSelectProps): JSX.Element => {
-    const [course, setCourse] = React.useState(courses[0].name);
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setCourse(event.target.value as string);
-    };
-
     return (
         <>
             <FormControl fullWidth>
                 <Select
                     labelId="course-label"
                     id="course"
-                    value={courses[0].id}
+                    value={value}
                     aria-label="Courses"
-                    onChange={handleChange}
+                    onChange={onHandleChange}
                     sx={{
                         borderRadius: '4px',
                         border: '1px solid #D5D9DB',

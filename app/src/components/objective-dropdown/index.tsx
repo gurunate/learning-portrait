@@ -12,36 +12,50 @@ const checkedIcon = <CheckBoxIcon fontSize="small" sx={{ backgroundColor: "prima
 
 export type ObjectivesDropdownProps = {
     objectives: TObjective[] | undefined;
+    value?: TObjective[] | undefined;
+    inputValue?: string | undefined;
+    onHandleChange?: (event: any, value: TObjective[] | undefined) => void;
+    onHandleInputChange?: (event: any, value: string) => void;
 }
 
 const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
-    objectives = []}) =>{
-  return (
-    <Autocomplete
-      multiple
-      id="objectives-dropdown"
-      options={objectives}
-      disableCloseOnSelect
-      getOptionLabel={(option) => option.name}
-      renderOption={(props, option, { selected }) => (
-        <li {...props}>
-          <Checkbox
-            icon={icon}
-            checkedIcon={checkedIcon}
-            style={{ marginRight: 8}}
-            checked={selected}
+    objectives = [],
+    value,
+    inputValue,
+    onHandleChange,
+    onHandleInputChange
+  }) => {
+      
+      return (
+        <Autocomplete
+          multiple
+          id="objectives-dropdown"
+          options={objectives}
+          onChange={onHandleChange}
+          value={value}
+          inputValue={inputValue}
+          onInputChange={onHandleInputChange}
+          disableCloseOnSelect
+          getOptionLabel={(option) => option.name}
+          renderOption={(props, option, { selected }) => (
+            <li {...props}>
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8}}
+                checked={selected}
 
-          />
-          {option.name}
-        </li>
-      )}
-      renderInput={(params) => (
-        <TextField 
-          {...params} 
+              />
+              {option.name}
+            </li>
+          )}
+          renderInput={(params) => (
+            <TextField 
+              {...params} 
+            />
+          )}
         />
-      )}
-    />
-  );
+      );
 };
 
 export default ObjectivesDropdown

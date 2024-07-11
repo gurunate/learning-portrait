@@ -130,7 +130,6 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             borderBottom: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
                                             boxShadow: '5px 10px 36px 0px #E7EAEC',
-                                            borderRight: '2px solid #E7EAEC',
                                             zIndex: '50'
                                         }}
                                     >
