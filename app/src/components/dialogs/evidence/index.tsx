@@ -214,7 +214,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 justifyContent="space-between"
                                 alignItems="center"
                             >
-                                <Typography variant="h3">New Evidence</Typography>
+                                <Typography variant="h4">New Evidence</Typography>
                                 <Tooltip title="Close">
                                     <IconButton
                                         aria-label="close"
@@ -240,13 +240,19 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 >
                                     <Grid item container spacing={2}>
                                         <Grid item sm={12}>
+                                        <Typography variant="subtitle1">Title</Typography>
                                             <TextField
                                                 {...nameField}
                                                 error={Boolean(
                                                     get(errors, nameField.name)
                                                 )}
-                                                label="Title"
                                                 fullWidth
+                                            />
+                                        </Grid>
+                                        <Grid item sm={12}>
+                                        <Typography variant="subtitle1">Course*</Typography>
+                                            <CourseDropdown
+                                                courses={courses}
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
@@ -324,14 +330,11 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-                                        <Grid item>
+                                        <Grid item sm={12}>
+                                        <Typography variant="subtitle1">Image</Typography>
                                             <FileUploadCard
+                                            
                                                 onChange={handleFileUploadChange}
-                                            />
-                                        </Grid>
-                                        <Grid item>
-                                            <CourseDropdown
-                                                courses={courses}
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
@@ -352,6 +355,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                         value={selectedStudent}
                                                         onChange={handleStudentChange}
                                                         displayEmpty
+                                                        fullWidth
                                                         inputProps={{ 'aria-label': 'Select student' }}
                                                     >
                                                         <MenuItem value="" disabled>Select Student</MenuItem>
@@ -364,6 +368,9 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             </FormControl>
                                         </Grid>
                                         <Grid item sm={12}>
+                                        </Grid>
+                                        <Grid item sm={12}>
+                                        <Typography variant="subtitle1">Objective(s)</Typography>
                                             <FormControl fullWidth>
                                                 <InputLabel
                                                     id="objective-label"
@@ -438,33 +445,10 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                 </Select>
                                             </FormControl>
                                         </Grid>
-                                        {uploadedOn && (
-                                            <Grid item sm={12} mt={2}>
-                                                <Typography
-                                                    variant="h6"
-                                                    color="textSecondary"
-                                                >
-                                                    <Stack
-                                                        direction="row"
-                                                        alignItems="center"
-                                                        spacing={2}
-                                                    >
-                                                        <InsertInvitationIcon
-                                                            sx={{
-                                                                color: 'text.secondary'
-                                                            }}
-                                                        />
-                                                        <span>
-                                                            Uploaded on{' '}
-                                                            {uploadedOn}
-                                                        </span>
-                                                    </Stack>
-                                                </Typography>
-                                            </Grid>
-                                        )}
                                     </Grid>
                                 </Grid>
-                                <Grid item sm={8}>
+                                <Grid item sm={12}>
+                                <Typography variant="subtitle1">Notes</Typography>
                                     <Editor
                                         defaultValue={initialValue}
                                         onEditorChange={

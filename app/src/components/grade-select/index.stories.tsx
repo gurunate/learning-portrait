@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Component from '.';
 
 const meta = {
-    title: 'App / components / select / grade',
+    title: 'App / components / select / Grade',
     component: Component,
     tags: ['autodocs']
 } satisfies Meta<typeof Component>;
@@ -12,7 +12,8 @@ type Story = StoryObj<typeof meta>;
 
 export const demo: Story = {
     args: {
-        value: '',
+        defaultValue: 'C',
+        value: 'C' as '' | string[] | undefined,
         onChange: (event) => {
             console.log(event);
         }
