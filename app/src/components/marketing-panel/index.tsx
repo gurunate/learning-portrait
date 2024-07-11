@@ -14,7 +14,7 @@ const MarketingPanel: React.FC<MarketingPanelProps> = props => (
             Simple. Flexible. Empowering.
         </Typography>
         <Typography variant="h3" color="white">
-            A grade book that thinks like you do.
+            A gradebook that thinks like you do.
         </Typography>
         <Typography paragraph variant="subtitle1" color="white">
             Learning Portrait was built from the ground up to think like, and
