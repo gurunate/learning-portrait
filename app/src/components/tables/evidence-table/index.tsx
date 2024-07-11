@@ -10,10 +10,12 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
+import { note, objectives } from '@/lib/fixtures';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { objectives } from '@/lib/fixtures';
+import { faker } from '@faker-js/faker';
+import { useState } from 'react';
 
 export type EvidenceTableProps = unknown;
 
@@ -33,7 +35,8 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
             date: '2021-10-01',
             course: 'Math',
             objectives: 'Addition',
-            notes: 'Needs more information'
+            objectiveShortName: 'Add',
+            notes: faker.lorem.sentence(25)
         },
         {
             value: 2,
@@ -43,7 +46,8 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
             date: '2021-10-01',
             course: 'Math',
             objectives: 'Ratios & Proportions',
-            notes: 'Good job'
+            objectiveShortName: 'R&P',
+            notes: 'Good job!  You are off to a great start!'
         }
     ];
 
@@ -66,7 +70,7 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map(({ value, key, name, description, date, course, notes, objectives }, idx) => (
+                        {rows.map(({ value, key, name, description, date, course, notes, objectives, objectiveShortName }, idx) => (
                             <TableRow key={value}>
                                 <TableCell variant="head" align="left">
                                     <Typography variant='body1'>{date}</Typography>
@@ -78,10 +82,21 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                                     <Typography variant='body1'>{course}</Typography>
                                 </TableCell>
                                 <TableCell align="left">
-                                    <Typography variant='body1'>{objectives}</Typography>
+                                    <Typography variant='body1'><strong>{objectiveShortName}:</strong>{objectives}</Typography>
                                 </TableCell>
                                 <TableCell align="left">
-                                    <Typography variant='body1'>{notes}</Typography>
+                                    <Tooltip title={notes}>
+                                        <Typography sx={{ 
+                                            maxWidth: 250, 
+                                            textOverflow: 'ellipsis', 
+                                            overflow: 'hidden',
+                                            whiteSpace: 'nowrap',
+                                            }} 
+                                            variant='body1'
+                                        >
+                                            {notes}
+                                        </Typography>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))}
