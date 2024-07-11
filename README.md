@@ -4,7 +4,7 @@
 
 # Learning Portrait
 
-A grade book that thinks as you do.
+A gradebook that thinks as you do.
 
 ## Overview
 
