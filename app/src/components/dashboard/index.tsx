@@ -1,12 +1,9 @@
 'use client';
 
 import {
-    Button,
     FormControl,
     Grid,
-    MenuItem,
-    Select,
-    Stack
+    SelectChangeEvent,
 } from '@mui/material';
 import {
     Course as TCourse,
@@ -16,11 +13,9 @@ import {
 
 import CourseDropdown from '../course-dropdown';
 import CourseTable from '../tables/course-table';
-import EvidenceDialog from '../dialogs/evidence';
 import { FieldValues } from 'react-hook-form';
 import ObjectivesDropdown from '../objective-dropdown';
 import React from 'react';
-import StudentsTable from '../tables/students-table';
 
 export type DashboardProps = {
     courses: TCourse[];
@@ -38,6 +33,9 @@ const Dashboard: React.FC<DashboardProps> = ({
     students = []
 }: DashboardProps): JSX.Element => {
     const [openEvidenceDialog, setOpenEvidenceDialog] = React.useState(false);
+    const [activeCourse, setActiveCourse] = React.useState<TCourse>(courses[0]);
+    const [value, setValue] = React.useState<TObjective[] | undefined>(undefined);
+    const [inputValue, setInputValue] = React.useState('');
 
     const handleAddEvidenceClick = () => {
         setOpenEvidenceDialog(true);
@@ -45,6 +43,10 @@ const Dashboard: React.FC<DashboardProps> = ({
 
     const handleAddEvidenceClose = () => {
         setOpenEvidenceDialog(false);
+    };
+
+    const handleCourseChange = (event: SelectChangeEvent) => {
+        setActiveCourse(courses.filter(course => course.id === event.target.value)[0]);
     };
 
     const handleSubmit = (data: FieldValues) => {
@@ -57,14 +59,20 @@ const Dashboard: React.FC<DashboardProps> = ({
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
-                <Grid item md={2} sx={{ mx: '16px' }}>
+                <Grid item sm={12} md={2} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
-                       <CourseDropdown courses={courses} />
+                       <CourseDropdown courses={courses} onHandleChange={handleCourseChange} value={activeCourse.id} />
                     </FormControl>
                 </Grid>
-                <Grid item md={2}>
+                <Grid item sm={12} md={2}>
                     <FormControl fullWidth>
-                       <ObjectivesDropdown objectives={courses[0].objectives} />
+                       <ObjectivesDropdown 
+                            objectives={activeCourse.objectives}
+                            value={value} 
+                            onHandleChange={(event, val) => setValue(val)}
+                            inputValue={inputValue}
+                            onHandleInputChange={(event, val) => setInputValue(val)}
+                        />
                     </FormControl>
                 </Grid>
                 {/*<Grid item md={6}>
@@ -87,8 +95,8 @@ const Dashboard: React.FC<DashboardProps> = ({
                 </Grid>*/}
                 <Grid item md={12} sx={{ overflow: 'scroll'}}>
                     <CourseTable
-                        course={courses[0]} 
-                        objectives={courses[0]?.objectives}
+                        course={activeCourse} 
+                        objectives={value || activeCourse.objectives}
                         students={students}
                     />
                     {/*<CourseTable course={courses[0]} students={[]} />*/}
