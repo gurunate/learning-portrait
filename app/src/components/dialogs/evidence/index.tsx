@@ -372,7 +372,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         <Grid item sm={12}>
                                         <Typography variant="subtitle1">Objective(s)</Typography>
                                             <FormControl fullWidth>
-                                                <InputLabel
+                                                {/*<InputLabel
                                                     id="objective-label"
                                                     error={Boolean(
                                                         get(
@@ -382,7 +382,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                     )}
                                                 >
                                                     Objective
-                                                </InputLabel>
+                                                </InputLabel>*/}
                                                 <Select
                                                     {...objectiveField}
                                                     id={objectiveField.name}
@@ -463,10 +463,10 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 variant="outlined"
                                 onClick={handleSaveDraft}
                             >
-                                Save Draft
+                                Cancel
                             </Button>
                             <Button type="submit" variant="contained">
-                                Publish
+                                Save
                             </Button>
                         </DialogActions>
                     </form>
