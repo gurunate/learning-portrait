@@ -43,6 +43,7 @@ import { DevTool } from '@hookform/devtools';
 import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import ObjectivesDropdown from '@/components/objective-dropdown';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -370,19 +371,12 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         <Grid item sm={12}>
                                         </Grid>
                                         <Grid item sm={12}>
-                                        <Typography variant="subtitle1">Objective(s)</Typography>
+                                            <Typography variant="subtitle1">Objective(s)</Typography>
+                                            <ObjectivesDropdown
+                                                objectives={objectivesProp}
+                                            />
+                                            {/*
                                             <FormControl fullWidth>
-                                                {/*<InputLabel
-                                                    id="objective-label"
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            objectiveField.name
-                                                        )
-                                                    )}
-                                                >
-                                                    Objective
-                                                </InputLabel>*/}
                                                 <Select
                                                     {...objectiveField}
                                                     id={objectiveField.name}
@@ -444,7 +438,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                                     )}
                                                 </Select>
                                             </FormControl>
-                                        </Grid>
+                                        </Grid>*/}
                                     </Grid>
                                 </Grid>
                                 <Grid item sm={12}>
@@ -456,6 +450,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         }
                                     />
                                 </Grid>
+                            </Grid>
                             </Grid>
                         </DialogContent>
                         <DialogActions>
