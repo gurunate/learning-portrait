@@ -44,6 +44,7 @@ import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ObjectivesDropdown from '@/components/objective-dropdown';
+import { border } from '@mui/system';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -257,81 +258,6 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
-                                            <FormControl fullWidth>
-                                                <InputLabel
-                                                    id="course-label"
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            courseField.name
-                                                        )
-                                                    )}
-                                                >
-                                                    Course
-                                                </InputLabel>
-                                                <Select
-                                                    {...courseField}
-                                                    id={courseField.name}
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            courseField.name
-                                                        )
-                                                    )}
-                                                    labelId="course-label"
-                                                    label="Course"
-                                                    multiple
-                                                    onChange={
-                                                        handleCoursesChange
-                                                    }
-                                                    renderValue={(
-                                                        selected: string[]
-                                                    ) => (
-                                                        <Box
-                                                            sx={{
-                                                                display: 'flex',
-                                                                flexWrap:
-                                                                    'wrap',
-                                                                gap: 0.5
-                                                            }}
-                                                        >
-                                                            {selected.map(
-                                                                value => (
-                                                                    <Chip
-                                                                        key={
-                                                                            value
-                                                                        }
-                                                                        label={
-                                                                            coursesProp.find(
-                                                                                ({
-                                                                                    id
-                                                                                }) =>
-                                                                                    id ===
-                                                                                    value
-                                                                            )
-                                                                                ?.name
-                                                                        }
-                                                                    />
-                                                                )
-                                                            )}
-                                                        </Box>
-                                                    )}
-                                                    MenuProps={MenuProps}
-                                                >
-                                                    {coursesProp.map(
-                                                        ({ id, name }) => (
-                                                            <MenuItem
-                                                                key={id}
-                                                                value={id}
-                                                            >
-                                                                {name}
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </Select>
-                                            </FormControl>
-                                        </Grid>
-                                        <Grid item sm={12}>
                                         <Typography variant="subtitle1">Image</Typography>
                                             <FileUploadCard
                                             
@@ -375,70 +301,6 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             <ObjectivesDropdown
                                                 objectives={objectivesProp}
                                             />
-                                            {/*
-                                            <FormControl fullWidth>
-                                                <Select
-                                                    {...objectiveField}
-                                                    id={objectiveField.name}
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            objectiveField.name
-                                                        )
-                                                    )}
-                                                    labelId="objective-label"
-                                                    label="Objective"
-                                                    multiple
-                                                    onChange={
-                                                        handleObjectivesChange
-                                                    }
-                                                    renderValue={(
-                                                        selected: string[]
-                                                    ) => (
-                                                        <Box
-                                                            sx={{
-                                                                display: 'flex',
-                                                                flexWrap:
-                                                                    'wrap',
-                                                                gap: 0.5
-                                                            }}
-                                                        >
-                                                            {selected.map(
-                                                                value => (
-                                                                    <Chip
-                                                                        key={
-                                                                            value
-                                                                        }
-                                                                        label={
-                                                                            objectivesProp?.find(
-                                                                                ({
-                                                                                    id
-                                                                                }) =>
-                                                                                    id ===
-                                                                                    value
-                                                                            )
-                                                                                ?.name
-                                                                        }
-                                                                    />
-                                                                )
-                                                            )}
-                                                        </Box>
-                                                    )}
-                                                    MenuProps={MenuProps}
-                                                >
-                                                    {objectivesProp?.map(
-                                                        ({ id, name }) => (
-                                                            <MenuItem
-                                                                key={id}
-                                                                value={id}
-                                                            >
-                                                                {name}
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </Select>
-                                            </FormControl>
-                                        </Grid>*/}
                                     </Grid>
                                 </Grid>
                                 <Grid item sm={12}>
@@ -456,11 +318,14 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                         <DialogActions>
                             <Button
                                 variant="outlined"
-                                onClick={handleSaveDraft}
+                                onClick={handleClose}
+                                sx={{border: '2px solid #006C96', padding: '13px, 24px, 13px, 24px'}}
                             >
-                                Cancel
+                                <Typography variant='subtitle2'>
+                                    Cancel
+                                </Typography>
                             </Button>
-                            <Button type="submit" variant="contained">
+                            <Button type="submit" variant="contained" sx={{border: '2px solid #006C96', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}>
                                 Save
                             </Button>
                         </DialogActions>
