@@ -1,27 +1,47 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { Suspense, useState } from "react"
+import { fetchQuery, gql } from "@/lib/fetch-client";
 
+import CourseDropdown from "@/components/course-dropdown";
 import EvidenceTable from "@/components/tables/evidence-table";
 
-const Page = () => {
+const PAGE_LOAD_QUERIES = gql`
+    query Courses {
+        courses {
+            id
+            name
+            objectives {
+                name
+                id
+            }
+        }
+    }
+`;
 
+const Page = async () => {
+    const { data } = await fetchQuery(PAGE_LOAD_QUERIES);
+
+    const { courses } = data ?? {};
+    
      return (
          <section>
-             <Box sx={{ paddingBlock: 4 }}>
+             <Box sx={{ padding: 4 }}>
                  <Grid container justifyContent='space-between' spacing={2}>
                      <Grid item xs={2}>
                          <Typography variant='h4' color='primary'>Evidence</Typography>
                      </Grid>
                      <Grid item xs={2}>
-                         Course Dropdown
+                         <CourseDropdown courses={courses} />
                      </Grid>
                  </Grid>
              </Box>
-             <Box sx={{ paddingBlock: 4 }}>
+             <Box sx={{ paddingInline: 4, paddingBlock: 8 }}>
                  <Button variant='contained' sx={{ marginBlock: 2, float: 'right' }}>Add Evidence</Button>
              </Box>
              <Suspense fallback={<p>Loading...</p>}>
-                 <EvidenceTable />
+                <Paper sx={{ margin: 4, border: '1px solid #E7EAEC' }}>
+                    <EvidenceTable />
+                </Paper>
              </Suspense>
          </section>
      )

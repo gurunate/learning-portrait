@@ -190,29 +190,21 @@ const theme = createTheme({
                     [`&.MuiChip-outlined.MuiChip-colorSuccess`]: {
                         backgroundColor: 'none',
                         color: COLOR_2_SUCCESS,
-                        borderWidth: '1px',
-                        border: 'solid',
                         borderColor: COLOR_2_SUCCESS   
                     },
                     [`&.MuiChip-outlined.MuiChip-colorInfo`]: {
                         backgroundColor: 'none',
                         color: PRIMARY_LP,
-                        borderWidth: '1px',
-                        border: 'solid',
                         borderColor: PRIMARY_LP
                     },
                     [`&.MuiChip-outlined.MuiChip-colorError`]: {
                         backgroundColor: 'none',
                         color: COLOR_3_ALERT,
-                        borderWidth: '1px',
-                        border: 'solid',
                         borderColor: COLOR_3_ALERT
                     },
                     [`&.MuiChip-outlined.MuiChip-colorWarning`]: {
                         backgroundColor: 'none',
                         color: COLOR_DARK_2,
-                        borderWidth: '1px',
-                        border: 'solid',
                         borderColor: COLOR_0_SECONDARY
                     }
                 },
