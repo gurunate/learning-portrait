@@ -56,7 +56,7 @@ export const POST = async (request: Request) => {
             data
         });
 
-        Response.json(section);
+        return Response.json(section);
     } catch (error) {
         log.error({ error }, 'Sections POST');
         return Response.json(error, { status: 409 });
