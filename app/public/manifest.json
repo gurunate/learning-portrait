@@ -1,7 +1,7 @@
 {
     "name": "Learning Portrait",
     "short_name": "LP",
-    "description": "A grade book that thinks like you do.",
+    "description": "A gradebook that thinks like you do.",
     "background_color": "#f4f7f7",
     "display": "standalone",
     "scope": ".",

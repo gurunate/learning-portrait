@@ -15,7 +15,7 @@ const Page = () => {
 
 export const metadata: Metadata = {
     title: 'Profile | Learning Portrait',
-    description: 'A grade book that thinks like you do.'
+    description: 'A gradebook that thinks like you do.'
 };
 
 export default Page;
