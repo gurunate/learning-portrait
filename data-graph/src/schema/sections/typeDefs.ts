@@ -26,6 +26,7 @@ export const typeDefs = gql`
 
     input SectionInput {
         id: String
+        courseId: String!
         name: String!
         active: Boolean
     }
