@@ -19,7 +19,7 @@ const ComingSoon: React.FC = () => (
             </Link>
         </Box>
         <Typography variant="h3">
-            A grade book that thinks like you do.
+            A gradebook that thinks like you do.
         </Typography>
     </Stack>
 );

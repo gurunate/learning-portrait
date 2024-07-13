@@ -83,7 +83,7 @@ const Page = ({ params }: { params: { id: string } }) => (
 
 export const metadata: Metadata = {
     title: 'Student Profile | Learning Portrait',
-    description: 'A grade book that thinks like you do.'
+    description: 'A gradebook that thinks like you do.'
 };
 
 export default Page;

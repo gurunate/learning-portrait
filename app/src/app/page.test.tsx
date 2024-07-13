@@ -9,7 +9,7 @@ describe('Home page', () => {
         render(<Page />);
 
         expect(screen.getByRole('heading')).toHaveTextContent(
-            'A grade book that thinks like you do.'
+            'A gradebook that thinks like you do.'
         );
     });
 });

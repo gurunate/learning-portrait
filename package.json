@@ -1,6 +1,6 @@
 {
   "name": "learning-portrait",
-  "description": "A grade book that thinks like you do.",
+  "description": "A gradebook that thinks like you do.",
   "packageManager": "yarn@4.2.2",
   "license": "UNLICENSED",
   "private": true,
