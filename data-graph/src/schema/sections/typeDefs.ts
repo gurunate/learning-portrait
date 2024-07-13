@@ -2,31 +2,29 @@ import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
     extend type Query {
-        courses: [Course]!
+        sections: [Section]!
     }
 
     extend type Mutation {
-        addCourse(input: CourseInput!): Course!
-        updateCourse(input: CourseInput!): Course!
-        deleteCourse(input: CourseIdInput!): Course!
+        addSection(input: SectionInput!): Section!
+        updateSection(input: SectionInput!): Section!
+        deleteSection(input: SectionIdInput!): Section!
     }
 
-    type Course {
+    type Section {
         id: String
         name: String
         description: String
         updatedAt: String
         createdAt: String
         active: Boolean
-        objectives: [Objective]
-        sections: [Section]
     }
 
-    input CourseIdInput {
+    input SectionIdInput {
         id: String!
     }
 
-    input CourseInput {
+    input SectionInput {
         id: String
         name: String!
         active: Boolean
