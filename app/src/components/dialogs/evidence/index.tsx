@@ -3,8 +3,6 @@
 import {
     Box,
     Button,
-    Chip,
-    Dialog,
     DialogActions,
     DialogContent,
     DialogProps,
@@ -15,13 +13,11 @@ import {
     FormLabel,
     Grid,
     IconButton,
-    InputLabel,
     MenuItem,
-    Radio,
-    RadioGroup,
     Select,
     SelectChangeEvent,
     Stack,
+    Switch,
     TextField,
     Tooltip,
     Typography
@@ -38,13 +34,10 @@ import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import CourseDropdown from '@/components/course-dropdown';
-import Courses from '../apply-objective/courses';
 import { DevTool } from '@hookform/devtools';
 import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
-import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ObjectivesDropdown from '@/components/objective-dropdown';
-import { border } from '@mui/system';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -53,6 +46,7 @@ export { evidenceSchema } from './schema';
 export type { EvidenceFormValues } from './schema';
 
 export type EvidenceDialogProps = DialogProps & {
+    selectAllStudents: boolean;
     courses: TCourse[];
     devtool?: boolean;
     initialValue?: string;
@@ -83,13 +77,13 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     courses: coursesProp,
     devtool = false,
     initialValue,
+    selectAllStudents = true,
     objectives: objectivesProp,
     courses = [],
     onClose,
     onError,
     onSubmit,
-    open,
-    uploadedOn
+    open
 }: EvidenceDialogProps): JSX.Element => {
     const methods = useForm({
         mode: 'onSubmit',
@@ -170,13 +164,16 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         );
     };
 
-    // Radio Button Logic
-    const [selectedOption, setSelectedOption] = useState('all');
-    const [selectedStudent, setSelectedStudent] = useState('')
-    const handleRadioChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setSelectedOption(event.target.value); // Update selected radio button option
-        setSelectedStudent(''); // Reset selected student when radio button changes
+    // Student Switch Logic
+    const handleSwitchChange = (event) => {
+        setAllStudentsSelected(event.target.checked);
+        // Clear the selected student when switching to 'All'
+        if (event.target.checked) {
+            setSelectedStudent('');
+        }
     };
+    const [allStudentsSelected, setAllStudentsSelected] = useState(true);
+    const [selectedStudent, setSelectedStudent] = useState('')
 
     const handleStudentChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setSelectedStudent(event.target.value); // Update selected student
@@ -202,9 +199,14 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         [filesField]
     );
 
+    const [activeCourse, setActiveCourse] = React.useState<TCourse>(courses[0]);
+    const handleCourseChange = (event: SelectChangeEvent) => {
+        setActiveCourse(courses.filter(course => course.id === event.target.value)[0]);
+    };
+
     return (
         <Drawer open={open} anchor="right" onClose={toggleDrawer(false)} PaperProps={{
-            sx: { width: "472px" },
+            sx: { width: "472px", borderRadius: '0px' },
           }}>
             <FormProvider {...methods}>
                 {devtool && <DevTool control={control} placement="top-right" />}
@@ -215,6 +217,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 direction="row"
                                 justifyContent="space-between"
                                 alignItems="center"
+                                sx={{padding: '0px'}}
                             >
                                 <Typography variant="h4">New Evidence</Typography>
                                 <Tooltip title="Close">
@@ -254,29 +257,23 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         <Grid item sm={12}>
                                         <Typography variant="subtitle1">Course*</Typography>
                                             <CourseDropdown
+                                                onHandleChange={handleCourseChange} 
+                                                value={activeCourse.id}
                                                 courses={courses}
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
-                                        <Typography variant="subtitle1">Image</Typography>
-                                            <FileUploadCard
-                                            
-                                                onChange={handleFileUploadChange}
-                                            />
-                                        </Grid>
-                                        <Grid item sm={12}>
                                         <FormControl>
-                                            <FormLabel id="radio-buttons-group-label">Students*</FormLabel>
-                                            <RadioGroup
-                                                aria-label="Students"
-                                                name="radio-buttons-group"
-                                                value={selectedOption}
-                                                onChange={handleRadioChange}
-                                            >
-                                                <FormControlLabel value="all" control={<Radio />} label="All" />
-                                                <FormControlLabel value="specific" control={<Radio />} label="Specific Student(s)" />
-                                            </RadioGroup>
-                                            {selectedOption === 'specific' && (
+                                            <Grid component="label" container alignItems="center" spacing={1}>
+                                                <FormLabel id="switch-label" sx={{paddingLeft: '10px'}}>Students: </FormLabel>
+                                                <FormControlLabel control={
+                                                    <Switch 
+                                                        defaultChecked={selectAllStudents}
+                                                        checked={allStudentsSelected}
+                                                        onChange={handleSwitchChange}
+                                                    />} label="All"sx={{paddingLeft: '5px'}} />
+                                            </Grid>
+                                            {allStudentsSelected === false && (
                                                 <FormControl>
                                                     <Select
                                                         value={selectedStudent}
@@ -295,15 +292,19 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             </FormControl>
                                         </Grid>
                                         <Grid item sm={12}>
-                                        </Grid>
-                                        <Grid item sm={12}>
                                             <Typography variant="subtitle1">Objective(s)</Typography>
                                             <ObjectivesDropdown
                                                 objectives={objectivesProp}
                                             />
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid item sm={12}>
+                                    <Grid item sm={12}>
+                                            <FileUploadCard
+                                            
+                                                onChange={handleFileUploadChange}
+                                            />
+                                        </Grid>
+                                    <Grid item sm={12} height={250}>
                                 <Typography variant="subtitle1">Notes</Typography>
                                     <Editor
                                         defaultValue={initialValue}
@@ -312,21 +313,23 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         }
                                     />
                                 </Grid>
-                            </Grid>
+                                </Grid>
                             </Grid>
                         </DialogContent>
                         <DialogActions>
                             <Button
                                 variant="outlined"
                                 onClick={handleClose}
-                                sx={{border: '2px solid #006C96', padding: '13px, 24px, 13px, 24px'}}
+                                sx={{width: '106px', gap: '10px', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}
                             >
                                 <Typography variant='subtitle2'>
                                     Cancel
                                 </Typography>
                             </Button>
-                            <Button type="submit" variant="contained" sx={{border: '2px solid #006C96', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}>
-                                Save
+                            <Button type="submit" variant="contained" sx={{width: '106px', gap: '10px', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}>
+                                <Typography variant='subtitle2'>
+                                    Add
+                                </Typography>
                             </Button>
                         </DialogActions>
                     </form>
