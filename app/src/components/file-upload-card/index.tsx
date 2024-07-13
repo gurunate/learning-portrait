@@ -25,7 +25,7 @@ const FileUploadCard: React.FC<FileUploadCardProps> = ({
     // }, [acceptedFiles, onChange]);
 
     return (
-        <Card sx={{ backgroundColor: 'edge.light' }} className="container">
+        <Card sx={{ backgroundColor: 'edge.light'}} className="container">
             <CardContent {...getRootProps({ className: 'dropzone' })}>
                 {!isEmpty(acceptedFiles) && (
                     <ul>
@@ -45,17 +45,11 @@ const FileUploadCard: React.FC<FileUploadCardProps> = ({
                         justifyContent="center"
                         alignItems="center"
                         spacing={1}
+                        sx={{padding: '0px'}}
                     >
-                        <ImageIcon
-                            sx={{
-                                width: 45,
-                                height: 45,
-                                color: 'edge.dark'
-                            }}
-                        />
                         <input {...getInputProps()} />
                         <Typography variant="h6" color="textSecondary">
-                            Drag & Drop or upload
+                            Drag & Drop or upload files
                         </Typography>
                     </Stack>
                     <Button

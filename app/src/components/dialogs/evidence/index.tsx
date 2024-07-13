@@ -3,20 +3,21 @@
 import {
     Box,
     Button,
-    Chip,
-    Dialog,
     DialogActions,
     DialogContent,
     DialogProps,
     DialogTitle,
+    Drawer,
     FormControl,
+    FormControlLabel,
+    FormLabel,
     Grid,
     IconButton,
-    InputLabel,
     MenuItem,
     Select,
     SelectChangeEvent,
     Stack,
+    Switch,
     TextField,
     Tooltip,
     Typography
@@ -28,14 +29,15 @@ import {
     useController,
     useForm
 } from 'react-hook-form';
+import React, { useState } from 'react';
 import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
+import CourseDropdown from '@/components/course-dropdown';
 import { DevTool } from '@hookform/devtools';
 import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
-import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
-import React from 'react';
+import ObjectivesDropdown from '@/components/objective-dropdown';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -44,6 +46,7 @@ export { evidenceSchema } from './schema';
 export type { EvidenceFormValues } from './schema';
 
 export type EvidenceDialogProps = DialogProps & {
+    selectAllStudents: boolean;
     courses: TCourse[];
     devtool?: boolean;
     initialValue?: string;
@@ -74,12 +77,13 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     courses: coursesProp,
     devtool = false,
     initialValue,
+    selectAllStudents = true,
     objectives: objectivesProp,
+    courses = [],
     onClose,
     onError,
     onSubmit,
-    open,
-    uploadedOn
+    open
 }: EvidenceDialogProps): JSX.Element => {
     const methods = useForm({
         mode: 'onSubmit',
@@ -141,6 +145,13 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         console.log('handlePublish');
     };
 
+    const toggleDrawer = (newOpen: boolean) => () => {
+        setOpen(newOpen);
+      };
+      
+      function setOpen(newOpen: boolean) {
+        throw new Error('Function not implemented.');
+    }
     const handleCoursesChange = (event: SelectChangeEvent<string[]>) => {
         const {
             target: { value }
@@ -153,6 +164,22 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         );
     };
 
+    // Student Switch Logic
+    const handleSwitchChange = (event) => {
+        setAllStudentsSelected(event.target.checked);
+        // Clear the selected student when switching to 'All'
+        if (event.target.checked) {
+            setSelectedStudent('');
+        }
+    };
+    const [allStudentsSelected, setAllStudentsSelected] = useState(true);
+    const [selectedStudent, setSelectedStudent] = useState('')
+
+    const handleStudentChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedStudent(event.target.value); // Update selected student
+    };
+
+    
     const handleObjectivesChange = (event: SelectChangeEvent<string[]>) => {
         const {
             target: { value }
@@ -172,8 +199,15 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
         [filesField]
     );
 
+    const [activeCourse, setActiveCourse] = React.useState<TCourse>(courses[0]);
+    const handleCourseChange = (event: SelectChangeEvent) => {
+        setActiveCourse(courses.filter(course => course.id === event.target.value)[0]);
+    };
+
     return (
-        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="lg">
+        <Drawer open={open} anchor="right" onClose={toggleDrawer(false)} PaperProps={{
+            sx: { width: "472px", borderRadius: '0px' },
+          }}>
             <FormProvider {...methods}>
                 {devtool && <DevTool control={control} placement="top-right" />}
                 <Box p={2}>
@@ -183,8 +217,9 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                 direction="row"
                                 justifyContent="space-between"
                                 alignItems="center"
+                                sx={{padding: '0px'}}
                             >
-                                <Typography variant="h3">Evidence</Typography>
+                                <Typography variant="h4">New Evidence</Typography>
                                 <Tooltip title="Close">
                                     <IconButton
                                         aria-label="close"
@@ -198,7 +233,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                             </Stack>
                         </DialogTitle>
                         <DialogContent>
-                            <Grid container direction="row" spacing={4}>
+                            <Grid container direction="column" spacing={4} paddingTop={1}>
                                 <Grid
                                     item
                                     sm={4}
@@ -208,199 +243,69 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                     alignItems="stretch"
                                     spacing={2}
                                 >
-                                    <Grid item>
-                                        <FileUploadCard
-                                            onChange={handleFileUploadChange}
-                                        />
-                                    </Grid>
                                     <Grid item container spacing={2}>
                                         <Grid item sm={12}>
+                                        <Typography variant="subtitle1">Title</Typography>
                                             <TextField
                                                 {...nameField}
                                                 error={Boolean(
                                                     get(errors, nameField.name)
                                                 )}
-                                                label="Name"
                                                 fullWidth
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
-                                            <FormControl fullWidth>
-                                                <InputLabel
-                                                    id="course-label"
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            courseField.name
-                                                        )
-                                                    )}
-                                                >
-                                                    Course
-                                                </InputLabel>
-                                                <Select
-                                                    {...courseField}
-                                                    id={courseField.name}
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            courseField.name
-                                                        )
-                                                    )}
-                                                    labelId="course-label"
-                                                    label="Course"
-                                                    multiple
-                                                    onChange={
-                                                        handleCoursesChange
-                                                    }
-                                                    renderValue={(
-                                                        selected: string[]
-                                                    ) => (
-                                                        <Box
-                                                            sx={{
-                                                                display: 'flex',
-                                                                flexWrap:
-                                                                    'wrap',
-                                                                gap: 0.5
-                                                            }}
-                                                        >
-                                                            {selected.map(
-                                                                value => (
-                                                                    <Chip
-                                                                        key={
-                                                                            value
-                                                                        }
-                                                                        label={
-                                                                            coursesProp.find(
-                                                                                ({
-                                                                                    id
-                                                                                }) =>
-                                                                                    id ===
-                                                                                    value
-                                                                            )
-                                                                                ?.name
-                                                                        }
-                                                                    />
-                                                                )
-                                                            )}
-                                                        </Box>
-                                                    )}
-                                                    MenuProps={MenuProps}
-                                                >
-                                                    {coursesProp.map(
-                                                        ({ id, name }) => (
-                                                            <MenuItem
-                                                                key={id}
-                                                                value={id}
-                                                            >
-                                                                {name}
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </Select>
+                                        <Typography variant="subtitle1">Course*</Typography>
+                                            <CourseDropdown
+                                                onHandleChange={handleCourseChange} 
+                                                value={activeCourse.id}
+                                                courses={courses}
+                                            />
+                                        </Grid>
+                                        <Grid item sm={12}>
+                                        <FormControl>
+                                            <Grid component="label" container alignItems="center" spacing={1}>
+                                                <FormLabel id="switch-label" sx={{paddingLeft: '10px'}}>Students: </FormLabel>
+                                                <FormControlLabel control={
+                                                    <Switch 
+                                                        defaultChecked={selectAllStudents}
+                                                        checked={allStudentsSelected}
+                                                        onChange={handleSwitchChange}
+                                                    />} label="All"sx={{paddingLeft: '5px'}} />
+                                            </Grid>
+                                            {allStudentsSelected === false && (
+                                                <FormControl>
+                                                    <Select
+                                                        value={selectedStudent}
+                                                        onChange={handleStudentChange}
+                                                        displayEmpty
+                                                        fullWidth
+                                                        inputProps={{ 'aria-label': 'Select student' }}
+                                                    >
+                                                        <MenuItem value="" disabled>Select Student</MenuItem>
+                                                        <MenuItem value="student1">Student 1</MenuItem>
+                                                        <MenuItem value="student2">Student 2</MenuItem>
+                                                        <MenuItem value="student3">Student 3</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            )}
                                             </FormControl>
                                         </Grid>
                                         <Grid item sm={12}>
-                                            <FormControl fullWidth>
-                                                <InputLabel
-                                                    id="objective-label"
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            objectiveField.name
-                                                        )
-                                                    )}
-                                                >
-                                                    Objective
-                                                </InputLabel>
-                                                <Select
-                                                    {...objectiveField}
-                                                    id={objectiveField.name}
-                                                    error={Boolean(
-                                                        get(
-                                                            errors,
-                                                            objectiveField.name
-                                                        )
-                                                    )}
-                                                    labelId="objective-label"
-                                                    label="Objective"
-                                                    multiple
-                                                    onChange={
-                                                        handleObjectivesChange
-                                                    }
-                                                    renderValue={(
-                                                        selected: string[]
-                                                    ) => (
-                                                        <Box
-                                                            sx={{
-                                                                display: 'flex',
-                                                                flexWrap:
-                                                                    'wrap',
-                                                                gap: 0.5
-                                                            }}
-                                                        >
-                                                            {selected.map(
-                                                                value => (
-                                                                    <Chip
-                                                                        key={
-                                                                            value
-                                                                        }
-                                                                        label={
-                                                                            objectivesProp?.find(
-                                                                                ({
-                                                                                    id
-                                                                                }) =>
-                                                                                    id ===
-                                                                                    value
-                                                                            )
-                                                                                ?.name
-                                                                        }
-                                                                    />
-                                                                )
-                                                            )}
-                                                        </Box>
-                                                    )}
-                                                    MenuProps={MenuProps}
-                                                >
-                                                    {objectivesProp?.map(
-                                                        ({ id, name }) => (
-                                                            <MenuItem
-                                                                key={id}
-                                                                value={id}
-                                                            >
-                                                                {name}
-                                                            </MenuItem>
-                                                        )
-                                                    )}
-                                                </Select>
-                                            </FormControl>
+                                            <Typography variant="subtitle1">Objective(s)</Typography>
+                                            <ObjectivesDropdown
+                                                objectives={objectivesProp}
+                                            />
                                         </Grid>
-                                        {uploadedOn && (
-                                            <Grid item sm={12} mt={2}>
-                                                <Typography
-                                                    variant="h6"
-                                                    color="textSecondary"
-                                                >
-                                                    <Stack
-                                                        direction="row"
-                                                        alignItems="center"
-                                                        spacing={2}
-                                                    >
-                                                        <InsertInvitationIcon
-                                                            sx={{
-                                                                color: 'text.secondary'
-                                                            }}
-                                                        />
-                                                        <span>
-                                                            Uploaded on{' '}
-                                                            {uploadedOn}
-                                                        </span>
-                                                    </Stack>
-                                                </Typography>
-                                            </Grid>
-                                        )}
                                     </Grid>
-                                </Grid>
-                                <Grid item sm={8}>
+                                    <Grid item sm={12}>
+                                            <FileUploadCard
+                                            
+                                                onChange={handleFileUploadChange}
+                                            />
+                                        </Grid>
+                                    <Grid item sm={12} height={250}>
+                                <Typography variant="subtitle1">Notes</Typography>
                                     <Editor
                                         defaultValue={initialValue}
                                         onEditorChange={
@@ -408,23 +313,29 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         }
                                     />
                                 </Grid>
+                                </Grid>
                             </Grid>
                         </DialogContent>
                         <DialogActions>
                             <Button
                                 variant="outlined"
-                                onClick={handleSaveDraft}
+                                onClick={handleClose}
+                                sx={{width: '106px', gap: '10px', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}
                             >
-                                Save Draft
+                                <Typography variant='subtitle2'>
+                                    Cancel
+                                </Typography>
                             </Button>
-                            <Button type="submit" variant="contained">
-                                Publish
+                            <Button type="submit" variant="contained" sx={{width: '106px', gap: '10px', borderRadius: '4px', padding: '13px, 24px, 13px, 24px'}}>
+                                <Typography variant='subtitle2'>
+                                    Add
+                                </Typography>
                             </Button>
                         </DialogActions>
                     </form>
                 </Box>
             </FormProvider>
-        </Dialog>
+        </Drawer>
     );
 };
 
