@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 import Rating from '@/components/rating';
+import RatingSelect from '@/components/rating-select';
 import { Objective as TObjective } from '@/types';
 import { faker } from '@faker-js/faker';
 
@@ -18,7 +19,7 @@ export type ObjectivesTableProps = {
     objectives: TObjective[];
 };
 
-const COLOR_MAP: { [key: string]: { color: 'error' | 'success' | 'info' | 'warning' | 'default' | 'primary' | 'secondary'; label: string } } = {
+export const COLOR_MAP: { [key: string]: { color: 'error' | 'success' | 'info' | 'warning' | 'default' | 'primary' | 'secondary'; label: string } } = {
         'T': {
             color: 'error',
             label: 'Needs help',
@@ -81,7 +82,7 @@ const ObjectivesTable: React.FC<ObjectivesTableProps> = ({
                                     <Rating label={COLOR_MAP[studentRating].label} variant='filled' color={COLOR_MAP[studentRating].color}  />
                                 </TableCell>
                                 <TableCell align='left'>
-                                    <Rating label={COLOR_MAP[teacherRating].label} variant='filled' color={COLOR_MAP[teacherRating].color}  />
+                                    <RatingSelect defaultValue={COLOR_MAP[teacherRating].label} />
                                 </TableCell>
                                 <TableCell align='right'>
                                     <Tooltip title='Open'>

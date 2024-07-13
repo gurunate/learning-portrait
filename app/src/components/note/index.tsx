@@ -30,8 +30,8 @@ const Note = ({
   ...props
 }: NoteProps): JSX.Element => {
     return (
-        <Card sx={{ minWidth: width || 300, minHeight: 190 }} variant='outlined'>
-          <CardContent>
+        <Card sx={{ minWidth: width || 300, height: 190 }} variant='outlined'>
+          <CardContent sx={{overflow: 'hidden', textOverflow: 'ellipsis', height: '73%', width: '100%'}}>
             <Box display='flex' alignItems='center' justifyContent='space-between'>
               <Typography variant="subtitle1" color="text.secondary">
                 {username}
@@ -42,7 +42,7 @@ const Note = ({
               {note}
             </Typography>
           </CardContent>
-          <CardActions sx={{display: 'flex', justifyContent: 'space-between', alignContent: 'flex-end'}}>
+          <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
             <Box component='div' display='flex' width={150} pr={24}>
               <Button size="small">Edit</Button>
               <Button size="small">Delete</Button>
