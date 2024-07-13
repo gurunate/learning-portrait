@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, SelectChangeEvent, Typography } from "@mui/material";
 import { Suspense, useState } from "react"
 import { fetchQuery, gql } from "@/lib/fetch-client";
 
@@ -31,7 +31,9 @@ const Page = async () => {
                          <Typography variant='h4' color='primary'>Evidence</Typography>
                      </Grid>
                      <Grid item xs={2}>
-                         <CourseDropdown courses={courses} />
+                         <CourseDropdown courses={courses} onHandleChange={function (event: SelectChangeEvent): void {
+                             throw new Error("Function not implemented.");
+                         } } value={""} />
                      </Grid>
                  </Grid>
              </Box>
