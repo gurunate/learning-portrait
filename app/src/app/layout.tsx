@@ -27,7 +27,7 @@ export default function RootLayout({
             <head>
                 <IconLinks />
             </head>
-            <body style={{ backgroundColor: '#f4f7f7' }}>
+            <body style={{ backgroundColor: '#f4f7f7', height: '100%' }}>
                 <ThemeRegistry>
                     <main>
                         {children}
