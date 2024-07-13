@@ -73,6 +73,15 @@ export const resolvers = {
             });
 
             return data;
+        },
+        sections: async (parent: { id: any }, _: any, { dataSources }: any) => {
+            log.debug({ parent }, 'course objectives query');
+
+            const data = await dataSources.SectionsAPI.getSections({
+                courseId: parent.id
+            });
+
+            return data;
         }
     }
 };
