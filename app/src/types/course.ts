@@ -1,4 +1,4 @@
-import { Objective, Student } from '.';
+import { Objective, Section, Student } from '.';
 
 export type Course = {
     id: string;
@@ -6,4 +6,5 @@ export type Course = {
     description?: string;
     objectives?: Objective[];
     students?: Student[];
+    sections: Section[];
 };

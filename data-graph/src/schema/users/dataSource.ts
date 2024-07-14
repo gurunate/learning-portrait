@@ -1,7 +1,7 @@
-import { RESTDataSource } from '@apollo/datasource-rest';
 import log from '../../lib/logger/server';
+import BaseDataSource from '../../lib/base-data-source';
 
-export default class DataSource extends RESTDataSource {
+export default class DataSource extends BaseDataSource {
     override baseURL = process.env.API_HOST;
 
     /**
