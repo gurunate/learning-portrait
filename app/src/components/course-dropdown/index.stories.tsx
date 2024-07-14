@@ -4,7 +4,7 @@ import Component from '.';
 import * as fixtures from '@/lib/fixtures';
 
 const meta = {
-    title: 'App / components / Course Dropdown',
+    title: 'App / components / select / Course Dropdown',
     component: Component,
     tags: ['autodocs']
 } satisfies Meta<typeof Component>;
