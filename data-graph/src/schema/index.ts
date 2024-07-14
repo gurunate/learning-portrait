@@ -1,6 +1,7 @@
 import * as courses from './courses';
 import * as evidence from './evidence';
 import * as objectives from './objectives';
+import * as organizations from './organizations';
 import * as sections from './sections';
 import * as users from './users';
 
@@ -19,6 +20,7 @@ export const typeDefs = [
     courses.typeDefs,
     evidence.typeDefs,
     objectives.typeDefs,
+    organizations.typeDefs,
     sections.typeDefs,
     users.typeDefs
 ];
@@ -27,6 +29,7 @@ export const resolvers = [
     courses.resolvers,
     evidence.resolvers,
     objectives.resolvers,
+    organizations.resolvers,
     sections.resolvers,
     users.resolvers
 ];
@@ -35,6 +38,7 @@ export const dataSources = options => ({
     CoursesAPI: new courses.DataSource(options),
     EvidenceAPI: new evidence.DataSource(options),
     ObjectivesAPI: new objectives.DataSource(options),
+    OrganizationsAPI: new organizations.DataSource(options),
     SectionsAPI: new sections.DataSource(options),
     UsersAPI: new users.DataSource(options)
 });
