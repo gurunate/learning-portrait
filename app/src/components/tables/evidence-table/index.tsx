@@ -67,6 +67,7 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                             <TableCell align="left"><Typography variant='subtitle1'>Course</Typography></TableCell>
                             <TableCell align="left"><Typography variant='subtitle1'>Objectives</Typography></TableCell>
                             <TableCell align="left"><Typography variant='subtitle1'>Notes</Typography></TableCell>
+                            <TableCell />
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -97,6 +98,11 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                                             {notes}
                                         </Typography>
                                     </Tooltip>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <Button variant='text'>
+                                        <Typography variant='body1'>Score</Typography>
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
