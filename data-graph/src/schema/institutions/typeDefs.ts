@@ -26,7 +26,9 @@ export const typeDefs = gql`
 
     input InstitutionInput {
         id: String
-        name: String!
+        organizationId: String
+        name: String
+        description: String
         active: Boolean
     }
 `;

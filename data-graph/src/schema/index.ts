@@ -4,6 +4,7 @@ import * as institutions from './institutions';
 import * as objectives from './objectives';
 import * as organizations from './organizations';
 import * as sections from './sections';
+import * as students from './students';
 import * as users from './users';
 
 import { gql } from 'graphql-tag';
@@ -24,6 +25,7 @@ export const typeDefs = [
     objectives.typeDefs,
     organizations.typeDefs,
     sections.typeDefs,
+    students.typeDefs,
     users.typeDefs
 ];
 
@@ -34,6 +36,7 @@ export const resolvers = [
     objectives.resolvers,
     organizations.resolvers,
     sections.resolvers,
+    students.resolvers,
     users.resolvers
 ];
 
@@ -44,5 +47,6 @@ export const dataSources = options => ({
     ObjectivesAPI: new objectives.DataSource(options),
     OrganizationsAPI: new organizations.DataSource(options),
     SectionsAPI: new sections.DataSource(options),
+    StudentsAPI: new students.DataSource(options),
     UsersAPI: new users.DataSource(options)
 });

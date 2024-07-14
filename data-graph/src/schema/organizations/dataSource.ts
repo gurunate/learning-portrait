@@ -26,7 +26,13 @@ export default class DataSource extends BaseDataSource {
 
         const { id, ...body } = input;
 
-        return this.post('organizations', { body });
+        return this.post('organizations', {
+            body: {
+                ...body,
+                updatedById: 'clrmi4e960000kghtbjcdn5gh',
+                createdById: 'clrmi4e960000kghtbjcdn5gh'
+            }
+        });
     }
 
     /**
