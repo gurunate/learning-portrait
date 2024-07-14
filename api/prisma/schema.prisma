@@ -68,7 +68,7 @@ model Student {
     notes             String?
     email             String?
     user              User?        @relation("StudentUser", fields: [userId], references: [id])
-    userId            String?      @default("")
+    userId            String?
     AssessmentStudent Assessment[] @relation("AssessmentStudent")
     SectionStudents   Section?     @relation("SectionStudents", fields: [sectionId], references: [id])
     sectionId         String?
@@ -207,6 +207,7 @@ model Assessment {
 model Organization {
     id           String        @id @default(cuid())
     name         String
+    description  String?
     institutions Institution[]
     updatedAt    DateTime      @updatedAt
     updatedBy    User          @relation("OrganizationUpdatedBy", fields: [updatedById], references: [id])
@@ -220,6 +221,7 @@ model Organization {
 model Institution {
     id             String        @id @default(cuid())
     name           String
+    description    String?
     Organization   Organization? @relation(fields: [organizationId], references: [id])
     organizationId String?
     instructors    Instructor[]

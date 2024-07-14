@@ -1,6 +1,7 @@
 import { Course as TCourse } from '@/types';
 import { faker } from '@faker-js/faker';
 import { objectives } from './objective';
+import { sections } from './section';
 
 /**
  * Returns a course
@@ -10,7 +11,8 @@ export const course = (): TCourse => ({
     id: faker.string.uuid(),
     name: faker.lorem.words(),
     description: faker.lorem.sentence(),
-    objectives: objectives(5)
+    objectives: objectives(5),
+    sections: sections(4)
 });
 
 /**
