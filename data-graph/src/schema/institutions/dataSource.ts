@@ -5,55 +5,55 @@ export default class DataSource extends BaseDataSource {
     override baseURL = process.env.API_HOST;
 
     /**
-     * Return a list of active organizations.
+     * Return a list of active institutions.
      *
      * @returns
      */
-    async getOrganizations(): Promise<unknown> {
-        log.trace('getOrganizations');
+    async getInstitutions(): Promise<unknown> {
+        log.trace('getInstitutions');
 
-        return this.get(`organizations`);
+        return this.get(`institutions`);
     }
 
     /**
-     * Create a organization.
+     * Create a institution.
      *
      * @param input
      * @returns
      */
-    async createOrganization(input: any): Promise<unknown> {
-        log.debug({ input }, 'createOrganization');
+    async createInstitution(input: any): Promise<unknown> {
+        log.debug({ input }, 'createInstitution');
 
         const { id, ...body } = input;
 
-        return this.post('organizations', { body });
+        return this.post('institutions', { body });
     }
 
     /**
-     * Update a organization.
+     * Update a institution.
      *
      * @param input
      * @returns
      */
-    async updateOrganization(input: any): Promise<unknown> {
-        log.debug({ input }, 'updateOrganization');
+    async updateInstitution(input: any): Promise<unknown> {
+        log.debug({ input }, 'updateInstitution');
 
         const { id, ...body } = input;
 
-        return this.put(`organizations/${id}`, { body });
+        return this.put(`institutions/${id}`, { body });
     }
 
     /**
-     * Delete a organization.
+     * Delete a institution.
      *
      * @param input
      * @returns
      */
-    async deleteOrganization(input: any): Promise<unknown> {
-        log.debug({ input }, 'deleteOrganization');
+    async deleteInstitution(input: any): Promise<unknown> {
+        log.debug({ input }, 'deleteInstitution');
 
         const { id } = input;
 
-        return this.delete(`organizations/${id}`);
+        return this.delete(`institutions/${id}`);
     }
 }

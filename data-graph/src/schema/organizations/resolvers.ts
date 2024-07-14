@@ -67,29 +67,20 @@ export const resolvers = {
 
             return response;
         }
+    },
+    Organization: {
+        institutions: async (
+            parent: { id: any },
+            _: any,
+            { dataSources }: any
+        ) => {
+            log.debug({ parent }, 'organization institutions query');
+
+            const data = await dataSources.InstitutionsAPI.getInstitutions({
+                organizationId: parent.id
+            });
+
+            return data;
+        }
     }
-    // Organization: {
-    //     objectives: async (
-    //         parent: { id: any },
-    //         _: any,
-    //         { dataSources }: any
-    //     ) => {
-    //         log.debug({ parent }, 'course objectives query');
-
-    //         const data = await dataSources.ObjectivesAPI.getObjectives({
-    //             courseId: parent.id
-    //         });
-
-    //         return data;
-    //     },
-    //     sections: async (parent: { id: any }, _: any, { dataSources }: any) => {
-    //         log.debug({ parent }, 'course objectives query');
-
-    //         const data = await dataSources.SectionsAPI.getSections({
-    //             courseId: parent.id
-    //         });
-
-    //         return data;
-    //     }
-    // }
 };

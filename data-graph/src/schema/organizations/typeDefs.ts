@@ -18,7 +18,7 @@ export const typeDefs = gql`
         updatedAt: String
         createdAt: String
         active: Boolean
-        # objectives: [Objective]
+        institutions: [Institution]
     }
 
     input OrganizationIdInput {
