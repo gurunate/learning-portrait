@@ -9,7 +9,7 @@ import { prisma } from '@/lib/prisma';
  *   get:
  *     summary: Get a list of instructors
  *     tags:
- *       - instructors
+ *       - Instructors
  *     responses:
  *       200:
  *         description: A list of instructors
@@ -39,7 +39,7 @@ export const GET = async (request: NextRequest) => {
  *   post:
  *     summary: Create a instructor
  *     tags:
- *       - instructors
+ *       - Instructors
  *     responses:
  *       200:
  *         description: The instructor
