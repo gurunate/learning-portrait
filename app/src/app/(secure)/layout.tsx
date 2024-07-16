@@ -33,7 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <ApolloProvider client={client}>
                 <ThemeRegistry>
                     <Header />
-                    <Box py={4} sx={{ backgroundColor: '#FCFCFF'}}>
+                    <Box py={4} sx={{ backgroundColor: '#FCFCFF' }}>
                         <main>{children}</main>
                     </Box>
                     <Footer />
