@@ -47,20 +47,20 @@ export const GET = async (request: NextRequest) => {
  * @returns
  */
 export const POST = async (request: NextRequest) => {
-    log.trace('Instructors POST');
+    log.trace('instructors POST');
 
     const data = await request.json();
 
-    log.debug({ data }, 'Instructors POST');
+    log.debug({ data }, 'instructors POST');
 
     try {
         const instructor = await prisma.instructor.create({
             data
         });
 
-        NextResponse.json(instructor);
+        return NextResponse.json(instructor);
     } catch (error) {
-        log.error({ error }, 'Instructors POST');
+        log.error({ error }, 'instructors POST');
         return NextResponse.json(error, { status: 409 });
     }
 };
