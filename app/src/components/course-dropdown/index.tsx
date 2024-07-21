@@ -45,9 +45,9 @@ const CourseDropdown: React.FC<CourseSelectProps> = ({
                                 <ListSubheader key={id}>
                                     <Typography variant='body1' sx={{ fontWeight: 'bold' }}>{name}</Typography>
                                 </ListSubheader>
-                                {sections.map(({ id, name }) => (
-                                    <MenuItem key={id} value={id} sx={{ paddingInlineStart: 5 }}>
-                                        <Typography variant='body1'>{name}</Typography>
+                                {sections.map((section) => (
+                                    <MenuItem key={section.id} value={section.id} sx={{ paddingInlineStart: 5 }}>
+                                        <Typography variant='body1'>{section.name}</Typography>
                                     </MenuItem>
                                 ))}
                             </>

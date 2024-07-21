@@ -13,6 +13,10 @@ const PAGE_LOAD_QUERIES = gql`
                 name
                 id
             }
+            sections {
+                name
+                id
+            }
         }
     }
 `;
@@ -105,7 +109,7 @@ const Page = async () => {
 
 export const metadata: Metadata = {
     title: 'Dashboard | Learning Portrait',
-    description: 'A gradebook that thinks like you do.'
+    description: 'A grade book that thinks like you do.'
 };
 
 export default Page;
