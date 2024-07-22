@@ -46,16 +46,17 @@ const Dashboard: React.FC<DashboardProps> = ({
     };
 
     const handleCourseChange = (event: SelectChangeEvent) => {
-        setActiveCourse(courses.filter(course => course.id === event.target.value)[0]);
+        alert('handleCourseChange');
+        setActiveCourse(courses.filter(course => course.sections.filter(section => section.id === event.target.value))[0]);
     };
-
+    console.log(activeCourse)
     const handleSubmit = (data: FieldValues) => {
         console.log('handleSubmit', { data });
         setOpenEvidenceDialog(false);
     };
 
     if (loading) return <p>Loading...</p>;
-
+    console.log(activeCourse)
     return (
         <>
             <Grid container alignItems="center" spacing={4}>

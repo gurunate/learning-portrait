@@ -165,7 +165,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     };
 
     // Student Switch Logic
-    const handleSwitchChange = (event) => {
+    const handleSwitchChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
         setAllStudentsSelected(event.target.checked);
         // Clear the selected student when switching to 'All'
         if (event.target.checked) {
