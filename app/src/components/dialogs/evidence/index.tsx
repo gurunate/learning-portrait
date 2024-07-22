@@ -257,7 +257,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                         <Grid item sm={12}>
                                         <Typography variant="subtitle1">Course*</Typography>
                                             <CourseDropdown
-                                                onHandleChange={handleCourseChange} 
+                                                onChange={handleCourseChange} 
                                                 value={activeCourse.id}
                                                 courses={courses}
                                             />

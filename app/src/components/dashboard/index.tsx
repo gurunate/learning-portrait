@@ -62,7 +62,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             <Grid container alignItems="center" spacing={4}>
                 <Grid item sm={12} md={2} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
-                       <CourseDropdown courses={courses} onHandleChange={handleCourseChange} value={activeCourse.id} />
+                       <CourseDropdown courses={courses} onChange={handleCourseChange} value={activeCourse.id} />
                     </FormControl>
                 </Grid>
                 <Grid item sm={12} md={2}>
