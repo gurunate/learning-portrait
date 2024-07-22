@@ -10,12 +10,8 @@ import {
     Tooltip,
     Typography
 } from '@mui/material';
-import { note, objectives } from '@/lib/fixtures';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { faker } from '@faker-js/faker';
-import { useState } from 'react';
 
 export type EvidenceTableProps = unknown;
 

@@ -14,13 +14,13 @@ import { Course as TCourse } from '@/types';
 
 export type CourseSelectProps = {
     courses: TCourse[];
-    onHandleChange?: (event: SelectChangeEvent) => void;
+    onChange?: (event: SelectChangeEvent) => void;
     value?: string;
 };
 
 const CourseDropdown: React.FC<CourseSelectProps> = ({
     courses = [],
-    onHandleChange,
+    onChange,
     value,
 }: CourseSelectProps): JSX.Element => {
     return (
@@ -31,7 +31,7 @@ const CourseDropdown: React.FC<CourseSelectProps> = ({
                     id="course"
                     value={value}
                     aria-label="Courses"
-                    onChange={onHandleChange}
+                    onChange={onChange}
                     sx={{
                         borderRadius: '4px',
                         border: '1px solid #D5D9DB',
