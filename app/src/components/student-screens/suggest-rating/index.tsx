@@ -97,7 +97,7 @@ const EvidenceDialog: React.FC<SuggestRatingDialogProps> = ({
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
             <FormProvider {...methods}>
                 {devtool && <DevTool control={control} placement="top-right" />}
-                <Box p={2}>
+                <Box p={2} height={500}>
                     <form onSubmit={handleSubmit(onSubmit, onError)}>
                         <DialogTitle>
                             <Stack
@@ -147,7 +147,7 @@ const EvidenceDialog: React.FC<SuggestRatingDialogProps> = ({
                             </Grid>
                             </Grid>
                         </DialogContent>
-                        <DialogActions>
+                        <DialogActions sx={{paddingTop: 2}}>
                         <Button
                                 variant="outlined"
                                 onClick={handleClose}
