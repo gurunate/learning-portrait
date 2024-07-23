@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as fixtures from '@/lib/fixtures';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -15,11 +16,12 @@ export type ObjectivesDropdownProps = {
     objectives: TObjective[] | undefined;
     value?: TObjective[] | undefined;
     inputValue?: string | undefined;
+    subObjectives: [],
     onHandleChange?: (event: any, value: TObjective[] | undefined) => void;
     onHandleInputChange?: (event: any, value: string) => void;
 }
 
-const subObjectives = objectives(3);
+const subObjectivesData = objectives(12);
 
 const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
     objectives = [],
@@ -28,22 +30,32 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
     onHandleChange,
     onHandleInputChange
   }) => {
-    {console.log(objectives)}
-    console.log(subObjectives)
+
+    const subObjectivesData = fixtures.objectives(12);
+    const subObjectives = objectives.map((objective) => {
+      return {
+          ...objective,
+          key: objective.id,
+          subObjectives:subObjectivesData,
+      }
+  })
+  console.log(subObjectives)
+  console.log('objectives', objectives)
       
       return (
         <Autocomplete
           multiple
           id="objectives-dropdown"
           limitTags={2}
-          options={objectives}
+          groupBy={(objectives) => objectives.name}
+          options={subObjectives}
           onChange={onHandleChange}
           value={value}
           inputValue={inputValue}
           onInputChange={onHandleInputChange}
           disableCloseOnSelect
           getOptionLabel={(option) => option.name}
-          renderOption={(props, option, { selected }) => (
+          /*renderOption={(props, subObjectives, { selected }) => (
             <li {...props}>
               <Checkbox
                 icon={icon}
@@ -52,8 +64,32 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
                 checked={selected}
 
               />
-              {option.name}
+              {subObjectives.name}
             </li>
+          )}*/
+            renderOption={(props, objective, { selected }) => (
+              <li {...props}>
+                  <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                  />
+                  {objective.name}
+                  <ul>
+                      {objective.subObjectives.map(subObjectives => (
+                          <li key={subObjectives.id}>
+                              <Checkbox
+                                  icon={icon}
+                                  checkedIcon={checkedIcon}
+                                  style={{ marginRight: 8 }}
+                                  checked={selected} // Ensure you have a proper checked condition for subobjectives
+                              />
+                              {subObjectives.name}
+                          </li>
+                      ))}
+                  </ul>
+              </li>
           )}
           renderInput={(params) => (
             <TextField 

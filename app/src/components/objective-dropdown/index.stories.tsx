@@ -12,10 +12,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const objectives = fixtures.objectives(5);
+const objectives = fixtures.objectives(12);
+const students = fixtures.students(12);
+
+const subObjectives = objectives.map(objective => {
+    return {
+        ...objective,
+        subObjectives: fixtures.objectives(3),
+        key: objective.id
+    }
+})
+
 
 export const demo: Story = {
     args: {
-        objectives
+        objectives: subObjectives,
     }
 };
