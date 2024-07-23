@@ -21,8 +21,6 @@ export type ObjectivesDropdownProps = {
     onHandleInputChange?: (event: any, value: string) => void;
 }
 
-const subObjectivesData = objectives(12);
-
 const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
     objectives = [],
     value,
@@ -31,7 +29,7 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
     onHandleInputChange
   }) => {
 
-    const subObjectivesData = fixtures.objectives(12);
+    const subObjectivesData = fixtures.objectives(5);
     const subObjectives = objectives.map((objective) => {
       return {
           ...objective,
@@ -67,30 +65,23 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
               {subObjectives.name}
             </li>
           )}*/
-            renderOption={(props, objective, { selected }) => (
-              <li {...props}>
-                  <Checkbox
-                      icon={icon}
-                      checkedIcon={checkedIcon}
-                      style={{ marginRight: 8 }}
-                      checked={selected}
-                  />
-                  {objective.name}
-                  <ul>
-                      {objective.subObjectives.map(subObjectives => (
-                          <li key={subObjectives.id}>
-                              <Checkbox
-                                  icon={icon}
-                                  checkedIcon={checkedIcon}
-                                  style={{ marginRight: 8 }}
-                                  checked={selected} // Ensure you have a proper checked condition for subobjectives
-                              />
-                              {subObjectives.name}
-                          </li>
-                      ))}
-                  </ul>
-              </li>
-          )}
+          renderOption={(props, objective, { selected }) => (
+            <li {...props}>
+                <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                    {objective.subObjectives.map((subObjective: Subobjective) => (
+                        <li key={subObjective.id}>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                            />
+                            <span>{subObjective.name}</span>
+                        </li>
+                    ))}
+                </ul>
+            </li>
+        )}
           renderInput={(params) => (
             <TextField 
               {...params} 
