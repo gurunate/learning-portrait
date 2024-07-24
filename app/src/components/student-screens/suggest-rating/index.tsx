@@ -8,10 +8,8 @@ import {
     DialogContent,
     DialogProps,
     DialogTitle,
-    FormControl,
     Grid,
     IconButton,
-    SelectChangeEvent,
     Stack,
     Tooltip,
     Typography
@@ -23,15 +21,12 @@ import {
     useController,
     useForm
 } from 'react-hook-form';
-import { Course as TCourse, Objective as TObjective } from '@/types';
 
 import CloseIcon from '@mui/icons-material/Close';
 import { DevTool } from '@hookform/devtools';
 import Editor from '@/components/editor';
 import RatingSelect from '@/components/rating-select';
 import React from 'react';
-import { get } from 'lodash';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 export type SuggestRatingDialogProps = DialogProps & {
     devtool?: boolean;
@@ -40,24 +35,13 @@ export type SuggestRatingDialogProps = DialogProps & {
     onSubmit: (data: FieldValues) => void;
 };
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250
-        }
-    }
-};
 
 /**
  *
  * @param {SuggestGradeDialogProps} props
  * @returns {JSX.Element}
  */
-const EvidenceDialog: React.FC<SuggestRatingDialogProps> = ({
+const SuggestRatingDialog: React.FC<SuggestRatingDialogProps> = ({
     devtool = false,
     initialValue,
     onClose,
@@ -170,4 +154,4 @@ const EvidenceDialog: React.FC<SuggestRatingDialogProps> = ({
     );
 };
 
-export default EvidenceDialog;
+export default SuggestRatingDialog;
