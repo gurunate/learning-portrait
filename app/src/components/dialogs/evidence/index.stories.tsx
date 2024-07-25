@@ -17,12 +17,14 @@ type Story = StoryObj<typeof meta>;
 
 const courses = fixtures.courses(3);
 const objectives = fixtures.objectives(7);
+const students = fixtures.students(12)
 
 const defaultArgs = {
     open: false,
     initialValue: '',
     objectives,
     courses,
+    students,
     uploadedOn: formatDate(faker.date.past()),
     devtool: false
 };
