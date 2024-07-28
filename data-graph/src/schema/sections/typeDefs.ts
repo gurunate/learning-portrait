@@ -13,6 +13,7 @@ export const typeDefs = gql`
 
     type Section {
         id: String
+        courseId: String
         name: String
         description: String
         updatedAt: String

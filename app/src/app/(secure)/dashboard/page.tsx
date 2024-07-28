@@ -3,13 +3,28 @@ import { fetchQuery, gql } from '@/lib/fetch-client';
 import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { Objective as TObjective } from '@/types';
+import { section } from '@/lib/fixtures/section';
 
 const PAGE_LOAD_QUERIES = gql`
     query Courses {
         courses {
             id
             name
-            objectives {
+        }
+        sections {
+            id
+            name
+            courseId
+        }
+        objectives {
+            parentId
+            id
+            name
+            courseId
+            children {
+                courseId
+                parentId
                 name
                 id
             }
@@ -86,16 +101,56 @@ const Page = async () => {
 
     const { data } = await fetchQuery(PAGE_LOAD_QUERIES);
 
-    const { courses } = data ?? {};
+    const { courses, sections, objectives } = data ?? {};
 
-    console.log('Page', { courses });
+    console.log(objectives);
+
+    function organizeObjectives(objectives: TObjective[]): any[] {
+        // Step 1: Create a map of objectives by their ID
+        const objectivesMap = new Map();
+        objectives.forEach(obj => {
+            objectivesMap.set(obj.id, { ...obj, children: [] });
+        });
+
+        // Step 2: Separate top-level objectives (where parentId is null)
+        const topLevelObjectives: any[] = [];
+        objectives.forEach(obj => {
+            if (obj.parentId === null || obj.parentId === undefined) {
+                topLevelObjectives.push(objectivesMap.get(obj.id));
+            } else {
+                // Step 3: Assign children to their parents
+                const parentObjective = objectivesMap.get(obj.parentId);
+                if (parentObjective) {
+                    parentObjective.children.push(objectivesMap.get(obj.id));
+                }
+            }
+        });
+
+        return topLevelObjectives;
+    }
+
+    const mappedCourses = courses.slice()
+                        .sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name)).map((course: { id: any; }) => {
+        return {
+            ...course,
+            objectives: organizeObjectives(objectives).filter((objective: { courseId: any; }) => {
+                return objective.courseId === course.id
+            }),
+            sections: sections.filter((section: { courseId: any; }) => {
+                    return section.courseId === course.id
+                })
+            }
+        }
+    );
+
+    console.log(mappedCourses);
 
     return (
         <section>
             <Suspense fallback={<p>Loading...</p>}>
                 <Dashboard
-                    // loading={loading}
-                    courses={courses}
+                    //loading={loading}
+                    courses={mappedCourses}
                     students={students}
                 />
             </Suspense>

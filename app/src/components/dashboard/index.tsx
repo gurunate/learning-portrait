@@ -5,9 +5,11 @@ import {
     Grid,
     SelectChangeEvent,
 } from '@mui/material';
+import React, { SyntheticEvent, act } from 'react';
 import {
     Course as TCourse,
     Objective as TObjective,
+    Section as TSection,
     Student as TStudent
 } from '@/types';
 
@@ -15,7 +17,6 @@ import CourseDropdown from '../course-dropdown';
 import CourseTable from '../tables/course-table';
 import { FieldValues } from 'react-hook-form';
 import ObjectivesDropdown from '../objective-dropdown';
-import React from 'react';
 
 export type DashboardProps = {
     courses: TCourse[];
@@ -34,7 +35,8 @@ const Dashboard: React.FC<DashboardProps> = ({
 }: DashboardProps): JSX.Element => {
     const [openEvidenceDialog, setOpenEvidenceDialog] = React.useState(false);
     const [activeCourse, setActiveCourse] = React.useState<TCourse>(courses[0]);
-    const [value, setValue] = React.useState<TObjective[] | undefined>(undefined);
+    const [activeSection, setActiveSection] = React.useState<string>(activeCourse.sections[0].id);
+    const [value, setValue] = React.useState<TObjective[]>(activeCourse.objectives || []);
     const [inputValue, setInputValue] = React.useState('');
 
     const handleAddEvidenceClick = () => {
@@ -46,30 +48,39 @@ const Dashboard: React.FC<DashboardProps> = ({
     };
 
     const handleCourseChange = (event: SelectChangeEvent) => {
-        setActiveCourse(courses.filter(course => course.id === event.target.value)[0]);
+        setActiveCourse(courses.find(course => course.sections.some(section => section.id === event.target.value)) || courses[0]);
+        setValue(courses.find(course => course.sections.some(section => section.id === event.target.value))?.objectives || []);
+       setActiveSection(event.target.value);
+    };
+
+    const handleObjectiveChange = (event: React.SyntheticEvent, newValue: TObjective[]) => {
+        // Ensure event is not null and newValue is properly handled
+        if (newValue !== null) {
+            setValue(newValue);
+        }
     };
 
     const handleSubmit = (data: FieldValues) => {
         console.log('handleSubmit', { data });
         setOpenEvidenceDialog(false);
     };
-
+        
     if (loading) return <p>Loading...</p>;
 
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
-                <Grid item sm={12} md={2} sx={{ mx: '16px' }}>
+                <Grid item sm={12} md={3} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
-                       <CourseDropdown courses={courses} onHandleChange={handleCourseChange} value={activeCourse.id} />
+                       <CourseDropdown courses={courses} onChange={handleCourseChange} selectedValue={activeSection} />
                     </FormControl>
                 </Grid>
-                <Grid item sm={12} md={2}>
+                <Grid item sm={12} md={3}>
                     <FormControl fullWidth>
                        <ObjectivesDropdown 
                             objectives={activeCourse.objectives}
                             value={value} 
-                            onHandleChange={(event, val) => setValue(val)}
+                            onHandleChange={handleObjectiveChange}
                             inputValue={inputValue}
                             onHandleInputChange={(event, val) => setInputValue(val)}
                         />
