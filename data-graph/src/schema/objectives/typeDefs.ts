@@ -14,10 +14,12 @@ export const typeDefs = gql`
     type Objective {
         id: String
         courseId: String
+        parentId: String
         name: String
         updatedAt: String
         createdAt: String
         active: Boolean
+        children: [Objective]
     }
 
     input ObjectiveIdInput {
@@ -27,7 +29,9 @@ export const typeDefs = gql`
     input ObjectiveInput {
         id: String
         courseId: String!
+        parentId: String
         name: String!
         active: Boolean
+        children: [ObjectiveInput]
     }
 `;

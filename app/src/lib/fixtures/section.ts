@@ -10,6 +10,7 @@ export const section = (): TSection => ({
     id: faker.string.uuid(),
     name: faker.lorem.words(),
     description: faker.lorem.sentence(),
+    courseId: ''
 });
 
 /**

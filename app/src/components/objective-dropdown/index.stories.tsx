@@ -4,7 +4,7 @@ import Component from '.';
 import * as fixtures from '@/lib/fixtures';
 
 const meta = {
-    title: 'App / components / Objectives Dropdown',
+    title: 'App / components / select / Objectives Dropdown',
     component: Component,
     tags: ['autodocs']
 } satisfies Meta<typeof Component>;
@@ -12,10 +12,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const objectives = fixtures.objectives(5);
+const objectives = fixtures.objectives(12);
+const students = fixtures.students(12);
+
+const subObjectives = objectives.map(objective => {
+    return {
+        ...objective,
+        subObjectives: fixtures.objectives(3),
+        key: objective.id
+    }
+})
+
 
 export const demo: Story = {
     args: {
-        objectives
+        objectives: subObjectives,
     }
 };
