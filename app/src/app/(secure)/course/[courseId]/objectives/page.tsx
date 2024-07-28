@@ -30,12 +30,10 @@ const Page = () => {
         <section>
             <Box sx={{ marginInline: 4 }}>
                 <Breadcrumbs aria-label='breadcrumb'>
-                    <Link color='inherit' href='/'>
+                    <Link color='inherit' href='/dashboard'>
                         <Typography variant='subtitle2'>Portraits</Typography>
                     </Link>
-                    <Link color='inherit' href='/evidence'>
-                        <Typography variant='subtitle2'>{courseName}</Typography> 
-                    </Link>
+                    <Typography variant='subtitle2'>{courseName}</Typography> 
                     <Typography variant='subtitle2'>{objective.name}</Typography>
                 </Breadcrumbs>
             </Box>

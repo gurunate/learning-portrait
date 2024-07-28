@@ -30,12 +30,10 @@ const Page = () => {
         <section>
             <Box sx={{ marginInline: 4 }}>
                 <Breadcrumbs aria-label='breadcrumb'>
-                    <Link color='inherit' href='/'>
+                    <Link color='inherit' href='/dashboard'>
                         <Typography variant='subtitle2'>Portraits</Typography>
                     </Link>
-                    <Link color='inherit' href='/evidence'>
-                        <Typography variant='subtitle2'>{courseName}</Typography> 
-                    </Link>
+                    <Typography variant='subtitle2'>{courseName}</Typography> 
                     <Link href="#" color="inherit">
                         <Typography variant='subtitle2'>{username}</Typography>
                     </Link>
@@ -45,21 +43,21 @@ const Page = () => {
             <Box sx={{ margin: 6 }}>
                 <Grid container spacing={2}>
                     <Grid container lg={6}>
-                        <Grid item xs={5}>
+                        <Grid item xs={12}>
                             <Typography variant='h4'>{objective.name}</Typography>
                             <Typography variant='body1'>{objective.description}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
-                        <Grid item xs={3}>
+                        <Grid item xs={6}>
                             <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } } selectedValue={''} />
                         </Grid>
-                        <Grid item xs={3} alignContent='right'>
+                        <Grid item xs={6} alignContent='right'>
                             <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } } selectedValue={''} />
                         </Grid>
                     </Grid>
                 </Grid>

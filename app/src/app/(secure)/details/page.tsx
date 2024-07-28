@@ -1,16 +1,12 @@
 'use client';
 
-import { Box, Breadcrumbs, Button, Grid, IconButton, Paper, SelectChangeEvent, SvgIcon, Typography } from '@mui/material';
-import ObjectivesTable, { COLOR_MAP } from '@/components/tables/objectives-table';
+import { Box, Breadcrumbs, Grid, IconButton, SvgIcon, Typography } from '@mui/material';
 import { Suspense, useState } from 'react'
 import { courses, evidenceList, objectives, students } from '@/lib/fixtures'
 
 import CourseDropdown from '@/components/course-dropdown';
 import CourseTable from '@/components/tables/course-table';
 import Link from 'next/link';
-import Rating from '@/components/rating';
-import RatingSelect from '@/components/rating-select';
-import SubObjectivesTable from '@/components/tables/subobjective-table';
 import { faker } from '@faker-js/faker';
 
 const Page = () => {
@@ -24,7 +20,7 @@ const Page = () => {
         <section>
             <Box sx={{ marginInline: 4 }}>
                 <Breadcrumbs aria-label='breadcrumb'>
-                    <Link color='inherit' href='/'>
+                    <Link color='inherit' href='/dashboard'>
                         <Typography variant='subtitle2'>Portraits</Typography>
                     </Link>
                     <Link color='inherit' href='/evidence'>
@@ -51,14 +47,10 @@ const Page = () => {
                     </Grid>
                     <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
                         <Grid item xs={3}>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
-                                throw new Error('Function not implemented.');
-                            } } value={''} />
+                            <CourseDropdown courses={[]} selectedValue={''} />
                         </Grid>
                         <Grid item xs={3} alignContent='right'>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
-                                throw new Error('Function not implemented.');
-                            } } value={''} />
+                            <CourseDropdown courses={[]} selectedValue={''} />
                         </Grid>
                     </Grid>
                 </Grid>

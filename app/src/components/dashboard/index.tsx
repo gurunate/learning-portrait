@@ -109,6 +109,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                         course={activeCourse} 
                         objectives={value || activeCourse.objectives}
                         students={students}
+                        hasSubObjectives={value.find(obj => obj.parentId !== null) ? true : false}
                     />
                     {/*<CourseTable course={courses[0]} students={[]} />*/}
                 </Grid>
