@@ -14,6 +14,10 @@ const PAGE_LOAD_QUERIES = gql`
                 name
                 id
             }
+            sections {
+                name
+                id
+            }
         }
     }
 `;
@@ -31,9 +35,7 @@ const Page = async () => {
                          <Typography variant='h4' color='primary'>Evidence</Typography>
                      </Grid>
                      <Grid item xs={2}>
-                         <CourseDropdown courses={courses} onHandleChange={function (event: SelectChangeEvent): void {
-                             throw new Error("Function not implemented.");
-                         } } value={""} />
+                         <CourseDropdown courses={courses}  />
                      </Grid>
                  </Grid>
              </Box>

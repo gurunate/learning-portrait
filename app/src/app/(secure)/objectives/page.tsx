@@ -46,12 +46,12 @@ const Page = () => {
                     </Grid>
                     <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
                         <Grid item xs={3}>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
+                            <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
                             } } value={''} />
                         </Grid>
                         <Grid item xs={3} alignContent='right'>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
+                            <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
                             } } value={''} />
                         </Grid>

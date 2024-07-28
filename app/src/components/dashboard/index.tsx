@@ -59,14 +59,14 @@ const Dashboard: React.FC<DashboardProps> = ({
             setValue(newValue);
         }
     };
-
+    console.log(activeCourse)
     const handleSubmit = (data: FieldValues) => {
         console.log('handleSubmit', { data });
         setOpenEvidenceDialog(false);
     };
         
     if (loading) return <p>Loading...</p>;
-
+    console.log(activeCourse)
     return (
         <>
             <Grid container alignItems="center" spacing={4}>
