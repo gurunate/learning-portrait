@@ -19,7 +19,7 @@ import Typography from '@mui/material/Typography';
 
 export type HeaderProps = {};
 
-const pages = ['Portraits', 'Evidence'];
+const pages = [{ title: 'Portraits', url: '/dashboard'},{ title: 'Evidence', url: '/evidence'}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const user = {
   firstName: "Agaetis",
@@ -50,12 +50,14 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
     <AppBar position="static" sx={{backgroundColor: '#FCFCFF', borderRadius: '0', border: '1px solid #E7EAEC', boxShadow: 'none', color: 'black', width: '100%'}}>
       <Box>
         <Toolbar>
-          <Image
-          src='/logo.svg'
-          alt='Learning Portrait Logo'
-          width={93}
-          height={64}
-          />
+          <Link href="/dashboard">
+            <Image
+            src='/logo.svg'
+            alt='Learning Portrait Logo'
+            width={93}
+            height={64}
+            />
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -86,18 +88,18 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '24px', 'a:link':{textDecoration: 'none'},  }}>
             {pages.map((page) => (
-              <Link href="#" key={page}>
+              <Link href={`/${page.url}`} key={page.title}>
               <Button
                 disableRipple
-                key={page}
+                key={page.title}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: '#61666B', display: 'block', fontSize: '16px', textTransform: 'uppercase', borderRadius: '0',
                     '&:active': {
@@ -109,7 +111,7 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
                   },
                 }}
               >
-                {page}
+                {page.title}
               </Button>
               </Link>
             ))}
