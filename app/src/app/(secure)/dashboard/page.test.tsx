@@ -20,7 +20,7 @@ describe('Dashboard page', () => {
     it('should render', () => {
         render(<Page />);
 
-        const buttons = screen.getAllByRole('button');
-        expect(buttons[1]).toHaveTextContent('Add Evidence');
+        const course = screen.getByTestId('course-select');
+        expect(course).toBeInTheDocument();
     });
 });

@@ -72,7 +72,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             <Grid container alignItems="center" spacing={4}>
                 <Grid item sm={12} md={3} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
-                       <CourseDropdown courses={courses} onChange={handleCourseChange} selectedValue={activeSection} />
+                       <CourseDropdown data-testid='course-select' courses={courses} onChange={handleCourseChange} selectedValue={activeSection} />
                     </FormControl>
                 </Grid>
                 <Grid item sm={12} md={3}>

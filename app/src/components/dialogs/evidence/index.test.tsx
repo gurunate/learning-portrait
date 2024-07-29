@@ -1,11 +1,12 @@
 import EvidenceDialog, { evidenceSchema } from '.';
+import { Course as TCourse, Objective as TObjective, Student as TStudent } from '@/types';
 
 import { faker } from '@faker-js/faker';
 import { render } from '@testing-library/react';
 
 describe('EvidenceDialog', () => {
     describe('schema', () => {
-        it('should require a Name', async () => {
+        it('should require a title', async () => {
             await expect(
                 evidenceSchema.validateAt('name', { name: null })
             ).rejects.toBeTruthy();
@@ -71,13 +72,25 @@ describe('EvidenceDialog', () => {
     describe('component', () => {
         it('should render', () => {
             const handleSubmit = jest.fn();
-
+            const courses: TCourse[] = [{
+                id: '1', name: 'Course 1',
+                sections: []
+            }];
+            const objectives: TObjective[] = [{
+                id: '1', name: 'Objective 1',
+                parentId: '',
+                key: ''
+            }];
+            const students: TStudent[] = [{ id: '1', firstName: 'Student', lastName: '', email: '' }]; 
+        
             render(
                 <EvidenceDialog
                     open
-                    courses={[]}
-                    objectives={[]}
+                    courses={courses}
+                    objectives={objectives}
+                    students={students}
                     onSubmit={handleSubmit}
+                    selectAllStudents={false}
                 />
             );
         });

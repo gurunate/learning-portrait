@@ -1,22 +1,27 @@
 'use client';
 
-import { Box, Breadcrumbs, Button, Grid, Paper, SelectChangeEvent, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Button, FormControl, Grid, MenuItem, Paper, Select, SelectChangeEvent, Typography } from '@mui/material';
 import ObjectivesTable, { COLOR_MAP } from '@/components/tables/objectives-table';
 import { Suspense, useState } from 'react'
 
 import CourseDropdown from '@/components/course-dropdown';
+import EvidenceDialog from '@/components/dialogs/evidence';
 import Link from 'next/link';
+import ObjectiveSelect from '@/components/objective-select/objective-select';
+import ObjectivesDropdown from '@/components/objective-dropdown';
 import Rating from '@/components/rating';
 import RatingSelect from '@/components/rating-select';
+import { Router } from 'next/router';
 import SubObjectivesTable from '@/components/tables/subobjective-table';
 import { faker } from '@faker-js/faker';
-import { objectives } from '@/lib/fixtures'
+import { objectives } from '@/lib/fixtures';
 
 const Page = () => {
     const [showEvidenceDrawer, setShowEvidenceDrawer] = useState(false);
     const courseName = 'Math - Division';
     const username = faker.person.firstName() + ' ' + faker.person.lastName();
-    const objective = objectives(1)[0];
+    const courseObjectives = objectives(12);
+    const objective = courseObjectives[0];
     const subObjectives = objectives(3);
 
     const studentRating = faker.helpers.arrayElement(['T', 'M', 'A', 'E']);
@@ -41,7 +46,7 @@ const Page = () => {
                 <Grid container spacing={2}>
                     <Grid container lg={6}>
                         <Grid item xs={5}>
-                            <Typography variant='h4'>{objective.name}</Typography>
+                            <ObjectiveSelect courseObjectives={courseObjectives} />
                             <Typography variant='body1'>{objective.description}</Typography>
                         </Grid>
                     </Grid>
