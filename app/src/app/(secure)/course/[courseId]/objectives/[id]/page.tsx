@@ -6,6 +6,7 @@ import { Suspense, useState } from 'react'
 
 import CourseDropdown from '@/components/course-dropdown';
 import Link from 'next/link';
+import ObjectiveSelect from '@/components/objective-select/objective-select';
 import Rating from '@/components/rating';
 import RatingSelect from '@/components/rating-select';
 import SubObjectivesTable from '@/components/tables/subobjective-table';
@@ -16,7 +17,8 @@ const Page = () => {
     const [showEvidenceDrawer, setShowEvidenceDrawer] = useState(false);
     const courseName = 'Math - Division';
     const username = faker.person.firstName() + ' ' + faker.person.lastName();
-    const objective = objectives(1)[0];
+    const courseObjectives = objectives(12);
+    const objective = courseObjectives[0];
     const subObjectives = objectives(3);
 
     const studentRating = faker.helpers.arrayElement(['T', 'M', 'A', 'E']);
@@ -44,6 +46,7 @@ const Page = () => {
                 <Grid container spacing={2}>
                     <Grid container lg={6}>
                         <Grid item xs={12}>
+                            <ObjectiveSelect courseObjectives={[]} />
                             <Typography variant='h4'>{objective.name}</Typography>
                             <Typography variant='body1'>{objective.description}</Typography>
                         </Grid>
