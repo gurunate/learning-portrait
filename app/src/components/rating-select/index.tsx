@@ -29,22 +29,26 @@ export const options = [
     {
         key: 'Mastery',
         label: 'Mastery',
-        color: '#E1FFE7'
+        color: '#E1FFE7',
+        fontColor: '#2E7D32'
     },
     {
         key: 'Approaching',
         label: 'Approaching',
-        color: '#E0F6FF'
+        color: '#E0F6FF',
+        fontColor: '#2F80ED'
     },
     {
         key: 'Not Yet',
         label: 'Not Yet',
-        color: '#FFEFBC'
+        color: '#FFEFBC',
+        fontColor: '#191C1E'
     },
     {
-        key: 'Help',
+        key: ' Needs Help',
         label: 'Help',
-        color: '#FFE2E2'
+        color: '#FFE2E2',
+        fontColor: '#BA1A1A'
     },
     {
         key: '',
@@ -192,28 +196,27 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                             onClose={handleClose}
                             onChange={handleChange}
                             renderValue={handleRenderValue}
-                            /*sx={{
-                                '&.MuiOutlinedInput-root': {
-                                    backgroundColor: `${
-                                        options.find(
-                                            ({ key }) => state?.value === key
-                                        )?.color
-                                    }.main`
-                                }
-                            }}*/
                                 sx={{
                                     '&.MuiOutlinedInput-root': {
-                                        backgroundColor: options.find(({ key }) => state?.value === key)?.color || 'transparent'
+                                        backgroundColor: options.find(({ key }) => state?.value === key)?.color || 'transparent',
+                                        color: options.find(({ key }) => state?.value === key)?.fontColor || 'transparent',
                                     }
                                 }}
                         >
-                            {options.map(({ key, color }, idx) => (
-                                <MenuItem key={`${key}-${idx}`} value={key}>
+                            {options.map(({ key, fontColor, color }, idx) => (
+                                <MenuItem
+                                    key={`${key}-${idx}`}
+                                    value={key}
+                                    sx={{
+                                        color: fontColor || 'inherit'
+                                    }}
+                                >
+
                                     <ListItemIcon>
                                         {color && (
                                             <CircleIcon
                                                 fontSize="small"
-                                                sx={{ color: `${color}.main` }}
+                                                sx={{ color: `${color}` }}
                                             />
                                         )}
                                         {!color && (
