@@ -44,10 +44,9 @@ const Page = () => {
             </Box>
             <Box sx={{ margin: 6 }}>
                 <Grid container spacing={2}>
-                    <Grid container lg={6}>
-                        <Grid item xs={12}>
-                            <ObjectiveSelect courseObjectives={[]} />
-                            <Typography variant='h4'>{objective.name}</Typography>
+                    <Grid container lg={5}>
+                        <Grid item xs={3}>
+                            <ObjectiveSelect courseObjectives={courseObjectives} />
                             <Typography variant='body1'>{objective.description}</Typography>
                         </Grid>
                     </Grid>
