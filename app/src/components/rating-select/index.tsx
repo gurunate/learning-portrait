@@ -24,26 +24,27 @@ export type RatingSelectProps = Omit<SelectProps, 'variant'> & {
     variant?: SelectVariants;
 };
 
+
 export const options = [
     {
-        key: 'M',
+        key: 'Mastery',
         label: 'Mastery',
-        color: 'success'
+        color: '#E1FFE7'
     },
     {
-        key: 'A',
+        key: 'Approaching',
         label: 'Approaching',
-        color: 'warning'
+        color: '#E0F6FF'
     },
     {
-        key: 'T',
-        label: 'NoT YeT',
-        color: 'info'
+        key: 'Not Yet',
+        label: 'Not Yet',
+        color: '#FFEFBC'
     },
     {
-        key: 'H',
+        key: 'Help',
         label: 'Help',
-        color: 'error'
+        color: '#FFE2E2'
     },
     {
         key: '',
@@ -191,19 +192,22 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                             onClose={handleClose}
                             onChange={handleChange}
                             renderValue={handleRenderValue}
-                            sx={{
+                            /*sx={{
                                 '&.MuiOutlinedInput-root': {
-                                    borderWidth: state?.value ? 1 : 'inherit',
-                                    borderStyle: 'solid',
-                                    borderColor: `${
+                                    backgroundColor: `${
                                         options.find(
                                             ({ key }) => state?.value === key
                                         )?.color
                                     }.main`
                                 }
-                            }}
+                            }}*/
+                                sx={{
+                                    '&.MuiOutlinedInput-root': {
+                                        backgroundColor: options.find(({ key }) => state?.value === key)?.color || 'transparent'
+                                    }
+                                }}
                         >
-                            {options.map(({ key, label, color }, idx) => (
+                            {options.map(({ key, color }, idx) => (
                                 <MenuItem key={`${key}-${idx}`} value={key}>
                                     <ListItemIcon>
                                         {color && (
@@ -216,8 +220,7 @@ const RatingSelect: React.FC<RatingSelectProps> = ({
                                             <PanoramaFishEyeIcon fontSize="small" />
                                         )}
                                     </ListItemIcon>
-                                    {key && <>{key} &ndash; </>}
-                                    {label}
+                                    {key && <>{key}</>}
                                 </MenuItem>
                             ))}
                         </Select>
