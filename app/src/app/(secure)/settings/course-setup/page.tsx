@@ -13,7 +13,7 @@ const Page = () => {
 
 export const metadata: Metadata = {
     title: 'Course Setup | Learning Portrait',
-    description: 'A gradebook that thinks like you do.'
+    description: 'A grade book that thinks like you do.'
 };
 
 export default Page;
