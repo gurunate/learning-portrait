@@ -73,11 +73,13 @@ describe('EvidenceDialog', () => {
         it('should render', () => {
             const handleSubmit = jest.fn();
             const courses: TCourse[] = [{
-                id: '1', name: 'Course 1',
+                id: '1', 
+                name: 'Course 1',
                 sections: []
             }];
             const objectives: TObjective[] = [{
-                id: '1', name: 'Objective 1',
+                id: '1', 
+                name: 'Objective 1',
                 parentId: '',
                 key: ''
             }];
