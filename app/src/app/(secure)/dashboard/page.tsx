@@ -28,10 +28,6 @@ const PAGE_LOAD_QUERIES = gql`
                 name
                 id
             }
-            sections {
-                name
-                id
-            }
         }
     }
 `;

@@ -1,10 +1,11 @@
 import * as React from 'react';
 
+import { usePathname, useRouter } from 'next/navigation';
+
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,6 +30,8 @@ const user = {
 const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -96,13 +99,19 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '24px', 'a:link':{textDecoration: 'none'},  }}>
             {pages.map((page) => (
-              <Link href={`/${page.url}`} key={page.title}>
               <Button
                 disableRipple
                 key={page.title}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#61666B', display: 'block', fontSize: '16px', textTransform: 'uppercase', borderRadius: '0',
-                    '&:active': {
+                onClick={() => router.push(page.url)}
+                sx={{ 
+                  my: 2, 
+                  color: '#61666B', 
+                  display: 'block', 
+                  fontSize: '16px', 
+                  textTransform: 'uppercase', 
+                  borderRadius: '0',
+                  borderBottom: `${pathname.includes(page.url) ? '2px solid #006C96' : ''}`,
+                  '&:active': {
                     borderBottom: '2px solid #006C96',
                     color: '#006C96'
                   },
@@ -113,7 +122,6 @@ const Header: React.FC<HeaderProps> = (HeaderProps): JSX.Element => {
               >
                 {page.title}
               </Button>
-              </Link>
             ))}
           </Box>
 
