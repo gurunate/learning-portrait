@@ -22,7 +22,7 @@ const CourseSetup: React.FC<CourseSetupProps> = ({
             <Typography variant="h2">Course Setup</Typography>
         </Grid>
         <Grid item md={6} sm={8}>
-            <FormControl fullWidth>
+            {/*<FormControl fullWidth>
                 <Select
                     labelId="course-label"
                     id="course"
@@ -34,10 +34,10 @@ const CourseSetup: React.FC<CourseSetupProps> = ({
                         </MenuItem>
                     ))}
                 </Select>
-            </FormControl>
+            </FormControl>*/}
         </Grid>
         <Grid item md={12}>
-            <ObjectivesTable objectives={objectives} />
+            {/*<ObjectivesTable objectives={objectives} />*/}
         </Grid>
     </Grid>
 );
