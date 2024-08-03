@@ -1,8 +1,8 @@
 'use client';
 
-import { Box, Breadcrumbs, Button, Grid, IconButton, Paper, SelectChangeEvent, SvgIcon, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Button, Grid, IconButton, Paper, SelectChangeEvent, SvgIcon, Tab, Tabs, Typography } from '@mui/material';
 import { Suspense, useState } from 'react'
-import { courses, notes, student } from '@/lib/fixtures'
+import { courses, notes, student, students } from '@/lib/fixtures'
 
 import AddNoteDialog from '@/components/dialogs/add-note';
 import CourseDropdown from '@/components/course-dropdown';
@@ -20,10 +20,18 @@ const Page = () => {
 
     const notesGrid = notes(7);
     const studentName = student()
+    const studentList = students(5);
 
     const handleSubmit = (data: FieldValues) => {
         console.log('handleSubmit', { data });
     };
+
+    const [selectedTab, setSelectedTab] = useState(0);
+        const filteredNotes = notesGrid.filter(note => {
+            if (selectedTab === 1) return note.role === 'teacher';
+            if (selectedTab === 2) return note.role === 'student';
+            return true;
+        });
 
     return (
         <section>
@@ -47,7 +55,7 @@ const Page = () => {
                                 </Typography>
                             </Grid>
                         <Grid item xs={3}>
-                            <StudentsDropdown students={[]} onHandleChange={function (event: SelectChangeEvent): void {
+                            <StudentsDropdown students={studentList} onHandleChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
                             } }/>
                         </Grid>
@@ -56,14 +64,24 @@ const Page = () => {
                                 throw new Error('Function not implemented.');
                             } } value={''} />
                         </Grid>
-                        <Grid item>
-                            <AddNoteDialog open={false} onSubmit={handleSubmit}/>
+                        <Grid container justifyContent='space-between' spacing={2}>
+                            <Grid item>
+                                <Tabs
+                                        aria-label="filter tabs"
+                                        value={selectedTab}
+                                        onChange={(event, newValue) => setSelectedTab(newValue)}
+                                    >
+                                        <Tab label="All" />
+                                        <Tab label="Teacher" />
+                                        <Tab label="Student" />
+                                    </Tabs>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </Box>
             <Suspense fallback={<p>Loading...</p>}>
-                <MasonryGrid columns={3} notes={notesGrid}/>
+                <MasonryGrid columns={3} notes={filteredNotes}/>
             </Suspense>
         </section>
     )
