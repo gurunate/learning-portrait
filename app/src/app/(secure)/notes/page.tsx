@@ -1,17 +1,13 @@
 'use client';
 
 import { Box, Breadcrumbs, Button, Grid, IconButton, Paper, SelectChangeEvent, SvgIcon, Typography } from '@mui/material';
-import ObjectivesTable, { COLOR_MAP } from '@/components/tables/objectives-table';
 import { Suspense, useState } from 'react'
-import { courses, evidenceList, notes, objectives, students } from '@/lib/fixtures'
+import { courses, notes, student } from '@/lib/fixtures'
 
 import CourseDropdown from '@/components/course-dropdown';
-import CourseTable from '@/components/tables/course-table';
 import Link from 'next/link';
 import MasonryGrid from '@/components/masonry-grid';
-import Rating from '@/components/rating';
-import RatingSelect from '@/components/rating-select';
-import SubObjectivesTable from '@/components/tables/subobjective-table';
+import StudentsDropdown from '@/components/students-dropdown';
 import { faker } from '@faker-js/faker';
 
 const Page = () => {
@@ -19,8 +15,8 @@ const Page = () => {
     const course = courses(1)[0];
     const courseName = course.name;
 
-    const evidenceDetail = evidenceList(1)[0];
     const notesGrid = notes(7);
+    const studentName = student()
 
     return (
         <section>
@@ -32,7 +28,7 @@ const Page = () => {
                     <Link color='inherit' href='/evidence'>
                         <Typography variant='subtitle2'>{courseName}</Typography> 
                     </Link>
-                    <Typography variant='subtitle2'>{evidenceDetail.name}</Typography>
+                    <Typography variant='subtitle2'>{`${studentName.firstName} ${studentName.lastName}`}</Typography>
                 </Breadcrumbs>
             </Box>
             <Box sx={{ margin: 6 }}>
@@ -63,9 +59,9 @@ const Page = () => {
                 <Grid container>
                 <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
                         <Grid item xs={3}>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
+                            <StudentsDropdown students={[]} onHandleChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } }/>
                         </Grid>
                         <Grid item xs={3} alignContent='right'>
                             <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
