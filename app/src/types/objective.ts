@@ -1,7 +1,8 @@
 export type Objective = {
     id: string;
     name: string;
+    parentId: string;
     key: string;
     description?: string;
-    subObjectives?: Objective[];
+    children?: Objective[];
 };

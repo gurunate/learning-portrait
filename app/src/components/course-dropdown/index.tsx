@@ -6,55 +6,58 @@ import {
     MenuItem,
     Select,
     SelectChangeEvent,
-    Typography,
+    Typography
 } from '@mui/material';
+import {
+    Course as TCourse,
+    Section as TSection,
+} from '@/types';
 
 import React from 'react';
-import { Course as TCourse } from '@/types';
 
 export type CourseSelectProps = {
     courses: TCourse[];
-    onChange?: (event: SelectChangeEvent) => void;
-    value?: string;
+    selectedValue: string;
+    onChange?: (event: SelectChangeEvent<string>) => void;
 };
 
 const CourseDropdown: React.FC<CourseSelectProps> = ({
     courses = [],
+    selectedValue,
     onChange,
-    value,
 }: CourseSelectProps): JSX.Element => {
+    // Create an array to hold all children elements
+    const selectItems = courses.flatMap(({ id, name, sections }) => [
+        <ListSubheader key={`header-${id}`}>
+            <Typography variant='body1' sx={{ fontWeight: 'bold' }}>
+                {name}
+            </Typography>
+        </ListSubheader>,
+        ...sections.map(({ id: sectionId, name: sectionName }) => (
+            <MenuItem key={sectionId} value={sectionId} sx={{ paddingInlineStart: 5 }}>
+                <Typography variant='body1'>{sectionName}</Typography>
+            </MenuItem>
+        ))
+    ]);
+
     return (
-        <>
-            <FormControl fullWidth>
-                <Select
-                    labelId="course-label"
-                    id="course"
-                    value={value}
-                    aria-label="Courses"
-                    onChange={onChange}
-                    sx={{
-                        borderRadius: '4px',
-                        border: '1px solid #D5D9DB',
-                    }}
-                >
-                    {courses
-                        .slice()
-                        .sort((a, b) => a.name.localeCompare(b.name))
-                        .map(({id, name, sections }) => (
-                            <>
-                                <ListSubheader key={id}>
-                                    <Typography variant='body1' sx={{ fontWeight: 'bold' }}>{name}</Typography>
-                                </ListSubheader>
-                                {sections.map((section) => (
-                                    <MenuItem key={section.id} value={section.id} sx={{ paddingInlineStart: 5 }}>
-                                        <Typography variant='body1'>{section.name}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </>
-                        ))}
-                </Select>
-            </FormControl>
-        </>
+        <FormControl fullWidth>
+            <Select
+                labelId="course-label"
+                id="course"
+                value={selectedValue || ''}
+                aria-label="Courses"
+                onChange={onChange}
+                sx={{
+                    borderRadius: '4px',
+                    border: '1px solid #D5D9DB',
+                    width: '273px',
+                }}
+            >
+                {selectItems}
+            </Select>
+        </FormControl>
     );
 };
+
 export default CourseDropdown;

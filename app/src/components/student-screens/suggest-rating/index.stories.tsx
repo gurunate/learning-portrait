@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as fixtures from '@/lib/fixtures';
-import Component, { EvidenceDialogProps } from '.';
+import Component, {SuggestRatingDialogProps } from '.';
 import React from 'react';
 import { Button } from '@mui/material';
 import { faker } from '@faker-js/faker';
-import { formatDate } from '@/lib/utils';
 
 const meta = {
-    title: 'App / components / dialogs / Evidence',
+    title: 'App / components / student screens / Suggest Rating',
     component: Component,
     argTypes: { onSubmit: { action: 'onSubmit' } }
 } satisfies Meta<typeof Component>;
@@ -15,28 +13,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const courses = fixtures.courses(3);
-const objectives = fixtures.objectives(7);
-const students = fixtures.students(12)
 
 const defaultArgs = {
     open: false,
     initialValue: '',
-    objectives,
-    courses,
-    students,
-    uploadedOn: formatDate(faker.date.past()),
     devtool: false
 };
 
 /**
- * @param {EvidenceDialogProps} props
+ * @param {SuggestRatingDialogProps} props
  * @returns {JSX.Element}
  */
 const Demo = ({
     open: openProp,
     ...props
-}: EvidenceDialogProps): JSX.Element => {
+}: SuggestRatingDialogProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -54,7 +45,7 @@ const Demo = ({
     return (
         <>
             <Button variant="contained" onClick={handleClick}>
-                Add Evidence
+                Suggest New Rating
             </Button>
             <Component {...props} open={open} onClose={handleClose} />
         </>

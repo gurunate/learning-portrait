@@ -38,6 +38,8 @@ import { DevTool } from '@hookform/devtools';
 import Editor from '../../editor';
 import FileUploadCard from '../../file-upload-card';
 import ObjectivesDropdown from '@/components/objective-dropdown';
+import StudentsDropdown from '@/components/students-dropdown';
+import { Student as TStudents } from '@/types';
 import { evidenceSchema } from './schema';
 import { get } from 'lodash';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -48,6 +50,7 @@ export type { EvidenceFormValues } from './schema';
 export type EvidenceDialogProps = DialogProps & {
     selectAllStudents: boolean;
     courses: TCourse[];
+    students: TStudents[] | undefined;
     devtool?: boolean;
     initialValue?: string;
     objectives?: TObjective[];
@@ -80,6 +83,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
     selectAllStudents = true,
     objectives: objectivesProp,
     courses = [],
+    students = [],
     onClose,
     onError,
     onSubmit,
@@ -263,7 +267,7 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             />
                                         </Grid>
                                         <Grid item sm={12}>
-                                        <FormControl>
+                                        <FormControl fullWidth>
                                             <Grid component="label" container alignItems="center" spacing={1}>
                                                 <FormLabel id="switch-label" sx={{paddingLeft: '10px'}}>Students: </FormLabel>
                                                 <FormControlLabel control={
@@ -275,18 +279,9 @@ const EvidenceDialog: React.FC<EvidenceDialogProps> = ({
                                             </Grid>
                                             {allStudentsSelected === false && (
                                                 <FormControl>
-                                                    <Select
-                                                        value={selectedStudent}
-                                                        onChange={handleStudentChange}
-                                                        displayEmpty
-                                                        fullWidth
-                                                        inputProps={{ 'aria-label': 'Select student' }}
-                                                    >
-                                                        <MenuItem value="" disabled>Select Student</MenuItem>
-                                                        <MenuItem value="student1">Student 1</MenuItem>
-                                                        <MenuItem value="student2">Student 2</MenuItem>
-                                                        <MenuItem value="student3">Student 3</MenuItem>
-                                                    </Select>
+                                                    <StudentsDropdown
+                                                        students={students}
+                                                    />
                                                 </FormControl>
                                             )}
                                             </FormControl>

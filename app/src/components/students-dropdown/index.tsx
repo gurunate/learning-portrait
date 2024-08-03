@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" sx={{ backgroundColor: "primary" }} />;
 
-export type ObjectivesDropdownProps = {
+export type StudentsDropdownProps = {
     students: TStudents[] | undefined;
     value?: TStudents[] | undefined;
     inputValue?: string | undefined;
@@ -18,7 +18,7 @@ export type ObjectivesDropdownProps = {
     onHandleInputChange?: (event: any, value: string) => void;
 }
 
-const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
+const StudentsDropdown: React.FC<StudentsDropdownProps> = ({
     students = [],
     value,
     inputValue,
@@ -59,4 +59,4 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
       );
 };
 
-export default ObjectivesDropdown
+export default StudentsDropdown
