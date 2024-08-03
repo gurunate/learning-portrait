@@ -12,6 +12,7 @@ export const objective = (): TObjective => {
     return {
         id: faker.string.uuid(),
         name,
+        parentId: faker.string.uuid(),
         key: name.substring(0, 3).toUpperCase(),
         description: faker.lorem.sentence()
     };

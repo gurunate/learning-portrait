@@ -35,7 +35,7 @@ const Page = async () => {
                          <Typography variant='h4' color='primary'>Evidence</Typography>
                      </Grid>
                      <Grid item xs={2}>
-                         <CourseDropdown courses={courses}  />
+                         <CourseDropdown courses={courses} selectedValue={""}  />
                      </Grid>
                  </Grid>
              </Box>
