@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as fixtures from '@/lib/fixtures';
-import Component, { EvidenceDialogProps } from '.';
+import Component, { AddNoteDialogProps } from '.';
 import React from 'react';
 import { Button } from '@mui/material';
 import { faker } from '@faker-js/faker';
 import { formatDate } from '@/lib/utils';
 
 const meta = {
-    title: 'App / components / dialogs / Evidence',
+    title: 'App / components / dialogs / Add Note',
     component: Component,
     argTypes: { onSubmit: { action: 'onSubmit' } }
 } satisfies Meta<typeof Component>;
@@ -15,28 +14,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const courses = fixtures.courses(3);
-const objectives = fixtures.objectives(7);
-const students = fixtures.students(12)
-
 const defaultArgs = {
     open: false,
     initialValue: '',
-    objectives,
-    courses,
-    students,
-    uploadedOn: formatDate(faker.date.past()),
-    devtool: false
+    devtool: true
 };
 
 /**
- * @param {EvidenceDialogProps} props
+ * @param {EditNoteDialogProps} props
  * @returns {JSX.Element}
  */
 const Demo = ({
     open: openProp,
     ...props
-}: EvidenceDialogProps): JSX.Element => {
+}: AddNoteDialogProps): JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -54,7 +45,7 @@ const Demo = ({
     return (
         <>
             <Button variant="contained" onClick={handleClick}>
-                Add Evidence
+                + Add Note
             </Button>
             <Component {...props} open={open} onClose={handleClose} />
         </>
@@ -64,8 +55,7 @@ const Demo = ({
 export const demo: Story = {
     args: {
         ...defaultArgs,
-        initialValue: faker.lorem.sentence(),
-        selectAllStudents: false
+        initialValue: faker.lorem.sentence()
     },
     render: args => <Demo {...args} />
 };

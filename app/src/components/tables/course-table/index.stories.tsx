@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker';
 import { objectives, students } from '@/lib/fixtures';
 import { Objective as TObjective, Student as TStudent } from '@/types';
 import { object } from 'yup';
+import { sections } from '@/lib/fixtures/section';
 
 const meta = {
     title: 'App / components / tables / Course',
@@ -47,6 +48,7 @@ export const demo: Story = {
             id: faker.string.uuid(),
             name: faker.lorem.words(),
             description: faker.lorem.sentence(),
+            sections: sections(3),
         },
         students: studs,
         objectives: objs,
@@ -59,9 +61,10 @@ export const OverallGradeDemo: Story = {
             id: faker.string.uuid(),
             name: faker.lorem.words(),
             description: faker.lorem.sentence(),
+            sections: sections(3),
         },
         students: studs,
-        objectives: overall,
+        objectives: objectives(12),
     }
 };
 
@@ -80,6 +83,7 @@ export const SubObjectiveDemo: Story = {
             id: faker.string.uuid(),
             name: faker.lorem.words(),
             description: faker.lorem.sentence(),
+            sections: sections(3),
         },
         students: studs,
         objectives: subObjectives,

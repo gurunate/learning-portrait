@@ -26,7 +26,7 @@ const Editor: React.FC<EditorProps> = ({
         apiKey={API_KEY}
         init={{
             placeholder,
-            height: '100%',
+            height: 250,
             menubar: false,
             statusbar: false,
             toolbar: true

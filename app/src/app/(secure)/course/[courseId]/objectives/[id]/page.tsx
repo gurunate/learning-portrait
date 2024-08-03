@@ -6,6 +6,7 @@ import { Suspense, useState } from 'react'
 
 import CourseDropdown from '@/components/course-dropdown';
 import Link from 'next/link';
+import ObjectiveSelect from '@/components/objective-select/objective-select';
 import Rating from '@/components/rating';
 import RatingSelect from '@/components/rating-select';
 import SubObjectivesTable from '@/components/tables/subobjective-table';
@@ -16,7 +17,8 @@ const Page = () => {
     const [showEvidenceDrawer, setShowEvidenceDrawer] = useState(false);
     const courseName = 'Math - Division';
     const username = faker.person.firstName() + ' ' + faker.person.lastName();
-    const objective = objectives(1)[0];
+    const courseObjectives = objectives(12);
+    const objective = courseObjectives[0];
     const subObjectives = objectives(3);
 
     const studentRating = faker.helpers.arrayElement(['T', 'M', 'A', 'E']);
@@ -30,21 +32,34 @@ const Page = () => {
         <section>
             <Box sx={{ marginInline: 4 }}>
                 <Breadcrumbs aria-label='breadcrumb'>
-                    <Link color='inherit' href='/'>
+                    <Link color='inherit' href='/dashboard'>
                         <Typography variant='subtitle2'>Portraits</Typography>
                     </Link>
-                    <Link color='inherit' href='/evidence'>
-                        <Typography variant='subtitle2'>{courseName}</Typography> 
+                    <Typography variant='subtitle2'>{courseName}</Typography> 
+                    <Link href="#" color="inherit">
+                        <Typography variant='subtitle2'>{username}</Typography>
                     </Link>
                     <Typography variant='subtitle2'>{objective.name}</Typography>
                 </Breadcrumbs>
             </Box>
             <Box sx={{ margin: 6 }}>
                 <Grid container spacing={2}>
-                    <Grid container lg={6}>
-                        <Grid item xs={5}>
-                            <Typography variant='h4'>{objective.name}</Typography>
+                    <Grid container lg={5}>
+                        <Grid item xs={3}>
+                            <ObjectiveSelect courseObjectives={courseObjectives} />
                             <Typography variant='body1'>{objective.description}</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
+                        <Grid item xs={6}>
+                            <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
+                                throw new Error('Function not implemented.');
+                            } } selectedValue={''} />
+                        </Grid>
+                        <Grid item xs={6} alignContent='right'>
+                            <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
+                                throw new Error('Function not implemented.');
+                            } } selectedValue={''} />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -62,7 +77,7 @@ const Page = () => {
                         <Typography variant='subtitle1' p={1}>Teacher:</Typography>
                     </Grid>
                     <Grid item xs={1}>
-                        <Rating label={COLOR_MAP[teacherRating].label} variant='filled' color={COLOR_MAP[teacherRating].color} />
+                        <RatingSelect defaultValue={COLOR_MAP[teacherRating].label} />
                     </Grid>
                     <Grid item xs={8}>
                         <Button variant='contained' onClick={handleAddEvidence} sx={{ marginBlock: 2, float: 'right' }}>
