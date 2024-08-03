@@ -37,6 +37,7 @@ const StudentsDropdown: React.FC<StudentsDropdownProps> = ({
           inputValue={inputValue}
           onInputChange={onHandleInputChange}
           disableCloseOnSelect
+          sx={{width: 250}}
           getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
           renderOption={(props, option, { selected }) => (
             <li {...props}>

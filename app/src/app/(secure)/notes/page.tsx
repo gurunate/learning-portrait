@@ -4,11 +4,14 @@ import { Box, Breadcrumbs, Button, Grid, IconButton, Paper, SelectChangeEvent, S
 import { Suspense, useState } from 'react'
 import { courses, notes, student } from '@/lib/fixtures'
 
+import AddNoteDialog from '@/components/dialogs/add-note';
 import CourseDropdown from '@/components/course-dropdown';
+import { FieldValues } from 'react-hook-form';
 import Link from 'next/link';
 import MasonryGrid from '@/components/masonry-grid';
 import StudentsDropdown from '@/components/students-dropdown';
 import { faker } from '@faker-js/faker';
+import { width } from '@mui/system';
 
 const Page = () => {
     const [showEvidenceDrawer, setShowEvidenceDrawer] = useState(false);
@@ -17,6 +20,10 @@ const Page = () => {
 
     const notesGrid = notes(7);
     const studentName = student()
+
+    const handleSubmit = (data: FieldValues) => {
+        console.log('handleSubmit', { data });
+    };
 
     return (
         <section>
@@ -32,41 +39,25 @@ const Page = () => {
                 </Breadcrumbs>
             </Box>
             <Box sx={{ margin: 6 }}>
-                {/*<Grid container>
-                    <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
-                        <Grid item xs={3}>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
-                                throw new Error('Function not implemented.');
-                            } } value={''} />
-                        </Grid>
-                        <Grid item xs={3} alignContent='right'>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
-                                throw new Error('Function not implemented.');
-                            } } value={''} />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <MasonryGrid columns={5} notes={notesGrid}/>
-                </Grid>
                 <Grid container>
-                    <Grid item xs={6}>
-                        <Typography variant='body1'>
-                            <strong>Note: </strong>{faker.lorem.paragraph()}
-                        </Typography>
-                    </Grid>
-                </Grid>*/}
-                <Grid container>
-                <Grid container lg={6} justifyContent={'flex-end'} spacing={2}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <Typography variant='h2'>
+                                    {`${studentName.firstName} ${studentName.lastName}`}
+                                </Typography>
+                            </Grid>
                         <Grid item xs={3}>
                             <StudentsDropdown students={[]} onHandleChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
                             } }/>
                         </Grid>
-                        <Grid item xs={3} alignContent='right'>
+                        <Grid item xs={3}>
                             <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
                             } } value={''} />
+                        </Grid>
+                        <Grid item>
+                            <AddNoteDialog open={false} onSubmit={handleSubmit}/>
                         </Grid>
                     </Grid>
                 </Grid>
