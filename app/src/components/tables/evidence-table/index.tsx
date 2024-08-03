@@ -11,6 +11,7 @@ import {
     Typography
 } from '@mui/material';
 
+import Link from 'next/link';
 import { faker } from '@faker-js/faker';
 
 export type EvidenceTableProps = unknown;
@@ -32,7 +33,9 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
             course: 'Math',
             objectives: 'Addition',
             objectiveShortName: 'Add',
-            notes: faker.lorem.sentence(25)
+            notes: faker.lorem.sentence(25),
+            evidenceId: '1234567',
+            courseId: 'abcd1234'
         },
         {
             value: 2,
@@ -43,7 +46,9 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
             course: 'Math',
             objectives: 'Ratios & Proportions',
             objectiveShortName: 'R&P',
-            notes: 'Good job!  You are off to a great start!'
+            notes: 'Good job!  You are off to a great start!',
+            evidenceId: '89101112',
+            courseId: 'efghi1234'
         }
     ];
 
@@ -67,7 +72,7 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map(({ value, key, name, description, date, course, notes, objectives, objectiveShortName }, idx) => (
+                        {rows.map(({ value, key, name, description, date, course, notes, objectives, objectiveShortName, evidenceId, courseId }, idx) => (
                             <TableRow key={value}>
                                 <TableCell variant="head" align="left">
                                     <Typography variant='body1'>{date}</Typography>
@@ -96,9 +101,13 @@ const EvidenceTable: React.FC<EvidenceTableProps> = (
                                     </Tooltip>
                                 </TableCell>
                                 <TableCell align="right">
-                                    <Button variant='text'>
-                                        <Typography variant='body1'>Score</Typography>
-                                    </Button>
+                                    <Link
+                                        href={`/course/${courseId}/evidence/${evidenceId}/details`}
+                                    >
+                                        <Button variant='text'>
+                                            <Typography variant='body1'>Score</Typography>
+                                        </Button>
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         ))}
