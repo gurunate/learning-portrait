@@ -72,7 +72,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             <Grid container alignItems="center" spacing={4}>
                 <Grid item sm={12} md={3} sx={{ mx: '16px' }}>
                     <FormControl fullWidth>
-                       <CourseDropdown courses={courses} onChange={handleCourseChange} selectedValue={activeSection} />
+                       <CourseDropdown data-testid='course-select' courses={courses} onChange={handleCourseChange} selectedValue={activeSection} />
                     </FormControl>
                 </Grid>
                 <Grid item sm={12} md={3}>
@@ -104,13 +104,13 @@ const Dashboard: React.FC<DashboardProps> = ({
                         </Button>
                     </Stack>
                 </Grid>*/}
-                <Grid item md={12} sx={{ overflow: 'scroll'}}>
+                <Grid item md={12} sx={{ height: '70vh', overflow: 'scroll'}}>
                     <CourseTable
                         course={activeCourse} 
                         objectives={value || activeCourse.objectives}
                         students={students}
+                        hasSubObjectives={value.find(obj => obj.parentId !== null) ? true : false}
                     />
-                    {/*<CourseTable course={courses[0]} students={[]} />*/}
                 </Grid>
             </Grid>
             {/*<EvidenceDialog

@@ -64,7 +64,8 @@ const Demo = ({
 export const demo: Story = {
     args: {
         ...defaultArgs,
-        initialValue: faker.lorem.sentence()
+        initialValue: faker.lorem.sentence(),
+        selectAllStudents: false
     },
     render: args => <Demo {...args} />
 };

@@ -55,6 +55,7 @@ const StudentsDropdown: React.FC<StudentsDropdownProps> = ({
               {...params} 
             />
           )}
+          noOptionsText='No students found'
         />
       );
 };

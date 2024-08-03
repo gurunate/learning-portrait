@@ -25,12 +25,10 @@ const Page = () => {
         <section>
             <Box sx={{ marginInline: 4 }}>
                 <Breadcrumbs aria-label='breadcrumb'>
-                    <Link color='inherit' href='/'>
+                    <Link color='inherit' href='/dashboard'>
                         <Typography variant='subtitle2'>Portraits</Typography>
                     </Link>
-                    <Link color='inherit' href='/evidence'>
-                        <Typography variant='subtitle2'>{courseName}</Typography> 
-                    </Link>
+                    <Typography variant='subtitle2'>{courseName}</Typography> 
                     <Typography variant='subtitle2'>{username}</Typography>
                 </Breadcrumbs>
             </Box>
@@ -48,12 +46,12 @@ const Page = () => {
                         <Grid item xs={3}>
                             <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } } selectedValue={''} />
                         </Grid>
                         <Grid item xs={3} alignContent='right'>
                             <CourseDropdown courses={[]} onChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } } selectedValue={''} />
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>

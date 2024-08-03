@@ -61,7 +61,7 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
     return (
         <Autocomplete
             multiple
-            id="checkboxes-tags-demo"
+            id='checkboxes-tags-demo'
             options={objectives}
             disableCloseOnSelect
             limitTags={1}
@@ -74,9 +74,10 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
             }}
             onInputChange={(event, newInputValue) => {
                 if (event && newInputValue !== undefined) {
-                    onHandleInputChange?.(event, newInputValue);
+                    onHandleInputChange?.(event as React.ChangeEvent<HTMLInputElement>, newInputValue);
                 }
             }}
+            renderTags={(tagValue, getTagProps) => null}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option) => {
                 const isSelected = isOptionSelected(option.id);
@@ -112,7 +113,7 @@ const ObjectivesDropdown: React.FC<ObjectivesDropdownProps> = ({
                 );
             }}
             renderInput={(params) => (
-                <TextField {...params} variant="outlined" />
+                <TextField {...params} aria-label='objective-dropdown' label='Objectives' variant='outlined' />
             )}
             sx={{ width: '300px', overflow: 'hidden' }}
         />

@@ -16,6 +16,7 @@ const courses = fixtures.courses(5);
 
 export const demo: Story = {
     args: {
-        courses
+        courses,
+        selectedValue: courses[0].sections[0].id
     }
 };

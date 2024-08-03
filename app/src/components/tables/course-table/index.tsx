@@ -5,13 +5,18 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    TableSortLabel,
     Typography,
 } from '@mui/material';
 import { Course as TCourse, Objective as TObjective, Student as TStudent } from '@/types';
 
 import GradeSelect from '@/components/grade-select';
+import Link from 'next/link';
 import Rating from '@/components/rating';
+import React from 'react';
+import { filterSelectedObjectives } from '@/lib/utils/objective-mapping';
 import { formatFullName } from '@/lib/utils';
+import { orderBy } from 'lodash';
 
 export interface Column {
     id: string;
@@ -36,6 +41,28 @@ const CourseTable: React.FC<CourseTableProps> = ({
     objectives,
     hasSubObjectives = false
 }: CourseTableProps): JSX.Element => {
+    function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+        if (b[orderBy] < a[orderBy]) {
+            return -1;
+        }
+        if (b[orderBy] > a[orderBy]) {
+            return 1;
+        }
+        return 0;
+    }
+    type Order = 'asc' | 'desc';
+    
+    function getComparator<Key extends keyof any>(
+        order: Order,
+        orderBy: Key,
+        ): (
+        a: { [key in Key]: number | string },
+        b: { [key in Key]: number | string },
+        ) => number {
+        return order === 'desc'
+            ? (a, b) => descendingComparator(a, b, orderBy)
+            : (a, b) => -descendingComparator(a, b, orderBy);
+    }
 
     return (
         <Grid container spacing={2}>
@@ -43,49 +70,59 @@ const CourseTable: React.FC<CourseTableProps> = ({
                 {objectives ?
                 <Table aria-label='course table' stickyHeader>
                     <TableHead>
-                        <TableRow>
+                        <TableRow sx={{ position: 'sticky'}}>
                             <TableCell 
                                 key={'name'} 
                                 align='left' 
                                 sx={{ 
                                     minWidth: 236, 
                                     position: 'sticky', 
+                                    top: 0,
                                     left: 0,  
                                     borderTop: '1px solid #E7EAEC', 
                                     borderRight: '1px solid #E7EAEC', 
-                                    zIndex: '50' 
+                                    //zIndex: '50' 
                                 }}
                             >
-                                <Typography variant='subtitle2'>Student Name</Typography>
+                                {!hasSubObjectives ? <Typography variant='subtitle2'>Student Name</Typography> : null }
                             </TableCell>
-                            {objectives.map((column) => (
-                                column.name === 'overall' ? (
-                                    <TableCell 
-                                        key={'name'} 
-                                        align='left' 
+                            {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).find(column => column.name === 'Overall Grade') && (
+                                <TableCell
+                                    key='overall-grade'
+                                    align='left'
+                                    sx={{
+                                        minWidth: 172,
+                                        position: 'sticky',
+                                        left: 236,
+                                        borderTop: '1px solid #E7EAEC',
+                                        borderRight: '1px solid #E7EAEC',
+                                        borderBottom: '1px solid #E7EAEC',
+                                        //zIndex: '50'
+                                    }}
+                                >
+                                    <Typography variant='subtitle2'>Overall Grade</Typography>
+                                </TableCell>
+                            )}
+
+                            {/* Render other objectives */}
+                            {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).map((column) => (
+                                column.name !== 'Overall Grade' && (
+                                    <TableCell
+                                        key={column.id}
+                                        align='left'
+                                        colSpan={hasSubObjectives ? (column.children ?? []).filter(sub => objectives.includes(sub)).length : 1}
                                         sx={{ 
                                             minWidth: 172, 
-                                            position: 'sticky', 
-                                            left: 236,  
-                                            boxShadow: '5px 10px 36px 0px #E7EAEC', 
+                                            position: 'sticky',
                                             borderTop: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
-                                            zIndex: '50' 
+                                            //zIndex: '50'
                                         }}
                                     >
-                                        <Typography variant='subtitle2'>Overall</Typography>
-                                    </TableCell>) : (
-                                    <TableCell 
-                                        key={column.id} 
-                                        align='left' 
-                                        colSpan={hasSubObjectives ? (column.subObjectives ?? []).length : 1}
-                                        sx={{ minWidth: 172, borderTop: '1px solid #E7EAEC', borderRight: '1px solid #E7EAEC'}} 
-                                    >
                                         <Typography variant='subtitle2'>{column.name}</Typography>
-                                    </TableCell>    
-                                )                           
+                                    </TableCell>
                                 )
-                            )}
+                            ))}
                         </TableRow>
                         {hasSubObjectives && (
                             <TableRow>
@@ -95,20 +132,38 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     left: 0,  
                                     top: 48, 
                                     borderRadius: 0,
-                                    borderBottom: '1px solid #E7EAEC',
                                     borderRight: '1px solid #E7EAEC',
-                                    zIndex: '9999' 
+                                    //zIndex: '50', 
+                                    borderTop: 'none',
+                                }}>
+                                    <Typography variant='subtitle2'>Student Name</Typography>
+                                </TableCell>
+                                <TableCell sx={{ 
+                                    minWidth: 100, 
+                                    position: 'sticky', 
+                                    left: 0,  
+                                    top: 48, 
+                                    borderRadius: 0,
+                                    borderRight: '1px solid #E7EAEC',
+                                    //zIndex: '50', 
+                                    borderTop: 'none',
                                 }} />
-                                {objectives.map((column) => (
-                                (column.subObjectives ?? []).map((subObjective) => (
-                                    <TableCell 
-                                        key={subObjective.id} 
+                                {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).map((column) => (
+                                (column.children ?? []).filter(sub => objectives.includes(sub)).map((subObjective) => (
+                                    <TableCell  
+                                        key={subObjective.id}
                                         align='left' 
-                                        sx={{ minWidth: 172, position: 'sticky', top: 48, borderRight: '1px solid #E7EAEC'}} 
+                                        sx={{ 
+                                            minWidth: 172, 
+                                            position: 'sticky', 
+                                            top: 48, 
+                                            borderRight: '1px solid #E7EAEC',
+                                            //zIndex: '50'
+                                        }} 
                                     >
                                         <Typography variant='subtitle2'>{subObjective.name}</Typography>
                                     </TableCell>
-                                ))
+                                )) 
                                 ))}
                             </TableRow>
                         )}
@@ -128,41 +183,64 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                             borderBottom: '1px solid #E7EAEC', 
                                             borderRight: '1px solid #E7EAEC',
                                             boxShadow: '5px 10px 36px 0px #E7EAEC',
-                                            zIndex: '50'
+                                            //zIndex: '50'
                                         }}
                                     >
-                                        <Typography variant='body1'>{fullName}</Typography>
+                                        <Link href={`/course/${course.id}/student/${student.id}/objectives`} style={{ textDecoration: 'none', color: '#191C1E'}}>
+                                            <Typography variant='body1'>{fullName}</Typography>
+                                        </Link>
                                     </TableCell>
-                                    {objectives.map((column) => {
+                                    {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).find(column => column.name === 'Overall Grade') && (
+                                        <TableCell 
+                                            key={`${name}-overall-grade`} 
+                                            align='left' 
+                                            sx={{
+                                                position: 'sticky',
+                                                left: 236,
+                                                backgroundColor: 'white',
+                                                borderBottom: '1px solid #E7EAEC',
+                                                borderRight: '2px solid #E7EAEC',
+                                                //zIndex: '50'
+                                            }}
+                                        >
+                                            <GradeSelect value='' onChange={(e) => e.target.value}/>
+                                        </TableCell>
+                                    )}
+                                    {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).map((column) => {
                                         const value = '';
-                                        if (column.name === 'overall') {
                                             return (
-                                                <TableCell key={column.id} align='left' sx={{
-                                                    position: 'sticky',
-                                                    left: 236,
-                                                    backgroundColor: 'white',
-                                                    borderBottom: '1px solid #E7EAEC',
-                                                    borderRight: '2px solid #E7EAEC',
-                                                    zIndex: '50'
-                                                }}>
-                                                    <GradeSelect value={column.key as ''} onChange={(e) => e.target.value}/>
-                                                </TableCell>
-                                            )
-                                        } else {
-                                            return (
-                                                hasSubObjectives ? (
-                                                    (column.subObjectives ?? []).map((subObjective) => (
-                                                        <TableCell key={subObjective.id} align='left' sx={{ backgroundColor: '#FFF', borderBottom: '1px solid #E7EAEC' }}>
-                                                            <Rating label='Mastery' color='success' variant={column.name === 'overall' ? 'filled': 'outlined'} />
+                                                column.name !== 'Overall Grade' && (
+                                                hasSubObjectives  && (column.children ?? []).filter(sub => objectives.includes(sub)).length > 0 ? (
+                                                    (column.children ?? []).filter(sub => objectives.includes(sub)).map((subObjective) => (
+                                                        <TableCell 
+                                                            key={subObjective.id} 
+                                                            align='left' 
+                                                            sx={{ 
+                                                                backgroundColor: '#FFF', 
+                                                                borderBottom: '1px solid #E7EAEC', 
+                                                            }
+                                                        }>
+                                                            <Link href={`/course/${course.id}/objectives/${subObjective.id}`}>
+                                                                <Rating label='Mastery' color='success' variant={subObjective.name === 'Overall' ? 'filled': 'outlined'} />
+                                                            </Link>
                                                         </TableCell>
-                                                    ))
+                                                    )
+                                                )
                                                 ) : (
-                                                <TableCell key={column.id} align='left' sx={{ backgroundColor: '#FFF', borderBottom: '1px solid #E7EAEC' }}>
-                                                    <Rating label='Mastery' color='success' />
+                                                <TableCell 
+                                                    key={column.id} 
+                                                    align='left' 
+                                                    sx={{ 
+                                                        backgroundColor: '#FFF', 
+                                                        borderBottom: '1px solid #E7EAEC', 
+                                                    }}
+                                                >
+                                                    <Link href={`/course/${course.id}/objectives`}>
+                                                        <Rating label='Mastery' color='success' />
+                                                    </Link>
                                                 </TableCell>
                                                 )
-                                            )
-                                        }
+                                            ))
                                     }
                                 )
                             }

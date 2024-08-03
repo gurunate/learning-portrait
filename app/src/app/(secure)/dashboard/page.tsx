@@ -4,7 +4,7 @@ import Dashboard from '@/components/dashboard';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Objective as TObjective } from '@/types';
-import { section } from '@/lib/fixtures/section';
+import { organizeObjectives } from '@/lib/utils/objective-mapping';
 
 const PAGE_LOAD_QUERIES = gql`
     query Courses {
@@ -103,31 +103,7 @@ const Page = async () => {
 
     const { courses, sections, objectives } = data ?? {};
 
-    console.log(objectives);
-
-    function organizeObjectives(objectives: TObjective[]): any[] {
-        // Step 1: Create a map of objectives by their ID
-        const objectivesMap = new Map();
-        objectives.forEach(obj => {
-            objectivesMap.set(obj.id, { ...obj, children: [] });
-        });
-
-        // Step 2: Separate top-level objectives (where parentId is null)
-        const topLevelObjectives: any[] = [];
-        objectives.forEach(obj => {
-            if (obj.parentId === null || obj.parentId === undefined) {
-                topLevelObjectives.push(objectivesMap.get(obj.id));
-            } else {
-                // Step 3: Assign children to their parents
-                const parentObjective = objectivesMap.get(obj.parentId);
-                if (parentObjective) {
-                    parentObjective.children.push(objectivesMap.get(obj.id));
-                }
-            }
-        });
-
-        return topLevelObjectives;
-    }
+    //console.log(objectives);
 
     const mappedCourses = courses.slice()
                         .sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name)).map((course: { id: any; }) => {
@@ -143,7 +119,7 @@ const Page = async () => {
         }
     );
 
-    console.log(mappedCourses);
+    //console.log(mappedCourses);
 
     return (
         <section>
