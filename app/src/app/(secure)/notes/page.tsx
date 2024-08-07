@@ -60,9 +60,9 @@ const Page = () => {
                             } }/>
                         </Grid>
                         <Grid item xs={3}>
-                            <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
+                            {/* <CourseDropdown courses={[]} onHandleChange={function (event: SelectChangeEvent): void {
                                 throw new Error('Function not implemented.');
-                            } } value={''} />
+                            } } value={''} /> */}
                         </Grid>
                         <Grid container justifyContent='space-between' spacing={2}>
                             <Grid item>
