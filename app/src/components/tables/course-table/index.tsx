@@ -192,7 +192,7 @@ const CourseTable: React.FC<CourseTableProps> = ({
                                     </TableCell>
                                     {course.objectives && course.objectives.filter(obj => objectives.includes(obj)).find(column => column.name === 'Overall Grade') && (
                                         <TableCell 
-                                            key={`${name}-overall-grade`} 
+                                            key={`overall-grade`} 
                                             align='left' 
                                             sx={{
                                                 position: 'sticky',
